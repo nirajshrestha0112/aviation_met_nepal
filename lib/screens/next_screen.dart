@@ -72,9 +72,14 @@ class _NextScreenState extends State<NextScreen> with TickerProviderStateMixin {
           style: TextStyle(
               fontSize: SizeConfig.textMultiplier! * 2.0, color: textColor),
         ),
-        leading: const Icon(
-          Icons.arrow_back,
-          color: textColor,
+        leading: InkWell(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back,
+            color: textColor,
+          ),
         ),
         bottom: TabBar(
           indicatorPadding: const EdgeInsets.symmetric(

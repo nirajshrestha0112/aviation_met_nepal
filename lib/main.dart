@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          initialRoute: nextScreen,
+          initialRoute: homeScreen,
           routes: {
             homeScreen: (context) => const HomeScreen(),
             nextScreen:(context)=>const NextScreen()

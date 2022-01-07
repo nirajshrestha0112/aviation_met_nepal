@@ -1,5 +1,6 @@
 import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
+import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
@@ -454,11 +455,16 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                     child: ListView.builder(
                         itemCount: selectAirportData.length,
                         itemBuilder: (c, i) {
-                          return ListTile(
-                              contentPadding:
-                                  const EdgeInsets.only(left: padding * 2.0),
-                              leading: selectAirportData[i]['leading'],
-                              trailing: selectAirportData[i]['trailing']);
+                          return InkWell(
+                            onTap: (){
+                              Navigator.pushNamed(context, nextScreen);
+                            },
+                            child: ListTile(
+                                contentPadding:
+                                    const EdgeInsets.only(left: padding * 2.0),
+                                leading: selectAirportData[i]['leading'],
+                                trailing: selectAirportData[i]['trailing']),
+                          );
                         }),
                   ),
                 ))
