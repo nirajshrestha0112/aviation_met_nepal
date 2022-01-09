@@ -1,4 +1,5 @@
 import 'package:aviation_met_nepal/constant/routes.dart';
+import 'package:aviation_met_nepal/screens/feedback.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
 import 'package:aviation_met_nepal/screens/next_screen.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
@@ -25,10 +26,11 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          initialRoute: homeScreen,
+          initialRoute: feedbackScreen,
           routes: {
             homeScreen: (context) => const HomeScreen(),
-            nextScreen:(context)=>const NextScreen()
+            nextScreen:(context)=>const NextScreen(),
+            feedbackScreen:(context)=>const FeedBack()
           },
           theme: ThemeData(
             primarySwatch: Colors.blue,
