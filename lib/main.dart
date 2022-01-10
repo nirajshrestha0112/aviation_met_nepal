@@ -1,6 +1,9 @@
+import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
+import 'package:aviation_met_nepal/screens/contact_us.dart';
 import 'package:aviation_met_nepal/screens/feedback.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
+import 'package:aviation_met_nepal/screens/login_page.dart';
 import 'package:aviation_met_nepal/screens/next_screen.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -26,15 +29,15 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          initialRoute: feedbackScreen,
+          initialRoute: loginScreen,
           routes: {
             homeScreen: (context) => const HomeScreen(),
-            nextScreen:(context)=>const NextScreen(),
-            feedbackScreen:(context)=>const FeedBack()
+            nextScreen: (context) => const NextScreen(),
+            feedbackScreen: (context) => const FeedBack(),
+            contactScreen: (context) => const ContactUs(),
+            loginScreen: (context) => const LoginPage()
           },
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
+          theme: ThemeData(),
         );
       });
     });

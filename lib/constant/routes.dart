@@ -1,3 +1,6 @@
-const homeScreen="/homeScreen";
-const nextScreen="/nextScreen";
-const feedbackScreen='/feedbackScreen';
+const String homeScreen="/homeScreen";
+const String nextScreen="/nextScreen";
+const String feedbackScreen='/feedbackScreen';
+const String contactScreen='/contactScreen';
+const String loginScreen='/loginScreen';
+

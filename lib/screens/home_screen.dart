@@ -342,11 +342,13 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                   onTap: () {
                     _showLocationSheet();
                   },
-                  child: Icon(
-                    Icons.location_on,
+                  child: IconButton(
+                   icon:Icon( Icons.location_on,
                     color: iconColor,
                     size: SizeConfig.widthMultiplier! * 7.5,
-                  ),
+                   ), onPressed: () {  
+                     Navigator.pushNamed(context, feedbackScreen);
+                   },),
                 ))),
       ),
       Expanded(

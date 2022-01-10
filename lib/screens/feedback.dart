@@ -1,7 +1,9 @@
 import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
+import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
+import 'package:aviation_met_nepal/widgets/reusable_text.dart';
 import 'package:flutter/material.dart';
 
 class FeedBack extends StatelessWidget {
@@ -19,7 +21,9 @@ class FeedBack extends StatelessWidget {
             color: Colors.black,
             size: SizeConfig.imageSizeMultiplier! * 8.0,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.popAndPushNamed(context, homeScreen);
+          },
         ),
         title: Text(
           "Feedback",
@@ -37,34 +41,47 @@ class FeedBack extends StatelessWidget {
               horizontal: padding, vertical: padding),
           child: Column(
             children: [
-              Image.asset(
-                sendImg,
-                width: SizeConfig.widthMultiplier! * 60,
-                height: SizeConfig.widthMultiplier! * 60,
+              Image.asset(sendImg,
+                  width: SizeConfig.widthMultiplier! * 50.0,
+                  height: SizeConfig.widthMultiplier! * 50.0),
+              SizedBox(
+                height: SizeConfig.heightMultiplier! * 2.0,
+              ),
+              EachTextFormField(
+                hintText: "Your Full Name",
+                icons: Icons.person,
               ),
               SizedBox(
                 height: SizeConfig.heightMultiplier! * 2.0,
               ),
-              TextFormField(
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: "Your Full Name",
-                    prefixIcon: Icon(
-                      Icons.person,
-                      size: SizeConfig.imageSizeMultiplier! * 7.0,
-                    ),
-                    // isDense: true,
-                    contentPadding: EdgeInsets.zero,
-                    hintStyle: TextStyle(
-                        color: searchColor,
-                        fontSize: SizeConfig.textMultiplier! * 2.0,
-                        fontWeight: FontWeight.w400),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: bgColor),
-                        borderRadius: BorderRadius.circular(radius)),
-                  )),
+               EachTextFormField(
+                  hintText: "Email Address", icons: Icons.email_outlined),
+              SizedBox(
+                height: SizeConfig.heightMultiplier! * 2.0,
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: radius, top: radius),
+                height: SizeConfig.heightMultiplier! * 30.0,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(radius),
+                    color: Colors.white),
+                child: Text(
+                  "Your feedbacks here",
+                  style: TextStyle(
+                      fontSize: SizeConfig.textMultiplier! * 2.8,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.normal),
+                ),
+              ),
+              SizedBox(
+                height: SizeConfig.heightMultiplier! * 2.0,
+              ),
+              
+              Bttn(
+                onPressed: (){},
+                text: "Submit",
+              )
             ],
           ),
         ),
@@ -72,3 +89,7 @@ class FeedBack extends StatelessWidget {
     );
   }
 }
+
+
+
+
