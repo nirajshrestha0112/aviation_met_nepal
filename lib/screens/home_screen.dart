@@ -347,7 +347,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                     color: iconColor,
                     size: SizeConfig.widthMultiplier! * 7.5,
                    ), onPressed: () {  
-                     Navigator.pushNamed(context, feedbackScreen);
+                     Navigator.pushNamed(context, contactScreen);
                    },),
                 ))),
       ),

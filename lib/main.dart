@@ -5,6 +5,7 @@ import 'package:aviation_met_nepal/screens/feedback.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
 import 'package:aviation_met_nepal/screens/login_page.dart';
 import 'package:aviation_met_nepal/screens/next_screen.dart';
+import 'package:aviation_met_nepal/screens/splash_screen.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          initialRoute: loginScreen,
+          // initialRoute: loginScreen,
+          home: const SplashScreen(),
           routes: {
             homeScreen: (context) => const HomeScreen(),
             nextScreen: (context) => const NextScreen(),

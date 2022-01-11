@@ -70,12 +70,12 @@ class _NextScreenState extends State<NextScreen> with TickerProviderStateMixin {
                   borderRadius: BorderRadius.circular(radius),
                   color: Colors.red,
                 ),
-
                 controller: _tabController,
                 labelColor: Colors.white,
                 unselectedLabelColor: textColor,
                 labelStyle: const TextStyle(fontWeight: FontWeight.bold),
-                // unselectedLabelStyle: const TextStyle(fontStyle: FontStyle.italic),
+                unselectedLabelStyle:
+                    const TextStyle(fontStyle: FontStyle.italic),
                 tabs: _tabs,
               ),
               backgroundColor: Colors.white,
@@ -83,7 +83,10 @@ class _NextScreenState extends State<NextScreen> with TickerProviderStateMixin {
           )),
       body: ScrollConfiguration(
           behavior: MyBehavior(),
-          child: TabBarView(controller: _tabController, children: _views)),
+          child: TabBarView(
+            controller: _tabController,
+            children: _views,
+          )),
       // Put widgets here
     );
   }

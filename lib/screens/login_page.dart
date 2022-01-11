@@ -1,8 +1,10 @@
 import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
+import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
-import 'package:aviation_met_nepal/widgets/reusable_text.dart';
+import 'package:aviation_met_nepal/widgets/general_text_button.dart';
+import 'package:aviation_met_nepal/widgets/general_textfield.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -51,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.white,
                     child: Image.asset(
                       cloudyImg,
-                      scale: 5,
+                      scale: 6
                     ),
                   ),
                   SizedBox(
@@ -90,11 +92,15 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: SizeConfig.heightMultiplier! * 3.0,
                   ),
-                  EachTextFormField(hintText: "Username", icons: Icons.person),
+                  GeneralTextField(
+                    hintText: "Username",
+                    icons: Icons.person,
+                    obscureText: false,
+                  ),
                   SizedBox(
                     height: SizeConfig.heightMultiplier! * 2.0,
                   ),
-                  EachTextFormField(
+                  GeneralTextField(
                     hintText: "Password",
                     icons: Icons.lock_open_sharp,
                     obscureText: true,
@@ -102,9 +108,11 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: SizeConfig.heightMultiplier! * 4.0,
                   ),
-                  Bttn(
+                  GeneralTextButton(
                     text: "Login",
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, homeScreen);
+                    },
                     height: SizeConfig.heightMultiplier! * 6.0,
                   )
                 ],

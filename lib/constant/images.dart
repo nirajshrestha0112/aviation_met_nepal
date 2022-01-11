@@ -5,4 +5,5 @@ const String sendImg="$baseAsset/send.png";
 const String locationImg="$baseAsset/location-pin.png";
 const String logoImg="$baseAsset/logo.png";
 const String cloudyImg="$baseAsset/cloudy.png";
+const String splashImg="$baseAsset/giphy.gif";
 

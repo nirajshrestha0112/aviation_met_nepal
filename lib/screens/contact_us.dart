@@ -22,19 +22,30 @@ class ContactUs extends StatelessWidget {
             SizedBox(
               height: SizeConfig.heightMultiplier! * 6.5,
               width: double.infinity,
-              child: ListTile(
-                leading: Icon(
-                  Icons.arrow_back,
-                  size: SizeConfig.imageSizeMultiplier! * 8.0,
+              child: Stack(children: [
+                Positioned(
+                    top: radius / 1.5,
+                    left: radius,
+                    child: IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: textColor,
+                          size: SizeConfig.imageSizeMultiplier! * 8.0,
+                        ))),
+                ListTile(
+                  title: Text(
+                    "Contact Us",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: SizeConfig.textMultiplier! * 2.6,
+                        color: textColor,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
-                title: Text(
-                  "Contact Us",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: SizeConfig.textMultiplier! * 2.6,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
+              ]),
             ),
             Container(
               height: SizeConfig.heightMultiplier! * 100,

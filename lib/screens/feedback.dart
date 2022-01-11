@@ -3,7 +3,8 @@ import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
-import 'package:aviation_met_nepal/widgets/reusable_text.dart';
+import 'package:aviation_met_nepal/widgets/general_text_button.dart';
+import 'package:aviation_met_nepal/widgets/general_textfield.dart';
 import 'package:flutter/material.dart';
 
 class FeedBack extends StatelessWidget {
@@ -47,15 +48,18 @@ class FeedBack extends StatelessWidget {
               SizedBox(
                 height: SizeConfig.heightMultiplier! * 2.0,
               ),
-              EachTextFormField(
+              GeneralTextField(
+                obscureText: false,
                 hintText: "Your Full Name",
                 icons: Icons.person,
               ),
               SizedBox(
                 height: SizeConfig.heightMultiplier! * 2.0,
               ),
-               EachTextFormField(
-                  hintText: "Email Address", icons: Icons.email_outlined),
+              GeneralTextField(
+                  obscureText: false,
+                  hintText: "Email Address",
+                  icons: Icons.email_outlined),
               SizedBox(
                 height: SizeConfig.heightMultiplier! * 2.0,
               ),
@@ -77,9 +81,8 @@ class FeedBack extends StatelessWidget {
               SizedBox(
                 height: SizeConfig.heightMultiplier! * 2.0,
               ),
-              
-              Bttn(
-                onPressed: (){},
+              GeneralTextButton(
+                onPressed: () {},
                 text: "Submit",
               )
             ],
@@ -89,7 +92,3 @@ class FeedBack extends StatelessWidget {
     );
   }
 }
-
-
-
-
