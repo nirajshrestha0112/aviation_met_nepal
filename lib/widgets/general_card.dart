@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 
 class GeneralCard extends StatelessWidget {
   final String text;
-  const GeneralCard({required this.text, Key? key}) : super(key: key);
+  final Widget child;
+  const GeneralCard({required this.text, Key? key, required this.child})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +46,7 @@ class GeneralCard extends StatelessWidget {
                         color: textColor,
                         fontWeight: FontWeight.w500),
                   ),
+
                 ),
               ]),
             ),
@@ -60,12 +63,15 @@ class GeneralCard extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(radius)),
+                          child: child,
                     ),
                   ),
                 )),
           ],
         ),
       ),
-    ));
+    ),
+    
+    );
   }
 }

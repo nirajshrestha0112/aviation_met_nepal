@@ -24,15 +24,15 @@ class _LoginPageState extends State<LoginPage> {
         elevation: 0.0,
         centerTitle: true,
         backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.arrow_back,
-          size: SizeConfig.imageSizeMultiplier! * 8.0,
-          color: Colors.black,
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.arrow_back,
+              size: SizeConfig.imageSizeMultiplier! * 8.0, color: textColor),
         ),
         title: Text(
           "Login",
           style: TextStyle(
-              fontSize: SizeConfig.textMultiplier! * 2.5, color: Colors.black),
+              fontSize: SizeConfig.textMultiplier! * 2.3, color: textColor),
         ),
       ),
       body: SingleChildScrollView(
@@ -51,10 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: SizeConfig.heightMultiplier! * 16.0,
                     width: SizeConfig.widthMultiplier! * 35.0,
                     color: Colors.white,
-                    child: Image.asset(
-                      cloudyImg,
-                      scale: 6
-                    ),
+                    child: Image.asset(cloudyImg, scale: 6),
                   ),
                   SizedBox(
                     height: SizeConfig.heightMultiplier! * 3.0,
@@ -92,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: SizeConfig.heightMultiplier! * 3.0,
                   ),
-                  GeneralTextField(
+                  const GeneralTextField(
                     hintText: "Username",
                     icons: Icons.person,
                     obscureText: false,
@@ -100,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: SizeConfig.heightMultiplier! * 2.0,
                   ),
-                  GeneralTextField(
+                  const GeneralTextField(
                     hintText: "Password",
                     icons: Icons.lock_open_sharp,
                     obscureText: true,
@@ -109,6 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: SizeConfig.heightMultiplier! * 4.0,
                   ),
                   GeneralTextButton(
+                    color: false,
                     text: "Login",
                     onPressed: () {
                       Navigator.pushNamed(context, homeScreen);

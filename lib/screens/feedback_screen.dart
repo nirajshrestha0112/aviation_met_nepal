@@ -19,17 +19,17 @@ class FeedBack extends StatelessWidget {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: textColor,
             size: SizeConfig.imageSizeMultiplier! * 8.0,
           ),
           onPressed: () {
-            Navigator.popAndPushNamed(context, homeScreen);
+            Navigator.pop(context);
           },
         ),
         title: Text(
           "Feedback",
           style: TextStyle(
-              fontSize: SizeConfig.textMultiplier! * 2.5, color: Colors.black),
+              fontSize: SizeConfig.textMultiplier! * 2.3, color: textColor),
         ),
         centerTitle: true,
       ),
@@ -82,6 +82,7 @@ class FeedBack extends StatelessWidget {
                 height: SizeConfig.heightMultiplier! * 2.0,
               ),
               GeneralTextButton(
+                color: true,
                 onPressed: () {},
                 text: "Submit",
               )

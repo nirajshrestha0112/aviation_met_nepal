@@ -1,10 +1,10 @@
-import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
-import 'package:aviation_met_nepal/screens/contact_us.dart';
-import 'package:aviation_met_nepal/screens/feedback.dart';
+import 'package:aviation_met_nepal/screens/contact_us_screen.dart';
+import 'package:aviation_met_nepal/screens/feedback_screen.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
-import 'package:aviation_met_nepal/screens/login_page.dart';
-import 'package:aviation_met_nepal/screens/next_screen.dart';
+import 'package:aviation_met_nepal/screens/lighting_data.dart';
+import 'package:aviation_met_nepal/screens/login_screen.dart';
+import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/splash_screen.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +37,19 @@ class MyApp extends StatelessWidget {
             nextScreen: (context) => const NextScreen(),
             feedbackScreen: (context) => const FeedBack(),
             contactScreen: (context) => const ContactUs(),
-            loginScreen: (context) => const LoginPage()
+            loginScreen: (context) => const LoginPage(),
+            lightingDataScreen: (context) => const LightingData(),
+            notificationScreen: (context) => const Scaffold(),
+            IcingTurbulenceChartScreen: (context) => const Scaffold(),
+            weatherCameraImagesScreen: (context) => const Scaffold(),
+            satelliteImagesScreen: (context) => const Scaffold(),
+            windChartScreen: (context) => const Scaffold(),
+            sigwxChartScreen: (context) => const Scaffold(),
+            weatherForecastScreen: (context) => const Scaffold(),
+            AirmetDataScreen: (context) => const Scaffold(),
+            AshtamsDataScreen: (context) => const Scaffold(),
+            gametDataScreen: (context) => const Scaffold(),
+            opmetDataScreen: (context) => const Scaffold()
           },
           theme: ThemeData(),
         );

@@ -18,98 +18,152 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Map<String, dynamic>> data = [
     {
       'icon': const ReusableIcon(icon: Icons.home),
-      'title': const ReusableText(text: "Home")
+      'title': const ReusableText(text: "Home"),
+      'navigate': homeScreen
     },
     {
       'icon': const ReusableIcon(icon: Icons.notification_add),
-      'title': const ReusableText(text: "Notification")
+      'title': const ReusableText(text: "Notification"),
+      'navigate': notificationScreen
     },
     {
       'icon': const ReusableIcon(icon: Icons.expand_less_outlined),
-      'title': const ReusableText(text: "Icing & Turbulence Chart")
+      'title': const ReusableText(text: "Icing & Turbulence Chart"),
+      'navigate': loginScreen
     },
     {
       'icon': const ReusableIcon(icon: Icons.storm_outlined),
-      'title': const ReusableText(text: "Weather Camera Images")
+      'title': const ReusableText(text: "Weather Camera Images"),
+      'navigate': loginScreen
     },
     {
       'icon': const ReusableIcon(icon: Icons.satellite_outlined),
-      'title': const ReusableText(text: "Satellite Images")
+      'title': const ReusableText(text: "Satellite Images"),
+      'navigate': satelliteImagesScreen
     },
     {
       'icon': const ReusableIcon(icon: Icons.bolt_outlined),
-      'title': const ReusableText(text: "Lighting Data")
+      'title': const ReusableText(text: "Lighting Data"),
+      'navigate': lightingDataScreen
     },
     {
       'icon': const ReusableIcon(icon: Icons.air_outlined),
-      'title': const ReusableText(text: "Wind Chart")
+      'title': const ReusableText(text: "Wind Chart"),
+      'navigate': windChartScreen
     },
     {
       'icon': const ReusableIcon(icon: Icons.stacked_line_chart_sharp),
-      'title': const ReusableText(text: "SIGWX Chart")
+      'title': const ReusableText(text: "SIGWX Chart"),
+      'navigate': loginScreen
     },
     {
       'icon': const ReusableIcon(icon: Icons.table_view),
-      'title': const ReusableText(text: "Weather Forecast")
+      'title': const ReusableText(text: "Weather Forecast"),
+      'navigate': weatherForecastScreen
     },
     {
       'icon': const ReusableIcon(icon: Icons.table_view),
-      'title': const ReusableText(text: "Airmet Data")
+      'title': const ReusableText(text: "Airmet Data"),
+      'navigate': AirmetDataScreen
     },
     {
       'icon': const ReusableIcon(icon: Icons.table_view),
-      'title': const ReusableText(text: "Ashtams Data")
+      'title': const ReusableText(text: "Ashtams Data"),
+      'navigate': AshtamsDataScreen
     },
     {
       'icon': const ReusableIcon(icon: Icons.table_view),
-      'title': const ReusableText(text: "Gamet Data")
+      'title': const ReusableText(text: "Gamet Data"),
+      'navigate': gametDataScreen
     },
     {
       'icon': const ReusableIcon(icon: Icons.table_view),
-      'title': const ReusableText(text: "Opmet Data")
+      'title': const ReusableText(text: "Opmet Data"),
+      'navigate': opmetDataScreen
     },
     {
       'icon': const ReusableIcon(icon: Icons.contacts_outlined),
-      'title': const ReusableText(text: "Contact Us")
+      'title': const ReusableText(text: "Contact Us"),
+      'navigate': contactScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.chat),
-      'title': const ReusableText(text: "Opmet Data")
+      'icon': const ReusableIcon(icon: Icons.message),
+      'title': const ReusableText(text: "Feedback"),
+      'navigate': feedbackScreen
     },
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0.0,
-        backgroundColor: Colors.white,
-        title: Text(
-          "Discover",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: textColor,
-              fontSize: SizeConfig.textMultiplier! * 2.5,
-              fontWeight: FontWeight.w500),
-        ),
-      ),
-      floatingActionButton: SizedBox(
-        height: SizeConfig.heightMultiplier! * 6.0,
-        width: SizeConfig.widthMultiplier! * 12.0,
-        child: FloatingActionButton(
-          backgroundColor: iconColor,
-          child: Icon(
-            Icons.apps_sharp,
-            size: SizeConfig.imageSizeMultiplier! * 8.0,
-          ),
-          onPressed: () {
-            _showSheet();
-          },
+    return WillPopScope(
+      onWillPop: () async => await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                  title: Text(
+                    'Confirm to Exit',
+                    style: TextStyle(
+                        fontSize: SizeConfig.textMultiplier! * 2.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal),
+                  ),
+                  content: Text("Are you sure you want to exit?",
+                      style: TextStyle(
+                        fontSize: SizeConfig.textMultiplier! * 1.8,
+                        color: Colors.black,
+                      )),
+                  contentPadding: const EdgeInsets.only(
+                      top: padding / 2.0, left: padding * 1.5),
+                  actions: <Widget>[
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(false);
+                        },
+                        child: Text('No',
+                            style: TextStyle(
+                              fontSize: SizeConfig.textMultiplier! * 1.8,
+                              color: Colors.green,
+                            ))),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: Text('Yes',
+                            style: TextStyle(
+                              fontSize: SizeConfig.textMultiplier! * 1.8,
+                              color: Colors.green,
+                            ))),
+                  ])),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
           elevation: 0.0,
+          backgroundColor: Colors.white,
+          title: Text(
+            "Discover",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: textColor,
+                fontSize: SizeConfig.textMultiplier! * 2.5,
+                fontWeight: FontWeight.w500),
+          ),
         ),
+        floatingActionButton: SizedBox(
+          height: SizeConfig.heightMultiplier! * 6.0,
+          width: SizeConfig.widthMultiplier! * 12.0,
+          child: FloatingActionButton(
+            backgroundColor: iconColor,
+            child: Icon(
+              Icons.apps_sharp,
+              size: SizeConfig.imageSizeMultiplier! * 8.0,
+            ),
+            onPressed: () {
+              _showSheet();
+            },
+            elevation: 0.0,
+          ),
+        ),
+        backgroundColor: bgColor,
+        body: const HomeScreenBody(),
       ),
-      backgroundColor: bgColor,
-      body: const HomeScreenBody(),
     );
   }
 
@@ -147,11 +201,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    Icon(
-                      Icons.close_outlined,
-                      size: SizeConfig.imageSizeMultiplier! * 8.0,
-                      color: textColor,
-                    )
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.close_outlined,
+                          size: SizeConfig.imageSizeMultiplier! * 8.0,
+                          color: textColor,
+                        ))
                   ],
                 ),
               ),
@@ -163,7 +221,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemCount: data.length,
                       itemBuilder: (c, i) {
                         return ListTile(
-                            leading: data[i]['icon'], title: data[i]['title']);
+                          leading: data[i]['icon'],
+                          title: data[i]['title'],
+                          onTap: () {
+                            Navigator.pushNamed(context, data[i]['navigate']);
+                          },
+                        );
                       }),
                 ),
               ),
@@ -174,8 +237,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
 
 class ReusableIcon extends StatelessWidget {
   final IconData icon;
@@ -343,12 +404,15 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                     _showLocationSheet();
                   },
                   child: IconButton(
-                   icon:Icon( Icons.location_on,
-                    color: iconColor,
-                    size: SizeConfig.widthMultiplier! * 7.5,
-                   ), onPressed: () {  
-                     Navigator.pushNamed(context, contactScreen);
-                   },),
+                    icon: Icon(
+                      Icons.location_on,
+                      color: iconColor,
+                      size: SizeConfig.widthMultiplier! * 7.5,
+                    ),
+                    onPressed: () {
+                      _showLocationSheet();
+                    },
+                  ),
                 ))),
       ),
       Expanded(
@@ -458,7 +522,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                         itemCount: selectAirportData.length,
                         itemBuilder: (c, i) {
                           return InkWell(
-                            onTap: (){
+                            onTap: () {
                               Navigator.pushNamed(context, nextScreen);
                             },
                             child: ListTile(

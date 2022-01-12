@@ -52,7 +52,7 @@ class _GeneralTextFieldState extends State<GeneralTextField> {
             enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: bgColor),
                 borderRadius: BorderRadius.circular(radius)),
-                focusedBorder: OutlineInputBorder(
+            focusedBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: bgColor),
                 borderRadius: BorderRadius.circular(radius)),
             suffixIcon: widget.obscureText

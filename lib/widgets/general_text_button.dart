@@ -6,7 +6,9 @@ class GeneralTextButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final double? height;
+  final bool color;
   const GeneralTextButton({
+    this.color = false,
     required this.text,
     required this.onPressed,
     this.height,
@@ -20,7 +22,9 @@ class GeneralTextButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(elevation: 0.0, primary: iconColor),
+        style: ElevatedButton.styleFrom(
+            elevation: 0.0,
+            primary: color ? iconColor : iconColor.withOpacity(0.5)),
         child: Text(
           text,
           style: TextStyle(fontSize: SizeConfig.textMultiplier! * 2.0),
