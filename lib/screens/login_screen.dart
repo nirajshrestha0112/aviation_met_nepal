@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: SizeConfig.heightMultiplier! * 16.0,
                     width: SizeConfig.widthMultiplier! * 35.0,
                     color: Colors.white,
-                    child: Image.asset(cloudyImg, scale: 6),
+                    child: Image.asset(cloudyImg, scale: 6.0),
                   ),
                   SizedBox(
                     height: SizeConfig.heightMultiplier! * 3.0,
@@ -91,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const GeneralTextField(
                     hintText: "Username",
+                    keyboard: TextInputType.text,
                     icons: Icons.person,
                     obscureText: false,
                   ),
@@ -98,6 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: SizeConfig.heightMultiplier! * 2.0,
                   ),
                   const GeneralTextField(
+                    keyboard: TextInputType.visiblePassword,
                     hintText: "Password",
                     icons: Icons.lock_open_sharp,
                     obscureText: true,

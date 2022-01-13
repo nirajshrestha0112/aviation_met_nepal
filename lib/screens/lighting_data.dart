@@ -1,6 +1,5 @@
 import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
-import 'package:aviation_met_nepal/widgets/general_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 

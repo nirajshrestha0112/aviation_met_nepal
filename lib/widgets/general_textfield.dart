@@ -7,9 +7,11 @@ class GeneralTextField extends StatefulWidget {
   final String hintText;
   final IconData icons;
   final bool obscureText;
+  final TextInputType ? keyboard;
   const GeneralTextField({
+    this.keyboard,
     required this.hintText,
-    required this.icons,
+     required this.icons,
     required this.obscureText,
     Key? key,
   }) : super(key: key);
@@ -27,21 +29,27 @@ class _GeneralTextFieldState extends State<GeneralTextField> {
     });
   }
 
+  final FocusNode _focusNod = FocusNode();
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType:widget.keyboard,
+        focusNode: _focusNod,
         obscureText: widget.obscureText ? isHiddenPassword : widget.obscureText,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
-            border: InputBorder.none,
+            //border: InputBorder.none,
+
             fillColor: Colors.white,
             filled: true,
             hintText: widget.hintText,
             isDense: true,
+            contentPadding: EdgeInsets.zero,
             prefixIcon: Padding(
               padding: const EdgeInsets.only(bottom: radius / 1.5),
               child: Icon(
                 widget.icons,
+                color: _focusNod.hasFocus ? Colors.grey : Colors.grey,
                 size: SizeConfig.imageSizeMultiplier! * 7.5,
               ),
             ),
@@ -49,11 +57,8 @@ class _GeneralTextFieldState extends State<GeneralTextField> {
                 color: searchColor,
                 fontSize: SizeConfig.textMultiplier! * 2.3,
                 fontWeight: FontWeight.w400),
-            enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: bgColor),
-                borderRadius: BorderRadius.circular(radius)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: bgColor),
+            border: OutlineInputBorder(
+                borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(radius)),
             suffixIcon: widget.obscureText
                 ? InkWell(

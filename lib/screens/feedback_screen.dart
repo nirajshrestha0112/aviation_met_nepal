@@ -1,6 +1,5 @@
 import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
-import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
@@ -14,7 +13,7 @@ class FeedBack extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
+        elevation: 0.0,
         backgroundColor: Colors.transparent,
         leading: IconButton(
           icon: Icon(
@@ -33,60 +32,67 @@ class FeedBack extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        width: double.infinity,
-        height: SizeConfig.heightMultiplier! * 100,
-        color: bgColor,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: padding, vertical: padding),
-          child: Column(
-            children: [
-              Image.asset(sendImg,
-                  width: SizeConfig.widthMultiplier! * 50.0,
-                  height: SizeConfig.widthMultiplier! * 50.0),
-              SizedBox(
-                height: SizeConfig.heightMultiplier! * 2.0,
-              ),
-              GeneralTextField(
-                obscureText: false,
-                hintText: "Your Full Name",
-                icons: Icons.person,
-              ),
-              SizedBox(
-                height: SizeConfig.heightMultiplier! * 2.0,
-              ),
-              GeneralTextField(
-                  obscureText: false,
-                  hintText: "Email Address",
-                  icons: Icons.email_outlined),
-              SizedBox(
-                height: SizeConfig.heightMultiplier! * 2.0,
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: radius, top: radius),
-                height: SizeConfig.heightMultiplier! * 30.0,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(radius),
-                    color: Colors.white),
-                child: Text(
-                  "Your feedbacks here",
-                  style: TextStyle(
-                      fontSize: SizeConfig.textMultiplier! * 2.8,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.normal),
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          height: SizeConfig.heightMultiplier! * 100,
+          color: bgColor,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: padding, vertical: padding),
+            child: Column(
+              children: [
+                Image.asset(sendImg,
+                    width: SizeConfig.widthMultiplier! * 50.0,
+                    height: SizeConfig.widthMultiplier! * 50.0),
+                SizedBox(
+                  height: SizeConfig.heightMultiplier! * 2.0,
                 ),
-              ),
-              SizedBox(
-                height: SizeConfig.heightMultiplier! * 2.0,
-              ),
-              GeneralTextButton(
-                color: true,
-                onPressed: () {},
-                text: "Submit",
-              )
-            ],
+                const GeneralTextField(
+                  obscureText: false,
+                  hintText: "Your Full Name",
+                  keyboard: TextInputType.text,
+                  icons: Icons.person,
+                ),
+                SizedBox(
+                  height: SizeConfig.heightMultiplier! * 2.0,
+                ),
+                const GeneralTextField(
+                    obscureText: false,
+                    hintText: "Email Address",
+                    keyboard: TextInputType.emailAddress,
+                    icons: Icons.email_outlined),
+                SizedBox(
+                  height: SizeConfig.heightMultiplier! * 2.0,
+                ),
+                Container(
+                    height: SizeConfig.heightMultiplier! * 30.0,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(radius),
+                        color: Colors.white),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        hintText: "Your feedback here",
+                        hintStyle: TextStyle(
+                            color: searchColor,
+                            fontSize: SizeConfig.textMultiplier! * 2.3,
+                            fontWeight: FontWeight.w400),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(radius)),
+                      ),
+                    )),
+                SizedBox(
+                  height: SizeConfig.heightMultiplier! * 2.0,
+                ),
+                GeneralTextButton(
+                  color: true,
+                  onPressed: () {},
+                  text: "Submit",
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          // initialRoute: loginScreen,
-          home: const SplashScreen(),
+          initialRoute: feedbackScreen,
+          // home: const SplashScreen(),
           routes: {
             homeScreen: (context) => const HomeScreen(),
             nextScreen: (context) => const NextScreen(),
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
             gametDataScreen: (context) => const Scaffold(),
             opmetDataScreen: (context) => const Scaffold()
           },
-          theme: ThemeData(),
+   // theme: ThemeData(),
         );
       });
     });

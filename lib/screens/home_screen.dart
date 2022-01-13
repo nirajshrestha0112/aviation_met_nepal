@@ -4,6 +4,7 @@ import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
+import 'package:aviation_met_nepal/widgets/custom_icon.dart';
 import 'package:aviation_met_nepal/widgets/reusable_text.dart';
 import 'package:flutter/material.dart';
 
@@ -17,77 +18,77 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final List<Map<String, dynamic>> data = [
     {
-      'icon': const ReusableIcon(icon: Icons.home),
+      'icon': const CustomIcon(icon: Icons.home),
       'title': const ReusableText(text: "Home"),
       'navigate': homeScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.notification_add),
+      'icon': const CustomIcon(icon: Icons.notification_add),
       'title': const ReusableText(text: "Notification"),
       'navigate': notificationScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.expand_less_outlined),
+      'icon': const CustomIcon(icon: Icons.expand_less_outlined),
       'title': const ReusableText(text: "Icing & Turbulence Chart"),
       'navigate': loginScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.storm_outlined),
+      'icon': const CustomIcon(icon: Icons.storm_outlined),
       'title': const ReusableText(text: "Weather Camera Images"),
       'navigate': loginScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.satellite_outlined),
+      'icon': const CustomIcon(icon: Icons.satellite_outlined),
       'title': const ReusableText(text: "Satellite Images"),
       'navigate': satelliteImagesScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.bolt_outlined),
+      'icon': const CustomIcon(icon: Icons.bolt_outlined),
       'title': const ReusableText(text: "Lighting Data"),
       'navigate': lightingDataScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.air_outlined),
+      'icon': const CustomIcon(icon: Icons.air_outlined),
       'title': const ReusableText(text: "Wind Chart"),
       'navigate': windChartScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.stacked_line_chart_sharp),
+      'icon': const CustomIcon(icon: Icons.stacked_line_chart_sharp),
       'title': const ReusableText(text: "SIGWX Chart"),
       'navigate': loginScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.table_view),
+      'icon': const CustomIcon(icon: Icons.table_view),
       'title': const ReusableText(text: "Weather Forecast"),
       'navigate': weatherForecastScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.table_view),
+      'icon': const CustomIcon(icon: Icons.table_view),
       'title': const ReusableText(text: "Airmet Data"),
       'navigate': AirmetDataScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.table_view),
+      'icon': const CustomIcon(icon: Icons.table_view),
       'title': const ReusableText(text: "Ashtams Data"),
       'navigate': AshtamsDataScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.table_view),
+      'icon': const CustomIcon(icon: Icons.table_view),
       'title': const ReusableText(text: "Gamet Data"),
       'navigate': gametDataScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.table_view),
+      'icon': const CustomIcon(icon: Icons.table_view),
       'title': const ReusableText(text: "Opmet Data"),
       'navigate': opmetDataScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.contacts_outlined),
+      'icon': const CustomIcon(icon: Icons.contacts_outlined),
       'title': const ReusableText(text: "Contact Us"),
       'navigate': contactScreen
     },
     {
-      'icon': const ReusableIcon(icon: Icons.message),
+      'icon': const CustomIcon(icon: Icons.message),
       'title': const ReusableText(text: "Feedback"),
       'navigate': feedbackScreen
     },
@@ -234,23 +235,6 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         );
       },
-    );
-  }
-}
-
-class ReusableIcon extends StatelessWidget {
-  final IconData icon;
-  const ReusableIcon({
-    Key? key,
-    required this.icon,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Icon(
-      icon,
-      color: textColor,
-      size: SizeConfig.imageSizeMultiplier! * 6.0,
     );
   }
 }
@@ -418,7 +402,6 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
       Expanded(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
           children: [
             Image.asset(
               aiportImg,
