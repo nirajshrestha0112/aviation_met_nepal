@@ -36,6 +36,9 @@ class MyApp extends StatelessWidget {
           final checkProvider = Provider.of<ConnectivityProvider>(context);
           SizeConfig().init(constraints, orientation);
           return MaterialApp(
+            theme:ThemeData(
+              
+            ),
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
             //initialRoute: feedbackScreen,
