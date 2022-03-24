@@ -36,7 +36,7 @@ class ShowSheet {
     {
       'icon': const CustomIcon(icon: Icons.satellite_outlined),
       'title': const ReusableText(text: "Satellite Images"),
-      'navigate': satelliteImagesScreen
+      'navigate': SatelliteImageDataScreen
     },
     {
       'icon': const CustomIcon(icon: Icons.bolt_outlined),

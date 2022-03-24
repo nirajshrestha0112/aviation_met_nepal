@@ -1,23 +1,27 @@
 import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
+import 'package:aviation_met_nepal/provider/airmet_data_provider.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
-import 'package:aviation_met_nepal/provider/gamet_data_provider.dart';
 import 'package:aviation_met_nepal/provider/metar_data_provider.dart';
 import 'package:aviation_met_nepal/provider/sigmets_data_provider.dart';
 import 'package:aviation_met_nepal/provider/tafs_provider.dart';
 import 'package:aviation_met_nepal/screens/contact_us_screen.dart';
 import 'package:aviation_met_nepal/screens/feedback_screen.dart';
-import 'package:aviation_met_nepal/screens/gamet_screen.dart';
+import 'package:aviation_met_nepal/screens/custom_screen.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
 import 'package:aviation_met_nepal/screens/lighting_data.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
+import 'package:aviation_met_nepal/screens/satellite_screen.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'provider/airmet_data_provider.dart';
+import 'provider/ashtams_data_provider.dart';
+import 'provider/gamet_data_provider.dart';
+import 'provider/opmet_data_provider.dart';
+import 'provider/satellite_image_provider.dart';
 import 'screens/internet_connection_screen.dart';
 import 'screens/splash_screen.dart';
 
@@ -32,8 +36,11 @@ void main() {
         ChangeNotifierProvider(create: (_) => TafsDataProvider()),
         ChangeNotifierProvider(create: (_) => MetarDataProvider()),
         ChangeNotifierProvider(create: (_) => SigmetsDataProvider()),
-        ChangeNotifierProvider(create: (_) => GametDataProvider()),
         ChangeNotifierProvider(create: (_) => AirmetDataProvider()),
+        ChangeNotifierProvider(create: (_) => GametDataProvider()),
+        ChangeNotifierProvider(create: (_) => OpmetDataProvider()),
+        ChangeNotifierProvider(create: (_) => AshtamsDataProvider()),
+        ChangeNotifierProvider(create: (_) => SatelliteImageProvider()),
       ],
       child: const MyApp(),
     ),
@@ -65,10 +72,10 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(),
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          // initialRoute: homeScreen,
-          home: checkProvider.isConnected
+          initialRoute: homeScreen,
+          /*  home: checkProvider.isConnected
               ? const SplashScreen()
-              : const InternetConnectionScreen(),
+              : const InternetConnectionScreen(), */
           routes: {
             homeScreen: (context) => const HomeScreen(),
             nextScreen: (context) => const DetailsScreen(),
@@ -79,15 +86,18 @@ class MyApp extends StatelessWidget {
             notificationScreen: (context) => const Scaffold(),
             IcingTurbulenceChartScreen: (context) => const Scaffold(),
             weatherCameraImagesScreen: (context) => const Scaffold(),
-            satelliteImagesScreen: (context) => const Scaffold(),
+            SatelliteImageDataScreen: (context) => const SatelliteScreen(screenName: "Satellite Images"),
             windChartScreen: (context) => const Scaffold(),
             sigwxChartScreen: (context) => const Scaffold(),
             weatherForecastScreen: (context) => const Scaffold(),
             AirmetDataScreen: (context) =>
-                const GametDataScreen(isGametDataScreen: false),
-            AshtamsDataScreen: (context) => const Scaffold(),
-            gametDataScreen: (context) => const GametDataScreen(),
-            opmetDataScreen: (context) => const Scaffold()
+                const CustomScreen(screenName: "Airmet Data"),
+            AshtamsDataScreen: (context) =>
+                const CustomScreen(screenName: "Ashtams Data"),
+            gametDataScreen: (context) =>
+                const CustomScreen(screenName: "Gamet Data"),
+            opmetDataScreen: (context) =>
+                const CustomScreen(screenName: "Opmet Data")
           },
           // theme: ThemeData(),
         );

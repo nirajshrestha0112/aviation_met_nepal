@@ -7,5 +7,8 @@ const String metaDataRawUrl = '$baseUrl/api/getMetarData/raw/';
 const String sigmetsDataUrl = '$baseUrl/api/getSigmetsData/';
 const String gametDataUrl = '$baseUrl/api/getGametData/';
 const String airmetDataUrl = '$baseUrl/api/getAirmetData/';
+const String opmetDataUrl = '$baseUrl/api/getOpmetData/';
+const String ashtamsDataUrl = '$baseUrl/api/getAshtamsData/';
+const String satelliteImageDataUrl = '$baseUrl/api/satellite/';
 // const String metaDataDecodedUrl = '$baseUrl/api/getMetarData/decoded/';
 

@@ -4,6 +4,7 @@ import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
+
 class CustomRawCard extends StatelessWidget {
   const CustomRawCard({
     required this.rawBodyText,

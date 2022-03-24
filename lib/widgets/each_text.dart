@@ -1,12 +1,15 @@
-
 import 'package:flutter/material.dart';
 
 class EachText extends StatelessWidget {
   final String text;
   final double? fontSize;
   final Color? color;
+  final TextAlign? textAlign;
+  final FontWeight? fontWeight;
   const EachText({
+    this.textAlign,
     this.fontSize,
+    this.fontWeight,
     required this.text,
     Key? key,
     this.color,
@@ -15,13 +18,11 @@ class EachText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
+
       text,
-      style: TextStyle(fontSize: fontSize, color: color),
+      textAlign: textAlign,
+      style:
+          TextStyle(fontSize: fontSize, color: color, fontWeight: fontWeight),
     );
   }
 }
-
-// requires String title, required String value
-// Row
-// title
-// value
