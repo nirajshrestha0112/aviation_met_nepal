@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
 import 'package:aviation_met_nepal/screens/splash_screen.dart';
@@ -35,7 +34,7 @@ class _InternetConnectionScreenState extends State<InternetConnectionScreen> {
             Text(
               "Please retry to connect",
               style: TextStyle(
-                color: Colors.white,
+                color: iconColor,
                 fontSize: SizeConfig.textMultiplier! * 2,
               ),
             ),
