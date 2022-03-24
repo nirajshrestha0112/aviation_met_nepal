@@ -1,6 +1,7 @@
+
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
-import 'package:aviation_met_nepal/screens/login_screen.dart';
+import 'package:aviation_met_nepal/screens/home_screen.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -19,17 +20,24 @@ class _SplashScreen extends State<SplashScreen> {
 
   @override
   void initState() {
+    
     Future.delayed(Duration(seconds: splashtime), () async {
+      await fetchDatas();
+    
+    });
+
+    super.initState();
+  }
+
+  fetchDatas() async {
+    // await Provider.of<AviationProvider>(context, listen: false).fetchData();
       Navigator.pushReplacement(context, MaterialPageRoute(
           //pushReplacement = replacing the route so that
           //splash screen won't show on back button press
           //navigation to Home page.
           builder: (context) {
-        return const LoginPage();
+        return const HomeScreen();
       }));
-    });
-
-    super.initState();
   }
 
   @override
