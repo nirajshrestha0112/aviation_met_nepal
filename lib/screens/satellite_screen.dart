@@ -2,9 +2,9 @@ import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/provider/satellite_image_provider.dart';
 import 'package:aviation_met_nepal/widgets/each_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../constant/values.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/size_config.dart';
 import '../widgets/custom_floating_action_btn.dart';
@@ -77,20 +77,25 @@ class _SatelliteScreenState extends State<SatelliteScreen> {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           {
-                            return const CircularProgressIndicator.adaptive();
+                            return const Center(
+                                child: CircularProgressIndicator.adaptive());
                           }
                         }
                         return InteractiveViewer(
-                          panEnabled: false,
+                          // panEnabled: false, // Set it to false
+                          boundaryMargin: const EdgeInsets.all(padding * 6.25),
                           minScale: 0.5,
                           maxScale: 2.5,
-                          child: CachedNetworkImage(
-                            imageUrl: Provider.of<SatelliteImageProvider>(
-                                    context,
-                                    listen: false)
-                                .satelliteImageData!
-                                .data!
-                                .files![0],
+                          child: SizedBox(
+                            height: MediaQuery.of(context).size.height / 1.2,
+                            child: CachedNetworkImage(
+                              imageUrl: Provider.of<SatelliteImageProvider>(
+                                      context,
+                                      listen: false)
+                                  .satelliteImageData!
+                                  .data!
+                                  .files![0],
+                            ),
                           ),
                         );
                       })

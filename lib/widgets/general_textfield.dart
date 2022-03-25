@@ -6,10 +6,14 @@ import 'package:flutter/material.dart';
 class GeneralTextField extends StatefulWidget {
   final String hintText;
   final IconData icons;
+ final  String? Function(String?)? validator;
+  final TextEditingController ?controller;
   final bool obscureText;
   final TextInputType ? keyboard;
   const GeneralTextField({
+    this.validator,
     this.keyboard,
+    this.controller,
     required this.hintText,
      required this.icons,
     required this.obscureText,
@@ -33,6 +37,8 @@ class _GeneralTextFieldState extends State<GeneralTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: widget.validator,
+      controller: widget.controller,
       keyboardType:widget.keyboard,
         focusNode: _focusNod,
         obscureText: widget.obscureText ? isHiddenPassword : widget.obscureText,

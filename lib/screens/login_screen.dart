@@ -3,6 +3,7 @@ import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
+import 'package:aviation_met_nepal/utils/validation.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
 import 'package:aviation_met_nepal/widgets/general_textfield.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _usernameController=TextEditingController();
+  final TextEditingController _passwordController=TextEditingController();
   final formGlobalKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -89,20 +92,25 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: SizeConfig.heightMultiplier! * 3.0,
                   ),
-                  const GeneralTextField(
+                   GeneralTextField(
                     hintText: "Username",
                     keyboard: TextInputType.text,
                     icons: Icons.person,
                     obscureText: false,
+                    controller: _usernameController,
+                    validator: (value)=>Validations().validateEmail(value!),
+                    
                   ),
                   SizedBox(
                     height: SizeConfig.heightMultiplier! * 2.0,
                   ),
-                  const GeneralTextField(
+                   GeneralTextField(
                     keyboard: TextInputType.visiblePassword,
                     hintText: "Password",
                     icons: Icons.lock_open_sharp,
                     obscureText: true,
+                    controller: _passwordController,
+                    validator: (value)=>Validations().validatePassword(value!),
                   ),
                   SizedBox(
                     height: SizeConfig.heightMultiplier! * 4.0,
@@ -111,6 +119,10 @@ class _LoginPageState extends State<LoginPage> {
                     color: false,
                     text: "Login",
                     onPressed: () {
+                      if(formGlobalKey.currentState!.validate()){
+                        CircularProgressIndicator.adaptive();
+                        
+                      }
                       Navigator.pushNamed(context, homeScreen);
                     },
                     height: SizeConfig.heightMultiplier! * 6.0,

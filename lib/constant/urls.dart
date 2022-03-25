@@ -10,5 +10,6 @@ const String airmetDataUrl = '$baseUrl/api/getAirmetData/';
 const String opmetDataUrl = '$baseUrl/api/getOpmetData/';
 const String ashtamsDataUrl = '$baseUrl/api/getAshtamsData/';
 const String satelliteImageDataUrl = '$baseUrl/api/satellite/';
+const String loginUrl = '$baseUrl/api/login/login';
 // const String metaDataDecodedUrl = '$baseUrl/api/getMetarData/decoded/';
 

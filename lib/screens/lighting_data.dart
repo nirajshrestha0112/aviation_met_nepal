@@ -2,6 +2,8 @@ import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'dart:async';
 
 class LightingData extends StatefulWidget {
   const LightingData({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class LightingData extends StatefulWidget {
 }
 
 class _LightingDataState extends State<LightingData> {
+  final Completer<GoogleMapController> _controller = Completer();
   final MapController _mapcontroller = MapController(
     initMapWithUserPosition: false,
     initPosition: GeoPoint(latitude: 27.700769, longitude: 85.300140),
@@ -19,6 +22,45 @@ class _LightingDataState extends State<LightingData> {
   void dispose() {
     _mapcontroller.dispose();
     super.dispose();
+  }
+
+  static const LatLng _center = const LatLng(23.7351, 85.3612);
+
+  final Set<Marker> _markers = {};
+
+  LatLng _lastMapPosition = _center;
+
+  MapType _currentMapType = MapType.normal;
+
+  /*  void _onMapTypeButtonPressed() {
+    setState(() {
+      _currentMapType = _currentMapType == MapType.normal
+          ? MapType.satellite
+          : MapType.normal;
+    });
+  }
+
+  void _onAddMarkerButtonPressed() {
+    setState(() {
+      _markers.add(Marker(
+        // This marker id can be anything that uniquely identifies each marker.
+        markerId: MarkerId(_lastMapPosition.toString()),
+        position: _lastMapPosition,
+        infoWindow: InfoWindow(
+          title: 'Really cool place',
+          snippet: '5 Star Rating',
+        ),
+        icon: BitmapDescriptor.defaultMarker,
+      ));
+    });
+  } */
+
+  void _onCameraMove(CameraPosition position) {
+    _lastMapPosition = position.target;
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    _controller.complete(controller);
   }
 
   @override
@@ -45,7 +87,19 @@ class _LightingDataState extends State<LightingData> {
         ),
         centerTitle: true,
       ),
-      body: OSMFlutter(
+      body: GoogleMap(
+        
+        // onMapCreated: _onMapCreated,
+        initialCameraPosition: const CameraPosition(
+          target: _center,
+          zoom: 5.0,
+        ),
+        // mapType: _currentMapType,
+        /* markers: _markers,
+        onCameraMove: _onCameraMove, */
+      ),
+
+      /* OSMFlutter(
         controller: _mapcontroller,
         trackMyPosition: false,
         initZoom: 12,
@@ -60,7 +114,7 @@ class _LightingDataState extends State<LightingData> {
             size: 56,
           ),
         )),
-      ),
+      ), */
     );
   }
 }
