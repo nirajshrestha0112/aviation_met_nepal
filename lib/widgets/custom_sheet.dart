@@ -1,8 +1,11 @@
 import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
+import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
+import 'package:aviation_met_nepal/widgets/custom_alert_dialog.dart';
 import 'package:aviation_met_nepal/widgets/custom_icon.dart';
+import 'package:aviation_met_nepal/widgets/each_text.dart';
 import 'package:aviation_met_nepal/widgets/reusable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -102,39 +105,116 @@ class ShowSheet {
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: padding / 1.5, vertical: padding),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.apps_sharp,
-                          color: textColor,
-                          size: SizeConfig.imageSizeMultiplier! * 8.0,
-                        ),
-                        SizedBox(
-                          width: SizeConfig.widthMultiplier,
-                        ),
-                        Text(
-                          "Menu",
-                          style: TextStyle(
-                              fontSize: SizeConfig.textMultiplier! * 2.2,
-                              fontWeight: FontWeight.w500,
-                              color: textColor),
-                        ),
-                      ],
-                    ),
-                    IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(
-                          Icons.close_outlined,
-                          size: SizeConfig.imageSizeMultiplier! * 8.0,
-                          color: textColor,
-                        ))
-                  ],
-                ),
+                child: Column(children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.apps_sharp,
+                            color: textColor,
+                            size: SizeConfig.imageSizeMultiplier! * 8.0,
+                          ),
+                          SizedBox(
+                            width: SizeConfig.widthMultiplier,
+                          ),
+                          Text(
+                            "Menu",
+                            style: TextStyle(
+                                fontSize: SizeConfig.textMultiplier! * 2.2,
+                                fontWeight: FontWeight.w500,
+                                color: textColor),
+                          ),
+                        ],
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(
+                            Icons.close_outlined,
+                            size: SizeConfig.imageSizeMultiplier! * 8.0,
+                            color: textColor,
+                          ))
+                    ],
+                  ),
+                  Provider.of<LoginProvider>(context, listen: false)
+                              .loginName !=
+                          null
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: bgColor,
+                                  radius: SizeConfig.imageSizeMultiplier! * 3.0,
+                                  child: Icon(
+                                    Icons.person,
+                                    color: textColor,
+                                    size: SizeConfig.imageSizeMultiplier! * 3.5,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: SizeConfig.widthMultiplier! * 5.0,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    EachText(
+                                      text: Provider.of<LoginProvider>(context,
+                                              listen: false)
+                                          .loginName
+                                          .toString(),
+                                      fontSize:
+                                          SizeConfig.textMultiplier! * 1.8,
+                                      color: textColor,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    SizedBox(
+                                        height: SizeConfig.heightMultiplier),
+                                    EachText(
+                                      text: Provider.of<LoginProvider>(context,
+                                              listen: false)
+                                          .userId
+                                          .toString(),
+                                      fontSize:
+                                          SizeConfig.textMultiplier! * 1.5,
+                                      color: textColor,
+                                      fontWeight: FontWeight.w500,
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Container(
+                              height: SizeConfig.heightMultiplier! * 3.0,
+                              width: SizeConfig.widthMultiplier! * 6.5,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.circular(radius / 4.0),
+                                color: bgColor,
+                              ),
+                              child: IconButton(
+                                padding: EdgeInsets.zero,
+                                icon: Icon(
+                                  Icons.logout,
+                                  size: SizeConfig.imageSizeMultiplier! * 3.5,
+                                ),
+                                color: textColor,
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          const ShowAlertDialogBox());
+                                },
+                              ),
+                            ),
+                          ],
+                        )
+                      : const SizedBox.shrink(),
+                ]),
               ),
               Expanded(
                 child: ScrollConfiguration(
@@ -192,13 +272,12 @@ class ShowLocationSheet {
                         SizedBox(
                           width: SizeConfig.widthMultiplier! * 3.0,
                         ),
-                        Text(
-                          "Select Aiport",
-                          style: TextStyle(
-                              fontSize: SizeConfig.textMultiplier! * 2.1,
-                              fontWeight: FontWeight.w500,
-                              color: textColor),
-                        ),
+                        EachText(
+                          text: "Select Aiport",
+                          fontSize: SizeConfig.textMultiplier! * 2.1,
+                          color: textColor,
+                          fontWeight: FontWeight.w500,
+                        )
                       ],
                     ),
                     InkWell(

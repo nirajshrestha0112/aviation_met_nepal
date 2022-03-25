@@ -1,38 +1,83 @@
-/* class LightingData {
-	bool? status;
-	List<List>? data;
+import 'dart:convert';
 
-	LightingData({this.status, this.data});
 
-	LightingData.fromJson(Map<String, dynamic> json) {
-		status = json['status'];
-		if (json['data'] != null) {
-			data = <List>[];
-			json['data'].forEach((v) { data!.add(new List.fromJson(v)); });
-		}
-	}
+class LightingData {
+  LightingData({
+    required this.status,
+    required this.data,
+  });
 
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['status'] = this.status;
-		if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
-		return data;
-	}
+  final bool status;
+  final List<List<Datum>> data;
+
+  factory LightingData.fromJson(Map<String, dynamic> json) => LightingData(
+        status: json["status"] ?? false,
+        data: List<List<Datum>>.from(json["data"]
+            .map((x) => List<Datum>.from(x.map((x) => Datum.fromJson(x))))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "status": status,
+        "data": List<dynamic>.from(
+            data.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))),
+      };
 }
 
-class Data {
+class Datum {
+  Datum({
+    required this.date,
+    required this.latitude,
+    required this.longitude,
+    required this.type,
+    required this.amplitude,
+    required this.height,
+    required this.locationError,
+  });
 
+  final String date;
+  final String latitude;
+  final String longitude;
+  final String type;
+  final String amplitude;
+  final String height;
+  final String locationError;
 
-	Data({});
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        date: json["date"] ?? '',
+        latitude: json["latitude"] ?? '',
+        longitude: json["longitude"] ?? '',
+        type: json["type"] ?? '',
+        amplitude: json["amplitude"] ?? '',
+        height: json["height"] ?? '',
+        locationError: json["location_error"] ?? '',
+      );
 
-	Data.fromJson(Map<String, dynamic> json) {
-	}
-
-	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		return data;
-	}
+  Map<String, dynamic> toJson() => {
+        "date": date,
+        "latitude": latitude,
+        "longitude": longitude,
+        "type": type,
+        "amplitude": amplitude,
+        "height": height,
+        "location_error": locationError,
+      };
 }
- */
+
+void parseJson() async {
+  const jsonData = '{}';
+  final parsedData = jsonDecode(jsonData);
+  List<Datum> datumList = [];
+  List<List<Datum>> data = LightingData.fromJson(parsedData).data;
+  for (var d in data) {
+    datumList += d;
+  }
+  int count = 1;
+  for (var d in datumList) {
+    print(count);
+    count++;
+    print(d.longitude);
+    print(d.latitude);
+  }
+}
+
+///TODO: please remove _model from every model filename and class name.

@@ -3,9 +3,11 @@ import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
-import 'package:aviation_met_nepal/widgets/custom_show_sheet.dart';
+import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../widgets/custom_alert_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,41 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return WillPopScope(
       onWillPop: () async => await showDialog(
           context: context,
-          builder: (context) => AlertDialog(
-                  title: Text(
-                    'Confirm to Exit',
-                    style: TextStyle(
-                        fontSize: SizeConfig.textMultiplier! * 2.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal),
-                  ),
-                  content: Text("Are you sure you want to exit?",
-                      style: TextStyle(
-                        fontSize: SizeConfig.textMultiplier! * 1.8,
-                        color: Colors.black,
-                      )),
-                  contentPadding: const EdgeInsets.only(
-                      top: padding / 2.0, left: padding * 1.5),
-                  actions: <Widget>[
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop(false);
-                        },
-                        child: Text('No',
-                            style: TextStyle(
-                              fontSize: SizeConfig.textMultiplier! * 1.8,
-                              color: Colors.green,
-                            ))),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop(true);
-                        },
-                        child: Text('Yes',
-                            style: TextStyle(
-                              fontSize: SizeConfig.textMultiplier! * 1.8,
-                              color: Colors.green,
-                            ))),
-                  ])),
+          builder: (context) => const ShowAlertDialogBox()),
       child: SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -91,6 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
 
 class HomeScreenBody extends StatefulWidget {
   const HomeScreenBody({Key? key}) : super(key: key);

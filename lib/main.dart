@@ -3,6 +3,7 @@ import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/provider/airmet_data_provider.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
+import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/provider/metar_data_provider.dart';
 import 'package:aviation_met_nepal/provider/sigmets_data_provider.dart';
 import 'package:aviation_met_nepal/provider/tafs_provider.dart';
@@ -10,7 +11,7 @@ import 'package:aviation_met_nepal/screens/contact_us_screen.dart';
 import 'package:aviation_met_nepal/screens/feedback_screen.dart';
 import 'package:aviation_met_nepal/screens/custom_screen.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
-import 'package:aviation_met_nepal/screens/lighting_data.dart';
+import 'package:aviation_met_nepal/screens/lighting_screen.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
@@ -20,6 +21,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'provider/ashtams_data_provider.dart';
 import 'provider/gamet_data_provider.dart';
+import 'provider/lighting_data_provider.dart';
 import 'provider/opmet_data_provider.dart';
 import 'provider/satellite_image_provider.dart';
 import 'screens/internet_connection_screen.dart';
@@ -41,6 +43,8 @@ void main() {
         ChangeNotifierProvider(create: (_) => OpmetDataProvider()),
         ChangeNotifierProvider(create: (_) => AshtamsDataProvider()),
         ChangeNotifierProvider(create: (_) => SatelliteImageProvider()),
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
+        ChangeNotifierProvider(create: (_) => LightingDataProvider()),
       ],
       child: const MyApp(),
     ),

@@ -1,9 +1,12 @@
 import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/provider/lighting_data_provider.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
+
+import 'package:provider/provider.dart';
 
 class LightingData extends StatefulWidget {
   const LightingData({Key? key}) : super(key: key);
@@ -18,6 +21,14 @@ class _LightingDataState extends State<LightingData> {
     initMapWithUserPosition: false,
     initPosition: GeoPoint(latitude: 27.700769, longitude: 85.300140),
   );
+
+  @override
+  void initState() {
+    Provider.of<LightingDataProvider>(context, listen: false)
+        .fetchLightingData();
+    super.initState();
+  }
+
   @override
   void dispose() {
     _mapcontroller.dispose();
@@ -88,7 +99,6 @@ class _LightingDataState extends State<LightingData> {
         centerTitle: true,
       ),
       body: GoogleMap(
-        
         // onMapCreated: _onMapCreated,
         initialCameraPosition: const CameraPosition(
           target: _center,

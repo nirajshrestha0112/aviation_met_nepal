@@ -1,12 +1,16 @@
+import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
+import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/utils/validation.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
 import 'package:aviation_met_nepal/widgets/general_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,8 +20,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _usernameController=TextEditingController();
-  final TextEditingController _passwordController=TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final formGlobalKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -92,25 +96,25 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: SizeConfig.heightMultiplier! * 3.0,
                   ),
-                   GeneralTextField(
+                  GeneralTextField(
                     hintText: "Username",
                     keyboard: TextInputType.text,
                     icons: Icons.person,
                     obscureText: false,
                     controller: _usernameController,
-                    validator: (value)=>Validations().validateEmail(value!),
-                    
+                    validator: (value) => Validations().validateEmail(value!),
                   ),
                   SizedBox(
                     height: SizeConfig.heightMultiplier! * 2.0,
                   ),
-                   GeneralTextField(
+                  GeneralTextField(
                     keyboard: TextInputType.visiblePassword,
                     hintText: "Password",
                     icons: Icons.lock_open_sharp,
                     obscureText: true,
                     controller: _passwordController,
-                    validator: (value)=>Validations().validatePassword(value!),
+                    validator: (value) =>
+                        Validations().validatePassword(value!),
                   ),
                   SizedBox(
                     height: SizeConfig.heightMultiplier! * 4.0,
@@ -118,12 +122,17 @@ class _LoginPageState extends State<LoginPage> {
                   GeneralTextButton(
                     color: false,
                     text: "Login",
-                    onPressed: () {
-                      if(formGlobalKey.currentState!.validate()){
-                        CircularProgressIndicator.adaptive();
-                        
+                    onPressed: () async {
+                      if (formGlobalKey.currentState!.validate()) {
+                        const CircularProgressIndicator.adaptive();
+                        await Provider.of<LoginProvider>(context, listen: false)
+                            .loginPostApi(
+                                userName: _usernameController.text,
+                                password: _passwordController.text);
+                        Navigator.pushNamed(context, homeScreen);
+                      } else {
+                        log("Login failed");
                       }
-                      Navigator.pushNamed(context, homeScreen);
                     },
                     height: SizeConfig.heightMultiplier! * 6.0,
                   )
