@@ -7,6 +7,7 @@ import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/utils/validation.dart';
+import 'package:aviation_met_nepal/widgets/custom_snackbar.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
 import 'package:aviation_met_nepal/widgets/general_textfield.dart';
 import 'package:flutter/material.dart';
@@ -126,13 +127,14 @@ class _LoginPageState extends State<LoginPage> {
                       if (formGlobalKey.currentState!.validate()) {
                         const CircularProgressIndicator.adaptive();
                         await Provider.of<LoginProvider>(context, listen: false)
-                            .loginPostApi(
+                            .loginPostApi(context,
                                 userName: _usernameController.text,
                                 password: _passwordController.text);
-                        Navigator.pushNamed(context, homeScreen);
-                      } else {
-                        log("Login failed");
-                      }
+                        // final SnackBar loginSnackBar =
+                        //     CustomSnackBar.customSnackBar(text: "Success");
+                        // ScaffoldMessenger.of(context).showSnackBar(loginSnackBar);
+                       
+                      } 
                     },
                     height: SizeConfig.heightMultiplier! * 6.0,
                   )

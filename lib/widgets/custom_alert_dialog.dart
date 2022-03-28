@@ -1,14 +1,39 @@
 import 'package:aviation_met_nepal/constant/routes.dart';
+import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../constant/values.dart';
 import '../utils/size_config.dart';
 
-class ShowAlertDialogBox extends StatelessWidget {
+class ShowAlertDialogBox extends StatefulWidget {
   const ShowAlertDialogBox({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<ShowAlertDialogBox> createState() => _ShowAlertDialogBoxState();
+}
+
+class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
+  /*  bool isSuccessFromApi = false;
+
+  bool isLoading = false;
+
+  void apiCall() {
+    setState(() {
+      isLoading = true;
+    });
+    Provider.of<LoginProvider>(context, listen: false).clearLoginDetails();
+    CircularProgressIndicator.adaptive();
+    //call the api
+    //after success or failure
+    setState(() {
+      isLoading = false;
+      isSuccessFromApi = true;
+    });
+  } */
+// bool willLeave = false;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -39,7 +64,8 @@ class ShowAlertDialogBox extends StatelessWidget {
                   ))),
           TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, homeScreen);
+                // willLeave=true;
+                Navigator.of(context).pop(true);
               },
               child: Text('Yes',
                   style: TextStyle(

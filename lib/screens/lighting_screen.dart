@@ -26,6 +26,7 @@ class _LightingDataState extends State<LightingData> {
   void initState() {
     Provider.of<LightingDataProvider>(context, listen: false)
         .fetchLightingData();
+
     super.initState();
   }
 
@@ -37,7 +38,7 @@ class _LightingDataState extends State<LightingData> {
 
   static const LatLng _center = const LatLng(23.7351, 85.3612);
 
-  final Set<Marker> _markers = {};
+  // Set<Marker> _markers = {};
 
   LatLng _lastMapPosition = _center;
 
@@ -98,16 +99,20 @@ class _LightingDataState extends State<LightingData> {
         ),
         centerTitle: true,
       ),
-      body: GoogleMap(
-        // onMapCreated: _onMapCreated,
-        initialCameraPosition: const CameraPosition(
-          target: _center,
-          zoom: 5.0,
-        ),
-        // mapType: _currentMapType,
-        /* markers: _markers,
-        onCameraMove: _onCameraMove, */
-      ),
+      body: Consumer<LightingDataProvider>(builder: (_, value, __) {
+        return GoogleMap(
+          // markers: _markers,
+          markers: value.markers,
+          // onMapCreated: _onMapCreated,
+          initialCameraPosition: const CameraPosition(
+            target: _center,
+            zoom: 5.0,
+          ),
+          // mapType: _currentMapType,
+          /* markers: _markers,
+            onCameraMove: _onCameraMove, */
+        );
+      }),
 
       /* OSMFlutter(
         controller: _mapcontroller,

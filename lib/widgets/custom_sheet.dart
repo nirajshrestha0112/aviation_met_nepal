@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/colors.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
@@ -139,8 +141,7 @@ class ShowSheet {
                           ))
                     ],
                   ),
-                  Provider.of<LoginProvider>(context, listen: false)
-                              .loginName !=
+                  Provider.of<LoginProvider>(context, listen: true).loginName !=
                           null
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -164,7 +165,7 @@ class ShowSheet {
                                   children: [
                                     EachText(
                                       text: Provider.of<LoginProvider>(context,
-                                              listen: false)
+                                              listen: true)
                                           .loginName
                                           .toString(),
                                       fontSize:
@@ -176,7 +177,7 @@ class ShowSheet {
                                         height: SizeConfig.heightMultiplier),
                                     EachText(
                                       text: Provider.of<LoginProvider>(context,
-                                              listen: false)
+                                              listen: true)
                                           .userId
                                           .toString(),
                                       fontSize:
@@ -203,11 +204,23 @@ class ShowSheet {
                                   size: SizeConfig.imageSizeMultiplier! * 3.5,
                                 ),
                                 color: textColor,
-                                onPressed: () {
-                                  showDialog(
+                                onPressed: () async {
+                                  final result = await showDialog(
                                       context: context,
                                       builder: (context) =>
                                           const ShowAlertDialogBox());
+                                  log(result.toString());
+                                  if (result == true) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => const Center(
+                                            child: CircularProgressIndicator
+                                                .adaptive()));
+                                    Provider.of<LoginProvider>(context,
+                                            listen: false)
+                                        .clearLoginDetails();
+                                    Navigator.pushNamed(context, homeScreen);
+                                  }
                                 },
                               ),
                             ),

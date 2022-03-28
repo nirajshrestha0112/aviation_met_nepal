@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(),
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          initialRoute: homeScreen,
+          initialRoute: loginScreen,
           /*  home: checkProvider.isConnected
               ? const SplashScreen()
               : const InternetConnectionScreen(), */
@@ -90,7 +90,8 @@ class MyApp extends StatelessWidget {
             notificationScreen: (context) => const Scaffold(),
             IcingTurbulenceChartScreen: (context) => const Scaffold(),
             weatherCameraImagesScreen: (context) => const Scaffold(),
-            SatelliteImageDataScreen: (context) => const SatelliteScreen(screenName: "Satellite Images"),
+            SatelliteImageDataScreen: (context) =>
+                const SatelliteScreen(screenName: "Satellite Images"),
             windChartScreen: (context) => const Scaffold(),
             sigwxChartScreen: (context) => const Scaffold(),
             weatherForecastScreen: (context) => const Scaffold(),
