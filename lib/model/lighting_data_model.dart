@@ -34,7 +34,7 @@ class Datum {
     required this.locationError,
   });
 
-  final String date;
+  final DateTime date;
   final String latitude;
   final String longitude;
   final String type;
@@ -43,7 +43,7 @@ class Datum {
   final String locationError;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        date: json["date"] ?? '',
+        date:  json["date"]  != null ? DateTime.parse(json["date"]) : DateTime.now(),
         latitude: json["latitude"] ?? '',
         longitude: json["longitude"] ?? '',
         type: json["type"] ?? '',

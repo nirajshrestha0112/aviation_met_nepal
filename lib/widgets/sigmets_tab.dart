@@ -1,4 +1,4 @@
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/sigmets_data_provider.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
@@ -61,16 +61,16 @@ class _SigmetsTabState extends State<SigmetsTab> {
                         Text(
                           "SIGMETS Data",
                           style: TextStyle(
-                              fontSize: SizeConfig.textMultiplier! * 2.0,
+                              fontSize: SizeConfig.textMultiplier * 2.0,
                               fontWeight: FontWeight.w500,
-                              color: iconColor),
+                              color: colorBlue),
                         ),
-                        SizedBox(height: SizeConfig.heightMultiplier! * 1.5),
+                        SizedBox(height: SizeConfig.heightMultiplier * 1.5),
                         Consumer<SigmetsDataProvider>(builder: (_, value, __) {
                           return Text(
                             value.sigmetsData!.data!,
                             style: TextStyle(
-                                fontSize: SizeConfig.textMultiplier! * 2.0,
+                                fontSize: SizeConfig.textMultiplier * 2.0,
                                 fontWeight: FontWeight.w500,
                                 color: textColor),
                           );

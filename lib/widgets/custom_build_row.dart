@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constant/colors.dart';
+import '../constant/colors_properties.dart';
 import '../constant/values.dart';
 import '../utils/size_config.dart';
 
@@ -29,16 +29,16 @@ Widget buildRow(String label, String value,
                     Text(
                       "Decoded",
                       style: TextStyle(
-                        fontSize: SizeConfig.textMultiplier! * 2.0,
+                        fontSize: SizeConfig.textMultiplier * 2.0,
                         fontWeight: FontWeight.w500,
-                        color: iconColor,
+                        color: colorBlue,
                       ),
                     ),
                   ])
                 : const SizedBox.shrink(),
             isDecoded
                 ? SizedBox(
-                    height: SizeConfig.heightMultiplier! * 1.5,
+                    height: SizeConfig.heightMultiplier * 1.5,
                   )
                 : const SizedBox.shrink(),
             Row(
@@ -49,19 +49,19 @@ Widget buildRow(String label, String value,
                   child: Text(
                     label,
                     style: TextStyle(
-                        fontSize: SizeConfig.textMultiplier! * 1.8,
+                        fontSize: SizeConfig.textMultiplier * 1.8,
                         fontWeight: FontWeight.w500,
                         color: textColor),
                   ),
                 ),
                 SizedBox(
-                  width: SizeConfig.widthMultiplier! * 2.0,
+                  width: SizeConfig.widthMultiplier * 2.0,
                 ),
                 Expanded(
                   child: Text(
                     value.trim(),
                     style: TextStyle(
-                        fontSize: SizeConfig.textMultiplier! * 1.8,
+                        fontSize: SizeConfig.textMultiplier * 1.8,
                         color: textColor),
                   ),
                 ),
@@ -69,9 +69,9 @@ Widget buildRow(String label, String value,
             ),
           ]),
         ),
-        !isText
-            ? !isMetarFor
-                ? !isClouds
+        isText
+            ? isMetarFor
+                ? isClouds
                     ? const Divider()
                     : const SizedBox.shrink()
                 : const SizedBox.shrink()

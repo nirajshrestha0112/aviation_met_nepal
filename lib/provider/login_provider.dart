@@ -35,7 +35,7 @@ class LoginProvider extends ChangeNotifier {
               statusText: jsonDecode(response.body)["status"],
               icon: Icons.close,
               bgColor: Colors.red,
-              iconColor: Colors.red);
+              colorBlue: Colors.red);
 
           ScaffoldMessenger.of(context).showSnackBar(errorSnackBar);
         } else {
@@ -51,7 +51,7 @@ class LoginProvider extends ChangeNotifier {
           ScaffoldMessenger.of(context).showSnackBar(successMessage);
           await SecureStorage.writeSecureData(
               key: SecureStorageConstants.token, value: token!);
-          Navigator.pushNamed(context, homeScreen);
+          Navigator.pushNamed(context, homeRoute);
         }
       } else {
         final SnackBar errorSnackBar = CustomSnackBar.customSnackBar(

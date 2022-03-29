@@ -45,7 +45,7 @@ class _DropDownFilterState extends State<DropDownFilter> {
       child: ButtonTheme(
         alignedDropdown: true,
         child: DropdownButton(
-          menuMaxHeight: SizeConfig.heightMultiplier! * 70.0,
+          menuMaxHeight: SizeConfig.heightMultiplier * 70.0,
           elevation: 0,
           isExpanded: true,
           value: selectedValue,

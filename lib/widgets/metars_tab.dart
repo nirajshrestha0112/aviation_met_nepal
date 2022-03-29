@@ -3,7 +3,7 @@ import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../constant/colors.dart';
+import '../constant/colors_properties.dart';
 import '../model/airport_list_model.dart';
 import '../provider/metar_data_provider.dart';
 import 'custom_build_row.dart';
@@ -68,7 +68,7 @@ class _MetarsTabState extends State<MetarsTab> {
                           .toString()
                           .substring(8),
                       style:
-                          TextStyle(fontSize: SizeConfig.textMultiplier! * 2.0),
+                          TextStyle(fontSize: SizeConfig.textMultiplier * 2.0),
                     ),
                     InkWell(
                       onTap: () async {
@@ -80,10 +80,10 @@ class _MetarsTabState extends State<MetarsTab> {
                         }
                       },
                       child: Container(
-                        height: SizeConfig.heightMultiplier! * 5.0,
-                        width: SizeConfig.widthMultiplier! * 20.0,
+                        height: SizeConfig.heightMultiplier * 5.0,
+                        width: SizeConfig.widthMultiplier * 20.0,
                         decoration: BoxDecoration(
-                            color: iconColor,
+                            color: colorBlue,
                             borderRadius: BorderRadius.circular(radius)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,12 +94,12 @@ class _MetarsTabState extends State<MetarsTab> {
                             Text(
                               "Filter",
                               style: TextStyle(
-                                  fontSize: SizeConfig.textMultiplier! * 1.8,
+                                  fontSize: SizeConfig.textMultiplier * 1.8,
                                   color: Colors.white),
                             ),
                             Icon(
                               Icons.arrow_drop_down,
-                              size: SizeConfig.imageSizeMultiplier! * 8.0,
+                              size: SizeConfig.imageSizeMultiplier * 8.0,
                               color: Colors.white,
                             )
                           ],
@@ -109,7 +109,7 @@ class _MetarsTabState extends State<MetarsTab> {
                   ],
                 ),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier! * 3.0,
+                  height: SizeConfig.heightMultiplier * 3.0,
                 ),
                 CustomRawCard(
                     rawHeaderText: "Raw",
@@ -119,7 +119,7 @@ class _MetarsTabState extends State<MetarsTab> {
                             .data!
                             .raw!),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier! * 2.0,
+                  height: SizeConfig.heightMultiplier * 2.0,
                 ),
                 Column(
                   children: [

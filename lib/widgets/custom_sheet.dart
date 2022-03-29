@@ -1,12 +1,13 @@
 import 'dart:developer';
 
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
+import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/widgets/custom_alert_dialog.dart';
-import 'package:aviation_met_nepal/widgets/custom_icon.dart';
+import 'package:aviation_met_nepal/widgets/custom_icon_image.dart';
 import 'package:aviation_met_nepal/widgets/each_text.dart';
 import 'package:aviation_met_nepal/widgets/reusable_text.dart';
 import 'package:flutter/material.dart';
@@ -21,77 +22,77 @@ class ShowSheet {
     {
       'icon': const CustomIcon(icon: Icons.home),
       'title': const ReusableText(text: "Home"),
-      'navigate': homeScreen
+      'navigate': homeRoute
     },
     {
       'icon': const CustomIcon(icon: Icons.notification_add),
       'title': const ReusableText(text: "Notification"),
-      'navigate': notificationScreen
+      'navigate': notificationRoute
     },
     {
       'icon': const CustomIcon(icon: Icons.expand_less_outlined),
       'title': const ReusableText(text: "Icing & Turbulence Chart"),
-      'navigate': loginScreen
+      'navigate': loginRoute
     },
     {
-      'icon': const CustomIcon(icon: Icons.storm_outlined),
+      'icon': const CustomImage(assetName: cameraImg),
       'title': const ReusableText(text: "Weather Camera Images"),
-      'navigate': loginScreen
+      'navigate': loginRoute
     },
     {
-      'icon': const CustomIcon(icon: Icons.satellite_outlined),
+      'icon': const CustomImage(assetName: satelliteImg),
       'title': const ReusableText(text: "Satellite Images"),
-      'navigate': SatelliteImageDataScreen
+      'navigate': satelliteImageDataRoute
     },
     {
-      'icon': const CustomIcon(icon: Icons.bolt_outlined),
+      'icon': const CustomImage(assetName: lightingImg),
       'title': const ReusableText(text: "Lighting Data"),
-      'navigate': lightingDataScreen
+      'navigate': lightingDataRoute
     },
     {
-      'icon': const CustomIcon(icon: Icons.air_outlined),
+      'icon': const CustomImage(assetName: windImg),
       'title': const ReusableText(text: "Wind Chart"),
-      'navigate': windChartScreen
+      'navigate': windChartRoute
     },
     {
-      'icon': const CustomIcon(icon: Icons.stacked_line_chart_sharp),
+      'icon': const CustomImage(assetName: chartImg),
       'title': const ReusableText(text: "SIGWX Chart"),
-      'navigate': loginScreen
+      'navigate': loginRoute
     },
     {
-      'icon': const CustomIcon(icon: Icons.table_view),
+      'icon': const CustomImage(assetName: newsImg),
       'title': const ReusableText(text: "Weather Forecast"),
-      'navigate': weatherForecastScreen
+      'navigate': weatherForecastRoute
     },
     {
-      'icon': const CustomIcon(icon: Icons.table_view),
+      'icon': const CustomImage(assetName: newsImg),
       'title': const ReusableText(text: "Airmet Data"),
-      'navigate': AirmetDataScreen
+      'navigate': airmetDataRoute
     },
     {
-      'icon': const CustomIcon(icon: Icons.table_view),
+      'icon': const CustomImage(assetName: newsImg),
       'title': const ReusableText(text: "Ashtams Data"),
-      'navigate': AshtamsDataScreen
+      'navigate': ashtamsDataRoute
     },
     {
-      'icon': const CustomIcon(icon: Icons.table_view),
+      'icon': const CustomImage(assetName: newsImg),
       'title': const ReusableText(text: "Gamet Data"),
-      'navigate': gametDataScreen
+      'navigate': gametDataRoute
     },
     {
-      'icon': const CustomIcon(icon: Icons.table_view),
+      'icon': const CustomImage(assetName: newsImg),
       'title': const ReusableText(text: "Opmet Data"),
-      'navigate': opmetDataScreen
+      'navigate': opmetDataRoute
     },
     {
       'icon': const CustomIcon(icon: Icons.contacts_outlined),
       'title': const ReusableText(text: "Contact Us"),
-      'navigate': contactScreen
+      'navigate': contactRoute
     },
     {
       'icon': const CustomIcon(icon: Icons.message),
       'title': const ReusableText(text: "Feedback"),
-      'navigate': feedbackScreen
+      'navigate': feedbackRoute
     },
   ];
 
@@ -115,8 +116,8 @@ class ShowSheet {
                         children: [
                           Icon(
                             Icons.apps_sharp,
-                            color: textColor,
-                            size: SizeConfig.imageSizeMultiplier! * 8.0,
+                            color: const Color(colorDarkBlue),
+                            size: SizeConfig.imageSizeMultiplier * 8.0,
                           ),
                           SizedBox(
                             width: SizeConfig.widthMultiplier,
@@ -124,9 +125,10 @@ class ShowSheet {
                           Text(
                             "Menu",
                             style: TextStyle(
-                                fontSize: SizeConfig.textMultiplier! * 2.2,
-                                fontWeight: FontWeight.w500,
-                                color: textColor),
+                              fontSize: SizeConfig.textMultiplier * 2.2,
+                              fontWeight: FontWeight.w500,
+                              color: const Color(colorDarkBlue),
+                            ),
                           ),
                         ],
                       ),
@@ -136,8 +138,8 @@ class ShowSheet {
                           },
                           icon: Icon(
                             Icons.close_outlined,
-                            size: SizeConfig.imageSizeMultiplier! * 8.0,
-                            color: textColor,
+                            size: SizeConfig.imageSizeMultiplier * 8.0,
+                            color: Color(colorDarkBlue),
                           ))
                     ],
                   ),
@@ -150,15 +152,15 @@ class ShowSheet {
                               children: [
                                 CircleAvatar(
                                   backgroundColor: bgColor,
-                                  radius: SizeConfig.imageSizeMultiplier! * 3.0,
+                                  radius: SizeConfig.imageSizeMultiplier * 3.0,
                                   child: Icon(
                                     Icons.person,
-                                    color: textColor,
-                                    size: SizeConfig.imageSizeMultiplier! * 3.5,
+                                    color: const Color(colorDarkBlue),
+                                    size: SizeConfig.imageSizeMultiplier * 3.5,
                                   ),
                                 ),
                                 SizedBox(
-                                  width: SizeConfig.widthMultiplier! * 5.0,
+                                  width: SizeConfig.widthMultiplier * 5.0,
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,9 +170,8 @@ class ShowSheet {
                                               listen: true)
                                           .loginName
                                           .toString(),
-                                      fontSize:
-                                          SizeConfig.textMultiplier! * 1.8,
-                                      color: textColor,
+                                      fontSize: SizeConfig.textMultiplier * 1.8,
+                                      color: const Color(colorDarkBlue),
                                       fontWeight: FontWeight.w500,
                                     ),
                                     SizedBox(
@@ -180,9 +181,8 @@ class ShowSheet {
                                               listen: true)
                                           .userId
                                           .toString(),
-                                      fontSize:
-                                          SizeConfig.textMultiplier! * 1.5,
-                                      color: textColor,
+                                      fontSize: SizeConfig.textMultiplier * 1.5,
+                                      color: const Color(colorDarkBlue),
                                       fontWeight: FontWeight.w500,
                                     )
                                   ],
@@ -190,8 +190,8 @@ class ShowSheet {
                               ],
                             ),
                             Container(
-                              height: SizeConfig.heightMultiplier! * 3.0,
-                              width: SizeConfig.widthMultiplier! * 6.5,
+                              height: SizeConfig.heightMultiplier * 3.0,
+                              width: SizeConfig.widthMultiplier * 6.5,
                               decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.circular(radius / 4.0),
@@ -201,9 +201,9 @@ class ShowSheet {
                                 padding: EdgeInsets.zero,
                                 icon: Icon(
                                   Icons.logout,
-                                  size: SizeConfig.imageSizeMultiplier! * 3.5,
+                                  size: SizeConfig.imageSizeMultiplier * 3.5,
                                 ),
-                                color: textColor,
+                                color: const Color(colorDarkBlue),
                                 onPressed: () async {
                                   final result = await showDialog(
                                       context: context,
@@ -219,7 +219,7 @@ class ShowSheet {
                                     Provider.of<LoginProvider>(context,
                                             listen: false)
                                         .clearLoginDetails();
-                                    Navigator.pushNamed(context, homeScreen);
+                                    Navigator.pushNamed(context, homeRoute);
                                   }
                                 },
                               ),
@@ -279,16 +279,16 @@ class ShowLocationSheet {
                       children: [
                         Icon(
                           Icons.location_on,
-                          color: textColor,
-                          size: SizeConfig.imageSizeMultiplier! * 5.5,
+                          color: const Color(colorDarkBlue),
+                          size: SizeConfig.imageSizeMultiplier * 5.5,
                         ),
                         SizedBox(
-                          width: SizeConfig.widthMultiplier! * 3.0,
+                          width: SizeConfig.widthMultiplier * 3.0,
                         ),
                         EachText(
                           text: "Select Aiport",
-                          fontSize: SizeConfig.textMultiplier! * 2.1,
-                          color: textColor,
+                          fontSize: SizeConfig.textMultiplier * 2.1,
+                          color: const Color(colorDarkBlue),
                           fontWeight: FontWeight.w500,
                         )
                       ],
@@ -299,14 +299,14 @@ class ShowLocationSheet {
                       },
                       child: Icon(
                         Icons.close_outlined,
-                        size: SizeConfig.imageSizeMultiplier! * 7.0,
-                        color: textColor,
+                        size: SizeConfig.imageSizeMultiplier * 7.0,
+                        color: const Color(colorDarkBlue),
                       ),
                     )
                   ],
                 ),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier! * 3.0,
+                  height: SizeConfig.heightMultiplier * 3.0,
                 ),
                 TextFormField(
                     controller: editingController,
@@ -317,19 +317,19 @@ class ShowLocationSheet {
                             horizontal: padding * 2.0, vertical: padding / 2.0),
                         hintText: "Select Airport",
                         hintStyle: TextStyle(
-                            color: searchColor,
-                            fontSize: SizeConfig.textMultiplier! * 2.0,
+                            color: const Color(colorNavy40),
+                            fontSize: SizeConfig.textMultiplier * 2.0,
                             fontWeight: FontWeight.w400),
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.circular(8.0)),
                         suffixIcon: Icon(
                           Icons.search,
-                          color: iconColor,
-                          size: SizeConfig.widthMultiplier! * 7.5,
+                          color: const Color(colorPrimary),
+                          size: SizeConfig.widthMultiplier * 7.5,
                         ))),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier! * 2.0,
+                  height: SizeConfig.heightMultiplier * 2.0,
                 ),
                 Expanded(
                     child: ScrollConfiguration(
@@ -351,9 +351,10 @@ class ShowLocationSheet {
                                 ? Center(
                                     child: Text("No Airport Data Found",
                                         style: TextStyle(
-                                            color: Colors.black,
+                                            // fontWeight: FontWeight.w300,
+                                            color: const Color(colorGrey20),
                                             fontSize:
-                                                SizeConfig.textMultiplier! *
+                                                SizeConfig.textMultiplier *
                                                     2.5)))
                                 : ListView.builder(
                                     itemCount: value.searchData.length,
@@ -374,24 +375,27 @@ class ShowLocationSheet {
                                           leading: Text(
                                             value.searchData[i].ident,
                                             style: TextStyle(
+                                                fontWeight: FontWeight.w500,
                                                 fontSize:
-                                                    SizeConfig.textMultiplier! *
+                                                    SizeConfig.textMultiplier *
                                                         2.0,
-                                                color: iconColor),
+                                                color:
+                                                    const Color(colorPrimary)),
                                           ),
                                           trailing: Container(
                                             padding: EdgeInsets.only(
-                                                right: SizeConfig
-                                                        .widthMultiplier! *
-                                                    4.0),
-                                            width: SizeConfig.widthMultiplier! *
-                                                55,
+                                                right:
+                                                    SizeConfig.widthMultiplier *
+                                                        4.0),
+                                            width:
+                                                SizeConfig.widthMultiplier * 55,
                                             child: Text(
                                               value.searchData[i].name,
                                               textAlign: TextAlign.end,
                                               style: TextStyle(
+                                                color: const Color(colorNavy50),
                                                 fontSize:
-                                                    SizeConfig.textMultiplier! *
+                                                    SizeConfig.textMultiplier *
                                                         2.0,
                                               ),
                                             ),
@@ -431,18 +435,18 @@ class ShowFilterSheet {
                         children: [
                           Icon(
                             Icons.filter_alt,
-                            color: textColor,
-                            size: SizeConfig.imageSizeMultiplier! * 6,
+                            color: const Color(colorDarkBlue),
+                            size: SizeConfig.imageSizeMultiplier * 6,
                           ),
                           SizedBox(
-                            width: SizeConfig.widthMultiplier! * 3.0,
+                            width: SizeConfig.widthMultiplier * 3.0,
                           ),
                           Text(
                             "Filter",
                             style: TextStyle(
-                                fontSize: SizeConfig.textMultiplier! * 2.2,
+                                fontSize: SizeConfig.textMultiplier * 2.2,
                                 fontWeight: FontWeight.w500,
-                                color: textColor),
+                                color: const Color(colorDarkBlue)),
                           ),
                         ],
                       ),
@@ -452,14 +456,14 @@ class ShowFilterSheet {
                         },
                         child: Icon(
                           Icons.close_outlined,
-                          size: SizeConfig.imageSizeMultiplier! * 7.0,
-                          color: textColor,
+                          size: SizeConfig.imageSizeMultiplier * 7.0,
+                          color: const Color(colorDarkBlue),
                         ),
                       )
                     ],
                   ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier! * 3.0,
+                    height: SizeConfig.heightMultiplier * 3.0,
                   ),
                   Container(
                     width: double.infinity,
@@ -477,11 +481,11 @@ class ShowFilterSheet {
                     }),
                   ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier! * 2.0,
+                    height: SizeConfig.heightMultiplier * 2.0,
                   ),
                   SizedBox(
                     width: double.infinity,
-                    height: SizeConfig.heightMultiplier! * 6.0,
+                    height: SizeConfig.heightMultiplier * 6.0,
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pop(
@@ -490,11 +494,11 @@ class ShowFilterSheet {
                       },
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(iconColor)),
+                              MaterialStateProperty.all(colorBlue)),
                       child: Text(
                         "Apply",
                         style: TextStyle(
-                            fontSize: SizeConfig.textMultiplier! * 1.8,
+                            fontSize: SizeConfig.textMultiplier * 1.8,
                             color: Colors.white),
                       ),
                     ),

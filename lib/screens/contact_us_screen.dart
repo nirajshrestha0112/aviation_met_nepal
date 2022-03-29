@@ -1,4 +1,4 @@
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
@@ -17,10 +17,10 @@ class ContactUs extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: SizeConfig.heightMultiplier! * 3.5,
+              height: SizeConfig.heightMultiplier * 3.5,
             ),
             SizedBox(
-              height: SizeConfig.heightMultiplier! * 6.5,
+              height: SizeConfig.heightMultiplier * 6.5,
               width: double.infinity,
               child: Stack(
                 fit: StackFit.expand,
@@ -30,18 +30,18 @@ class ContactUs extends StatelessWidget {
                       "Contact Us",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: SizeConfig.textMultiplier! * 2.6,
+                          fontSize: SizeConfig.textMultiplier * 2.6,
                           color: textColor,
                           fontWeight: FontWeight.w500),
                     ),
                   ),
                   Positioned(
-                    top: SizeConfig.heightMultiplier! * 1.2,
+                    top: SizeConfig.heightMultiplier * 1.2,
                     left: SizeConfig.widthMultiplier,
                     child: GestureDetector(
                       child: Icon(
                         Icons.arrow_back,
-                        size: SizeConfig.imageSizeMultiplier! * 7.5,
+                        size: SizeConfig.imageSizeMultiplier * 7.5,
                       ),
                       onTap: () {
                         Navigator.pop(context);
@@ -62,7 +62,7 @@ class ContactUs extends StatelessWidget {
               ],
             ), */
             Container(
-              height: SizeConfig.heightMultiplier! * 100,
+              height: SizeConfig.heightMultiplier * 100,
               width: double.infinity,
               color: bgColor,
               child: Padding(
@@ -71,10 +71,10 @@ class ContactUs extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.asset(locationImg,
-                        width: SizeConfig.widthMultiplier! * 45.0,
-                        height: SizeConfig.widthMultiplier! * 45.0),
+                        width: SizeConfig.widthMultiplier * 45.0,
+                        height: SizeConfig.widthMultiplier * 45.0),
                     SizedBox(
-                      height: SizeConfig.heightMultiplier! * 3.0,
+                      height: SizeConfig.heightMultiplier * 3.0,
                     ),
                     Expanded(
                       child: Container(
@@ -93,9 +93,9 @@ class ContactUs extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Image.asset(logoImg,
-                                      width: SizeConfig.widthMultiplier! * 22.0,
+                                      width: SizeConfig.widthMultiplier * 22.0,
                                       height:
-                                          SizeConfig.widthMultiplier! * 22.0),
+                                          SizeConfig.widthMultiplier * 22.0),
                                   SizedBox(
                                     width: SizeConfig.widthMultiplier,
                                   ),
@@ -108,7 +108,7 @@ class ContactUs extends StatelessWidget {
                                           "Government of Nepal",
                                           style: TextStyle(
                                               fontSize:
-                                                  SizeConfig.textMultiplier! *
+                                                  SizeConfig.textMultiplier *
                                                       1.7,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
@@ -117,7 +117,7 @@ class ContactUs extends StatelessWidget {
                                             "Department of Hydrology and Meterology",
                                             style: TextStyle(
                                                 fontSize:
-                                                    SizeConfig.textMultiplier! *
+                                                    SizeConfig.textMultiplier *
                                                         1.7,
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.normal)),
@@ -125,7 +125,7 @@ class ContactUs extends StatelessWidget {
                                           "Meteorology Forecasting Division",
                                           style: TextStyle(
                                               fontSize:
-                                                  SizeConfig.textMultiplier! *
+                                                  SizeConfig.textMultiplier *
                                                       2.0,
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold),
@@ -145,7 +145,7 @@ class ContactUs extends StatelessWidget {
                                     Icons.location_pin,
                                   ),
                                   SizedBox(
-                                    width: SizeConfig.widthMultiplier! * 2.0,
+                                    width: SizeConfig.widthMultiplier * 2.0,
                                   ),
                                   const Expanded(
                                       child: Text(
@@ -159,11 +159,11 @@ class ContactUs extends StatelessWidget {
                                 children: [
                                   const Icon(Icons.phone),
                                   SizedBox(
-                                    width: SizeConfig.widthMultiplier! * 2.0,
+                                    width: SizeConfig.widthMultiplier * 2.0,
                                   ),
                                   const Text(
                                     "+977144868699",
-                                    style: TextStyle(color: iconColor),
+                                    style: TextStyle(color: colorBlue),
                                   )
                                 ],
                               ),
@@ -174,11 +174,11 @@ class ContactUs extends StatelessWidget {
                                 children: [
                                   const Icon(Icons.mail),
                                   SizedBox(
-                                    width: SizeConfig.widthMultiplier! * 2.0,
+                                    width: SizeConfig.widthMultiplier * 2.0,
                                   ),
                                   const Text(
                                     "info@mfd.gov.np",
-                                    style: TextStyle(color: iconColor),
+                                    style: TextStyle(color: colorBlue),
                                   )
                                 ],
                               )

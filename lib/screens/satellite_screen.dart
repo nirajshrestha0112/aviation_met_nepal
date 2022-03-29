@@ -1,4 +1,4 @@
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/provider/satellite_image_provider.dart';
 import 'package:aviation_met_nepal/widgets/each_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -41,7 +41,7 @@ class _SatelliteScreenState extends State<SatelliteScreen> {
                     child: Column(children: [
                   Container(
                     color: Colors.white,
-                    height: SizeConfig.heightMultiplier! * 6.5,
+                    height: SizeConfig.heightMultiplier * 6.5,
                     width: double.infinity,
                     child: Stack(
                       fit: StackFit.expand,
@@ -50,17 +50,17 @@ class _SatelliteScreenState extends State<SatelliteScreen> {
                             title: EachText(
                           text: widget.screenName,
                           textAlign: TextAlign.center,
-                          fontSize: SizeConfig.textMultiplier! * 2.2,
+                          fontSize: SizeConfig.textMultiplier * 2.2,
                           color: textColor,
                           fontWeight: FontWeight.w500,
                         )),
                         Positioned(
-                          top: SizeConfig.heightMultiplier! * 1.2,
+                          top: SizeConfig.heightMultiplier * 1.2,
                           left: SizeConfig.widthMultiplier,
                           child: GestureDetector(
                             child: Icon(
                               Icons.arrow_back,
-                              size: SizeConfig.imageSizeMultiplier! * 7.5,
+                              size: SizeConfig.imageSizeMultiplier * 7.5,
                             ),
                             onTap: () {
                               Navigator.pop(context);

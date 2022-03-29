@@ -1,7 +1,4 @@
-import 'package:aviation_met_nepal/constant/routes.dart';
-import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../constant/values.dart';
 import '../utils/size_config.dart';
@@ -41,13 +38,13 @@ class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
         title: Text(
           'Confirm to Exit',
           style: TextStyle(
-              fontSize: SizeConfig.textMultiplier! * 2.0,
+              fontSize: SizeConfig.textMultiplier * 2.0,
               color: Colors.black,
               fontWeight: FontWeight.normal),
         ),
         content: Text("Are you sure you want to exit?",
             style: TextStyle(
-              fontSize: SizeConfig.textMultiplier! * 1.8,
+              fontSize: SizeConfig.textMultiplier * 1.8,
               color: Colors.black,
             )),
         contentPadding:
@@ -59,7 +56,7 @@ class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
               },
               child: Text('No',
                   style: TextStyle(
-                    fontSize: SizeConfig.textMultiplier! * 1.8,
+                    fontSize: SizeConfig.textMultiplier * 1.8,
                     color: Colors.green,
                   ))),
           TextButton(
@@ -69,7 +66,7 @@ class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
               },
               child: Text('Yes',
                   style: TextStyle(
-                    fontSize: SizeConfig.textMultiplier! * 1.8,
+                    fontSize: SizeConfig.textMultiplier * 1.8,
                     color: Colors.green,
                   ))),
         ]);

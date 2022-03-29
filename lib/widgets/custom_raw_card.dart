@@ -1,9 +1,8 @@
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-
 
 class CustomRawCard extends StatelessWidget {
   const CustomRawCard({
@@ -31,17 +30,17 @@ class CustomRawCard extends StatelessWidget {
             Text(
               rawHeaderText,
               style: TextStyle(
-                  fontSize: SizeConfig.textMultiplier! * 2.0,
+                  fontSize: SizeConfig.textMultiplier * 2.0,
                   fontWeight: FontWeight.w500,
-                  color: iconColor),
+                  color: colorBlue),
             ),
-            SizedBox(height: SizeConfig.heightMultiplier! * 1.5),
+            SizedBox(height: SizeConfig.heightMultiplier * 1.5),
             ListView.separated(
               padding: EdgeInsets.zero,
               primary: false,
               itemBuilder: (context, index) => Html(data: rawBodyText[index]),
               separatorBuilder: (context, index) => SizedBox(
-                height: SizeConfig.heightMultiplier! * 1.5,
+                height: SizeConfig.heightMultiplier * 1.5,
               ),
               itemCount: rawBodyText.length,
               shrinkWrap: true,

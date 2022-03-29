@@ -1,4 +1,4 @@
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
@@ -19,7 +19,7 @@ class FeedBack extends StatelessWidget {
           icon: Icon(
             Icons.arrow_back,
             color: textColor,
-            size: SizeConfig.imageSizeMultiplier! * 8.0,
+            size: SizeConfig.imageSizeMultiplier * 8.0,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -28,14 +28,14 @@ class FeedBack extends StatelessWidget {
         title: Text(
           "Feedback",
           style: TextStyle(
-              fontSize: SizeConfig.textMultiplier! * 2.3, color: textColor),
+              fontSize: SizeConfig.textMultiplier * 2.3, color: textColor),
         ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Container(
           width: double.infinity,
-          height: SizeConfig.heightMultiplier! * 100,
+          height: SizeConfig.heightMultiplier * 100,
           color: bgColor,
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -43,10 +43,10 @@ class FeedBack extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(sendImg,
-                    width: SizeConfig.widthMultiplier! * 50.0,
-                    height: SizeConfig.widthMultiplier! * 50.0),
+                    width: SizeConfig.widthMultiplier * 50.0,
+                    height: SizeConfig.widthMultiplier * 50.0),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier! * 2.0,
+                  height: SizeConfig.heightMultiplier * 2.0,
                 ),
                 const GeneralTextField(
                   obscureText: false,
@@ -55,7 +55,7 @@ class FeedBack extends StatelessWidget {
                   icons: Icons.person,
                 ),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier! * 2.0,
+                  height: SizeConfig.heightMultiplier * 2.0,
                 ),
                 const GeneralTextField(
                     obscureText: false,
@@ -63,10 +63,10 @@ class FeedBack extends StatelessWidget {
                     keyboard: TextInputType.emailAddress,
                     icons: Icons.email_outlined),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier! * 2.0,
+                  height: SizeConfig.heightMultiplier * 2.0,
                 ),
                 Container(
-                    height: SizeConfig.heightMultiplier! * 30.0,
+                    height: SizeConfig.heightMultiplier * 30.0,
                     width: double.infinity,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(radius),
@@ -75,8 +75,8 @@ class FeedBack extends StatelessWidget {
                       decoration: InputDecoration(
                         hintText: "Your feedback here",
                         hintStyle: TextStyle(
-                            color: searchColor,
-                            fontSize: SizeConfig.textMultiplier! * 2.3,
+                            color: const Color(colorPrimary),
+                            fontSize: SizeConfig.textMultiplier * 2.3,
                             fontWeight: FontWeight.w400),
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
@@ -84,7 +84,7 @@ class FeedBack extends StatelessWidget {
                       ),
                     )),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier! * 2.0,
+                  height: SizeConfig.heightMultiplier * 2.0,
                 ),
                 GeneralTextButton(
                   color: true,

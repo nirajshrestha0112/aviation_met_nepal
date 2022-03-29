@@ -59,10 +59,10 @@ class _TafsTabState extends State<TafsTab> {
                       .date![0]
                       .toString()
                       .substring(8),
-                  style: TextStyle(fontSize: SizeConfig.textMultiplier! * 2.0),
+                  style: TextStyle(fontSize: SizeConfig.textMultiplier * 2.0),
                 ),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier! * 3.0,
+                  height: SizeConfig.heightMultiplier * 3.0,
                 ),
                 CustomRawCard(
                     rawHeaderText: "Raw",
@@ -72,7 +72,7 @@ class _TafsTabState extends State<TafsTab> {
                             .data!
                             .raw!),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier! * 2.0,
+                  height: SizeConfig.heightMultiplier * 2.0,
                 ),
                 Column(
                   children: [

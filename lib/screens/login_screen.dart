@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
@@ -35,12 +35,12 @@ class _LoginPageState extends State<LoginPage> {
         leading: IconButton(
           onPressed: () {},
           icon: Icon(Icons.arrow_back,
-              size: SizeConfig.imageSizeMultiplier! * 8.0, color: textColor),
+              size: SizeConfig.imageSizeMultiplier * 8.0, color: textColor),
         ),
         title: Text(
           "Login",
           style: TextStyle(
-              fontSize: SizeConfig.textMultiplier! * 2.3, color: textColor),
+              fontSize: SizeConfig.textMultiplier * 2.3, color: textColor),
         ),
       ),
       body: SingleChildScrollView(
@@ -48,54 +48,54 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.symmetric(
               vertical: padding, horizontal: padding),
           child: SizedBox(
-            height: SizeConfig.heightMultiplier! * 100.0,
-            width: SizeConfig.widthMultiplier! * 100.0,
+            height: SizeConfig.heightMultiplier * 100.0,
+            width: SizeConfig.widthMultiplier * 100.0,
             child: Form(
               key: formGlobalKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    height: SizeConfig.heightMultiplier! * 16.0,
-                    width: SizeConfig.widthMultiplier! * 35.0,
+                    height: SizeConfig.heightMultiplier * 16.0,
+                    width: SizeConfig.widthMultiplier * 35.0,
                     color: Colors.white,
                     child: Image.asset(cloudyImg, scale: 6.0),
                   ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier! * 3.0,
+                    height: SizeConfig.heightMultiplier * 3.0,
                   ),
                   Text(
                     "Aviation Met Nepal",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: SizeConfig.textMultiplier! * 3.5,
+                        fontSize: SizeConfig.textMultiplier * 3.5,
                         color: Colors.red,
                         fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier! * 5.0,
+                    height: SizeConfig.heightMultiplier * 5.0,
                   ),
                   Text(
                     "Welcome!",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: SizeConfig.textMultiplier! * 3.5,
+                        fontSize: SizeConfig.textMultiplier * 3.5,
                         color: textColor,
                         fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier! * 2.0,
+                    height: SizeConfig.heightMultiplier * 2.0,
                   ),
                   Text(
                     "Login to your existing account",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: SizeConfig.textMultiplier! * 2.0,
-                        color: searchColor,
+                        fontSize: SizeConfig.textMultiplier * 2.0,
+                        color: const Color(colorPrimary),
                         fontWeight: FontWeight.normal),
                   ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier! * 3.0,
+                    height: SizeConfig.heightMultiplier * 3.0,
                   ),
                   GeneralTextField(
                     hintText: "Username",
@@ -106,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                     validator: (value) => Validations().validateEmail(value!),
                   ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier! * 2.0,
+                    height: SizeConfig.heightMultiplier * 2.0,
                   ),
                   GeneralTextField(
                     keyboard: TextInputType.visiblePassword,
@@ -118,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                         Validations().validatePassword(value!),
                   ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier! * 4.0,
+                    height: SizeConfig.heightMultiplier * 4.0,
                   ),
                   GeneralTextButton(
                     color: false,
@@ -133,10 +133,11 @@ class _LoginPageState extends State<LoginPage> {
                         // final SnackBar loginSnackBar =
                         //     CustomSnackBar.customSnackBar(text: "Success");
                         // ScaffoldMessenger.of(context).showSnackBar(loginSnackBar);
-                       
-                      } 
+
+                      }
                     },
-                    height: SizeConfig.heightMultiplier! * 6.0,
+                    height: SizeConfig.heightMultiplier
+                     * 6.0,
                   )
                 ],
               ),

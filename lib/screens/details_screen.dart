@@ -1,4 +1,4 @@
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/model/airport_list_model.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
@@ -66,7 +66,7 @@ class _DetailsScreenState extends State<DetailsScreen>
     return Scaffold(
       backgroundColor: bgColor,
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(SizeConfig.heightMultiplier! * 13.0),
+          preferredSize: Size.fromHeight(SizeConfig.heightMultiplier * 13.0),
           child: Theme(
             data: ThemeData(splashColor: Colors.transparent),
             child: AppBar(
@@ -75,7 +75,7 @@ class _DetailsScreenState extends State<DetailsScreen>
               title: Text(
                 "${widget.data!.ident} ${widget.data!.name}",
                 style: TextStyle(
-                    fontSize: SizeConfig.textMultiplier! * 2.0,
+                    fontSize: SizeConfig.textMultiplier * 2.0,
                     color: textColor),
               ),
               leading: InkWell(

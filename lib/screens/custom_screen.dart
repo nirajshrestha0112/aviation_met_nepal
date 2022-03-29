@@ -1,4 +1,4 @@
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/ashtams_data_provider.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
@@ -52,8 +52,8 @@ class _CustomScreenState extends State<CustomScreen> {
               behavior: MyBehavior(),
               child: RawScrollbar(
                 isAlwaysShown: true,
-                minThumbLength: SizeConfig.heightMultiplier!,
-                thickness: SizeConfig.widthMultiplier!,
+                minThumbLength: SizeConfig.heightMultiplier,
+                thickness: SizeConfig.widthMultiplier,
                 thumbColor: Colors.grey,
                 child: ScrollConfiguration(
                   behavior: MyBehavior(),
@@ -61,7 +61,7 @@ class _CustomScreenState extends State<CustomScreen> {
                       child: Column(children: [
                     Container(
                       color: Colors.white,
-                      height: SizeConfig.heightMultiplier! * 6.5,
+                      height: SizeConfig.heightMultiplier* 6.5,
                       width: double.infinity,
                       child: Stack(
                         fit: StackFit.expand,
@@ -70,17 +70,17 @@ class _CustomScreenState extends State<CustomScreen> {
                               title: EachText(
                             text: widget.screenName,
                             textAlign: TextAlign.center,
-                            fontSize: SizeConfig.textMultiplier! * 2.2,
+                            fontSize: SizeConfig.textMultiplier* 2.2,
                             color: textColor,
                             fontWeight: FontWeight.w500,
                           )),
                           Positioned(
-                            top: SizeConfig.heightMultiplier! * 1.2,
+                            top: SizeConfig.heightMultiplier* 1.2,
                             left: SizeConfig.widthMultiplier,
                             child: GestureDetector(
                               child: Icon(
                                 Icons.arrow_back,
-                                size: SizeConfig.imageSizeMultiplier! * 7.5,
+                                size: SizeConfig.imageSizeMultiplier* 7.5,
                               ),
                               onTap: () {
                                 Navigator.pop(context);
@@ -123,7 +123,7 @@ class _CustomScreenState extends State<CustomScreen> {
                                       return EachText(
                                         text: value.gametData!.data.toString(),
                                         fontSize:
-                                            SizeConfig.textMultiplier! * 1.8,
+                                            SizeConfig.textMultiplier* 1.8,
                                         color: textColor,
                                         fontWeight: FontWeight.w500,
                                       );
@@ -136,7 +136,7 @@ class _CustomScreenState extends State<CustomScreen> {
                                           text:
                                               value.airmetData!.data.toString(),
                                           fontSize:
-                                              SizeConfig.textMultiplier! * 1.8,
+                                              SizeConfig.textMultiplier* 1.8,
                                           color: textColor,
                                           fontWeight: FontWeight.w500,
                                         );
@@ -148,7 +148,7 @@ class _CustomScreenState extends State<CustomScreen> {
                                               text: value.opmetData!.data
                                                   .toString(),
                                               fontSize:
-                                                  SizeConfig.textMultiplier! *
+                                                  SizeConfig.textMultiplier*
                                                       1.8,
                                               color: textColor,
                                               fontWeight: FontWeight.w500,
@@ -166,7 +166,7 @@ class _CustomScreenState extends State<CustomScreen> {
                                                             .ashtamsData!.data
                                                             .toString(),
                                                         fontSize: SizeConfig
-                                                                .textMultiplier! *
+                                                                .textMultiplier*
                                                             1.8,
                                                         color: textColor,
                                                         fontWeight:

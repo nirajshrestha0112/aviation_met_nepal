@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
 import 'package:aviation_met_nepal/screens/splash_screen.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
@@ -28,22 +28,22 @@ class _InternetConnectionScreenState extends State<InternetConnectionScreen> {
               "No internet connection",
               style: TextStyle(
                 color: textColor,
-                fontSize: SizeConfig.textMultiplier! * 2.5,
+                fontSize: SizeConfig.textMultiplier * 2.5,
               ),
             ),
             Text(
               "Please retry to connect",
               style: TextStyle(
-                color: iconColor,
-                fontSize: SizeConfig.textMultiplier! * 2,
+                color: colorBlue,
+                fontSize: SizeConfig.textMultiplier * 2,
               ),
             ),
             SizedBox(
-              height: SizeConfig.heightMultiplier! * 2,
+              height: SizeConfig.heightMultiplier * 2,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: iconColor,
+                primary: colorBlue,
               ),
               onPressed: () {
                 provider.checkInternetConnection();

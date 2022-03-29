@@ -1,4 +1,4 @@
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/provider/airmet_data_provider.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
@@ -15,6 +15,8 @@ import 'package:aviation_met_nepal/screens/lighting_screen.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
+import 'package:aviation_met_nepal/screens/testing_screen.dart';
+import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -65,7 +67,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: iconColor.withOpacity(0.8)),
+      SystemUiOverlayStyle(statusBarColor: colorBlue.withOpacity(0.8)),
     );
     return LayoutBuilder(builder: (context, constraints) {
       return OrientationBuilder(builder: (context, orientation) {
@@ -73,36 +75,38 @@ class MyApp extends StatelessWidget {
 
         SizeConfig().init(constraints, orientation);
         return MaterialApp(
-          theme: ThemeData(),
+          // theme: lightTheme(context),
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          initialRoute: loginScreen,
+          initialRoute: homeRoute,
           /*  home: checkProvider.isConnected
               ? const SplashScreen()
               : const InternetConnectionScreen(), */
           routes: {
-            homeScreen: (context) => const HomeScreen(),
-            nextScreen: (context) => const DetailsScreen(),
-            feedbackScreen: (context) => const FeedBack(),
-            contactScreen: (context) => const ContactUs(),
-            loginScreen: (context) => const LoginPage(),
-            lightingDataScreen: (context) => const LightingData(),
-            notificationScreen: (context) => const Scaffold(),
-            IcingTurbulenceChartScreen: (context) => const Scaffold(),
-            weatherCameraImagesScreen: (context) => const Scaffold(),
-            SatelliteImageDataScreen: (context) =>
+            splashRoute: (context) => const SplashScreen(),
+            homeRoute: (context) => const HomeScreen(),
+            detailsRoute: (context) => const DetailsScreen(),
+            feedbackRoute: (context) => const FeedBack(),
+            contactRoute: (context) => const ContactUs(),
+            loginRoute: (context) => const LoginPage(),
+            lightingDataRoute: (context) => const LightingData(),
+            notificationRoute: (context) => const Scaffold(),
+            icingTurbulenceChartRoute: (context) => const Scaffold(),
+            weatherCameraImagesRoute: (context) => const Scaffold(),
+            satelliteImageDataRoute: (context) =>
                 const SatelliteScreen(screenName: "Satellite Images"),
-            windChartScreen: (context) => const Scaffold(),
-            sigwxChartScreen: (context) => const Scaffold(),
-            weatherForecastScreen: (context) => const Scaffold(),
-            AirmetDataScreen: (context) =>
+            windChartRoute: (context) => const Scaffold(),
+            sigwxChartRoute: (context) => const Scaffold(),
+            weatherForecastRoute: (context) => const Scaffold(),
+            airmetDataRoute: (context) =>
                 const CustomScreen(screenName: "Airmet Data"),
-            AshtamsDataScreen: (context) =>
+            ashtamsDataRoute: (context) =>
                 const CustomScreen(screenName: "Ashtams Data"),
-            gametDataScreen: (context) =>
+            gametDataRoute: (context) =>
                 const CustomScreen(screenName: "Gamet Data"),
-            opmetDataScreen: (context) =>
-                const CustomScreen(screenName: "Opmet Data")
+            opmetDataRoute: (context) =>
+                const CustomScreen(screenName: "Opmet Data"),
+            // '/testing':((context) => TestingScreen())
           },
           // theme: ThemeData(),
         );

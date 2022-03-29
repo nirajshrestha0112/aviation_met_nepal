@@ -8,7 +8,7 @@ class CustomSnackBar {
       {required String statusText,
       required String message,
       Color? bgColor,
-      Color? iconColor,
+      Color? colorBlue,
       IconData? icon}) {
     return SnackBar(
       behavior: SnackBarBehavior.floating,
@@ -17,21 +17,21 @@ class CustomSnackBar {
       backgroundColor: bgColor ?? Colors.green,
       // duration: Duration(minutes: 2),
       content: SizedBox(
-        height: SizeConfig.heightMultiplier! * 5,
+        height: SizeConfig.heightMultiplier * 5,
         width: double.infinity,
         child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
           CircleAvatar(
-            radius: SizeConfig.imageSizeMultiplier! * 3.5,
+            radius: SizeConfig.imageSizeMultiplier * 3.5,
             backgroundColor: Colors.white,
             child: Icon(
               icon ?? Icons.done,
-              color: iconColor ?? Colors.green,
+              color: colorBlue ?? Colors.green,
               semanticLabel: "done",
-              size: SizeConfig.imageSizeMultiplier! * 4.5,
+              size: SizeConfig.imageSizeMultiplier * 4.5,
             ),
           ),
           SizedBox(
-            width: SizeConfig.widthMultiplier! * 3.0,
+            width: SizeConfig.widthMultiplier * 3.0,
           ),
           Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,11 +41,11 @@ class CustomSnackBar {
                   statusText,
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
-                      fontSize: SizeConfig.textMultiplier! * 1.8),
+                      fontSize: SizeConfig.textMultiplier * 1.8),
                 ),
                 Text(
                   message,
-                  style: TextStyle(fontSize: SizeConfig.textMultiplier! * 1.6),
+                  style: TextStyle(fontSize: SizeConfig.textMultiplier * 1.6),
                 ),
               ]),
         ]),

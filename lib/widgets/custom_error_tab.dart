@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constant/colors.dart';
+import '../constant/colors_properties.dart';
 import '../constant/images.dart';
 import '../constant/values.dart';
 import '../utils/size_config.dart';
@@ -16,7 +16,7 @@ class CustomErrorTab extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: SizeConfig.heightMultiplier! * 23.0,
+            height: SizeConfig.heightMultiplier * 23.0,
             width: double.infinity,
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -27,13 +27,13 @@ class CustomErrorTab extends StatelessWidget {
               children: [
                 Image.asset(
                   deleteImg,
-                  width: SizeConfig.heightMultiplier! * 30,
-                  height: SizeConfig.widthMultiplier! * 30,
+                  width: SizeConfig.heightMultiplier * 30,
+                  height: SizeConfig.widthMultiplier * 30,
                 ),
                 Text(
                   "No data Available",
                   style: TextStyle(
-                      fontSize: SizeConfig.textMultiplier! * 2.0,
+                      fontSize: SizeConfig.textMultiplier * 2.0,
                       color: textColor),
                 ),
               ],

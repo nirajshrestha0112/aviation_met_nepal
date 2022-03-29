@@ -1,4 +1,4 @@
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -6,16 +6,16 @@ import 'package:flutter/material.dart';
 class GeneralTextField extends StatefulWidget {
   final String hintText;
   final IconData icons;
- final  String? Function(String?)? validator;
-  final TextEditingController ?controller;
+  final String? Function(String?)? validator;
+  final TextEditingController? controller;
   final bool obscureText;
-  final TextInputType ? keyboard;
+  final TextInputType? keyboard;
   const GeneralTextField({
     this.validator,
     this.keyboard,
     this.controller,
     required this.hintText,
-     required this.icons,
+    required this.icons,
     required this.obscureText,
     Key? key,
   }) : super(key: key);
@@ -37,9 +37,9 @@ class _GeneralTextFieldState extends State<GeneralTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: widget.validator,
-      controller: widget.controller,
-      keyboardType:widget.keyboard,
+        validator: widget.validator,
+        controller: widget.controller,
+        keyboardType: widget.keyboard,
         focusNode: _focusNod,
         obscureText: widget.obscureText ? isHiddenPassword : widget.obscureText,
         textAlignVertical: TextAlignVertical.center,
@@ -56,12 +56,12 @@ class _GeneralTextFieldState extends State<GeneralTextField> {
               child: Icon(
                 widget.icons,
                 color: _focusNod.hasFocus ? Colors.grey : Colors.grey,
-                size: SizeConfig.imageSizeMultiplier! * 7.5,
+                size: SizeConfig.imageSizeMultiplier * 7.5,
               ),
             ),
             hintStyle: TextStyle(
-                color: searchColor,
-                fontSize: SizeConfig.textMultiplier! * 2.3,
+                color: const Color(colorNavy40),
+                fontSize: SizeConfig.textMultiplier * 2.3,
                 fontWeight: FontWeight.w400),
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,

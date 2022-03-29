@@ -1,4 +1,4 @@
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -18,13 +18,9 @@ class ReusableText extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-            fontSize: SizeConfig.textMultiplier! * 2.0,
-            color: colorData ? iconColor : textColor),
+            fontSize: SizeConfig.textMultiplier * 2.0,
+            color: colorData ? const Color(colorDarkBlue) : textColor),
       ),
     );
   }
 }
-
-
-
-

@@ -1,10 +1,11 @@
-import 'package:aviation_met_nepal/constant/colors.dart';
+import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/custom_alert_dialog.dart';
@@ -21,8 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => await showDialog(
-          context: context,
-          builder: (context) => const ShowAlertDialogBox()),
+          context: context, builder: (context) => const ShowAlertDialogBox()),
       child: SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -33,19 +33,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 "Discover",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: textColor,
-                    fontSize: SizeConfig.textMultiplier! * 2.5,
+                    color: const Color(colorDarkBlue),
+                    fontSize: SizeConfig.textMultiplier * 2.5,
                     fontWeight: FontWeight.w500),
               ),
             ),
             floatingActionButton: SizedBox(
-              height: SizeConfig.heightMultiplier! * 6.0,
-              width: SizeConfig.widthMultiplier! * 12.0,
+              height: SizeConfig.heightMultiplier * 6.0,
+              width: SizeConfig.widthMultiplier * 12.0,
               child: FloatingActionButton(
-                backgroundColor: iconColor,
+                backgroundColor: colorBlue,
                 child: Icon(
                   Icons.apps_sharp,
-                  size: SizeConfig.imageSizeMultiplier! * 8.0,
+                  size: SizeConfig.imageSizeMultiplier * 8.0,
                 ),
                 onPressed: () {
                   ShowSheet.showSheet(context: context);
@@ -59,8 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
 
 class HomeScreenBody extends StatefulWidget {
   const HomeScreenBody({Key? key}) : super(key: key);
@@ -97,14 +95,14 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                   future: _future);
             },
             decoration: InputDecoration(
-                fillColor: Colors.white,
+                fillColor: const Color(colorWhite),
                 filled: true,
                 contentPadding: const EdgeInsets.symmetric(
                     horizontal: padding, vertical: padding / 2.0),
                 hintText: "Select Airport",
                 hintStyle: TextStyle(
-                    color: searchColor,
-                    fontSize: SizeConfig.textMultiplier! * 2.0,
+                    color: const Color(colorGrey10),
+                    fontSize: SizeConfig.textMultiplier * 2.0,
                     fontWeight: FontWeight.w400),
                 border: OutlineInputBorder(
                     borderSide: BorderSide.none,
@@ -120,8 +118,8 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                   child: IconButton(
                     icon: Icon(
                       Icons.location_on,
-                      color: iconColor,
-                      size: SizeConfig.widthMultiplier! * 7.5,
+                      color: const Color(colorPrimary),
+                      size: SizeConfig.widthMultiplier * 7.5,
                     ),
                     onPressed: () {
                       ShowLocationSheet.showLocationSheet(
@@ -136,18 +134,20 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              aiportImg,
-              width: SizeConfig.widthMultiplier! * 30,
-            ),
-            SizedBox(
-              width: SizeConfig.widthMultiplier! * 56.0,
-              height: SizeConfig.heightMultiplier! * 5.0,
-              child: Text(
-                "Please select the airport first to view detail readings",
+            SvgPicture.asset(controlTowerImg,
+                width: SizeConfig.widthMultiplier * 30.0),
+            SizedBox(height: SizeConfig.heightMultiplier * 2.0),
+            RichText(
+              text: TextSpan(
+                text: 'Please select the airport first ',
                 style: TextStyle(
-                    fontSize: SizeConfig.textMultiplier! * 2.0,
-                    color: textColor),
+                    fontSize: SizeConfig.textMultiplier * 1.8,
+                    color: const Color(colorDarkBlue)),
+                children: const <TextSpan>[
+                  TextSpan(
+                    text: '\n    to view detail readings',
+                  ),
+                ],
               ),
             )
           ],
