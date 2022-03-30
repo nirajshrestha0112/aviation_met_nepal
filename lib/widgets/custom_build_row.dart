@@ -9,7 +9,9 @@ Widget buildRow(String label, String value,
     bool isClouds = false,
     bool isDecoded = false}) {
   return Container(
-    color: isText ? Colors.transparent : Colors.white,
+    decoration: BoxDecoration(
+        color: isText ? Colors.transparent : Colors.white,
+        borderRadius: BorderRadius.circular(radius/3)),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -51,7 +53,7 @@ Widget buildRow(String label, String value,
                     style: TextStyle(
                         fontSize: SizeConfig.textMultiplier * 1.8,
                         fontWeight: FontWeight.w500,
-                        color: textColor),
+                        color: Color(textColor)),
                   ),
                 ),
                 SizedBox(
@@ -62,7 +64,7 @@ Widget buildRow(String label, String value,
                     value.trim(),
                     style: TextStyle(
                         fontSize: SizeConfig.textMultiplier * 1.8,
-                        color: textColor),
+                        color: Color(textColor)),
                   ),
                 ),
               ],

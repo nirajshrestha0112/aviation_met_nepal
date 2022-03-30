@@ -1,6 +1,7 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
+import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
 import 'package:aviation_met_nepal/widgets/general_textfield.dart';
@@ -13,41 +14,34 @@ class FeedBack extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: textColor,
-            size: SizeConfig.imageSizeMultiplier * 8.0,
+        leadingWidth: SizeConfig.widthMultiplier * 6,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: radius),
+          child: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Icon(
+              Icons.arrow_back_ios_new_sharp,
+            ),
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
         ),
-        title: Text(
+        title: const Text(
           "Feedback",
-          style: TextStyle(
-              fontSize: SizeConfig.textMultiplier * 2.3, color: textColor),
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          width: double.infinity,
-          height: SizeConfig.heightMultiplier * 100,
-          color: bgColor,
+      body: ScrollConfiguration(
+        behavior: MyBehavior(),
+        child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(
                 horizontal: padding, vertical: padding),
             child: Column(
               children: [
-                Image.asset(sendImg,
+                Image.asset(feedbackRocketImg,
                     width: SizeConfig.widthMultiplier * 50.0,
                     height: SizeConfig.widthMultiplier * 50.0),
-                SizedBox(
-                  height: SizeConfig.heightMultiplier * 2.0,
-                ),
                 const GeneralTextField(
                   obscureText: false,
                   hintText: "Your Full Name",
@@ -75,12 +69,8 @@ class FeedBack extends StatelessWidget {
                       decoration: InputDecoration(
                         hintText: "Your feedback here",
                         hintStyle: TextStyle(
-                            color: const Color(colorPrimary),
-                            fontSize: SizeConfig.textMultiplier * 2.3,
-                            fontWeight: FontWeight.w400),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(radius)),
+                          fontSize: SizeConfig.textMultiplier * 2.3,
+                        ),
                       ),
                     )),
                 SizedBox(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../constant/colors_properties.dart';
 import '../constant/images.dart';
@@ -19,23 +20,22 @@ class CustomErrorTab extends StatelessWidget {
             height: SizeConfig.heightMultiplier * 23.0,
             width: double.infinity,
             decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color(colorWhite),
                 borderRadius: BorderRadius.circular(radius)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.asset(
-                  deleteImg,
+                SvgPicture.asset(
+                  noDataImg,
                   width: SizeConfig.heightMultiplier * 30,
                   height: SizeConfig.widthMultiplier * 30,
                 ),
-                Text(
-                  "No data Available",
-                  style: TextStyle(
-                      fontSize: SizeConfig.textMultiplier * 2.0,
-                      color: textColor),
-                ),
+                Text("No data Available",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .copyWith(fontWeight: FontWeight.normal)),
               ],
             ),
           ),

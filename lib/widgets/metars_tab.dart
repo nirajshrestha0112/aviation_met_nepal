@@ -61,15 +61,18 @@ class _MetarsTabState extends State<MetarsTab> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      Provider.of<MetarDataProvider>(context, listen: false)
-                          .metarDataRaw
-                          .data!
-                          .date![0]
-                          .toString()
-                          .substring(8),
-                      style:
-                          TextStyle(fontSize: SizeConfig.textMultiplier * 2.0),
-                    ),
+                        Provider.of<MetarDataProvider>(context, listen: false)
+                            .metarDataRaw
+                            .data!
+                            .date![0]
+                            .toString()
+                            .substring(8),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontWeight: FontWeight.normal)
+                        // TextStyle(fontSize: SizeConfig.textMultiplier * 2.0),
+                        ),
                     InkWell(
                       onTap: () async {
                         final value =
@@ -83,7 +86,7 @@ class _MetarsTabState extends State<MetarsTab> {
                         height: SizeConfig.heightMultiplier * 5.0,
                         width: SizeConfig.widthMultiplier * 20.0,
                         decoration: BoxDecoration(
-                            color: colorBlue,
+                            color: const Color(colorPrimary),
                             borderRadius: BorderRadius.circular(radius)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,17 +94,14 @@ class _MetarsTabState extends State<MetarsTab> {
                             SizedBox(
                               width: SizeConfig.widthMultiplier,
                             ),
-                            Text(
-                              "Filter",
-                              style: TextStyle(
-                                  fontSize: SizeConfig.textMultiplier * 1.8,
-                                  color: Colors.white),
-                            ),
-                            Icon(
-                              Icons.arrow_drop_down,
-                              size: SizeConfig.imageSizeMultiplier * 8.0,
-                              color: Colors.white,
-                            )
+                            Text("Filter",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(color: const Color(colorWhite))),
+                            Icon(Icons.arrow_drop_down,
+                                size: SizeConfig.imageSizeMultiplier * 8.0,
+                                color: const Color(colorWhite))
                           ],
                         ),
                       ),
@@ -135,10 +135,7 @@ class _MetarsTabState extends State<MetarsTab> {
                       isDecoded: true,
                     ),
                     Consumer<MetarDataProvider>(builder: (_, value, __) {
-                      return ListView.separated(
-                          separatorBuilder: (context, index) => SizedBox(
-                                height: SizeConfig.heightMultiplier,
-                              ),
+                      return ListView.builder(
                           itemCount:
                               value.metarDataDecoded.data!.decoded.text.length,
                           primary: false,
@@ -156,26 +153,44 @@ class _MetarsTabState extends State<MetarsTab> {
                                     "Temp.",
                                     value.metarDataDecoded.data!.decoded
                                         .temperature[index]),
+                                SizedBox(
+                                  height: SizeConfig.heightMultiplier / 4.5,
+                                ),
                                 buildRow(
                                     "Dew Point",
                                     value.metarDataDecoded.data!.decoded
                                         .dewpoint[index]),
+                                SizedBox(
+                                  height: SizeConfig.heightMultiplier / 4.5,
+                                ),
                                 buildRow(
                                     "Pressure(altimeter)",
                                     value.metarDataDecoded.data!.decoded
                                         .pressureAltimeter[index]),
+                                SizedBox(
+                                  height: SizeConfig.heightMultiplier / 4.5,
+                                ),
                                 buildRow(
                                     "Winds",
                                     value.metarDataDecoded.data!.decoded
                                         .winds[index]),
+                                SizedBox(
+                                  height: SizeConfig.heightMultiplier / 4.5,
+                                ),
                                 buildRow(
                                     "Visibility",
                                     value.metarDataDecoded.data!.decoded
                                         .visibility[index]),
+                                SizedBox(
+                                  height: SizeConfig.heightMultiplier / 4.5,
+                                ),
                                 buildRow(
                                     "Ceiling",
                                     value.metarDataDecoded.data!.decoded
                                         .ceiling[index]),
+                                SizedBox(
+                                  height: SizeConfig.heightMultiplier / 4.5,
+                                ),
                                 buildRow(
                                     "Clouds",
                                     value.metarDataDecoded.data!.decoded

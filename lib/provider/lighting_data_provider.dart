@@ -28,7 +28,7 @@ class LightingDataProvider extends ChangeNotifier {
         lightingData = LightingData.fromJson(jsonDecode(response.body));
 
         final Uint8List markerIcon = await getBytesFromAsset(
-            lightingImg, (SizeConfig.imageSizeMultiplier * 10).toInt());
+            lightingsImg, (SizeConfig.imageSizeMultiplier * 10).toInt());
 
         for (var data in lightingData!.data) {
           for (var eachData in data) {

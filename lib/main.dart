@@ -75,13 +75,13 @@ class MyApp extends StatelessWidget {
 
         SizeConfig().init(constraints, orientation);
         return MaterialApp(
-          // theme: lightTheme(context),
+          theme: lightTheme(context),
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          initialRoute: homeRoute,
-          /*  home: checkProvider.isConnected
+          // initialRoute: homeRoute,
+           home: checkProvider.isConnected
               ? const SplashScreen()
-              : const InternetConnectionScreen(), */
+              : const InternetConnectionScreen(),
           routes: {
             splashRoute: (context) => const SplashScreen(),
             homeRoute: (context) => const HomeScreen(),

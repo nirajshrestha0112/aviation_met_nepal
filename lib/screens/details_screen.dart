@@ -27,10 +27,7 @@ class _DetailsScreenState extends State<DetailsScreen>
       MetarsTab(metarData: widget.data),
       TafsTab(tafsData: widget.data),
       SigmetsTab(sigmetsTabData: widget.data),
-      // const CustomErrorTab(),
       const CustomErrorTab(),
-      /*  const CustomErrorTab(),
-      const CustomErrorTab() */
     ];
     super.initState();
   }
@@ -38,72 +35,57 @@ class _DetailsScreenState extends State<DetailsScreen>
   late List<Widget> _views;
   late TabController _tabController;
 
-  final List<Tab> _tabs = [
-    // const Tab(child: EachText(text: "METARs")),
-    const Tab(
-      child: Text("METARS"),
-    ),
-    const Tab(
-      child: Text("TAFS"),
-    ),
-    const Tab(
-      child: Text("SIGMETs"),
-    ),
-    const Tab(
-      child: Text("SPECI"),
-    ),
-    /*  const Tab(
-      child: EachText(
-        text: "TAFS",
+  final List<Tab> _tabs = const [
+    Tab(
+      child: Text(
+        "METARS",
       ),
     ),
-    const Tab(child: EachText(text: "SIGMETs")),
-    const Tab(child: EachText(text: "SPECI")) */
+    Tab(
+      child: Text("TAFS"),
+    ),
+    Tab(
+      child: Text("SIGMETs"),
+    ),
+    Tab(
+      child: Text("SPECI"),
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: const Color(bgColor),
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(SizeConfig.heightMultiplier * 13.0),
-          child: Theme(
-            data: ThemeData(splashColor: Colors.transparent),
-            child: AppBar(
-              foregroundColor: Colors.blue,
-              elevation: 0.0,
-              title: Text(
-                "${widget.data!.ident} ${widget.data!.name}",
-                style: TextStyle(
-                    fontSize: SizeConfig.textMultiplier * 2.0,
-                    color: textColor),
-              ),
-              leading: InkWell(
+          child: AppBar(
+            centerTitle: true,
+            title: Text(
+              "${widget.data!.ident} ${widget.data!.name}",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.textMultiplier * 2.0,
+                  color: const Color(colorDarkBlue)),
+            ),
+            leadingWidth: SizeConfig.widthMultiplier * 6,
+            leading: Padding(
+              padding: const EdgeInsets.only(left: radius),
+              child: InkWell(
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: const Icon(
-                  Icons.arrow_back,
-                  color: textColor,
+                child: Icon(
+                  Icons.arrow_back_ios_new_sharp,
+                  color: const Color(colorDarkBlue),
+                  size: SizeConfig.imageSizeMultiplier * 6.0,
                 ),
               ),
-              bottom: TabBar(
-                indicatorPadding: const EdgeInsets.symmetric(
-                    horizontal: radius, vertical: padding / 3.0),
-                indicator: BoxDecoration(
-                  border: Border.all(color: Colors.red),
-                  borderRadius: BorderRadius.circular(radius),
-                  color: Colors.red,
-                ),
-                controller: _tabController,
-                labelColor: Colors.white,
-                unselectedLabelColor: textColor,
-                labelStyle: const TextStyle(fontWeight: FontWeight.bold),
-                unselectedLabelStyle:
-                    const TextStyle(fontStyle: FontStyle.italic),
-                tabs: _tabs,
-              ),
-              backgroundColor: Colors.white,
+            ),
+            bottom: TabBar(
+              indicatorPadding: const EdgeInsets.symmetric(
+                  horizontal: radius, vertical: padding / 3.0),
+              controller: _tabController,
+              tabs: _tabs,
             ),
           )),
       body: ScrollConfiguration(

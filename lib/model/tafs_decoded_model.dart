@@ -50,6 +50,7 @@ class Decoded {
   List<String>? winds;
   List<String>? visibility;
   List<String>? clouds;
+  List<String>? ceilings;
   List<String>? weather;
 
   Decoded(
@@ -60,6 +61,7 @@ class Decoded {
       this.winds,
       this.visibility,
       this.clouds,
+      this.ceilings,
       this.weather});
 
   Decoded.fromJson(Map<String, dynamic> json) {
@@ -70,6 +72,7 @@ class Decoded {
     winds = json['Winds:'].cast<String>();
     visibility = json['Visibility:'].cast<String>();
     clouds = json['Clouds:'].cast<String>();
+    ceilings = json['Ceiling:'].cast<String>();
     weather = json['Weather:'].cast<String>();
   }
 
@@ -81,6 +84,7 @@ class Decoded {
     data['Forecast type:'] = forecastType;
     data['Winds:'] = winds;
     data['Visibility:'] = visibility;
+    data['Ceiling:'] = ceilings;
     data['Clouds:'] = clouds;
     data['Weather:'] = weather;
     return data;

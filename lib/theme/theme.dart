@@ -1,59 +1,62 @@
+import 'package:aviation_met_nepal/constant/values.dart';
+import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
 import '../constant/colors_properties.dart';
-import '/utils/size_config.dart';
 
 ThemeData lightTheme(BuildContext context) {
   return ThemeData(
-    primaryColor: colorBlue,
-    appBarTheme: const AppBarTheme(color: colorBlue),
-    textTheme: const TextTheme(
-      overline: TextStyle(
-        color: Color(colorPrimary),
+      tabBarTheme: TabBarTheme(
+        indicator: BoxDecoration(
+          border: Border.all(color: Colors.red),
+          borderRadius: BorderRadius.circular(radius),
+          color: Colors.red,
+        ),
+        labelColor: Colors.white,
+        unselectedLabelColor: const Color(textColor),
+        labelStyle: const TextStyle(fontWeight: FontWeight.bold),
       ),
-      caption: TextStyle(height: 1.5),
-      button: TextStyle(height: 1.5),
-      bodyText1: TextStyle(
-        height: 1.5,
+      scaffoldBackgroundColor: const Color(bgColor),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: Color(colorPrimary),
       ),
-      bodyText2: TextStyle(height: 1.5),
-      subtitle1: TextStyle(height: 1.5, fontSize: 18),
-      subtitle2: TextStyle(height: 1.5, fontSize: 16),
-      headline6: TextStyle(height: 1.5),
-      headline5: TextStyle(height: 1.5),
-      headline4: TextStyle(height: 1.5),
-      headline3: TextStyle(height: 1.5),
-      headline2: TextStyle(height: 1.5),
-      headline1: TextStyle(height: 1.5),
-    ),
-    inputDecorationTheme: InputDecorationTheme(
-      enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(
-          width: 1,
-          color: colorBlue,
-        ),
-        borderRadius: BorderRadius.circular(
-          2 * SizeConfig.heightMultiplier,
-        ),
+      appBarTheme: AppBarTheme(
+          iconTheme: IconThemeData(
+            color: const Color(colorDarkBlue),
+            size: SizeConfig.imageSizeMultiplier * 6.0,
+          ),
+          elevation: 0.0,
+          color: const Color(colorWhite),
+          titleTextStyle: TextStyle(
+              height: 1.5,
+              fontWeight: FontWeight.w500,
+              fontSize: SizeConfig.textMultiplier * 2.5,
+              color: const Color(colorDarkBlue))),
+      textTheme: TextTheme(
+        headline6: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: SizeConfig.textMultiplier * 2.2,
+            color: const Color(colorPrimary)),
+        bodyText1: TextStyle(
+            fontSize: SizeConfig.textMultiplier * 2.1,
+            color: const Color(colorDarkBlue)),
+        bodyText2: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: SizeConfig.textMultiplier * 1.8,
+            color: const Color(colorDarkBlue)),
       ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: const BorderSide(
-          width: 2,
-          color: colorBlue,
-        ),
-        borderRadius: BorderRadius.circular(
-          2 * SizeConfig.heightMultiplier,
-        ),
-      ),
-      errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          width: 2,
-          color: Theme.of(context).errorColor,
-        ),
-        borderRadius: BorderRadius.circular(
-          2 * SizeConfig.heightMultiplier,
-        ),
-      ),
-    ),
-  );
+      inputDecorationTheme: InputDecorationTheme(
+        suffixIconColor: const Color(colorPrimary),
+        fillColor: const Color(colorWhite),
+        filled: true,
+        contentPadding: const EdgeInsets.symmetric(
+            horizontal: padding, vertical: padding / 2.0),
+        hintStyle: TextStyle(
+            color: const Color(colorGrey10),
+            fontSize: SizeConfig.textMultiplier * 2.0,
+            fontWeight: FontWeight.w400),
+        border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(radius)),
+      ));
 }

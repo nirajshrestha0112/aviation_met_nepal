@@ -31,7 +31,7 @@ class ContactUs extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: SizeConfig.textMultiplier * 2.6,
-                          color: textColor,
+                          color: Color(textColor),
                           fontWeight: FontWeight.w500),
                     ),
                   ),
@@ -64,7 +64,7 @@ class ContactUs extends StatelessWidget {
             Container(
               height: SizeConfig.heightMultiplier * 100,
               width: double.infinity,
-              color: bgColor,
+              color: Color(bgColor),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: padding, vertical: padding),

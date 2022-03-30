@@ -1,5 +1,3 @@
-import 'package:aviation_met_nepal/constant/colors_properties.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
 class ReusableText extends StatelessWidget {
@@ -15,12 +13,11 @@ class ReusableText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Transform(
       transform: Matrix4.translationValues(-16.0, 0.0, 0.0),
-      child: Text(
-        text,
-        style: TextStyle(
-            fontSize: SizeConfig.textMultiplier * 2.0,
-            color: colorData ? const Color(colorDarkBlue) : textColor),
-      ),
+      child: Text(text,
+          style: Theme.of(context)
+              .textTheme
+              .bodyText1!
+              .copyWith(fontWeight: FontWeight.w400)),
     );
   }
 }

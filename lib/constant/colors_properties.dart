@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-const Color bgColor = Color(0xFFEBF1FF);
-const Color textColor = Color(0xFF414F73);
+const int bgColor = 0xFFEBF1FF;
+const int textColor = 0xFF414F73;
 // const Color colorPrimary= Color(0xFF7386B0);
 // const Color colorRed = Color(0xFFED4332);
 const Color colorBlue = Color(0xFF437CFF);

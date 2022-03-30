@@ -26,23 +26,16 @@ class _HomeScreenState extends State<HomeScreen> {
       child: SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              centerTitle: true,
-              elevation: 0.0,
-              backgroundColor: Colors.white,
-              title: Text(
-                "Discover",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: const Color(colorDarkBlue),
-                    fontSize: SizeConfig.textMultiplier * 2.5,
-                    fontWeight: FontWeight.w500),
-              ),
-            ),
+                centerTitle: true,
+                elevation: 0.0,
+                title: const Text(
+                  "Discover",
+                  textAlign: TextAlign.center,
+                )),
             floatingActionButton: SizedBox(
               height: SizeConfig.heightMultiplier * 6.0,
               width: SizeConfig.widthMultiplier * 12.0,
               child: FloatingActionButton(
-                backgroundColor: colorBlue,
                 child: Icon(
                   Icons.apps_sharp,
                   size: SizeConfig.imageSizeMultiplier * 8.0,
@@ -53,7 +46,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 elevation: 0.0,
               ),
             ),
-            backgroundColor: bgColor,
             body: const HomeScreenBody()),
       ),
     );
@@ -95,18 +87,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                   future: _future);
             },
             decoration: InputDecoration(
-                fillColor: const Color(colorWhite),
-                filled: true,
-                contentPadding: const EdgeInsets.symmetric(
-                    horizontal: padding, vertical: padding / 2.0),
                 hintText: "Select Airport",
-                hintStyle: TextStyle(
-                    color: const Color(colorGrey10),
-                    fontSize: SizeConfig.textMultiplier * 2.0,
-                    fontWeight: FontWeight.w400),
-                border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(8.0)),
                 suffixIcon: InkWell(
                   splashColor: Colors.transparent,
                   onTap: () {
@@ -115,19 +96,10 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                         editingController: _editingController,
                         future: _future);
                   },
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.location_on,
-                      color: const Color(colorPrimary),
-                      size: SizeConfig.widthMultiplier * 7.5,
-                    ),
-                    onPressed: () {
-                      ShowLocationSheet.showLocationSheet(
-                          context: context,
-                          editingController: _editingController,
-                          future: _future);
-                    },
-                  ),
+                  child: (Icon(
+                    Icons.location_on,
+                    size: SizeConfig.widthMultiplier * 7.5,
+                  )),
                 ))),
       ),
       Expanded(
@@ -140,9 +112,10 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
             RichText(
               text: TextSpan(
                 text: 'Please select the airport first ',
-                style: TextStyle(
-                    fontSize: SizeConfig.textMultiplier * 1.8,
-                    color: const Color(colorDarkBlue)),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText2!
+                    .copyWith(fontWeight: FontWeight.w400),
                 children: const <TextSpan>[
                   TextSpan(
                     text: '\n    to view detail readings',

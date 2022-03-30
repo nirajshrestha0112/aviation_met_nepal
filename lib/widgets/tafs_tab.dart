@@ -59,7 +59,10 @@ class _TafsTabState extends State<TafsTab> {
                       .date![0]
                       .toString()
                       .substring(8),
-                  style: TextStyle(fontSize: SizeConfig.textMultiplier * 2.0),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2!
+                      .copyWith(fontWeight: FontWeight.normal),
                 ),
                 SizedBox(
                   height: SizeConfig.heightMultiplier * 3.0,
@@ -88,10 +91,7 @@ class _TafsTabState extends State<TafsTab> {
                       isDecoded: true,
                     ),
                     Consumer<TafsDataProvider>(builder: (_, value, __) {
-                      return ListView.separated(
-                          separatorBuilder: (context, index) => SizedBox(
-                                height: SizeConfig.heightMultiplier,
-                              ),
+                      return ListView.builder(
                           itemCount:
                               value.tafsDataDecoded.data!.decoded!.text!.length,
                           primary: false,
@@ -109,18 +109,35 @@ class _TafsTabState extends State<TafsTab> {
                                     "Forecast Period",
                                     value.tafsDataDecoded.data!.decoded!
                                         .forecastPeriod![index]),
+                                SizedBox(
+                                  height: SizeConfig.heightMultiplier / 4.5,
+                                ),
                                 buildRow(
                                     "Forecast Type",
                                     value.tafsDataDecoded.data!.decoded!
                                         .forecastType![index]),
+                                SizedBox(
+                                  height: SizeConfig.heightMultiplier / 4.5,
+                                ),
                                 buildRow(
                                     "Winds",
                                     value.tafsDataDecoded.data!.decoded!
                                         .winds![index]),
+                                SizedBox(
+                                  height: SizeConfig.heightMultiplier / 4.5,
+                                ),
                                 buildRow(
                                     "Visibility",
                                     value.tafsDataDecoded.data!.decoded!
                                         .visibility![index]),
+                                SizedBox(
+                                  height: SizeConfig.heightMultiplier / 4.5,
+                                ),
+                                buildRow("Ceiling", value.tafsDataDecoded.data!.decoded!
+                                        .ceilings![index]),
+                                SizedBox(
+                                  height: SizeConfig.heightMultiplier / 4.5,
+                                ),
                                 buildRow(
                                     "Clouds",
                                     value.tafsDataDecoded.data!.decoded!

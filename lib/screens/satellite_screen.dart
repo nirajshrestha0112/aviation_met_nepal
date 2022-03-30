@@ -32,7 +32,7 @@ class _SatelliteScreenState extends State<SatelliteScreen> {
     return SafeArea(
       child: Scaffold(
           floatingActionButton: const CustomFloatingActionBtn(),
-          backgroundColor: bgColor,
+          backgroundColor: Color(bgColor),
           body: ScrollConfiguration(
               behavior: MyBehavior(),
               child: ScrollConfiguration(
@@ -51,7 +51,7 @@ class _SatelliteScreenState extends State<SatelliteScreen> {
                           text: widget.screenName,
                           textAlign: TextAlign.center,
                           fontSize: SizeConfig.textMultiplier * 2.2,
-                          color: textColor,
+                          color: Color(textColor),
                           fontWeight: FontWeight.w500,
                         )),
                         Positioned(

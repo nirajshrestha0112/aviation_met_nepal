@@ -124,11 +124,11 @@ class ShowSheet {
                           ),
                           Text(
                             "Menu",
-                            style: TextStyle(
-                              fontSize: SizeConfig.textMultiplier * 2.2,
-                              fontWeight: FontWeight.w500,
-                              color: const Color(colorDarkBlue),
-                            ),
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: SizeConfig.textMultiplier * 2.2,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                           ),
                         ],
                       ),
@@ -139,7 +139,7 @@ class ShowSheet {
                           icon: Icon(
                             Icons.close_outlined,
                             size: SizeConfig.imageSizeMultiplier * 8.0,
-                            color: Color(colorDarkBlue),
+                            color: const Color(colorDarkBlue),
                           ))
                     ],
                   ),
@@ -151,12 +151,12 @@ class ShowSheet {
                             Row(
                               children: [
                                 CircleAvatar(
-                                  backgroundColor: bgColor,
+                                  backgroundColor: const Color(bgColor),
                                   radius: SizeConfig.imageSizeMultiplier * 3.0,
                                   child: Icon(
                                     Icons.person,
                                     color: const Color(colorDarkBlue),
-                                    size: SizeConfig.imageSizeMultiplier * 3.5,
+                                    size: SizeConfig.imageSizeMultiplier * 4.0,
                                   ),
                                 ),
                                 SizedBox(
@@ -165,25 +165,28 @@ class ShowSheet {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    EachText(
-                                      text: Provider.of<LoginProvider>(context,
-                                              listen: true)
-                                          .loginName
-                                          .toString(),
-                                      fontSize: SizeConfig.textMultiplier * 1.8,
-                                      color: const Color(colorDarkBlue),
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                    Text(
+                                        Provider.of<LoginProvider>(context,
+                                                listen: true)
+                                            .loginName
+                                            .toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2!),
                                     SizedBox(
                                         height: SizeConfig.heightMultiplier),
-                                    EachText(
-                                      text: Provider.of<LoginProvider>(context,
+                                    Text(
+                                      Provider.of<LoginProvider>(context,
                                               listen: true)
                                           .userId
                                           .toString(),
-                                      fontSize: SizeConfig.textMultiplier * 1.5,
-                                      color: const Color(colorDarkBlue),
-                                      fontWeight: FontWeight.w500,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(
+                                            fontSize:
+                                                SizeConfig.textMultiplier * 1.5,
+                                          ),
                                     )
                                   ],
                                 ),
@@ -195,7 +198,7 @@ class ShowSheet {
                               decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.circular(radius / 4.0),
-                                color: bgColor,
+                                color: const Color(bgColor),
                               ),
                               child: IconButton(
                                 padding: EdgeInsets.zero,
@@ -267,7 +270,7 @@ class ShowLocationSheet {
         builder: (_) {
           return Container(
             height: MediaQuery.of(context).size.height * 0.7,
-            color: Colors.white,
+            color: const Color(colorWhite),
             child: Padding(
               padding: const EdgeInsets.symmetric(
                   horizontal: padding / 1.5, vertical: padding),
@@ -285,11 +288,9 @@ class ShowLocationSheet {
                         SizedBox(
                           width: SizeConfig.widthMultiplier * 3.0,
                         ),
-                        EachText(
-                          text: "Select Aiport",
-                          fontSize: SizeConfig.textMultiplier * 2.1,
-                          color: const Color(colorDarkBlue),
-                          fontWeight: FontWeight.w500,
+                        Text(
+                          "Select Aiport",
+                          style: Theme.of(context).textTheme.bodyText1,
                         )
                       ],
                     ),
@@ -311,21 +312,12 @@ class ShowLocationSheet {
                 TextFormField(
                     controller: editingController,
                     decoration: InputDecoration(
-                        fillColor: Colors.white,
-                        filled: true,
-                        contentPadding: const EdgeInsets.symmetric(
-                            horizontal: padding * 2.0, vertical: padding / 2.0),
                         hintText: "Select Airport",
-                        hintStyle: TextStyle(
-                            color: const Color(colorNavy40),
-                            fontSize: SizeConfig.textMultiplier * 2.0,
-                            fontWeight: FontWeight.w400),
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(8.0)),
+                            borderRadius: BorderRadius.circular(radius)),
                         suffixIcon: Icon(
                           Icons.search,
-                          color: const Color(colorPrimary),
                           size: SizeConfig.widthMultiplier * 7.5,
                         ))),
                 SizedBox(
@@ -336,7 +328,7 @@ class ShowLocationSheet {
                   behavior: MyBehavior(),
                   child: RawScrollbar(
                     isAlwaysShown: true,
-                    thumbColor: bgColor,
+                    thumbColor: const Color(bgColor),
                     child: FutureBuilder(
                         future: future,
                         builder: (context, snapshot) {
@@ -348,10 +340,10 @@ class ShowLocationSheet {
                           return Consumer<AirportListProvider>(
                               builder: (_, value, __) {
                             return value.searchData.isEmpty
-                                ? Center(
+                                ? Align(
+                                    alignment: Alignment.topCenter,
                                     child: Text("No Airport Data Found",
                                         style: TextStyle(
-                                            // fontWeight: FontWeight.w300,
                                             color: const Color(colorGrey20),
                                             fontSize:
                                                 SizeConfig.textMultiplier *
@@ -374,13 +366,12 @@ class ShowLocationSheet {
                                               left: padding * 2.0),
                                           leading: Text(
                                             value.searchData[i].ident,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize:
-                                                    SizeConfig.textMultiplier *
-                                                        2.0,
-                                                color:
-                                                    const Color(colorPrimary)),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .copyWith(
+                                                    color: const Color(
+                                                        colorPrimary)),
                                           ),
                                           trailing: Container(
                                             padding: EdgeInsets.only(
@@ -469,7 +460,7 @@ class ShowFilterSheet {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(radius),
-                      border: Border.all(color: bgColor, width: 2.0),
+                      border: Border.all(color: Color(bgColor), width: 2.0),
                     ),
                     child: StatefulBuilder(builder: (context, set) {
                       return DropDownFilter(

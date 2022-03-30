@@ -34,7 +34,7 @@ class GeneralCard extends StatelessWidget {
                           },
                           icon: Icon(
                             Icons.arrow_back,
-                            color: textColor,
+                            color: Color(textColor),
                             size: SizeConfig.imageSizeMultiplier * 8.0,
                           ))),
                   ListTile(
@@ -43,7 +43,7 @@ class GeneralCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: SizeConfig.textMultiplier * 2.6,
-                          color: textColor,
+                          color: Color(textColor),
                           fontWeight: FontWeight.w500),
                     ),
                   ),
@@ -52,7 +52,7 @@ class GeneralCard extends StatelessWidget {
               Container(
                   height: SizeConfig.heightMultiplier * 100,
                   width: double.infinity,
-                  color: bgColor,
+                  color: Color(bgColor),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: padding, vertical: padding),

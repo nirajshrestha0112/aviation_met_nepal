@@ -47,7 +47,7 @@ class _CustomScreenState extends State<CustomScreen> {
     return SafeArea(
       child: Scaffold(
           floatingActionButton: const CustomFloatingActionBtn(),
-          backgroundColor: bgColor,
+          backgroundColor: const Color(bgColor),
           body: ScrollConfiguration(
               behavior: MyBehavior(),
               child: RawScrollbar(
@@ -60,8 +60,8 @@ class _CustomScreenState extends State<CustomScreen> {
                   child: SingleChildScrollView(
                       child: Column(children: [
                     Container(
-                      color: Colors.white,
-                      height: SizeConfig.heightMultiplier* 6.5,
+                      color: const Color(colorWhite),
+                      height: SizeConfig.heightMultiplier * 6.5,
                       width: double.infinity,
                       child: Stack(
                         fit: StackFit.expand,
@@ -70,17 +70,18 @@ class _CustomScreenState extends State<CustomScreen> {
                               title: EachText(
                             text: widget.screenName,
                             textAlign: TextAlign.center,
-                            fontSize: SizeConfig.textMultiplier* 2.2,
-                            color: textColor,
+                            fontSize: SizeConfig.textMultiplier * 2.2,
+                            color: const Color(textColor),
                             fontWeight: FontWeight.w500,
                           )),
                           Positioned(
-                            top: SizeConfig.heightMultiplier* 1.2,
-                            left: SizeConfig.widthMultiplier,
+                            top: SizeConfig.heightMultiplier * 2,
+                            left: SizeConfig.widthMultiplier * 3.5,
                             child: GestureDetector(
                               child: Icon(
-                                Icons.arrow_back,
-                                size: SizeConfig.imageSizeMultiplier* 7.5,
+                                Icons.arrow_back_ios_new_sharp,
+                                color: const Color(colorDarkBlue),
+                                size: SizeConfig.imageSizeMultiplier * 6.0,
                               ),
                               onTap: () {
                                 Navigator.pop(context);
@@ -120,38 +121,32 @@ class _CustomScreenState extends State<CustomScreen> {
                             child: widget.screenName == "Gamet Data"
                                 ? Consumer<GametDataProvider>(
                                     builder: (_, value, __) {
-                                      return EachText(
-                                        text: value.gametData!.data.toString(),
-                                        fontSize:
-                                            SizeConfig.textMultiplier* 1.8,
-                                        color: textColor,
-                                        fontWeight: FontWeight.w500,
+                                      return Text(
+                                        value.gametData!.data.toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2,
                                       );
                                     },
                                   )
                                 : widget.screenName == "Airmet Data"
                                     ? Consumer<AirmetDataProvider>(
                                         builder: (_, value, __) {
-                                        return EachText(
-                                          text:
-                                              value.airmetData!.data.toString(),
-                                          fontSize:
-                                              SizeConfig.textMultiplier* 1.8,
-                                          color: textColor,
-                                          fontWeight: FontWeight.w500,
+                                        return Text(
+                                          value.airmetData!.data.toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText2,
                                         );
                                       })
                                     : widget.screenName == "Opmet Data"
                                         ? Consumer<OpmetDataProvider>(
                                             builder: (_, value, __) {
-                                            return EachText(
-                                              text: value.opmetData!.data
-                                                  .toString(),
-                                              fontSize:
-                                                  SizeConfig.textMultiplier*
-                                                      1.8,
-                                              color: textColor,
-                                              fontWeight: FontWeight.w500,
+                                            return Text(
+                                              value.opmetData!.data.toString(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText2,
                                             );
                                           })
                                         : widget.screenName == "Ashtams Data"
@@ -161,16 +156,12 @@ class _CustomScreenState extends State<CustomScreen> {
                                                             ?.data ==
                                                         null
                                                     ? const CustomErrorTab()
-                                                    : EachText(
-                                                        text: value
-                                                            .ashtamsData!.data
+                                                    : Text(
+                                                        value.ashtamsData!.data
                                                             .toString(),
-                                                        fontSize: SizeConfig
-                                                                .textMultiplier*
-                                                            1.8,
-                                                        color: textColor,
-                                                        fontWeight:
-                                                            FontWeight.w500,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyText2,
                                                       );
                                               })
                                             : const SizedBox.shrink(),

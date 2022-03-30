@@ -19,7 +19,7 @@ class _SplashScreen extends State<SplashScreen> {
 
   @override
   void initState() {
-    Future.delayed(Duration(minutes: splashtime), () async {
+    Future.delayed(Duration(seconds: splashtime), () async {
       await fetchDatas();
     });
 
@@ -34,18 +34,18 @@ class _SplashScreen extends State<SplashScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(children: [
+        body: Stack(fit: StackFit.expand, children: [
       Image.asset(splashScreenImg),
       Positioned(
         left: SizeConfig.widthMultiplier * 32.0,
-        top: SizeConfig.heightMultiplier * 46.0,
+        top: SizeConfig.heightMultiplier * 48.0,
         child: SizedBox(
           height: SizeConfig.heightMultiplier * 10.0,
           width: SizeConfig.widthMultiplier * 40,
-          child: SvgPicture.asset(
-            controlTowerImg,
+          child: Image.asset(
+            gifImg,
             height: 20,
             width: 20,
           ),

@@ -44,10 +44,6 @@ class _GeneralTextFieldState extends State<GeneralTextField> {
         obscureText: widget.obscureText ? isHiddenPassword : widget.obscureText,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
-            //border: InputBorder.none,
-
-            fillColor: Colors.white,
-            filled: true,
             hintText: widget.hintText,
             isDense: true,
             contentPadding: EdgeInsets.zero,
@@ -55,17 +51,10 @@ class _GeneralTextFieldState extends State<GeneralTextField> {
               padding: const EdgeInsets.only(bottom: radius / 1.5),
               child: Icon(
                 widget.icons,
-                color: _focusNod.hasFocus ? Colors.grey : Colors.grey,
+                color: const Color(colorDarkBlue).withOpacity(0.85),
                 size: SizeConfig.imageSizeMultiplier * 7.5,
               ),
             ),
-            hintStyle: TextStyle(
-                color: const Color(colorNavy40),
-                fontSize: SizeConfig.textMultiplier * 2.3,
-                fontWeight: FontWeight.w400),
-            border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(radius)),
             suffixIcon: widget.obscureText
                 ? InkWell(
                     onTap: _togglePasswordShow,

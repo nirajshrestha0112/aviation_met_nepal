@@ -18,13 +18,12 @@ class GeneralTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height ?? SizeConfig.heightMultiplier * 7.0,
+      height: height ?? SizeConfig.heightMultiplier * 6.0,
       width: double.infinity,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-            elevation: 0.0,
-            primary: color ? colorBlue : colorBlue.withOpacity(0.5)),
+            elevation: 0.0, primary: color ? colorBlue : colorBlue),
         child: Text(
           text,
           style: TextStyle(fontSize: SizeConfig.textMultiplier * 2.0),

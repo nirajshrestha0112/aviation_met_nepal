@@ -23,16 +23,17 @@ class CustomRawCard extends StatelessWidget {
         ),
         width: double.infinity,
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(radius)),
+            color: const Color(colorWhite),
+            borderRadius: BorderRadius.circular(radius)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               rawHeaderText,
-              style: TextStyle(
-                  fontSize: SizeConfig.textMultiplier * 2.0,
-                  fontWeight: FontWeight.w500,
-                  color: colorBlue),
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(fontSize: SizeConfig.textMultiplier * 2.0),
             ),
             SizedBox(height: SizeConfig.heightMultiplier * 1.5),
             ListView.separated(
