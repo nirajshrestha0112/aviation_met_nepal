@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   size: SizeConfig.imageSizeMultiplier * 8.0,
                 ),
                 onPressed: () {
-                  ShowSheet.showSheet(context: context);
+                  ShowFabSheet.showFabSheet(context: context);
                 },
                 elevation: 0.0,
               ),
@@ -77,31 +77,37 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   Widget build(BuildContext context) {
     return Column(children: [
       Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: padding * 1.2, vertical: padding * 1.5),
-        child: TextFormField(
-            onTap: () {
-              ShowLocationSheet.showLocationSheet(
-                  context: context,
-                  editingController: _editingController,
-                  future: _future);
-            },
-            decoration: InputDecoration(
-                hintText: "Select Airport",
-                suffixIcon: InkWell(
-                  splashColor: Colors.transparent,
-                  onTap: () {
-                    ShowLocationSheet.showLocationSheet(
-                        context: context,
-                        editingController: _editingController,
-                        future: _future);
-                  },
-                  child: (Icon(
-                    Icons.location_on,
-                    size: SizeConfig.widthMultiplier * 7.5,
-                  )),
-                ))),
-      ),
+          padding: const EdgeInsets.symmetric(
+              horizontal: padding * 1.2, vertical: padding * 1.5),
+          child: InkWell(
+            onTap: () => ShowLocationSheet.showLocationSheet(
+                context: context,
+                editingController: _editingController,
+                future: _future),
+            child: Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: SizeConfig.widthMultiplier * 4.0),
+                height: SizeConfig.heightMultiplier * 6.0,
+                width: double.infinity,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Select Airport",
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            color:
+                                const Color(colorDarkBlue).withOpacity(0.85)),
+                      ),
+                      Icon(
+                        Icons.location_on,
+                        size: SizeConfig.widthMultiplier * 7.5,
+                        color: const Color(colorPrimary),
+                      ),
+                    ]),
+                decoration: BoxDecoration(
+                    color: const Color(colorWhite),
+                    borderRadius: BorderRadius.circular(radius))),
+          )),
       Expanded(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

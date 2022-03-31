@@ -18,8 +18,8 @@ import '../utils/custom_scroll_behavior.dart';
 import '../utils/size_config.dart';
 import 'general_filter.dart';
 
-class ShowSheet {
-  static String getUrl () {
+class ShowFabSheet {
+  static String getUrl() {
     final Uri params = Uri(
       scheme: 'mailto',
       path: 'mfddhm@gmail.com',
@@ -113,13 +113,14 @@ class ShowSheet {
     }
   }
 
-  static void showSheet({required BuildContext context}) {
+  static void showFabSheet({required BuildContext context}) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (_) {
         return DraggableScrollableSheet(
           expand: false,
+          initialChildSize: 0.65,
           builder: (_, controller) {
             return Column(children: [
               Padding(
@@ -253,6 +254,7 @@ class ShowSheet {
                 child: ScrollConfiguration(
                   behavior: MyBehavior(),
                   child: ListView.builder(
+                      // physics: NeverScrollableScrollPhysics(),
                       controller: controller,
                       itemCount: data.length,
                       itemBuilder: (c, i) {

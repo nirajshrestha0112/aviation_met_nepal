@@ -34,10 +34,14 @@ class _SplashScreen extends State<SplashScreen> {
   }
 
   @override
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(fit: StackFit.expand, children: [
-      Image.asset(splashScreenImg),
+      Image.asset(
+        splashScreenImg,
+        height: MediaQuery.of(context).size.height * 100,
+        width: MediaQuery.of(context).size.width * 100,
+      ),
       Positioned(
         left: SizeConfig.widthMultiplier * 32.0,
         top: SizeConfig.heightMultiplier * 48.0,

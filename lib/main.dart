@@ -5,6 +5,7 @@ import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/provider/metar_data_provider.dart';
+import 'package:aviation_met_nepal/provider/privacy_policy_provider.dart';
 import 'package:aviation_met_nepal/provider/sigmets_data_provider.dart';
 import 'package:aviation_met_nepal/provider/tafs_provider.dart';
 import 'package:aviation_met_nepal/screens/contact_us_screen.dart';
@@ -47,6 +48,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => SatelliteImageProvider()),
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => LightingDataProvider()),
+        ChangeNotifierProvider(create: (_) => PrivacyPolicyProvider()),
       ],
       child: const MyApp(),
     ),
@@ -78,10 +80,10 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(context),
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          // initialRoute: contactRoute,
-           home: checkProvider.isConnected
+          initialRoute: contactRoute,
+          /*  home: checkProvider.isConnected
               ? const SplashScreen()
-              : const InternetConnectionScreen(), 
+              : const InternetConnectionScreen(),  */
           routes: {
             splashRoute: (context) => const SplashScreen(),
             homeRoute: (context) => const HomeScreen(),

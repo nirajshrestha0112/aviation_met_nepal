@@ -10,7 +10,8 @@ const String airmetDataUrl = '$baseUrl/getAirmetData/';
 const String opmetDataUrl = '$baseUrl/getOpmetData/';
 const String ashtamsDataUrl = '$baseUrl/getAshtamsData/';
 const String satelliteImageDataUrl = '$baseUrl/satellite/';
-const String loginUrl = '$baseUrl/login/login';
-const String lightingDataUrl = '$baseUrl/lightning';
+const String loginUrl = '$baseUrl/login/login/';
+const String lightingDataUrl = '$baseUrl/lightning/';
+const String privacyPolicyUrl = '$baseUrl/getPrivacy/';
 // const String metaDataDecodedUrl = '$baseUrl/api/getMetarData/decoded/';
 

@@ -21,7 +21,7 @@ class CustomFloatingActionBtn extends StatelessWidget {
           size: SizeConfig.imageSizeMultiplier * 8.0,
         ),
         onPressed: () {
-          ShowSheet.showSheet(context: context);
+          ShowFabSheet.showFabSheet(context: context);
         },
         elevation: 0.0,
       ),

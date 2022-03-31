@@ -61,13 +61,8 @@ class _DetailsScreenState extends State<DetailsScreen>
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(SizeConfig.heightMultiplier * 13.0),
           child: AppBar(
-            centerTitle: true,
             title: Text(
               "${widget.data!.ident} ${widget.data!.name}",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: SizeConfig.textMultiplier * 2.0,
-                  color: const Color(colorDarkBlue)),
             ),
             leadingWidth: SizeConfig.widthMultiplier * 6,
             leading: const GeneralIcon(),

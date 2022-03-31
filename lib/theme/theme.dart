@@ -14,7 +14,9 @@ ThemeData lightTheme(BuildContext context) {
         ),
         labelColor: Colors.white,
         unselectedLabelColor: const Color(textColor),
-        labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+        labelStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: SizeConfig.textMultiplier * 1.6),
       ),
       scaffoldBackgroundColor: const Color(bgColor),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -31,7 +33,7 @@ ThemeData lightTheme(BuildContext context) {
           titleTextStyle: TextStyle(
               height: 1.5,
               fontWeight: FontWeight.w500,
-              fontSize: SizeConfig.textMultiplier * 2.5,
+              fontSize: SizeConfig.textMultiplier * 2.2,
               color: const Color(colorDarkBlue))),
       textTheme: TextTheme(
         headline6: TextStyle(

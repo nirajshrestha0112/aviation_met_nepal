@@ -67,12 +67,14 @@ class _CustomScreenState extends State<CustomScreen> {
                         fit: StackFit.expand,
                         children: [
                           ListTile(
-                              title: EachText(
-                            text: widget.screenName,
+                              title: Text(
+                            widget.screenName,
                             textAlign: TextAlign.center,
-                            fontSize: SizeConfig.textMultiplier * 2.2,
-                            color: const Color(textColor),
-                            fontWeight: FontWeight.w500,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText1!
+                                .copyWith(
+                                    fontSize: SizeConfig.textMultiplier * 2.2),
                           )),
                           Positioned(
                             top: SizeConfig.heightMultiplier * 2,

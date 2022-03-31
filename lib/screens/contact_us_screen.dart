@@ -1,17 +1,37 @@
+import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
+import 'package:aviation_met_nepal/provider/privacy_policy_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:provider/provider.dart';
 import '../widgets/custom_contact_text.dart';
-import '../widgets/each_text.dart';
 
-class ContactUs extends StatelessWidget {
+class ContactUs extends StatefulWidget {
   const ContactUs({Key? key}) : super(key: key);
 
+  @override
+  State<ContactUs> createState() => _ContactUsState();
+}
+
+class _ContactUsState extends State<ContactUs> {
+  @override
+  void initState() {
+    _get();
+    super.initState();
+  }
+
+  Future _get() async {
+    await Provider.of<PrivacyPolicyProvider>(context, listen: false)
+        .fetchPrivacyPolicyData();
+  }
+
+  bool isEng = true;
+  // late Future _future;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,12 +51,13 @@ class ContactUs extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   ListTile(
-                      title: EachText(
-                    text: "Contact Us",
+                      title: Text(
+                    "Contact Us",
                     textAlign: TextAlign.center,
-                    fontSize: SizeConfig.textMultiplier * 2.2,
-                    color: const Color(textColor),
-                    fontWeight: FontWeight.w500,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .copyWith(fontSize: SizeConfig.textMultiplier * 2.2),
                   )),
                   Positioned(
                     top: SizeConfig.heightMultiplier * 2,
@@ -64,8 +85,7 @@ class ContactUs extends StatelessWidget {
                 child: Column(
                   children: [
                     SvgPicture.asset(locationImg,
-                        width: SizeConfig.widthMultiplier * 45.0,
-                        height: SizeConfig.widthMultiplier * 45.0),
+                        height: SizeConfig.widthMultiplier * 35.0),
                     SizedBox(
                       height: SizeConfig.heightMultiplier * 3.0,
                     ),
@@ -98,7 +118,7 @@ class ContactUs extends StatelessWidget {
                                   ),
                                   Expanded(
                                       child: Text(
-                                    "Gauchar,Tribhuvan International Airport Kathmandu,Nepal",
+                                    "Gauchar, Tribhuvan International Airport Kathmandu, Nepal",
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyText2!
@@ -200,9 +220,79 @@ class ContactUs extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                               SizedBox(
-                                    height: SizeConfig.heightMultiplier,
-                                  ),
+                              SizedBox(
+                                height: SizeConfig.heightMultiplier,
+                              ),
+                              Consumer<PrivacyPolicyProvider>(
+                                  builder: (_, value, __) {
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      value.privacyPolicyData!.data.policyTitle,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          isEng = !isEng;
+                                        });
+                                      },
+                                      child: IntrinsicHeight(
+                                        child: Row(children: [
+                                          Container(
+                                            alignment: Alignment.center,
+                                            height:
+                                                SizeConfig.heightMultiplier * 3,
+                                            width:
+                                                SizeConfig.widthMultiplier * 7,
+                                            color: isEng
+                                                ? const Color(colorDarkBlue)
+                                                : const Color(colorWhite),
+                                            child: Text("EN",
+                                                style: TextStyle(
+                                                    color: isEng
+                                                        ? const Color(
+                                                            colorWhite)
+                                                        : const Color(
+                                                            colorDarkBlue),
+                                                    fontSize: SizeConfig
+                                                            .textMultiplier *
+                                                        2.0)),
+                                          ),
+                                          const VerticalDivider(
+                                            thickness: 1.5,
+                                            color: Color(colorDarkBlue),
+                                          ),
+                                          Container(
+                                            height:
+                                                SizeConfig.heightMultiplier * 3,
+                                            width:
+                                                SizeConfig.widthMultiplier * 7,
+                                            color: isEng
+                                                ? const Color(colorWhite)
+                                                : const Color(colorDarkBlue),
+                                            alignment: Alignment.center,
+                                            child: Text("NP",
+                                                style: TextStyle(
+                                                    color: isEng
+                                                        ? const Color(
+                                                            colorDarkBlue)
+                                                        : const Color(
+                                                            colorWhite),
+                                                    fontSize: SizeConfig
+                                                            .textMultiplier *
+                                                        2.0)),
+                                          ),
+                                        ]),
+                                      ),
+                                    )
+                                  ],
+                                );
+                              })
                             ],
                           ),
                         ),
