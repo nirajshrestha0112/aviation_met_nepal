@@ -32,7 +32,6 @@ class _SatelliteScreenState extends State<SatelliteScreen> {
     return SafeArea(
       child: Scaffold(
           floatingActionButton: const CustomFloatingActionBtn(),
-          backgroundColor: Color(bgColor),
           body: ScrollConfiguration(
               behavior: MyBehavior(),
               child: ScrollConfiguration(
@@ -40,7 +39,7 @@ class _SatelliteScreenState extends State<SatelliteScreen> {
                 child: SingleChildScrollView(
                     child: Column(children: [
                   Container(
-                    color: Colors.white,
+                    color: const Color(colorWhite),
                     height: SizeConfig.heightMultiplier * 6.5,
                     width: double.infinity,
                     child: Stack(
@@ -48,19 +47,20 @@ class _SatelliteScreenState extends State<SatelliteScreen> {
                       children: [
                         ListTile(
                             title: EachText(
-                          text: widget.screenName,
+                          text: "Contact Us",
                           textAlign: TextAlign.center,
                           fontSize: SizeConfig.textMultiplier * 2.2,
-                          color: Color(textColor),
+                          color: const Color(textColor),
                           fontWeight: FontWeight.w500,
                         )),
                         Positioned(
-                          top: SizeConfig.heightMultiplier * 1.2,
-                          left: SizeConfig.widthMultiplier,
+                          top: SizeConfig.heightMultiplier * 2,
+                          left: SizeConfig.widthMultiplier * 3.5,
                           child: GestureDetector(
                             child: Icon(
-                              Icons.arrow_back,
-                              size: SizeConfig.imageSizeMultiplier * 7.5,
+                              Icons.arrow_back_ios_new_sharp,
+                              color: const Color(colorDarkBlue),
+                              size: SizeConfig.imageSizeMultiplier * 6.0,
                             ),
                             onTap: () {
                               Navigator.pop(context);

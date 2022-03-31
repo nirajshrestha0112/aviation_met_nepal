@@ -81,55 +81,6 @@ class ContactUs extends StatelessWidget {
                           child: Column(
                             children: [
                               Image.asset(governmentImg),
-                              /*    Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Image.asset(logoImg,
-                                      width: SizeConfig.widthMultiplier * 22.0,
-                                      height:
-                                          SizeConfig.widthMultiplier * 22.0),
-                                  SizedBox(
-                                    width: SizeConfig.widthMultiplier,
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Government of Nepal",
-                                          style: TextStyle(
-                                              fontSize:
-                                                  SizeConfig.textMultiplier *
-                                                      1.7,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
-                                            "Department of Hydrology and Meterology",
-                                            style: TextStyle(
-                                                fontSize:
-                                                    SizeConfig.textMultiplier *
-                                                        1.7,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.normal)),
-                                        Text(
-                                          "Meteorology Forecasting Division",
-                                          style: TextStyle(
-                                              fontSize:
-                                                  SizeConfig.textMultiplier *
-                                                      2.0,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              */
                               const Divider(
                                 color: Color(bgColor),
                                 thickness: 1.0,
@@ -216,41 +167,42 @@ class ContactUs extends StatelessWidget {
                                     style:
                                         Theme.of(context).textTheme.bodyText2!,
                                   ),
-
                                   SizedBox(
-                                height: SizeConfig.heightMultiplier,
-                              ),
+                                    height: SizeConfig.heightMultiplier,
+                                  ),
                                   const CustomContactText(
                                       leftText: "Kathmandu :",
                                       rightText:
                                           "1618 07 07 33333(for daily weather updates)"),
-                                          SizedBox(
-                                height: SizeConfig.heightMultiplier,
-                              ),
+                                  SizedBox(
+                                    height: SizeConfig.heightMultiplier,
+                                  ),
                                   const CustomContactText(
                                     leftText: "Surkhet :       ",
                                     rightText:
                                         "1618 083 523519(for daily weather data)",
                                   ),
                                   SizedBox(
-                                height: SizeConfig.heightMultiplier,
-                              ),
+                                    height: SizeConfig.heightMultiplier,
+                                  ),
                                   const CustomContactText(
                                     leftText: "Pokhara :      ",
                                     rightText:
                                         "1618 061 465299(for daily weather data)",
                                   ),
                                   SizedBox(
-                                height: SizeConfig.heightMultiplier,
-                              ),
+                                    height: SizeConfig.heightMultiplier,
+                                  ),
                                   const CustomContactText(
                                     leftText: "Dharan :        ",
                                     rightText:
                                         "1618 025 520272(for daily weather data)",
                                   ),
                                 ],
-                                
                               ),
+                               SizedBox(
+                                    height: SizeConfig.heightMultiplier,
+                                  ),
                             ],
                           ),
                         ),

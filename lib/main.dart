@@ -78,10 +78,10 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(context),
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          initialRoute: contactRoute,
-          /*  home: checkProvider.isConnected
+          // initialRoute: contactRoute,
+           home: checkProvider.isConnected
               ? const SplashScreen()
-              : const InternetConnectionScreen(),  */
+              : const InternetConnectionScreen(), 
           routes: {
             splashRoute: (context) => const SplashScreen(),
             homeRoute: (context) => const HomeScreen(),
