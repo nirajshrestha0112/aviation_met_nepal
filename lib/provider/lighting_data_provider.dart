@@ -28,12 +28,18 @@ class LightingDataProvider extends ChangeNotifier {
         lightingData = LightingData.fromJson(jsonDecode(response.body));
 
         final Uint8List markerIcon = await getBytesFromAsset(
-            lightingsImg, (SizeConfig.imageSizeMultiplier * 10).toInt());
+            lightingsImg, (SizeConfig.imageSizeMultiplier * 6).toInt());
+/* 
+        final icon = await BitmapDescriptor.fromAssetImage(
+            ImageConfiguration(size: Size(30, 30)),lightingsImg); */
+        log(markerIcon.toString());
 
         for (var data in lightingData!.data) {
           for (var eachData in data) {
             markers.add(Marker(
-                icon: BitmapDescriptor.fromBytes(markerIcon),
+                  
+                icon: BitmapDescriptor.fromBytes(markerIcon,),
+                // icon: icon,
                 markerId: MarkerId(eachData.date.toString()),
                 infoWindow: InfoWindow(
                     title: DateFormat("yyyy-MM-dd").format(eachData.date)),

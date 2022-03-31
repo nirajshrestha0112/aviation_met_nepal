@@ -9,6 +9,7 @@ import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/utils/validation.dart';
 import 'package:aviation_met_nepal/widgets/custom_snackbar.dart';
+import 'package:aviation_met_nepal/widgets/general_icon.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
 import 'package:aviation_met_nepal/widgets/general_textfield.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +30,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          elevation: 0.0,
-          centerTitle: true,
+          leading: const GeneralIcon(),
+          leadingWidth: SizeConfig.widthMultiplier * 6,
           title: const Text(
             "Login",
           )),

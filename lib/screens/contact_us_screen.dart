@@ -4,6 +4,10 @@ import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../widgets/custom_contact_text.dart';
+import '../widgets/each_text.dart';
 
 class ContactUs extends StatelessWidget {
   const ContactUs({Key? key}) : super(key: key);
@@ -19,29 +23,29 @@ class ContactUs extends StatelessWidget {
             SizedBox(
               height: SizeConfig.heightMultiplier * 3.5,
             ),
-            SizedBox(
+            Container(
+              color: const Color(colorWhite),
               height: SizeConfig.heightMultiplier * 6.5,
               width: double.infinity,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
                   ListTile(
-                    title: Text(
-                      "Contact Us",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: SizeConfig.textMultiplier * 2.6,
-                          color: Color(textColor),
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
+                      title: EachText(
+                    text: "Contact Us",
+                    textAlign: TextAlign.center,
+                    fontSize: SizeConfig.textMultiplier * 2.2,
+                    color: const Color(textColor),
+                    fontWeight: FontWeight.w500,
+                  )),
                   Positioned(
-                    top: SizeConfig.heightMultiplier * 1.2,
-                    left: SizeConfig.widthMultiplier,
+                    top: SizeConfig.heightMultiplier * 2,
+                    left: SizeConfig.widthMultiplier * 3.5,
                     child: GestureDetector(
                       child: Icon(
-                        Icons.arrow_back,
-                        size: SizeConfig.imageSizeMultiplier * 7.5,
+                        Icons.arrow_back_ios_new_sharp,
+                        color: const Color(colorDarkBlue),
+                        size: SizeConfig.imageSizeMultiplier * 6.0,
                       ),
                       onTap: () {
                         Navigator.pop(context);
@@ -51,26 +55,15 @@ class ContactUs extends StatelessWidget {
                 ],
               ),
             ),
-            /* Row(
-              children: [
-                IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.arrow_back)),
-                const Text(
-                  'Contact Us',
-                ),
-              ],
-            ), */
-            Container(
+            SizedBox(
               height: SizeConfig.heightMultiplier * 100,
               width: double.infinity,
-              color: Color(bgColor),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: padding, vertical: padding),
                 child: Column(
                   children: [
-                    Image.asset(locationImg,
+                    SvgPicture.asset(locationImg,
                         width: SizeConfig.widthMultiplier * 45.0,
                         height: SizeConfig.widthMultiplier * 45.0),
                     SizedBox(
@@ -87,7 +80,8 @@ class ContactUs extends StatelessWidget {
                               horizontal: padding / 2.0, vertical: padding),
                           child: Column(
                             children: [
-                              Row(
+                              Image.asset(governmentImg),
+                              /*    Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -135,21 +129,31 @@ class ContactUs extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                              */
                               const Divider(
+                                color: Color(bgColor),
                                 thickness: 1.0,
                               ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Icon(
+                                  Icon(
                                     Icons.location_pin,
+                                    size: SizeConfig.imageSizeMultiplier * 5.5,
+                                    color: const Color(colorDarkBlue),
                                   ),
                                   SizedBox(
                                     width: SizeConfig.widthMultiplier * 2.0,
                                   ),
-                                  const Expanded(
+                                  Expanded(
                                       child: Text(
-                                          "Gauchar,Tribhuvan International Airport Kathmandu,Nepal"))
+                                    "Gauchar,Tribhuvan International Airport Kathmandu,Nepal",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(
+                                            fontWeight: FontWeight.normal),
+                                  ))
                                 ],
                               ),
                               SizedBox(
@@ -157,14 +161,22 @@ class ContactUs extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  const Icon(Icons.phone),
+                                  Icon(
+                                    Icons.phone,
+                                    size: SizeConfig.imageSizeMultiplier * 5.5,
+                                    color: const Color(colorDarkBlue),
+                                  ),
                                   SizedBox(
                                     width: SizeConfig.widthMultiplier * 2.0,
                                   ),
-                                  const Text(
-                                    "+977144868699",
-                                    style: TextStyle(color: colorBlue),
-                                  )
+                                  Text("+977144868699",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline6!
+                                          .copyWith(
+                                              fontSize:
+                                                  SizeConfig.textMultiplier *
+                                                      1.8))
                                 ],
                               ),
                               SizedBox(
@@ -172,16 +184,73 @@ class ContactUs extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  const Icon(Icons.mail),
+                                  Icon(
+                                    Icons.mail,
+                                    size: SizeConfig.imageSizeMultiplier * 5.5,
+                                    color: const Color(colorDarkBlue),
+                                  ),
                                   SizedBox(
                                     width: SizeConfig.widthMultiplier * 2.0,
                                   ),
-                                  const Text(
-                                    "info@mfd.gov.np",
-                                    style: TextStyle(color: colorBlue),
-                                  )
+                                  Text("info@mfd.gov.np",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline6!
+                                          .copyWith(
+                                              fontSize:
+                                                  SizeConfig.textMultiplier *
+                                                      1.8))
                                 ],
-                              )
+                              ),
+                              const Divider(
+                                color: Color(bgColor),
+                                thickness: 1.0,
+                              ),
+                              SizedBox(
+                                height: SizeConfig.heightMultiplier,
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    "Please Dial And Listen To Us For Notice Board Service",
+                                    style:
+                                        Theme.of(context).textTheme.bodyText2!,
+                                  ),
+
+                                  SizedBox(
+                                height: SizeConfig.heightMultiplier,
+                              ),
+                                  const CustomContactText(
+                                      leftText: "Kathmandu :",
+                                      rightText:
+                                          "1618 07 07 33333(for daily weather updates)"),
+                                          SizedBox(
+                                height: SizeConfig.heightMultiplier,
+                              ),
+                                  const CustomContactText(
+                                    leftText: "Surkhet :       ",
+                                    rightText:
+                                        "1618 083 523519(for daily weather data)",
+                                  ),
+                                  SizedBox(
+                                height: SizeConfig.heightMultiplier,
+                              ),
+                                  const CustomContactText(
+                                    leftText: "Pokhara :      ",
+                                    rightText:
+                                        "1618 061 465299(for daily weather data)",
+                                  ),
+                                  SizedBox(
+                                height: SizeConfig.heightMultiplier,
+                              ),
+                                  const CustomContactText(
+                                    leftText: "Dharan :        ",
+                                    rightText:
+                                        "1618 025 520272(for daily weather data)",
+                                  ),
+                                ],
+                                
+                              ),
                             ],
                           ),
                         ),

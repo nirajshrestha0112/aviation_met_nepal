@@ -21,6 +21,7 @@ ThemeData lightTheme(BuildContext context) {
         backgroundColor: Color(colorPrimary),
       ),
       appBarTheme: AppBarTheme(
+          centerTitle: true,
           iconTheme: IconThemeData(
             color: const Color(colorDarkBlue),
             size: SizeConfig.imageSizeMultiplier * 6.0,

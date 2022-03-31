@@ -12,12 +12,21 @@ import 'package:aviation_met_nepal/widgets/each_text.dart';
 import 'package:aviation_met_nepal/widgets/reusable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../constant/values.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/size_config.dart';
 import 'general_filter.dart';
 
 class ShowSheet {
+  static String getUrl () {
+    final Uri params = Uri(
+      scheme: 'mailto',
+      path: 'mfddhm@gmail.com',
+    );
+    return params.toString();
+  }
+
   static final List<Map<String, dynamic>> data = [
     {
       'icon': const CustomIcon(icon: Icons.home),
@@ -92,9 +101,17 @@ class ShowSheet {
     {
       'icon': const CustomIcon(icon: Icons.message),
       'title': const ReusableText(text: "Feedback"),
-      'navigate': feedbackRoute
+      'url': getUrl(),
     },
   ];
+
+  static launchUrl(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      print('Could not launch $url');
+    }
+  }
 
   static void showSheet({required BuildContext context}) {
     showModalBottomSheet(
@@ -243,7 +260,10 @@ class ShowSheet {
                           leading: data[i]['icon'],
                           title: data[i]['title'],
                           onTap: () {
-                            Navigator.pushNamed(context, data[i]['navigate']);
+                            data.last == data[i]
+                                ? launchUrl(data[i]["url"])
+                                : Navigator.pushNamed(
+                                    context, data[i]['navigate']);
                           },
                         );
                       }),

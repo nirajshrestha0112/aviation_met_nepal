@@ -9,6 +9,8 @@ import 'package:aviation_met_nepal/widgets/sigmets_tab.dart';
 import 'package:aviation_met_nepal/widgets/tafs_tab.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/general_icon.dart';
+
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({this.data, Key? key}) : super(key: key);
 
@@ -68,20 +70,9 @@ class _DetailsScreenState extends State<DetailsScreen>
                   color: const Color(colorDarkBlue)),
             ),
             leadingWidth: SizeConfig.widthMultiplier * 6,
-            leading: Padding(
-              padding: const EdgeInsets.only(left: radius),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Icon(
-                  Icons.arrow_back_ios_new_sharp,
-                  color: const Color(colorDarkBlue),
-                  size: SizeConfig.imageSizeMultiplier * 6.0,
-                ),
-              ),
-            ),
+            leading: const GeneralIcon(),
             bottom: TabBar(
+              padding: const EdgeInsets.symmetric(horizontal: radius),
               indicatorPadding: const EdgeInsets.symmetric(
                   horizontal: radius, vertical: padding / 3.0),
               controller: _tabController,

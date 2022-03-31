@@ -78,15 +78,15 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(context),
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          // initialRoute: homeRoute,
-           home: checkProvider.isConnected
+          initialRoute: contactRoute,
+          /*  home: checkProvider.isConnected
               ? const SplashScreen()
-              : const InternetConnectionScreen(),
+              : const InternetConnectionScreen(),  */
           routes: {
             splashRoute: (context) => const SplashScreen(),
             homeRoute: (context) => const HomeScreen(),
             detailsRoute: (context) => const DetailsScreen(),
-            feedbackRoute: (context) => const FeedBack(),
+            // feedbackRoute: (context) => const FeedBack(),
             contactRoute: (context) => const ContactUs(),
             loginRoute: (context) => const LoginPage(),
             lightingDataRoute: (context) => const LightingData(),
@@ -106,6 +106,7 @@ class MyApp extends StatelessWidget {
                 const CustomScreen(screenName: "Gamet Data"),
             opmetDataRoute: (context) =>
                 const CustomScreen(screenName: "Opmet Data"),
+            // const CustomScreen(screenName: "Contact Us"),
             // '/testing':((context) => TestingScreen())
           },
           // theme: ThemeData(),
