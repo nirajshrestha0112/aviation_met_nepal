@@ -72,7 +72,7 @@ class _SigmetsTabState extends State<SigmetsTab> {
                             style: TextStyle(
                                 fontSize: SizeConfig.textMultiplier * 2.0,
                                 fontWeight: FontWeight.w500,
-                                color: Color(textColor)),
+                                color: const Color(textColor)),
                           );
                         }),
                       ],

@@ -1,6 +1,5 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/provider/satellite_image_provider.dart';
-import 'package:aviation_met_nepal/widgets/each_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +46,7 @@ class _SatelliteScreenState extends State<SatelliteScreen> {
                       children: [
                         ListTile(
                             title: Text(
-                          "Contact Us",
+                          "Satellite Images",
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme

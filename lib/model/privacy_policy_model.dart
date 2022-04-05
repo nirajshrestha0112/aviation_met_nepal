@@ -1,3 +1,5 @@
+import 'package:flutter_html/flutter_html.dart';
+
 class PrivacyPolicy {
   PrivacyPolicy({
     required this.status,
@@ -6,19 +8,19 @@ class PrivacyPolicy {
   });
   late final String status;
   late final String message;
-  late final Data data;
-  
-  PrivacyPolicy.fromJson(Map<String, dynamic> json){
+  late final List<Data> data;
+
+  PrivacyPolicy.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'];
+    data = List.from(json['data']).map((e) => Data.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['status'] = status;
     _data['message'] = message;
-    _data['data'] = data;
+    _data['data'] = data.map((e) => e.toJson()).toList();
     return _data;
   }
 }
@@ -36,8 +38,8 @@ class Data {
   late final String policyTitleNp;
   late final String policyDetails;
   late final String policyDetailsNp;
-  
-  Data.fromJson(Map<String, dynamic> json){
+
+  Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     policyTitle = json['policy_title'];
     policyTitleNp = json['policy_title_np'];

@@ -57,14 +57,13 @@ class _DetailsScreenState extends State<DetailsScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(bgColor),
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(SizeConfig.heightMultiplier * 13.0),
           child: AppBar(
             title: Text(
               "${widget.data!.ident} ${widget.data!.name}",
             ),
-            leadingWidth: SizeConfig.widthMultiplier * 6,
+            leadingWidth: SizeConfig.widthMultiplier * 6.0,
             leading: const GeneralIcon(),
             bottom: TabBar(
               padding: const EdgeInsets.symmetric(horizontal: radius),

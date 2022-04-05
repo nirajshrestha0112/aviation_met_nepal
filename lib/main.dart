@@ -9,14 +9,12 @@ import 'package:aviation_met_nepal/provider/privacy_policy_provider.dart';
 import 'package:aviation_met_nepal/provider/sigmets_data_provider.dart';
 import 'package:aviation_met_nepal/provider/tafs_provider.dart';
 import 'package:aviation_met_nepal/screens/contact_us_screen.dart';
-import 'package:aviation_met_nepal/screens/feedback_screen.dart';
 import 'package:aviation_met_nepal/screens/custom_screen.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
 import 'package:aviation_met_nepal/screens/lighting_screen.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
-import 'package:aviation_met_nepal/screens/testing_screen.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -80,15 +78,14 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(context),
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          initialRoute: contactRoute,
-          /*  home: checkProvider.isConnected
+          // initialRoute: homeRoute,
+          home: checkProvider.isConnected
               ? const SplashScreen()
-              : const InternetConnectionScreen(),  */
+              : const InternetConnectionScreen(),
           routes: {
             splashRoute: (context) => const SplashScreen(),
             homeRoute: (context) => const HomeScreen(),
             detailsRoute: (context) => const DetailsScreen(),
-            // feedbackRoute: (context) => const FeedBack(),
             contactRoute: (context) => const ContactUs(),
             loginRoute: (context) => const LoginPage(),
             lightingDataRoute: (context) => const LightingData(),
@@ -108,10 +105,7 @@ class MyApp extends StatelessWidget {
                 const CustomScreen(screenName: "Gamet Data"),
             opmetDataRoute: (context) =>
                 const CustomScreen(screenName: "Opmet Data"),
-            // const CustomScreen(screenName: "Contact Us"),
-            // '/testing':((context) => TestingScreen())
           },
-          // theme: ThemeData(),
         );
       });
     });

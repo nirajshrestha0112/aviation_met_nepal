@@ -3,6 +3,7 @@ import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
+import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,26 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
       child: SafeArea(
         child: Scaffold(
             appBar: AppBar(
-                centerTitle: true,
-                elevation: 0.0,
                 title: const Text(
-                  "Discover",
-                  textAlign: TextAlign.center,
-                )),
-            floatingActionButton: SizedBox(
-              height: SizeConfig.heightMultiplier * 6.0,
-              width: SizeConfig.widthMultiplier * 12.0,
-              child: FloatingActionButton(
-                child: Icon(
-                  Icons.apps_sharp,
-                  size: SizeConfig.imageSizeMultiplier * 8.0,
-                ),
-                onPressed: () {
-                  ShowFabSheet.showFabSheet(context: context);
-                },
-                elevation: 0.0,
-              ),
-            ),
+              "Discover",
+            )),
+            floatingActionButton: const CustomFloatingActionBtn(),
             body: const HomeScreenBody()),
       ),
     );

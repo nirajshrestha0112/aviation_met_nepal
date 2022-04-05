@@ -2,7 +2,6 @@ import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/ashtams_data_provider.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
-import 'package:aviation_met_nepal/widgets/each_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../provider/airmet_data_provider.dart';
@@ -47,7 +46,6 @@ class _CustomScreenState extends State<CustomScreen> {
     return SafeArea(
       child: Scaffold(
           floatingActionButton: const CustomFloatingActionBtn(),
-          backgroundColor: const Color(bgColor),
           body: ScrollConfiguration(
               behavior: MyBehavior(),
               child: RawScrollbar(
@@ -55,124 +53,119 @@ class _CustomScreenState extends State<CustomScreen> {
                 minThumbLength: SizeConfig.heightMultiplier,
                 thickness: SizeConfig.widthMultiplier,
                 thumbColor: Colors.grey,
-                child: ScrollConfiguration(
-                  behavior: MyBehavior(),
-                  child: SingleChildScrollView(
-                      child: Column(children: [
-                    Container(
-                      color: const Color(colorWhite),
-                      height: SizeConfig.heightMultiplier * 6.5,
-                      width: double.infinity,
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          ListTile(
-                              title: Text(
-                            widget.screenName,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText1!
-                                .copyWith(
-                                    fontSize: SizeConfig.textMultiplier * 2.2),
-                          )),
-                          Positioned(
-                            top: SizeConfig.heightMultiplier * 2,
-                            left: SizeConfig.widthMultiplier * 3.5,
-                            child: GestureDetector(
-                              child: Icon(
-                                Icons.arrow_back_ios_new_sharp,
-                                color: const Color(colorDarkBlue),
-                                size: SizeConfig.imageSizeMultiplier * 6.0,
-                              ),
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
+                child: SingleChildScrollView(
+                    child: Column(children: [
+                  Container(
+                    color: const Color(colorWhite),
+                    height: SizeConfig.heightMultiplier * 6.5,
+                    width: double.infinity,
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        ListTile(
+                            title: Text(
+                          widget.screenName,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .copyWith(
+                                  fontSize: SizeConfig.textMultiplier * 2.2),
+                        )),
+                        Positioned(
+                          top: SizeConfig.heightMultiplier * 2,
+                          left: SizeConfig.widthMultiplier * 3.5,
+                          child: GestureDetector(
+                            child: Icon(
+                              Icons.arrow_back_ios_new_sharp,
+                              color: const Color(colorDarkBlue),
+                              size: SizeConfig.imageSizeMultiplier * 6.0,
                             ),
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: padding, vertical: padding),
-                      child: FutureBuilder(
-                        future: _future,
-                        builder: (context, AsyncSnapshot snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return SizedBox(
-                              height: MediaQuery.of(context).size.height / 1.3,
-                              child: const Center(
-                                child: CircularProgressIndicator.adaptive(),
-                              ),
-                            );
-                          }
-
-                          return SingleChildScrollView(
-                              child: Container(
-                            padding: const EdgeInsets.only(
-                              top: padding,
-                              left: padding,
-                              bottom: padding,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: padding, vertical: padding),
+                    child: FutureBuilder(
+                      future: _future,
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return SizedBox(
+                            height: MediaQuery.of(context).size.height / 1.3,
+                            child: const Center(
+                              child: CircularProgressIndicator.adaptive(),
                             ),
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(radius)),
-                            child: widget.screenName == "Gamet Data"
-                                ? Consumer<GametDataProvider>(
-                                    builder: (_, value, __) {
+                          );
+                        }
+
+                        return SingleChildScrollView(
+                            child: Container(
+                          padding: const EdgeInsets.only(
+                            top: padding,
+                            left: padding,
+                            bottom: padding,
+                          ),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(radius)),
+                          child: widget.screenName == "Gamet Data"
+                              ? Consumer<GametDataProvider>(
+                                  builder: (_, value, __) {
+                                    return Text(
+                                      value.gametData!.data.toString(),
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2,
+                                    );
+                                  },
+                                )
+                              : widget.screenName == "Airmet Data"
+                                  ? Consumer<AirmetDataProvider>(
+                                      builder: (_, value, __) {
                                       return Text(
-                                        value.gametData!.data.toString(),
+                                        value.airmetData!.data.toString(),
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText2,
                                       );
-                                    },
-                                  )
-                                : widget.screenName == "Airmet Data"
-                                    ? Consumer<AirmetDataProvider>(
-                                        builder: (_, value, __) {
-                                        return Text(
-                                          value.airmetData!.data.toString(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2,
-                                        );
-                                      })
-                                    : widget.screenName == "Opmet Data"
-                                        ? Consumer<OpmetDataProvider>(
-                                            builder: (_, value, __) {
-                                            return Text(
-                                              value.opmetData!.data.toString(),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText2,
-                                            );
-                                          })
-                                        : widget.screenName == "Ashtams Data"
-                                            ? Consumer<AshtamsDataProvider>(
-                                                builder: (_, value, __) {
-                                                return value.ashtamsData
-                                                            ?.data ==
-                                                        null
-                                                    ? const CustomErrorTab()
-                                                    : Text(
-                                                        value.ashtamsData!.data
-                                                            .toString(),
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyText2,
-                                                      );
-                                              })
-                                            : const SizedBox.shrink(),
-                          ));
-                        },
-                      ),
-                    )
-                  ])),
-                ),
+                                    })
+                                  : widget.screenName == "Opmet Data"
+                                      ? Consumer<OpmetDataProvider>(
+                                          builder: (_, value, __) {
+                                          return Text(
+                                            value.opmetData!.data.toString(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2,
+                                          );
+                                        })
+                                      : widget.screenName == "Ashtams Data"
+                                          ? Consumer<AshtamsDataProvider>(
+                                              builder: (_, value, __) {
+                                              return value.ashtamsData?.data ==
+                                                      null
+                                                  ? const CustomErrorTab()
+                                                  : Text(
+                                                      value.ashtamsData!.data
+                                                          .toString(),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText2,
+                                                    );
+                                            })
+                                          : const SizedBox.shrink(),
+                        ));
+                      },
+                    ),
+                  )
+                ])),
               ))),
     );
   }

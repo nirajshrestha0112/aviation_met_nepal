@@ -19,10 +19,10 @@ import '../utils/size_config.dart';
 import 'general_filter.dart';
 
 class ShowFabSheet {
-  static String getUrl() {
+  static String getEmailUrl({required String email}) {
     final Uri params = Uri(
       scheme: 'mailto',
-      path: 'mfddhm@gmail.com',
+      path: email,
     );
     return params.toString();
   }
@@ -101,7 +101,7 @@ class ShowFabSheet {
     {
       'icon': const CustomIcon(icon: Icons.message),
       'title': const ReusableText(text: "Feedback"),
-      'url': getUrl(),
+      'url': getEmailUrl(email: "mfddhm@gmail.com"),
     },
   ];
 

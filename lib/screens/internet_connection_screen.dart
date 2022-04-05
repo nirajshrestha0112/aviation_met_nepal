@@ -27,7 +27,7 @@ class _InternetConnectionScreenState extends State<InternetConnectionScreen> {
             Text(
               "No internet connection",
               style: TextStyle(
-                color: Color(textColor),
+                color: const Color(textColor),
                 fontSize: SizeConfig.textMultiplier * 2.5,
               ),
             ),
