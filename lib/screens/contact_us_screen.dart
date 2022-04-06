@@ -1,4 +1,3 @@
-
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../widgets/custom_loading_indicator.dart';
 import '../widgets/custom_sheet.dart';
 
 class ContactUs extends StatefulWidget {
@@ -99,7 +99,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                 left: SizeConfig.widthMultiplier * 3.5,
                 child: GestureDetector(
                   child: Icon(
-                    Icons.arrow_back_ios_new_sharp,
+                    Icons.adaptive.arrow_back,
                     color: const Color(colorDarkBlue),
                     size: SizeConfig.imageSizeMultiplier * 6.0,
                   ),
@@ -225,8 +225,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return const Center(
-                              child: CircularProgressIndicator.adaptive());
+                          return const CustomLoadingIndicator();
                         }
                         return Column(
                             mainAxisSize: MainAxisSize.min,

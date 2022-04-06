@@ -1,4 +1,3 @@
-
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
@@ -10,6 +9,8 @@ import 'package:aviation_met_nepal/widgets/general_text_button.dart';
 import 'package:aviation_met_nepal/widgets/general_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../widgets/custom_loading_indicator.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -109,7 +110,8 @@ class _LoginPageState extends State<LoginPage> {
                       text: "Login",
                       onPressed: () async {
                         if (formGlobalKey.currentState!.validate()) {
-                          const CircularProgressIndicator.adaptive();
+                          showDialog(context: context, builder: (_)=> const CustomLoadingIndicator(),);
+                          await Future.delayed(const Duration(seconds: 3));
                           await Provider.of<LoginProvider>(context,
                                   listen: false)
                               .loginPostApi(context,

@@ -9,13 +9,13 @@ import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/widgets/custom_alert_dialog.dart';
 import 'package:aviation_met_nepal/widgets/custom_icon_image.dart';
 import 'package:aviation_met_nepal/widgets/each_text.dart';
-import 'package:aviation_met_nepal/widgets/reusable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../constant/values.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/size_config.dart';
+import 'custom_loading_indicator.dart';
 import 'general_filter.dart';
 
 class ShowFabSheet {
@@ -30,78 +30,93 @@ class ShowFabSheet {
   static final List<Map<String, dynamic>> data = [
     {
       'icon': const CustomIcon(icon: Icons.home),
-      'title': const ReusableText(text: "Home"),
-      'navigate': homeRoute
+      'title': const EachText(text: "Home"),
+      'navigate': homeRoute,
+      'toCheck': false
     },
     {
       'icon': const CustomIcon(icon: Icons.notification_add),
-      'title': const ReusableText(text: "Notification"),
-      'navigate': notificationRoute
+      'title': const EachText(text: "Notification"),
+      'navigate': notificationRoute,
+      'toCheck': false
     },
     {
       'icon': const CustomIcon(icon: Icons.expand_less_outlined),
-      'title': const ReusableText(text: "Icing & Turbulence Chart"),
-      'navigate': loginRoute
+      'title': const EachText(text: "Icing & Turbulence Chart"),
+      'navigate': icingTurbulenceChartRoute,
+      'toCheck': true
     },
     {
       'icon': const CustomImage(assetName: cameraImg),
-      'title': const ReusableText(text: "Weather Camera Images"),
-      'navigate': loginRoute
+      'title': const EachText(text: "Weather Camera Images"),
+      'navigate': weatherCameraImagesRoute,
+      'toCheck': true
     },
     {
       'icon': const CustomImage(assetName: satelliteImg),
-      'title': const ReusableText(text: "Satellite Images"),
-      'navigate': satelliteImageDataRoute
+      'title': const EachText(text: "Satellite Images"),
+      'navigate': satelliteImageDataRoute,
+      'toCheck': false
     },
     {
       'icon': const CustomImage(assetName: lightingImg),
-      'title': const ReusableText(text: "Lighting Data"),
-      'navigate': lightingDataRoute
+      'title': const EachText(text: "Lighting Data"),
+      'navigate': lightingDataRoute,
+      'toCheck': false
     },
     {
       'icon': const CustomImage(assetName: windImg),
-      'title': const ReusableText(text: "Wind Chart"),
-      'navigate': windChartRoute
+      'title': const EachText(text: "Wind Chart"),
+      'navigate': windChartRoute,
+      'toCheck': false
     },
     {
       'icon': const CustomImage(assetName: chartImg),
-      'title': const ReusableText(text: "SIGWX Chart"),
-      'navigate': loginRoute
+      'title': const EachText(text: "SIGWX Chart"),
+      'navigate': sigwxChartRoute,
+      'toCheck': true
     },
     {
       'icon': const CustomImage(assetName: newsImg),
-      'title': const ReusableText(text: "Weather Forecast"),
-      'navigate': weatherForecastRoute
+      'title': const EachText(text: "Weather Forecast"),
+      'navigate': weatherForecastRoute,
+      'toCheck': false
     },
     {
       'icon': const CustomImage(assetName: newsImg),
-      'title': const ReusableText(text: "Airmet Data"),
-      'navigate': airmetDataRoute
+      'title': const EachText(text: "Airmet Data"),
+      'navigate': airmetDataRoute,
+      'toCheck': false
     },
     {
       'icon': const CustomImage(assetName: newsImg),
-      'title': const ReusableText(text: "Ashtams Data"),
-      'navigate': ashtamsDataRoute
+      'title': const EachText(text: "Ashtams Data"),
+      'navigate': ashtamsDataRoute,
+      'toCheck': false
     },
     {
       'icon': const CustomImage(assetName: newsImg),
-      'title': const ReusableText(text: "Gamet Data"),
-      'navigate': gametDataRoute
+      'title': const EachText(text: "Gamet Data"),
+      'navigate': gametDataRoute,
+      'toCheck': false
     },
     {
       'icon': const CustomImage(assetName: newsImg),
-      'title': const ReusableText(text: "Opmet Data"),
-      'navigate': opmetDataRoute
+      'title': const EachText(text: "Opmet Data"),
+      'navigate': opmetDataRoute,
+      'toCheck': false
     },
     {
       'icon': const CustomIcon(icon: Icons.contacts_outlined),
-      'title': const ReusableText(text: "Contact Us"),
-      'navigate': contactRoute
+      'title': const EachText(text: "Contact Us"),
+      'navigate': contactRoute,
+      'toCheck': false
     },
     {
       'icon': const CustomIcon(icon: Icons.message),
-      'title': const ReusableText(text: "Feedback"),
+      'title': const EachText(text: "Feedback"),
       'url': getEmailUrl(email: "mfddhm@gmail.com"),
+      'toCheck': false
     },
   ];
 
@@ -109,7 +124,7 @@ class ShowFabSheet {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      print('Could not launch $url');
+      log('Could not launch $url');
     }
   }
 
@@ -130,31 +145,36 @@ class ShowFabSheet {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.apps_sharp,
-                            color: const Color(colorDarkBlue),
-                            size: SizeConfig.imageSizeMultiplier * 8.0,
-                          ),
-                          SizedBox(
-                            width: SizeConfig.widthMultiplier,
-                          ),
-                          Text(
-                            "Menu",
-                            style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: SizeConfig.textMultiplier * 2.2,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                          ),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(left: radius / 3.0),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.apps_sharp,
+                              color: const Color(colorDarkBlue),
+                              size: SizeConfig.imageSizeMultiplier * 8.0,
+                            ),
+                            SizedBox(
+                              width: SizeConfig.widthMultiplier * 2.7,
+                            ),
+                            Text(
+                              "Menu",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                    fontSize: SizeConfig.textMultiplier * 2.2,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ),
-                      IconButton(
-                          onPressed: () {
+                      InkWell(
+                          onTap: () {
                             Navigator.pop(context);
                           },
-                          icon: Icon(
+                          child: Icon(
                             Icons.close_outlined,
                             size: SizeConfig.imageSizeMultiplier * 8.0,
                             color: const Color(colorDarkBlue),
@@ -166,51 +186,62 @@ class ShowFabSheet {
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: const Color(bgColor),
-                                  radius: SizeConfig.imageSizeMultiplier * 3.0,
-                                  child: Icon(
-                                    Icons.person,
-                                    color: const Color(colorDarkBlue),
-                                    size: SizeConfig.imageSizeMultiplier * 4.0,
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: radius / 1.5,
+                              ),
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: const Color(bgColor),
+                                    radius:
+                                        SizeConfig.imageSizeMultiplier * 3.0,
+                                    child: Icon(
+                                      Icons.person,
+                                      color: const Color(colorDarkBlue),
+                                      size:
+                                          SizeConfig.imageSizeMultiplier * 4.0,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  width: SizeConfig.widthMultiplier * 5.0,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
+                                  SizedBox(
+                                    width: SizeConfig.widthMultiplier * 5.0,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          Provider.of<LoginProvider>(context,
+                                                  listen: true)
+                                              .loginName
+                                              .toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText2!),
+                                      SizedBox(
+                                          height: SizeConfig.heightMultiplier),
+                                      Text(
                                         Provider.of<LoginProvider>(context,
                                                 listen: true)
-                                            .loginName
+                                            .userId
                                             .toString(),
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText2!),
-                                    SizedBox(
-                                        height: SizeConfig.heightMultiplier),
-                                    Text(
-                                      Provider.of<LoginProvider>(context,
-                                              listen: true)
-                                          .userId
-                                          .toString(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2!
-                                          .copyWith(
-                                            fontSize:
-                                                SizeConfig.textMultiplier * 1.5,
-                                          ),
-                                    )
-                                  ],
-                                ),
-                              ],
+                                            .bodyText2!
+                                            .copyWith(
+                                              fontSize:
+                                                  SizeConfig.textMultiplier *
+                                                      1.5,
+                                            ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                             Container(
+                              margin:
+                                  const EdgeInsets.only(right: radius / 1.5),
                               height: SizeConfig.heightMultiplier * 3.0,
                               width: SizeConfig.widthMultiplier * 6.5,
                               decoration: BoxDecoration(
@@ -218,14 +249,13 @@ class ShowFabSheet {
                                     BorderRadius.circular(radius / 4.0),
                                 color: const Color(bgColor),
                               ),
-                              child: IconButton(
-                                padding: EdgeInsets.zero,
-                                icon: Icon(
+                              child: InkWell(
+                                child: Icon(
                                   Icons.logout,
                                   size: SizeConfig.imageSizeMultiplier * 3.5,
+                                  color: const Color(colorDarkBlue),
                                 ),
-                                color: const Color(colorDarkBlue),
-                                onPressed: () async {
+                                onTap: () async {
                                   final result = await showDialog(
                                       context: context,
                                       builder: (context) =>
@@ -264,8 +294,17 @@ class ShowFabSheet {
                           onTap: () {
                             data.last == data[i]
                                 ? launchUrl(data[i]["url"])
-                                : Navigator.pushNamed(
-                                    context, data[i]['navigate']);
+                                : data[i]["toCheck"]
+                                    ? Provider.of<LoginProvider>(context,
+                                                    listen: false)
+                                                .loginName !=
+                                            null
+                                        ? Navigator.pushNamed(
+                                            context, data[i]['navigate'])
+                                        : Navigator.pushNamed(
+                                            context, loginRoute)
+                                    : Navigator.pushNamed(
+                                        context, data[i]['navigate']);
                           },
                         );
                       }),
@@ -356,8 +395,7 @@ class ShowLocationSheet {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return const Center(
-                                child: CircularProgressIndicator.adaptive());
+                            return const CustomLoadingIndicator();
                           }
                           return Consumer<AirportListProvider>(
                               builder: (_, value, __) {
@@ -384,8 +422,8 @@ class ShowLocationSheet {
                                                               .searchData[i])));
                                         },
                                         child: ListTile(
-                                          contentPadding: const EdgeInsets.only(
-                                              left: padding * 2.0),
+                                          contentPadding:
+                                              const EdgeInsets.only(left: 4),
                                           leading: Text(
                                             value.searchData[i].ident,
                                             style: Theme.of(context)

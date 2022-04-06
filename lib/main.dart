@@ -15,6 +15,7 @@ import 'package:aviation_met_nepal/screens/lighting_screen.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
+import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -79,6 +80,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
           // initialRoute: homeRoute,
+
           home: checkProvider.isConnected
               ? const SplashScreen()
               : const InternetConnectionScreen(),

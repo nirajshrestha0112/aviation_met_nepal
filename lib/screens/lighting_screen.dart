@@ -27,8 +27,8 @@ class _LightingDataState extends State<LightingData> {
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
-            child: const Icon(
-              Icons.arrow_back_ios_sharp,
+            child: Icon(
+              Icons.adaptive.arrow_back,
             ),
             onTap: () {
               Navigator.pop(context);

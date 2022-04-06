@@ -38,6 +38,7 @@ class LoginProvider extends ChangeNotifier {
               colorBlue: Colors.red);
 
           ScaffoldMessenger.of(context).showSnackBar(errorSnackBar);
+          Navigator.pop(context);
         } else {
           log(response.body);
           token = jsonDecode(response.body)["token"];

@@ -7,6 +7,7 @@ import '../constant/values.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/size_config.dart';
 import '../widgets/custom_floating_action_btn.dart';
+import '../widgets/custom_loading_indicator.dart';
 
 class SatelliteScreen extends StatefulWidget {
   const SatelliteScreen({required this.screenName, Key? key}) : super(key: key);
@@ -59,7 +60,7 @@ class _SatelliteScreenState extends State<SatelliteScreen> {
                           left: SizeConfig.widthMultiplier * 3.5,
                           child: GestureDetector(
                             child: Icon(
-                              Icons.arrow_back_ios_new_sharp,
+                              Icons.adaptive.arrow_back,
                               color: const Color(colorDarkBlue),
                               size: SizeConfig.imageSizeMultiplier * 6.0,
                             ),
@@ -78,8 +79,7 @@ class _SatelliteScreenState extends State<SatelliteScreen> {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           {
-                            return const Center(
-                                child: CircularProgressIndicator.adaptive());
+                            return const CustomLoadingIndicator();
                           }
                         }
                         return InteractiveViewer(

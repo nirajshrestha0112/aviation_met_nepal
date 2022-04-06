@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../model/airport_list_model.dart';
 import '../utils/size_config.dart';
+import 'custom_loading_indicator.dart';
 
 class SigmetsTab extends StatefulWidget {
   const SigmetsTab({required this.sigmetsTabData, Key? key}) : super(key: key);
@@ -27,60 +28,56 @@ class _SigmetsTabState extends State<SigmetsTab> {
   late Future _future;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:
-          const EdgeInsets.symmetric(horizontal: padding, vertical: padding),
-      child: FutureBuilder(
-        future: _future,
-        builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
-          }
-          return Provider.of<SigmetsDataProvider>(context, listen: false)
-                      .sigmetsData ==
-                  null
-              ? const Center(
-                  child: CustomErrorTab(),
-                )
-              : SingleChildScrollView(
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                      top: padding,
-                      left: padding,
-                      bottom: padding,
-                    ),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(radius)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "SIGMETS Data",
-                          style: TextStyle(
-                              fontSize: SizeConfig.textMultiplier * 2.0,
-                              fontWeight: FontWeight.w500,
-                              color: colorBlue),
-                        ),
-                        SizedBox(height: SizeConfig.heightMultiplier * 1.5),
-                        Consumer<SigmetsDataProvider>(builder: (_, value, __) {
-                          return Text(
-                            value.sigmetsData!.data!,
-                            style: TextStyle(
-                                fontSize: SizeConfig.textMultiplier * 2.0,
-                                fontWeight: FontWeight.w500,
-                                color: const Color(textColor)),
-                          );
-                        }),
-                      ],
-                    ),
+    return FutureBuilder(
+      future: _future,
+      builder: (context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CustomLoadingIndicator();
+        }
+        return Provider.of<SigmetsDataProvider>(context, listen: false)
+                    .sigmetsData !=
+                null
+            ? SingleChildScrollView(
+                child: Container(
+                  margin: const EdgeInsets.symmetric(
+                      vertical: padding, horizontal: padding),
+                  padding: const EdgeInsets.only(
+                    top: padding,
+                    left: padding,
+                    bottom: padding,
                   ),
-                );
-        },
-      ),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(radius)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "SIGMETS Data",
+                        style: TextStyle(
+                            fontSize: SizeConfig.textMultiplier * 2.0,
+                            fontWeight: FontWeight.w500,
+                            color: colorBlue),
+                      ),
+                      SizedBox(height: SizeConfig.heightMultiplier * 1.5),
+                      Consumer<SigmetsDataProvider>(builder: (_, value, __) {
+                        return Text(
+                          value.sigmetsData!.data!,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: SizeConfig.textMultiplier * 2.0),
+                        );
+                      }),
+                    ],
+                  ),
+                ),
+              )
+            : const CustomErrorTab();
+      },
     );
   }
 }

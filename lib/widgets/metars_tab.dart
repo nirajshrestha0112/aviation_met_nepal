@@ -1,6 +1,7 @@
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
+import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../constant/colors_properties.dart';
@@ -50,9 +51,7 @@ class _MetarsTabState extends State<MetarsTab> {
         future: _future,
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
+            return const CustomLoadingIndicator();
           }
           return SingleChildScrollView(
             child: Column(
@@ -62,7 +61,7 @@ class _MetarsTabState extends State<MetarsTab> {
                   children: [
                     Text(
                         Provider.of<MetarDataProvider>(context, listen: false)
-                            .metarDataRaw
+                            .metarDataRaw!
                             .data!
                             .date![0]
                             .toString()
@@ -115,7 +114,7 @@ class _MetarsTabState extends State<MetarsTab> {
                     rawHeaderText: "Raw",
                     rawBodyText:
                         Provider.of<MetarDataProvider>(context, listen: false)
-                            .metarDataRaw
+                            .metarDataRaw!
                             .data!
                             .raw!),
                 SizedBox(

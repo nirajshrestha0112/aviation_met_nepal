@@ -13,40 +13,33 @@ class ShowAlertDialogBox extends StatefulWidget {
 }
 
 class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
-  /*  bool isSuccessFromApi = false;
-
-  bool isLoading = false;
-
-  void apiCall() {
-    setState(() {
-      isLoading = true;
-    });
-    Provider.of<LoginProvider>(context, listen: false).clearLoginDetails();
-    CircularProgressIndicator.adaptive();
-    //call the api
-    //after success or failure
-    setState(() {
-      isLoading = false;
-      isSuccessFromApi = true;
-    });
-  } */
-// bool willLeave = false;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-        // insetPadding: EdgeInsets.symmetric(horizontal: 10),
+        content: Builder(
+          builder: (context) {
+            // Get available height and width of the build area of this widget. Make a choice depending on the size.
+            var height = SizeConfig.heightMultiplier * 5.0;
+            var width = SizeConfig.widthMultiplier * 100.0;
+            return SizedBox(
+              height: height,
+              width: width,
+              child: Text("Are you sure you want to exit?",
+                  style: TextStyle(
+                    fontSize: SizeConfig.textMultiplier * 1.8,
+                    color: Colors.black,
+                  )),
+            );
+          },
+        ),
         title: Text(
           'Confirm to Exit',
           style: TextStyle(
-              fontSize: SizeConfig.textMultiplier * 2.0,
+              fontSize: SizeConfig.textMultiplier * 2.2,
               color: Colors.black,
-              fontWeight: FontWeight.normal),
+              fontWeight: FontWeight.w600),
         ),
-        content: Text("Are you sure you want to exit?",
-            style: TextStyle(
-              fontSize: SizeConfig.textMultiplier * 1.8,
-              color: Colors.black,
-            )),
+        
         contentPadding:
             const EdgeInsets.only(top: padding / 2.0, left: padding * 1.5),
         actions: <Widget>[
@@ -57,7 +50,7 @@ class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
               child: Text('No',
                   style: TextStyle(
                     fontSize: SizeConfig.textMultiplier * 1.8,
-                    color: Colors.green,
+                    color: Colors.green[800],
                   ))),
           TextButton(
               onPressed: () {
@@ -67,7 +60,7 @@ class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
               child: Text('Yes',
                   style: TextStyle(
                     fontSize: SizeConfig.textMultiplier * 1.8,
-                    color: Colors.green,
+                    color: Colors.green[800],
                   ))),
         ]);
   }

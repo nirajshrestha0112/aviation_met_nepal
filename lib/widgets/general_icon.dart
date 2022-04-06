@@ -18,7 +18,7 @@ class GeneralIcon extends StatelessWidget {
           Navigator.pop(context);
         },
         child: Icon(
-          Icons.arrow_back_ios_new_sharp,
+          Icons.adaptive.arrow_back,
           color: const Color(colorDarkBlue),
           size: SizeConfig.imageSizeMultiplier * 6.0,
         ),

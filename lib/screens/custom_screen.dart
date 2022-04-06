@@ -10,6 +10,7 @@ import '../provider/opmet_data_provider.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/size_config.dart';
 import '../widgets/custom_floating_action_btn.dart';
+import '../widgets/custom_loading_indicator.dart';
 
 class CustomScreen extends StatefulWidget {
   const CustomScreen({required this.screenName, Key? key}) : super(key: key);
@@ -77,7 +78,7 @@ class _CustomScreenState extends State<CustomScreen> {
                           left: SizeConfig.widthMultiplier * 3.5,
                           child: GestureDetector(
                             child: Icon(
-                              Icons.arrow_back_ios_new_sharp,
+                              Icons.adaptive.arrow_back,
                               color: const Color(colorDarkBlue),
                               size: SizeConfig.imageSizeMultiplier * 6.0,
                             ),
@@ -99,9 +100,7 @@ class _CustomScreenState extends State<CustomScreen> {
                             ConnectionState.waiting) {
                           return SizedBox(
                             height: MediaQuery.of(context).size.height / 1.3,
-                            child: const Center(
-                              child: CircularProgressIndicator.adaptive(),
-                            ),
+                            child: const CustomLoadingIndicator(),
                           );
                         }
 
@@ -151,7 +150,9 @@ class _CustomScreenState extends State<CustomScreen> {
                                               builder: (_, value, __) {
                                               return value.ashtamsData?.data ==
                                                       null
-                                                  ? const CustomErrorTab()
+                                                  ? const CustomErrorTab(
+                                                      margin: false,
+                                                    )
                                                   : Text(
                                                       value.ashtamsData!.data
                                                           .toString(),

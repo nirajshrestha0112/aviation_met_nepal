@@ -16,3 +16,4 @@ const String weatherCameraImagesRoute = '/ weatherCameraImagesScreen';
 const String icingTurbulenceChartRoute = '/icingTurbulenceChartScreen';
 const String notificationRoute = '/notification';
 const String splashRoute = '/splashScreen';
+// const String customLoadingRoute = '/splashScreen';

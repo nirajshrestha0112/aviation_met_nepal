@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../model/airport_list_model.dart';
 import 'custom_build_row.dart';
+import 'custom_loading_indicator.dart';
 import 'custom_raw_card.dart';
 
 class TafsTab extends StatefulWidget {
@@ -44,9 +45,7 @@ class _TafsTabState extends State<TafsTab> {
         future: _future,
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
+            return const CustomLoadingIndicator();
           }
           return SingleChildScrollView(
             child: Column(
@@ -54,7 +53,7 @@ class _TafsTabState extends State<TafsTab> {
               children: [
                 Text(
                   Provider.of<TafsDataProvider>(context, listen: false)
-                      .tafsDataRaw
+                      .tafsDataRaw!
                       .data!
                       .date![0]
                       .toString()
@@ -71,7 +70,7 @@ class _TafsTabState extends State<TafsTab> {
                     rawHeaderText: "Raw",
                     rawBodyText:
                         Provider.of<TafsDataProvider>(context, listen: false)
-                            .tafsDataRaw
+                            .tafsDataRaw!
                             .data!
                             .raw!),
                 SizedBox(
@@ -133,7 +132,9 @@ class _TafsTabState extends State<TafsTab> {
                                 SizedBox(
                                   height: SizeConfig.heightMultiplier / 4.5,
                                 ),
-                                buildRow("Ceiling", value.tafsDataDecoded.data!.decoded!
+                                buildRow(
+                                    "Ceiling",
+                                    value.tafsDataDecoded.data!.decoded!
                                         .ceilings![index]),
                                 SizedBox(
                                   height: SizeConfig.heightMultiplier / 4.5,

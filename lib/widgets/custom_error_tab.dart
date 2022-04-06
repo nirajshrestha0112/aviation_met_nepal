@@ -7,39 +7,38 @@ import '../constant/values.dart';
 import '../utils/size_config.dart';
 
 class CustomErrorTab extends StatelessWidget {
-  const CustomErrorTab({Key? key}) : super(key: key);
-
+  const CustomErrorTab({this.margin = true, Key? key}) : super(key: key);
+  final bool margin;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: padding, vertical: padding * 2.0),
-      child: Column(
-        children: [
-          Container(
-            height: SizeConfig.heightMultiplier * 23.0,
-            width: double.infinity,
-            decoration: BoxDecoration(
-                color: const Color(colorWhite),
-                borderRadius: BorderRadius.circular(radius)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SvgPicture.asset(
-                  noDataImg,
-                  width: SizeConfig.heightMultiplier * 30,
-                  height: SizeConfig.widthMultiplier * 30,
-                ),
-                Text("No data Available",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1!
-                        .copyWith(fontWeight: FontWeight.normal)),
-              ],
+      padding:
+          const EdgeInsets.symmetric(horizontal: padding, vertical: padding),
+      child: Container(
+        height: SizeConfig.heightMultiplier * 16.0,
+        margin: margin ? const EdgeInsets.only(bottom: padding * 28.0) : null,
+        // alignment: Alignment.topCenter,
+        width: double.infinity,
+        decoration: BoxDecoration(
+            color: const Color(colorWhite),
+            borderRadius: BorderRadius.circular(radius)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SvgPicture.asset(
+              noDataImg,
+              width: SizeConfig.heightMultiplier * 26,
+              height: SizeConfig.widthMultiplier * 26,
             ),
-          ),
-        ],
+            Text("No data Available",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(fontWeight: FontWeight.normal)),
+          ],
+        ),
       ),
     );
   }

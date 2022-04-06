@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import '../model/tafs_raw_model.dart';
 
 class TafsDataProvider extends ChangeNotifier {
-  late TafsDataRaw tafsDataRaw;
+  TafsDataRaw? tafsDataRaw;
   fetchTafsDataRaw({
     required String ident,
   }) async {
@@ -20,7 +20,7 @@ class TafsDataProvider extends ChangeNotifier {
       log(response.body);
       if (response.statusCode == 200) {
         tafsDataRaw = TafsDataRaw.fromJson(jsonDecode(response.body));
-        log(tafsDataRaw.toJson().toString());
+        log(tafsDataRaw!.toJson().toString());
         // notifyListeners();
       } else {
         throw Exception("Failed to load data");

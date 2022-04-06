@@ -2,27 +2,22 @@ import 'package:flutter/material.dart';
 
 class EachText extends StatelessWidget {
   final String text;
-  final double? fontSize;
-  final Color? color;
-  final TextAlign? textAlign;
-  final FontWeight? fontWeight;
+  final bool colorData;
   const EachText({
-    this.textAlign,
-    this.fontSize,
-    this.fontWeight,
     required this.text,
+    this.colorData = true,
     Key? key,
-    this.color,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-
-      text,
-      textAlign: textAlign,
-      style:
-          TextStyle(fontSize: fontSize, color: color, fontWeight: fontWeight),
+    return Transform(
+      transform: Matrix4.translationValues(-16.0, 0.0, 0.0),
+      child: Text(text,
+          style: Theme.of(context)
+              .textTheme
+              .bodyText1!
+              .copyWith(fontWeight: FontWeight.w400)),
     );
   }
 }

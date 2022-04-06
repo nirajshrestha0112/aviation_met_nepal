@@ -7,7 +7,7 @@ import '../model/matar_data_raw_model.dart';
 import '../model/metar_data_decoded_model.dart';
 
 class MetarDataProvider extends ChangeNotifier {
-  late MetarDataRaw metarDataRaw;
+   MetarDataRaw? metarDataRaw;
   fetchMetarDataRaw({
     required String ident,
     required String filteredData,
@@ -19,7 +19,7 @@ class MetarDataProvider extends ChangeNotifier {
       log(response.body);
       if (response.statusCode == 200) {
         metarDataRaw = MetarDataRaw.fromJson(jsonDecode(response.body));
-        log(metarDataRaw.toJson().toString());
+        log(metarDataRaw!.toJson().toString());
         notifyListeners();
       } else {
         throw Exception("Failed to load data");

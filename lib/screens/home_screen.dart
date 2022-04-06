@@ -24,6 +24,22 @@ class _HomeScreenState extends State<HomeScreen> {
     return WillPopScope(
       onWillPop: () async => await showDialog(
           context: context, builder: (context) => const ShowAlertDialogBox()),
+      /*     await showDialog(
+                  context: context,
+                  builder: (_) => AlertDialog(
+                        content: Builder(
+                          builder: (context) {
+                            // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                            var height = SizeConfig.heightMultiplier * 12;
+                            var width = SizeConfig.widthMultiplier * 80;
+                            return SizedBox(
+                              height: height,
+                              width: width,
+                              child: ,
+                            );
+                          },
+                        ),
+                      )), */
       child: SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -65,6 +81,8 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
           padding: const EdgeInsets.symmetric(
               horizontal: padding * 1.2, vertical: padding * 1.5),
           child: InkWell(
+            // overlayColor: Colors.transparent,
+            splashColor: Colors.transparent,
             onTap: () => ShowLocationSheet.showLocationSheet(
                 context: context,
                 editingController: _editingController,
@@ -80,8 +98,9 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                       Text(
                         "Select Airport",
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            fontWeight: FontWeight.normal,
                             color:
-                                const Color(colorDarkBlue).withOpacity(0.85)),
+                                const Color(colorDarkBlue).withOpacity(0.65)),
                       ),
                       Icon(
                         Icons.location_on,

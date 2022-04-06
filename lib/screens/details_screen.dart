@@ -9,6 +9,7 @@ import 'package:aviation_met_nepal/widgets/sigmets_tab.dart';
 import 'package:aviation_met_nepal/widgets/tafs_tab.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/custom_floating_action_btn.dart';
 import '../widgets/general_icon.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -39,24 +40,21 @@ class _DetailsScreenState extends State<DetailsScreen>
 
   final List<Tab> _tabs = const [
     Tab(
-      child: Text(
-        "METARS",
-      ),
+      child: TabEachText(tabText: "METARS"),
     ),
     Tab(
-      child: Text("TAFS"),
+      child: TabEachText(tabText: "TAFS"),
     ),
     Tab(
-      child: Text("SIGMETs"),
+      child: TabEachText(tabText: "SIGMETs"),
     ),
-    Tab(
-      child: Text("SPECI"),
-    ),
+    Tab(child: TabEachText(tabText: "SPECI")),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: const CustomFloatingActionBtn(),
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(SizeConfig.heightMultiplier * 13.0),
           child: AppBar(
@@ -66,9 +64,8 @@ class _DetailsScreenState extends State<DetailsScreen>
             leadingWidth: SizeConfig.widthMultiplier * 6.0,
             leading: const GeneralIcon(),
             bottom: TabBar(
-              padding: const EdgeInsets.symmetric(horizontal: radius),
               indicatorPadding: const EdgeInsets.symmetric(
-                  horizontal: radius, vertical: padding / 3.0),
+                  horizontal: padding / 3, vertical: padding / 3.0),
               controller: _tabController,
               tabs: _tabs,
             ),
@@ -80,5 +77,18 @@ class _DetailsScreenState extends State<DetailsScreen>
             children: _views,
           )),
     );
+  }
+}
+
+class TabEachText extends StatelessWidget {
+  const TabEachText({
+    Key? key,
+    required this.tabText,
+  }) : super(key: key);
+  final String tabText;
+  @override
+  Widget build(BuildContext context) {
+    return Text(tabText,
+        style: TextStyle(fontSize: SizeConfig.textMultiplier * 1.7));
   }
 }

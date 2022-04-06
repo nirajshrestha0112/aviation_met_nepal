@@ -33,8 +33,8 @@ class GeneralCard extends StatelessWidget {
                             Navigator.pop(context);
                           },
                           icon: Icon(
-                            Icons.arrow_back,
-                            color: Color(textColor),
+                            Icons.adaptive.arrow_back,
+                            color: const Color(colorDarkBlue),
                             size: SizeConfig.imageSizeMultiplier * 8.0,
                           ))),
                   ListTile(

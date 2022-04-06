@@ -34,26 +34,30 @@ class _SplashScreen extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Stack(fit: StackFit.expand, children: [
-      Image.asset(
-        splashScreenImg,
-        height: MediaQuery.of(context).size.height * 100,
-        width: MediaQuery.of(context).size.width * 100,
-      ),
-      Positioned(
-        left: SizeConfig.widthMultiplier * 32.0,
-        top: SizeConfig.heightMultiplier * 48.0,
-        child: SizedBox(
-          height: SizeConfig.heightMultiplier * 10.0,
-          width: SizeConfig.widthMultiplier * 40,
-          child: Image.asset(
-            gifImg,
-            height: 20,
-            width: 20,
-          ),
+    return SafeArea(
+      child: Scaffold(
+          body: Stack(children: [
+        Image.asset(
+          splashScreenImg,
+          fit: BoxFit.fill,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          // height: MediaQuery.of(context).size.height * 100,
         ),
-      )
-    ]));
+        Positioned(
+          left: SizeConfig.widthMultiplier * 32.0,
+          top: SizeConfig.heightMultiplier * 48.0,
+          child: SizedBox(
+            height: SizeConfig.heightMultiplier * 10.0,
+            width: SizeConfig.widthMultiplier * 40,
+            child: Image.asset(
+              gifImg,
+              height: 20,
+              width: 20,
+            ),
+          ),
+        )
+      ])),
+    );
   }
 }
