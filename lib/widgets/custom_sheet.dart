@@ -520,7 +520,7 @@ class ShowFilterSheet {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(radius),
-                      border: Border.all(color: Color(bgColor), width: 2.0),
+                      border: Border.all(color: const Color(bgColor), width: 2.0),
                     ),
                     child: StatefulBuilder(builder: (context, set) {
                       return DropDownFilter(

@@ -2,6 +2,7 @@ import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/provider/airmet_data_provider.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
+import 'package:aviation_met_nepal/provider/cities_provider.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/provider/metar_data_provider.dart';
@@ -15,6 +16,7 @@ import 'package:aviation_met_nepal/screens/lighting_screen.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
+import 'package:aviation_met_nepal/screens/weather_forecast_screen.dart';
 import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
@@ -48,6 +50,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => LightingDataProvider()),
         ChangeNotifierProvider(create: (_) => PrivacyPolicyProvider()),
+        ChangeNotifierProvider(create: (_) => CitiesProvider()),
       ],
       child: const MyApp(),
     ),
@@ -79,11 +82,11 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(context),
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          // initialRoute: homeRoute,
+          initialRoute:'/weatherForecast' ,
 
-          home: checkProvider.isConnected
+          /*  home: checkProvider.isConnected
               ? const SplashScreen()
-              : const InternetConnectionScreen(),
+              : const InternetConnectionScreen(), */
           routes: {
             splashRoute: (context) => const SplashScreen(),
             homeRoute: (context) => const HomeScreen(),
@@ -107,6 +110,7 @@ class MyApp extends StatelessWidget {
                 const CustomScreen(screenName: "Gamet Data"),
             opmetDataRoute: (context) =>
                 const CustomScreen(screenName: "Opmet Data"),
+            '/weatherForecast': ((context) => const WeatherForecastScreen())
           },
         );
       });

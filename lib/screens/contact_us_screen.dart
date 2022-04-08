@@ -277,12 +277,27 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                                                 ),
                                               })
                                     : !isViewMore
-                                        ? Text(Provider.of<PrivacyPolicyProvider>(
+                                        ?  Html(
+                                            data: Provider.of<PrivacyPolicyProvider>(
+                                                    context,
+                                                    listen: false)
+                                                .privacyPolicyData!
+                                                .data[0]
+                                                .policyDetailsNp,
+                                            style: {
+                                                "span": Style(
+                                                  fontSize: FontSize(
+                                                    SizeConfig.textMultiplier *
+                                                        1.8,
+                                                  ),
+                                                ),
+                                              })
+                                        :
+                                        Text(Provider.of<PrivacyPolicyProvider>(
                                                 context,
                                                 listen: false)
                                             .privacyTitleNp!
-                                            .substring(0, 90))
-                                        : Html(
+                                            .substring(0, 90)), /* Html(
                                             data: Provider.of<PrivacyPolicyProvider>(
                                                     context,
                                                     listen: false)
@@ -297,7 +312,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                                                   ),
                                                 ),
                                               }),
-                                TxtBtn(
+ */                                TxtBtn(
                                   callback: toggleViewMore,
                                   isViewMore: isViewMore,
                                 )
