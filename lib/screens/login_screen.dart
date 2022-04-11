@@ -110,7 +110,10 @@ class _LoginPageState extends State<LoginPage> {
                       text: "Login",
                       onPressed: () async {
                         if (formGlobalKey.currentState!.validate()) {
-                          showDialog(context: context, builder: (_)=> const CustomLoadingIndicator(),);
+                          showDialog(
+                            context: context,
+                            builder: (_) => const CustomLoadingIndicator(),
+                          );
                           await Future.delayed(const Duration(seconds: 3));
                           await Provider.of<LoginProvider>(context,
                                   listen: false)

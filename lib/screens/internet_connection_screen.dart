@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
 import 'package:aviation_met_nepal/screens/splash_screen.dart';

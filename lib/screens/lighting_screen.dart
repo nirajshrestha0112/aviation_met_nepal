@@ -1,7 +1,6 @@
 import 'package:aviation_met_nepal/provider/lighting_data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import 'package:provider/provider.dart';
 
 class LightingData extends StatefulWidget {

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-
 class LightingData {
   LightingData({
     required this.status,
@@ -43,7 +42,9 @@ class Datum {
   final String locationError;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        date:  json["date"]  != null ? DateTime.parse(json["date"]) : DateTime.now(),
+        date: json["date"] != null
+            ? DateTime.parse(json["date"])
+            : DateTime.now(),
         latitude: json["latitude"] ?? '',
         longitude: json["longitude"] ?? '',
         type: json["type"] ?? '',

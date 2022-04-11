@@ -258,7 +258,8 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                               Column(children: [
                                 isEng
                                     ? isViewMore
-                                        ? Text(Provider.of<PrivacyPolicyProvider>(context, listen: false)
+                                        ? Text(Provider.of<PrivacyPolicyProvider>(context,
+                                                listen: false)
                                             .privacyTitle!
                                             .substring(0, 90))
                                         : Html(
@@ -277,7 +278,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                                                 ),
                                               })
                                     : !isViewMore
-                                        ?  Html(
+                                        ? Html(
                                             data: Provider.of<PrivacyPolicyProvider>(
                                                     context,
                                                     listen: false)
@@ -292,12 +293,12 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                                                   ),
                                                 ),
                                               })
-                                        :
-                                        Text(Provider.of<PrivacyPolicyProvider>(
+                                        : Text(Provider.of<PrivacyPolicyProvider>(
                                                 context,
                                                 listen: false)
                                             .privacyTitleNp!
-                                            .substring(0, 90)), /* Html(
+                                            .substring(0, 90)),
+                                /* Html(
                                             data: Provider.of<PrivacyPolicyProvider>(
                                                     context,
                                                     listen: false)
@@ -312,7 +313,8 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                                                   ),
                                                 ),
                                               }),
- */                                TxtBtn(
+ */
+                                TxtBtn(
                                   callback: toggleViewMore,
                                   isViewMore: isViewMore,
                                 )

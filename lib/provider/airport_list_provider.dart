@@ -6,7 +6,6 @@ import 'package:aviation_met_nepal/model/airport_list_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-
 /* class AviationProvider extends ChangeNotifier {
   List<String> data = [];
   Future fetchApi() async {

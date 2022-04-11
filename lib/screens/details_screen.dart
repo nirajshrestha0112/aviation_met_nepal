@@ -1,4 +1,3 @@
-import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/model/airport_list_model.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';

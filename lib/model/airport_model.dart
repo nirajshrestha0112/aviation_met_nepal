@@ -10,7 +10,7 @@ class Airport {
   List<Tags>? tags;
   List? images;
   List? dataSource;
-  
+
   List<MetaData>? metaData;
 
   Airport(

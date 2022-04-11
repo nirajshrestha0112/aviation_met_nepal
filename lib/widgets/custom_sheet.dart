@@ -12,6 +12,7 @@ import 'package:aviation_met_nepal/widgets/each_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../constant/values.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/size_config.dart';
@@ -520,7 +521,8 @@ class ShowFilterSheet {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(radius),
-                      border: Border.all(color: const Color(bgColor), width: 2.0),
+                      border:
+                          Border.all(color: const Color(bgColor), width: 2.0),
                     ),
                     child: StatefulBuilder(builder: (context, set) {
                       return DropDownFilter(

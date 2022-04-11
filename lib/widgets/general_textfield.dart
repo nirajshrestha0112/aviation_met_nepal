@@ -58,7 +58,12 @@ class _GeneralTextFieldState extends State<GeneralTextField> {
             suffixIcon: widget.obscureText
                 ? InkWell(
                     onTap: _togglePasswordShow,
-                    child:  Icon(Icons.visibility,color: isHiddenPassword?const Color(colorGrey10):const Color(colorPrimary),),
+                    child: Icon(
+                      Icons.visibility,
+                      color: isHiddenPassword
+                          ? const Color(colorGrey10)
+                          : const Color(colorPrimary),
+                    ),
                   )
                 : null));
   }

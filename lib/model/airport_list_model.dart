@@ -4,21 +4,23 @@ class AirportList {
     required this.message,
     required this.data,
   });
-   String ?status;
-   String ?message;
-   List<Data> ?data;
-  
-  AirportList.fromJson(Map<String, dynamic> json){
-    status = json['status']??"";
-    message = json['message']??"";
-    data = json['data']!=null?List.from(json['data']).map((e)=>Data.fromJson(e)).toList():null;
+  String? status;
+  String? message;
+  List<Data>? data;
+
+  AirportList.fromJson(Map<String, dynamic> json) {
+    status = json['status'] ?? "";
+    message = json['message'] ?? "";
+    data = json['data'] != null
+        ? List.from(json['data']).map((e) => Data.fromJson(e)).toList()
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['status'] = status;
     _data['message'] = message;
-    _data['data'] = data?.map((e)=>e.toJson()).toList();
+    _data['data'] = data?.map((e) => e.toJson()).toList();
     return _data;
   }
 }
@@ -50,8 +52,8 @@ class Data {
   late final String iataCode;
   late final String localCode;
   late final String coordinates;
-  
-  Data.fromJson(Map<String, dynamic> json){
+
+  Data.fromJson(Map<String, dynamic> json) {
     ident = json['ident'];
     type = json['type'];
     name = json['name'];

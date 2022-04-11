@@ -5,7 +5,7 @@ class TafsDataRaw {
   TafsDataRaw({this.status, this.data});
 
   TafsDataRaw.fromJson(Map<String, dynamic> json) {
-    status = json['status']??"";
+    status = json['status'] ?? "";
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 

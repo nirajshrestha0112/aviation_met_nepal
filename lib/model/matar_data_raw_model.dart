@@ -5,7 +5,7 @@ class MetarDataRaw {
   MetarDataRaw({this.status, this.data});
 
   MetarDataRaw.fromJson(Map<String, dynamic> json) {
-    status = json['status']??"";
+    status = json['status'] ?? "";
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 

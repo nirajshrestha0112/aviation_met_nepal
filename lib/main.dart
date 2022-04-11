@@ -11,24 +11,23 @@ import 'package:aviation_met_nepal/provider/sigmets_data_provider.dart';
 import 'package:aviation_met_nepal/provider/tafs_provider.dart';
 import 'package:aviation_met_nepal/screens/contact_us_screen.dart';
 import 'package:aviation_met_nepal/screens/custom_screen.dart';
+import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
 import 'package:aviation_met_nepal/screens/lighting_screen.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
-import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
 import 'package:aviation_met_nepal/screens/weather_forecast_screen.dart';
-import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
 import 'provider/ashtams_data_provider.dart';
 import 'provider/gamet_data_provider.dart';
 import 'provider/lighting_data_provider.dart';
 import 'provider/opmet_data_provider.dart';
 import 'provider/satellite_image_provider.dart';
-import 'screens/internet_connection_screen.dart';
 import 'screens/splash_screen.dart';
 
 void main() {
@@ -82,7 +81,7 @@ class MyApp extends StatelessWidget {
           theme: lightTheme(context),
           debugShowCheckedModeBanner: false,
           title: 'Aviation Met Nepal',
-          initialRoute:'/weatherForecast' ,
+          initialRoute: '/weatherForecast',
 
           /*  home: checkProvider.isConnected
               ? const SplashScreen()

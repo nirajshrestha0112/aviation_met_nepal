@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:aviation_met_nepal/model/privacy_policy_model.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
+import 'package:http/http.dart' as http;
 
 class PrivacyPolicyProvider extends ChangeNotifier {
   PrivacyPolicy? privacyPolicyData;

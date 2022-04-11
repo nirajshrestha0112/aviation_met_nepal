@@ -18,6 +18,4 @@ class OpmetData {
     data['data'] = data;
     return data;
   }
-
-  
 }

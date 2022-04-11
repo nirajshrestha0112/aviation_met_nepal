@@ -6,9 +6,9 @@ import '../constant/colors_properties.dart';
 
 ThemeData lightTheme(BuildContext context) {
   return ThemeData(
-    // splashColor: Colors.transparent,
-    // highlightColor: Colors.transparent,
-    hoverColor: Colors.transparent,
+      // splashColor: Colors.transparent,
+      // highlightColor: Colors.transparent,
+      hoverColor: Colors.transparent,
       tabBarTheme: TabBarTheme(
         indicator: BoxDecoration(
           border: Border.all(color: Colors.red),

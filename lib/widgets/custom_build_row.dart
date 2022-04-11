@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../constant/colors_properties.dart';
 import '../constant/values.dart';
 import '../utils/size_config.dart';
@@ -11,7 +12,7 @@ Widget buildRow(String label, String value,
   return Container(
     decoration: BoxDecoration(
         color: isText ? Colors.transparent : Colors.white,
-        borderRadius: BorderRadius.circular(radius/3)),
+        borderRadius: BorderRadius.circular(radius / 3)),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [

@@ -1,13 +1,12 @@
 class TafsDataDecoded {
-  String ?status;
-  Data ?data;
+  String? status;
+  Data? data;
 
   TafsDataDecoded({this.status, this.data});
 
   TafsDataDecoded.fromJson(Map<String, dynamic> json) {
-    status = json['status']??"";
+    status = json['status'] ?? "";
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
-    
   }
 
   Map<String, dynamic> toJson() {
@@ -22,7 +21,7 @@ class TafsDataDecoded {
 
 class Data {
   List<String>? date;
-  Decoded ?decoded;
+  Decoded? decoded;
 
   Data({this.date, this.decoded});
 

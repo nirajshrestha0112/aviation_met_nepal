@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-
-
 class DatumCities {
   DatumCities({
     required this.id,
@@ -43,7 +39,7 @@ class DatumCities {
     tags = json['tags'];
   }
 
- Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['id'] = id;
     _data['latitude'] = latitude;

@@ -39,7 +39,6 @@ class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
               color: Colors.black,
               fontWeight: FontWeight.w600),
         ),
-        
         contentPadding:
             const EdgeInsets.only(top: padding / 2.0, left: padding * 1.5),
         actions: <Widget>[

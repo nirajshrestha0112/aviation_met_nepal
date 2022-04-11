@@ -18,6 +18,4 @@ class AshtamsData {
     data['data'] = data;
     return data;
   }
-
-  
 }

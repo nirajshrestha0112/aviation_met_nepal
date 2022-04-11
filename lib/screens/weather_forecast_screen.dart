@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/provider/cities_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
