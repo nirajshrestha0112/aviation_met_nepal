@@ -5,8 +5,8 @@ import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-import '../model/matar_data_raw_model.dart';
-import '../model/metar_data_decoded_model.dart';
+import '../model/matar_data_raw.dart';
+import '../model/metar_data_decoded.dart';
 
 class MetarDataProvider extends ChangeNotifier {
   MetarDataRaw? metarDataRaw;

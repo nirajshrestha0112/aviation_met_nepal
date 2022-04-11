@@ -1,5 +1,5 @@
 import 'package:aviation_met_nepal/constant/values.dart';
-import 'package:aviation_met_nepal/model/airport_list_model.dart';
+import 'package:aviation_met_nepal/model/airport_list.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';

@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/urls.dart';
-import 'package:aviation_met_nepal/model/airmet_data_model.dart';
+import 'package:aviation_met_nepal/model/airmet_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
 class AirmetDataProvider extends ChangeNotifier {
   AirMetData? airmetData;
   fetchAirmetData() async {

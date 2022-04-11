@@ -11,18 +11,18 @@ import 'package:aviation_met_nepal/provider/sigmets_data_provider.dart';
 import 'package:aviation_met_nepal/provider/tafs_provider.dart';
 import 'package:aviation_met_nepal/screens/contact_us_screen.dart';
 import 'package:aviation_met_nepal/screens/custom_screen.dart';
-import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
 import 'package:aviation_met_nepal/screens/lighting_screen.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
+import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
 import 'package:aviation_met_nepal/screens/weather_forecast_screen.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
+import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import 'provider/ashtams_data_provider.dart';
 import 'provider/gamet_data_provider.dart';
 import 'provider/lighting_data_provider.dart';
@@ -50,6 +50,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => LightingDataProvider()),
         ChangeNotifierProvider(create: (_) => PrivacyPolicyProvider()),
         ChangeNotifierProvider(create: (_) => CitiesProvider()),
+        ChangeNotifierProvider(create: (_) => WeatherForecastProvider()),
       ],
       child: const MyApp(),
     ),
@@ -76,41 +77,45 @@ class MyApp extends StatelessWidget {
       return OrientationBuilder(builder: (context, orientation) {
         final checkProvider = Provider.of<ConnectivityProvider>(context);
 
-        SizeConfig().init(constraints, orientation);
-        return MaterialApp(
-          theme: lightTheme(context),
-          debugShowCheckedModeBanner: false,
-          title: 'Aviation Met Nepal',
-          initialRoute: '/weatherForecast',
+        // SizeConfig().init(constraints, orientation);
+        return ScreenUtilInit(
+          designSize: const Size(360, 723),
+          builder: () => MaterialApp(
+            theme: lightTheme(context),
+            debugShowCheckedModeBanner: false,
+            title: 'Aviation Met Nepal',
+            initialRoute: '/weatherForecast',
 
-          /*  home: checkProvider.isConnected
-              ? const SplashScreen()
-              : const InternetConnectionScreen(), */
-          routes: {
-            splashRoute: (context) => const SplashScreen(),
-            homeRoute: (context) => const HomeScreen(),
-            detailsRoute: (context) => const DetailsScreen(),
-            contactRoute: (context) => const ContactUs(),
-            loginRoute: (context) => const LoginPage(),
-            lightingDataRoute: (context) => const LightingData(),
-            notificationRoute: (context) => const Scaffold(),
-            icingTurbulenceChartRoute: (context) => const Scaffold(),
-            weatherCameraImagesRoute: (context) => const Scaffold(),
-            satelliteImageDataRoute: (context) =>
-                const SatelliteScreen(screenName: "Satellite Images"),
-            windChartRoute: (context) => const Scaffold(),
-            sigwxChartRoute: (context) => const Scaffold(),
-            weatherForecastRoute: (context) => const Scaffold(),
-            airmetDataRoute: (context) =>
-                const CustomScreen(screenName: "Airmet Data"),
-            ashtamsDataRoute: (context) =>
-                const CustomScreen(screenName: "Ashtams Data"),
-            gametDataRoute: (context) =>
-                const CustomScreen(screenName: "Gamet Data"),
-            opmetDataRoute: (context) =>
-                const CustomScreen(screenName: "Opmet Data"),
-            '/weatherForecast': ((context) => const WeatherForecastScreen())
-          },
+            /*  home: checkProvider.isConnected
+                ? const SplashScreen()
+                : const InternetConnectionScreen(), */
+            routes: {
+              splashRoute: (context) => const SplashScreen(),
+              '/loading': (context) => const CustomLoadingIndicator(),
+              homeRoute: (context) => const HomeScreen(),
+              detailsRoute: (context) => const DetailsScreen(),
+              contactRoute: (context) => const ContactUs(),
+              loginRoute: (context) => const LoginPage(),
+              lightingDataRoute: (context) => const LightingData(),
+              notificationRoute: (context) => const Scaffold(),
+              icingTurbulenceChartRoute: (context) => const Scaffold(),
+              weatherCameraImagesRoute: (context) => const Scaffold(),
+              satelliteImageDataRoute: (context) =>
+                  const SatelliteScreen(screenName: "Satellite Images"),
+              windChartRoute: (context) => const Scaffold(),
+              sigwxChartRoute: (context) => const Scaffold(),
+              weatherForecastRoute: (context) => const Scaffold(),
+              airmetDataRoute: (context) =>
+                  const CustomScreen(screenName: "Airmet Data"),
+              ashtamsDataRoute: (context) =>
+                  const CustomScreen(screenName: "Ashtams Data"),
+              gametDataRoute: (context) =>
+                  const CustomScreen(screenName: "Gamet Data"),
+              opmetDataRoute: (context) =>
+                  const CustomScreen(screenName: "Opmet Data"),
+              '/weatherForecast': ((context) => const WeatherForecastScreen())
+            },
+          ),
         );
       });
     });

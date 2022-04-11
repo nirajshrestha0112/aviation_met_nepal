@@ -2,13 +2,12 @@ import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom_alert_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -88,9 +87,8 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                 editingController: _editingController,
                 future: _future),
             child: Container(
-                padding: EdgeInsets.symmetric(
-                    horizontal: SizeConfig.widthMultiplier * 4.0),
-                height: SizeConfig.heightMultiplier * 6.0,
+                padding: EdgeInsets.symmetric(horizontal: 14.w),
+                height: 42.h,
                 width: double.infinity,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -104,7 +102,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                       ),
                       Icon(
                         Icons.location_on,
-                        size: SizeConfig.widthMultiplier * 7.5,
+                        size: 20.h,
                         color: const Color(colorPrimary),
                       ),
                     ]),
@@ -116,9 +114,11 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(controlTowerImg,
-                width: SizeConfig.widthMultiplier * 30.0),
-            SizedBox(height: SizeConfig.heightMultiplier * 2.0),
+            SvgPicture.asset(
+              controlTowerImg,
+              height: 90.h,
+            ),
+            SizedBox(height: 20.h),
             RichText(
               text: TextSpan(
                 text: 'Please select the airport first ',

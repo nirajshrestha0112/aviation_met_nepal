@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../constant/colors_properties.dart';
-import '../model/airport_list_model.dart';
+import '../model/airport_list.dart';
 import '../provider/metar_data_provider.dart';
 import 'custom_build_row.dart';
 import 'custom_raw_card.dart';

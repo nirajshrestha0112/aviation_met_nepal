@@ -1,6 +1,6 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GeneralTextButton extends StatelessWidget {
   final String text;
@@ -18,7 +18,7 @@ class GeneralTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height ?? SizeConfig.heightMultiplier * 6.0,
+      height: height ?? 30.h,
       width: double.infinity,
       child: ElevatedButton(
         onPressed: onPressed,
@@ -26,7 +26,7 @@ class GeneralTextButton extends StatelessWidget {
             elevation: 0.0, primary: color ? colorBlue : colorBlue),
         child: Text(
           text,
-          style: TextStyle(fontSize: SizeConfig.textMultiplier * 2.0),
+          style: TextStyle(fontSize: 16.sp),
         ),
       ),
     );

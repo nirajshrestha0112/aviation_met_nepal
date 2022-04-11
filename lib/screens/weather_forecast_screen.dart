@@ -10,6 +10,7 @@ import '../utils/custom_scroll_behavior.dart';
 import '../utils/size_config.dart';
 import '../widgets/custom_loading_indicator.dart';
 import '../widgets/general_icon.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WeatherForecastScreen extends StatefulWidget {
   const WeatherForecastScreen({Key? key}) : super(key: key);
@@ -30,6 +31,12 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
     });
   }
 
+  /* fetchCitiesWeatherForecast() {
+    Provider.of<CitiesProvider>(context, listen: false).fetchCitiesData();
+    /* Provider.of<WeatherForecastProvider>(context, listen: false)
+        .fetchWeatherForecast(); */
+  } */
+
   late Future _future;
   String description = "Kathmandu";
   late final TextEditingController _editingController = TextEditingController();
@@ -40,14 +47,14 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
           title: const Text(
             "Weather Forecast",
           ),
-          leadingWidth: SizeConfig.widthMultiplier * 6.0,
+          leadingWidth: 1.w,
           leading: const GeneralIcon(),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(
               horizontal: padding, vertical: padding),
           child: Container(
-            height: SizeConfig.heightMultiplier * 20.0,
+            height: 160.h,
             width: double.infinity,
             decoration: BoxDecoration(
                 color: const Color(colorWhite),
@@ -80,8 +87,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                                         Icon(
                                           Icons.location_on,
                                           color: const Color(colorDarkBlue),
-                                          size: SizeConfig.imageSizeMultiplier *
-                                              5.5,
+                                          size: 20.w,
                                         ),
                                         SizedBox(
                                           width:
@@ -101,8 +107,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                                       },
                                       child: Icon(
                                         Icons.close_outlined,
-                                        size: SizeConfig.imageSizeMultiplier *
-                                            7.0,
+                                        size: 25.w,
                                         color: const Color(colorDarkBlue),
                                       ),
                                     )
@@ -121,8 +126,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                                                 BorderRadius.circular(radius)),
                                         suffixIcon: Icon(
                                           Icons.search,
-                                          size:
-                                              SizeConfig.widthMultiplier * 7.5,
+                                          size: 24.w,
                                         ))),
                                 SizedBox(
                                   height: SizeConfig.heightMultiplier * 2.0,
@@ -153,21 +157,23 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                                                         style: TextStyle(
                                                             color: const Color(
                                                                 colorGrey20),
-                                                            fontSize: SizeConfig
-                                                                    .textMultiplier *
-                                                                2.5)))
+                                                            fontSize: 18.sp)))
                                                 : ListView.builder(
                                                     itemCount: value
                                                         .searchWeatherForecastData
                                                         .length,
                                                     itemBuilder: (c, i) {
+                                                      log(value.searchWeatherForecastData.toString());
                                                       return InkWell(
-                                                        onTap: () => Navigator.pop(
+                                                        onTap: () async {
+                                                          await Provider.of<WeatherForecastProvider>(context,listen: false).fetchWeatherForecast(id: value.searchWeatherForecastData[i].id);
+                                                          Navigator.pop(
                                                             context,
                                                             value
                                                                 .searchWeatherForecastData[
                                                                     i]
-                                                                .description),
+                                                                .description);
+                                                        },
                                                         child: ListTile(
                                                           contentPadding:
                                                               const EdgeInsets
@@ -196,7 +202,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                               ]),
                             ),
                           );
-                        });
+                        })??"Kathmandu";
                     log(description);
                     setState(() {});
                   }),

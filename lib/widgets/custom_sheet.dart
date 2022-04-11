@@ -12,12 +12,12 @@ import 'package:aviation_met_nepal/widgets/each_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../constant/values.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/size_config.dart';
 import 'custom_loading_indicator.dart';
 import 'general_filter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ShowFabSheet {
   static String getEmailUrl({required String email}) {
@@ -140,36 +140,31 @@ class ShowFabSheet {
           builder: (_, controller) {
             return Column(children: [
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: padding / 1.5, vertical: padding),
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
                 child: Column(children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: radius / 3.0),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.apps_sharp,
-                              color: const Color(colorDarkBlue),
-                              size: SizeConfig.imageSizeMultiplier * 8.0,
-                            ),
-                            SizedBox(
-                              width: SizeConfig.widthMultiplier * 2.7,
-                            ),
-                            Text(
-                              "Menu",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                    fontSize: SizeConfig.textMultiplier * 2.2,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                          ],
-                        ),
+                      // SizedBox(width: 3.w,),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.apps_sharp,
+                            color: const Color(colorDarkBlue),
+                            size: 32.w,
+                          ),
+                          SizedBox(
+                            width: 6.w,
+                          ),
+                          Text(
+                            "Menu",
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                          ),
+                        ],
                       ),
                       InkWell(
                           onTap: () {
@@ -177,83 +172,78 @@ class ShowFabSheet {
                           },
                           child: Icon(
                             Icons.close_outlined,
-                            size: SizeConfig.imageSizeMultiplier * 8.0,
+                            size: 25.w,
                             color: const Color(colorDarkBlue),
                           ))
                     ],
+                  ),
+                  SizedBox(
+                    height: 5.h,
                   ),
                   Provider.of<LoginProvider>(context, listen: true).loginName !=
                           null
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: radius / 1.5,
-                              ),
-                              child: Row(
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: const Color(bgColor),
-                                    radius:
-                                        SizeConfig.imageSizeMultiplier * 3.0,
-                                    child: Icon(
-                                      Icons.person,
-                                      color: const Color(colorDarkBlue),
-                                      size:
-                                          SizeConfig.imageSizeMultiplier * 4.0,
-                                    ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 4.w,
+                                ),
+                                CircleAvatar(
+                                  backgroundColor: const Color(bgColor),
+                                  radius: 11.w,
+                                  child: Icon(
+                                    Icons.person,
+                                    color: const Color(colorDarkBlue),
+                                    size: 16.w,
                                   ),
-                                  SizedBox(
-                                    width: SizeConfig.widthMultiplier * 5.0,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          Provider.of<LoginProvider>(context,
-                                                  listen: true)
-                                              .loginName
-                                              .toString(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2!),
-                                      SizedBox(
-                                          height: SizeConfig.heightMultiplier),
-                                      Text(
+                                ),
+                                SizedBox(
+                                  width: 15.w,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
                                         Provider.of<LoginProvider>(context,
                                                 listen: true)
-                                            .userId
+                                            .loginName
                                             .toString(),
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText2!
-                                            .copyWith(
-                                              fontSize:
-                                                  SizeConfig.textMultiplier *
-                                                      1.5,
-                                            ),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
+                                            .bodyText2!),
+                                    SizedBox(
+                                        height: SizeConfig.heightMultiplier),
+                                    Text(
+                                      Provider.of<LoginProvider>(context,
+                                              listen: true)
+                                          .userId
+                                          .toString(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(
+                                            fontSize:
+                                                SizeConfig.textMultiplier * 1.5,
+                                          ),
+                                    )
+                                  ],
+                                ),
+                              ],
                             ),
                             Container(
-                              margin:
-                                  const EdgeInsets.only(right: radius / 1.5),
-                              height: SizeConfig.heightMultiplier * 3.0,
-                              width: SizeConfig.widthMultiplier * 6.5,
+                              margin: EdgeInsets.only(right: 5.3.w),
+                              height: 20.h,
+                              width: 20.w,
                               decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(radius / 4.0),
+                                borderRadius: BorderRadius.circular(2.w),
                                 color: const Color(bgColor),
                               ),
                               child: InkWell(
                                 child: Icon(
                                   Icons.logout,
-                                  size: SizeConfig.imageSizeMultiplier * 3.5,
+                                  size: 16.w,
                                   color: const Color(colorDarkBlue),
                                 ),
                                 onTap: () async {
@@ -345,7 +335,7 @@ class ShowLocationSheet {
                         Icon(
                           Icons.location_on,
                           color: const Color(colorDarkBlue),
-                          size: SizeConfig.imageSizeMultiplier * 5.5,
+                          size: 20.w,
                         ),
                         SizedBox(
                           width: SizeConfig.widthMultiplier * 3.0,

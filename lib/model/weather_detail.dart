@@ -186,6 +186,59 @@ class WeatherTemperature {
       };
 }
 
+class Humidity {
+  Humidity({
+    required this.percentage,
+  });
+
+  final String percentage;
+
+  factory Humidity.fromJson(Map<String, dynamic> json) => Humidity(
+        percentage: json["%"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "%": percentage,
+      };
+}
+
+class Rain {
+  Rain({required this.mm});
+  final String mm;
+  factory Rain.fromJson(Map<String, dynamic> json) => Rain(mm: json['mm']);
+  Map<String, dynamic> toJson() => {"mm": mm};
+}
+
+class WindSpeed {
+  WindSpeed(
+      {required this.mph,
+      required this.kt,
+      required this.ms,
+      required this.kph});
+  final String kph;
+  final String mph;
+  final String kt;
+  final String ms;
+  factory WindSpeed.fromJson(Map<String, dynamic> json) => WindSpeed(
+      kph: json['KPH'], kt: json['kt'], mph: json['MPH'], ms: json['MS']);
+  Map<String, dynamic> toJson() => {"KPH": kph, 'MPH': mph, 'MS': ms, 'kt': kt};
+}
+
+class WindDirection {
+  WindDirection(
+      {required this.deg,
+      required this.card,
+      required this.sexa,
+      });
+  final String deg;
+  final String card;
+  final String sexa;
+ 
+  factory WindDirection.fromJson(Map<String, dynamic> json) => WindDirection(
+      deg: json['deg'], card: json['CARD'], sexa: json['SEXA'],);
+       Map<String, dynamic> toJson() => {"deg": deg, 'CARD': card, 'SEXA': sexa,};
+}
+/* 
 void main() {
   parseJson();
 }
@@ -837,3 +890,4 @@ void parseJson() async {
   print(dateList.last);
   print(weatherTemperatureList.last.c);
 }
+} */

@@ -2,13 +2,13 @@ import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/utils/validation.dart';
 import 'package:aviation_met_nepal/widgets/general_icon.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
-import 'package:aviation_met_nepal/widgets/general_textfield.dart';
+import 'package:aviation_met_nepal/widgets/general_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/custom_loading_indicator.dart';
 
@@ -22,13 +22,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final formGlobalKey = GlobalKey<FormState>();
+  final _formGlobalKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           leading: const GeneralIcon(),
-          leadingWidth: SizeConfig.widthMultiplier * 6,
+          leadingWidth: 1.w,
           title: const Text(
             "Login",
           )),
@@ -39,39 +39,39 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.symmetric(
                 vertical: padding, horizontal: padding),
             child: SizedBox(
-              height: SizeConfig.heightMultiplier * 100.0,
-              width: SizeConfig.widthMultiplier * 100.0,
+              height: MediaQuery.of(context).size.height * 100,
+              width: MediaQuery.of(context).size.width * 100,
               child: Form(
-                key: formGlobalKey,
+                key: _formGlobalKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset(
                       logoOnlyImg,
-                      width: SizeConfig.widthMultiplier * 30,
+                      width: 100.w,
                       // height: SizeConfig.widthMultiplier*30,
                     ),
                     SizedBox(
-                      height: SizeConfig.heightMultiplier * 3.0,
+                      height: 15.h,
                     ),
                     Text(
                       "Aviation Met Nepal",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: SizeConfig.textMultiplier * 3.5,
+                          fontSize: 22.sp,
                           color: Colors.red,
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      height: SizeConfig.heightMultiplier * 5.0,
+                      height: 20.h,
                     ),
                     Text("Welcome!",
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: SizeConfig.textMultiplier * 3.5,
+                              fontSize: 24.sp,
                             )),
                     SizedBox(
-                      height: SizeConfig.heightMultiplier * 2.0,
+                      height: 20.h,
                     ),
                     Text("Login to your existing account",
                         textAlign: TextAlign.center,
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                             .bodyText2!
                             .copyWith(fontWeight: FontWeight.normal)),
                     SizedBox(
-                      height: SizeConfig.heightMultiplier * 3.0,
+                      height: 20.h,
                     ),
                     GeneralTextField(
                       hintText: "Username",
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                       validator: (value) => Validations().validateEmail(value!),
                     ),
                     SizedBox(
-                      height: SizeConfig.heightMultiplier * 2.0,
+                      height: 12.h,
                     ),
                     GeneralTextField(
                       keyboard: TextInputType.visiblePassword,
@@ -102,14 +102,12 @@ class _LoginPageState extends State<LoginPage> {
                       validator: (value) =>
                           Validations().validatePassword(value!),
                     ),
-                    SizedBox(
-                      height: SizeConfig.heightMultiplier * 4.0,
-                    ),
+                    SizedBox(height: 20.h),
                     GeneralTextButton(
                       color: false,
                       text: "Login",
                       onPressed: () async {
-                        if (formGlobalKey.currentState!.validate()) {
+                        if (_formGlobalKey.currentState!.validate()) {
                           showDialog(
                             context: context,
                             builder: (_) => const CustomLoadingIndicator(),
@@ -122,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                                   password: _passwordController.text);
                         }
                       },
-                      height: SizeConfig.heightMultiplier * 6.0,
+                      height: 40.h,
                     )
                   ],
                 ),

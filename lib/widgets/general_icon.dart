@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constant/colors_properties.dart';
-import '../constant/values.dart';
-import '../utils/size_config.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GeneralIcon extends StatelessWidget {
   const GeneralIcon({
@@ -12,7 +11,7 @@ class GeneralIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: padding / 1.5),
+      padding: EdgeInsets.only(left: 10.w),
       child: InkWell(
         onTap: () {
           Navigator.pop(context);
@@ -20,7 +19,7 @@ class GeneralIcon extends StatelessWidget {
         child: Icon(
           Icons.adaptive.arrow_back,
           color: const Color(colorDarkBlue),
-          size: SizeConfig.imageSizeMultiplier * 6.0,
+          size: 20.h,
         ),
       ),
     );

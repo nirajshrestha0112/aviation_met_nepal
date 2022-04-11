@@ -5,7 +5,7 @@ import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-import '../model/gamet_data_model.dart';
+import '../model/gamet_data.dart';
 
 class GametDataProvider extends ChangeNotifier {
   GametData? gametData;

@@ -4,7 +4,7 @@ import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../model/airport_list_model.dart';
+import '../model/airport_list.dart';
 import 'custom_build_row.dart';
 import 'custom_loading_indicator.dart';
 import 'custom_raw_card.dart';
