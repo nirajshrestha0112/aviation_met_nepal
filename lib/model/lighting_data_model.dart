@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class LightingData {
   LightingData({
     required this.status,
@@ -62,23 +60,6 @@ class Datum {
         "height": height,
         "location_error": locationError,
       };
-}
-
-void parseJson() async {
-  const jsonData = '{}';
-  final parsedData = jsonDecode(jsonData);
-  List<Datum> datumList = [];
-  List<List<Datum>> data = LightingData.fromJson(parsedData).data;
-  for (var d in data) {
-    datumList += d;
-  }
-  int count = 1;
-  for (var d in datumList) {
-    print(count);
-    count++;
-    print(d.longitude);
-    print(d.latitude);
-  }
 }
 
 ///TODO: please remove _model from every model filename and class name.
