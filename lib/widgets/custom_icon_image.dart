@@ -1,7 +1,7 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomIcon extends StatelessWidget {
   final IconData icon;
@@ -15,7 +15,7 @@ class CustomIcon extends StatelessWidget {
     return Icon(
       icon,
       color: const Color(textColor),
-      size: SizeConfig.imageSizeMultiplier * 6.0,
+      size: 18.h,
     );
   }
 }
@@ -31,7 +31,7 @@ class CustomImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       assetName,
-      height: SizeConfig.imageSizeMultiplier * 6.0,
+      height: 18.h,
     );
   }
 }

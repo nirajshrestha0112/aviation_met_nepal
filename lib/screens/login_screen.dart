@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
           leading: const GeneralIcon(),
-          leadingWidth: 1.w,
+          // leadingWidth: 16.w,
           title: const Text(
             "Login",
           )),

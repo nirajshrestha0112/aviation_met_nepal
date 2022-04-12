@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ThemeData lightTheme(BuildContext context) {
   return ThemeData(
+
       // splashColor: Colors.transparent,
       // highlightColor: Colors.transparent,
       hoverColor: Colors.transparent,
@@ -18,9 +19,7 @@ ThemeData lightTheme(BuildContext context) {
         ),
         labelColor: Colors.white,
         unselectedLabelColor: const Color(textColor),
-        labelStyle: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: SizeConfig.textMultiplier * 1.6),
+        labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
       ),
       scaffoldBackgroundColor: const Color(bgColor),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(

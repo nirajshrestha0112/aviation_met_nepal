@@ -16,6 +16,7 @@ const String satelliteImg = "$baseAsset/icons/satellite.svg";
 const String windImg = "$baseAsset/icons/wind.svg";
 const String contactUsImg = "$baseAsset/contact_us.svg";
 const String testSVG = "$baseAsset/test.svg";
+const String weatherIconImg = "$baseAsset/icons/weather_icon.png";
 
 const String controlTowerImg = "$baseAsset/control_tower.svg";
 const String feedbackRocketImg = "$baseAsset/feedback_rocket.png";

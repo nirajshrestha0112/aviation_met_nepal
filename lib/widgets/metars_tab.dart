@@ -1,4 +1,3 @@
-import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
@@ -10,6 +9,7 @@ import '../model/airport_list.dart';
 import '../provider/metar_data_provider.dart';
 import 'custom_build_row.dart';
 import 'custom_raw_card.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MetarsTab extends StatefulWidget {
   const MetarsTab({required this.metarData, Key? key}) : super(key: key);
@@ -47,7 +47,7 @@ class _MetarsTabState extends State<MetarsTab> {
   Widget build(BuildContext context) {
     return Padding(
       padding:
-          const EdgeInsets.symmetric(horizontal: padding, vertical: padding),
+           EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       child: FutureBuilder(
         future: _future,
         builder: (context, AsyncSnapshot snapshot) {
@@ -83,11 +83,11 @@ class _MetarsTabState extends State<MetarsTab> {
                         }
                       },
                       child: Container(
-                        height: SizeConfig.heightMultiplier * 5.0,
-                        width: SizeConfig.widthMultiplier * 20.0,
+                        height: 36.h,
+                        width: 72.w,
                         decoration: BoxDecoration(
                             color: const Color(colorPrimary),
-                            borderRadius: BorderRadius.circular(radius)),
+                            borderRadius: BorderRadius.circular(6.w)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -100,8 +100,7 @@ class _MetarsTabState extends State<MetarsTab> {
                                     .bodyText2!
                                     .copyWith(color: const Color(colorWhite))),
                             Icon(Icons.arrow_drop_down,
-                                size: SizeConfig.imageSizeMultiplier * 8.0,
-                                color: const Color(colorWhite))
+                                size: 25.w, color: const Color(colorWhite))
                           ],
                         ),
                       ),
@@ -109,7 +108,7 @@ class _MetarsTabState extends State<MetarsTab> {
                   ],
                 ),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier * 3.0,
+                  height: 10.h,
                 ),
                 CustomRawCard(
                     rawHeaderText: "Raw",
@@ -119,7 +118,7 @@ class _MetarsTabState extends State<MetarsTab> {
                             .data!
                             .raw!),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier * 2.0,
+                  height: 10.h,
                 ),
                 Column(
                   children: [
@@ -154,42 +153,42 @@ class _MetarsTabState extends State<MetarsTab> {
                                     value.metarDataDecoded.data!.decoded
                                         .temperature[index]),
                                 SizedBox(
-                                  height: SizeConfig.heightMultiplier / 4.5,
+                                  height: 1.h,
                                 ),
                                 buildRow(
                                     "Dew Point",
                                     value.metarDataDecoded.data!.decoded
                                         .dewpoint[index]),
                                 SizedBox(
-                                  height: SizeConfig.heightMultiplier / 4.5,
+                                  height: 1.h,
                                 ),
                                 buildRow(
                                     "Pressure(altimeter)",
                                     value.metarDataDecoded.data!.decoded
                                         .pressureAltimeter[index]),
                                 SizedBox(
-                                  height: SizeConfig.heightMultiplier / 4.5,
+                                  height: 1.h,
                                 ),
                                 buildRow(
                                     "Winds",
                                     value.metarDataDecoded.data!.decoded
                                         .winds[index]),
                                 SizedBox(
-                                  height: SizeConfig.heightMultiplier / 4.5,
+                                  height:1.h,
                                 ),
                                 buildRow(
                                     "Visibility",
                                     value.metarDataDecoded.data!.decoded
                                         .visibility[index]),
                                 SizedBox(
-                                  height: SizeConfig.heightMultiplier / 4.5,
+                                  height:1.h,
                                 ),
                                 buildRow(
                                     "Ceiling",
                                     value.metarDataDecoded.data!.decoded
                                         .ceiling[index]),
                                 SizedBox(
-                                  height: SizeConfig.heightMultiplier / 4.5,
+                                  height: 1.h,
                                 ),
                                 buildRow(
                                     "Clouds",

@@ -8,6 +8,7 @@ import '../model/airport_list.dart';
 import 'custom_build_row.dart';
 import 'custom_loading_indicator.dart';
 import 'custom_raw_card.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TafsTab extends StatefulWidget {
   const TafsTab({required this.tafsData, Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class _TafsTabState extends State<TafsTab> {
     // log(Provider.of<TafsDataProvider>(context,listen: false).tafsDataDecoded.data!.decoded!.text!.length.toString());
     return Padding(
       padding:
-          const EdgeInsets.symmetric(horizontal: padding, vertical: padding),
+           EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       child: FutureBuilder(
         future: _future,
         builder: (context, AsyncSnapshot snapshot) {
@@ -65,7 +66,7 @@ class _TafsTabState extends State<TafsTab> {
                       .copyWith(fontWeight: FontWeight.normal),
                 ),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier * 3.0,
+                  height: 10.h,
                 ),
                 CustomRawCard(
                     rawHeaderText: "Raw",
@@ -75,7 +76,7 @@ class _TafsTabState extends State<TafsTab> {
                             .data!
                             .raw!),
                 SizedBox(
-                  height: SizeConfig.heightMultiplier * 2.0,
+                  height: 10.h,
                 ),
                 Column(
                   children: [
@@ -110,35 +111,35 @@ class _TafsTabState extends State<TafsTab> {
                                     value.tafsDataDecoded.data!.decoded!
                                         .forecastPeriod![index]),
                                 SizedBox(
-                                  height: SizeConfig.heightMultiplier / 4.5,
+                                  height: 1.h,
                                 ),
                                 buildRow(
                                     "Forecast Type",
                                     value.tafsDataDecoded.data!.decoded!
                                         .forecastType![index]),
                                 SizedBox(
-                                  height: SizeConfig.heightMultiplier / 4.5,
+                                  height: 1.h,
                                 ),
                                 buildRow(
                                     "Winds",
                                     value.tafsDataDecoded.data!.decoded!
                                         .winds![index]),
                                 SizedBox(
-                                  height: SizeConfig.heightMultiplier / 4.5,
+                                  height: 1.h,
                                 ),
                                 buildRow(
                                     "Visibility",
                                     value.tafsDataDecoded.data!.decoded!
                                         .visibility![index]),
                                 SizedBox(
-                                  height: SizeConfig.heightMultiplier / 4.5,
+                                  height:1.h,
                                 ),
                                 buildRow(
                                     "Ceiling",
                                     value.tafsDataDecoded.data!.decoded!
                                         .ceilings![index]),
                                 SizedBox(
-                                  height: SizeConfig.heightMultiplier / 4.5,
+                                  height:1.h,
                                 ),
                                 buildRow(
                                     "Clouds",

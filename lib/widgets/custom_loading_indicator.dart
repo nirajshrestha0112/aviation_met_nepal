@@ -1,6 +1,5 @@
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,7 +13,7 @@ class CustomLoadingIndicator extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           CircleAvatar(
-            radius: 24.w,
+            radius: 28.w,
             backgroundColor: Colors.white,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(padding * 2.0),

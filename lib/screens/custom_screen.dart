@@ -2,6 +2,7 @@ import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/ashtams_data_provider.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
+import 'package:aviation_met_nepal/widgets/general_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,7 @@ import '../utils/custom_scroll_behavior.dart';
 import '../utils/size_config.dart';
 import '../widgets/custom_floating_action_btn.dart';
 import '../widgets/custom_loading_indicator.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomScreen extends StatefulWidget {
   const CustomScreen({required this.screenName, Key? key}) : super(key: key);
@@ -59,7 +61,7 @@ class _CustomScreenState extends State<CustomScreen> {
                     child: Column(children: [
                   Container(
                     color: const Color(colorWhite),
-                    height: SizeConfig.heightMultiplier * 6.5,
+                    height: 42.h,
                     width: double.infinity,
                     child: Stack(
                       fit: StackFit.expand,
@@ -71,11 +73,16 @@ class _CustomScreenState extends State<CustomScreen> {
                           style: Theme.of(context)
                               .textTheme
                               .bodyText1!
-                              .copyWith(
-                                  fontSize: SizeConfig.textMultiplier * 2.2),
+                              .copyWith(fontSize: 18.sp),
                         )),
                         Positioned(
-                          top: SizeConfig.heightMultiplier * 2,
+                            top: 14.h,
+                            left: 6.w,
+                            child: const GeneralIcon(
+                              isPadding: EdgeInsets.zero,
+                            ))
+                        /* Positioned(
+                          top: 6.h,
                           left: SizeConfig.widthMultiplier * 3.5,
                           child: GestureDetector(
                             child: Icon(
@@ -87,7 +94,7 @@ class _CustomScreenState extends State<CustomScreen> {
                               Navigator.pop(context);
                             },
                           ),
-                        ),
+                        ), */
                       ],
                     ),
                   ),
@@ -107,10 +114,10 @@ class _CustomScreenState extends State<CustomScreen> {
 
                         return SingleChildScrollView(
                             child: Container(
-                          padding: const EdgeInsets.only(
-                            top: padding,
-                            left: padding,
-                            bottom: padding,
+                          padding: EdgeInsets.only(
+                            top: 16.h,
+                            left: 16.w,
+                            bottom: 16.h,
                           ),
                           width: double.infinity,
                           decoration: BoxDecoration(

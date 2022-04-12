@@ -41,10 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       )), */
       child: SafeArea(
         child: Scaffold(
-            appBar: AppBar(
-                title: const Text(
-              "Discover",
-            )),
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(42.h),
+              child: AppBar(
+                  title: const Text(
+                "Discover",
+              )),
+            ),
             floatingActionButton: const CustomFloatingActionBtn(),
             body: const HomeScreenBody()),
       ),

@@ -2,7 +2,7 @@ import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/provider/airmet_data_provider.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
-import 'package:aviation_met_nepal/provider/cities_provider.dart';
+import 'package:aviation_met_nepal/provider/weather_forecast_provider.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/provider/metar_data_provider.dart';
