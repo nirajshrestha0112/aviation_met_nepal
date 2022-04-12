@@ -1,13 +1,12 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
-import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/sigmets_data_provider.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../model/airport_list.dart';
-import '../utils/size_config.dart';
 import 'custom_loading_indicator.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SigmetsTab extends StatefulWidget {
   const SigmetsTab({required this.sigmetsTabData, Key? key}) : super(key: key);
@@ -40,28 +39,28 @@ class _SigmetsTabState extends State<SigmetsTab> {
                 null
             ? SingleChildScrollView(
                 child: Container(
-                  margin: const EdgeInsets.symmetric(
-                      vertical: padding, horizontal: padding),
-                  padding: const EdgeInsets.only(
-                    top: padding,
-                    left: padding,
-                    bottom: padding,
+                  margin:  EdgeInsets.symmetric(
+                      vertical: 16.h, horizontal: 16.w),
+                  padding:  EdgeInsets.only(
+                    top: 16.h,
+                    left: 16.w,
+                    bottom: 16.h,
                   ),
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(radius)),
+                      borderRadius: BorderRadius.circular(6.w)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "SIGMETS Data",
                         style: TextStyle(
-                            fontSize: SizeConfig.textMultiplier * 2.0,
+                            fontSize: 16.sp,
                             fontWeight: FontWeight.w500,
                             color: colorBlue),
                       ),
-                      SizedBox(height: SizeConfig.heightMultiplier * 1.5),
+                      SizedBox(height: 4.h),
                       Consumer<SigmetsDataProvider>(builder: (_, value, __) {
                         return Text(
                           value.sigmetsData!.data!,
@@ -70,7 +69,7 @@ class _SigmetsTabState extends State<SigmetsTab> {
                               .bodyText2!
                               .copyWith(
                                   fontWeight: FontWeight.normal,
-                                  fontSize: SizeConfig.textMultiplier * 2.0),
+                                  fontSize: 16.sp),
                         );
                       }),
                     ],

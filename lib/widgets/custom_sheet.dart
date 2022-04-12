@@ -352,29 +352,27 @@ class ShowLocationSheet {
                       },
                       child: Icon(
                         Icons.close_outlined,
-                        size: SizeConfig.imageSizeMultiplier * 7.0,
+                        size: 25.w,
                         color: const Color(colorDarkBlue),
                       ),
                     )
                   ],
                 ),
-                SizedBox(
-                  height: SizeConfig.heightMultiplier * 3.0,
-                ),
                 TextFormField(
                     controller: editingController,
                     decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(left: 4.w),
                         hintText: "Select Airport",
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.circular(radius)),
-                        suffixIcon: Icon(
-                          Icons.search,
-                          size: SizeConfig.widthMultiplier * 7.5,
+                        suffixIcon: Padding(
+                          padding: EdgeInsets.only(left: 18.w),
+                          child: Icon(
+                            Icons.search,
+                            size: 25.w,
+                          ),
                         ))),
-                SizedBox(
-                  height: SizeConfig.heightMultiplier * 2.0,
-                ),
                 Expanded(
                     child: ScrollConfiguration(
                   behavior: MyBehavior(),
@@ -396,9 +394,7 @@ class ShowLocationSheet {
                                     child: Text("No Airport Data Found",
                                         style: TextStyle(
                                             color: const Color(colorGrey20),
-                                            fontSize:
-                                                SizeConfig.textMultiplier *
-                                                    2.5)))
+                                            fontSize: 20.sp)))
                                 : ListView.builder(
                                     itemCount: value.searchData.length,
                                     itemBuilder: (c, i) {
@@ -414,7 +410,7 @@ class ShowLocationSheet {
                                         },
                                         child: ListTile(
                                           contentPadding:
-                                              const EdgeInsets.only(left: 4),
+                                              EdgeInsets.only(left: 4.w),
                                           leading: Text(
                                             value.searchData[i].ident,
                                             style: Theme.of(context)
@@ -425,20 +421,15 @@ class ShowLocationSheet {
                                                         colorPrimary)),
                                           ),
                                           trailing: Container(
-                                            padding: EdgeInsets.only(
-                                                right:
-                                                    SizeConfig.widthMultiplier *
-                                                        4.0),
-                                            width:
-                                                SizeConfig.widthMultiplier * 55,
+                                            padding:
+                                                EdgeInsets.only(right: 10.w),
+                                            width: 160.w,
                                             child: Text(
                                               value.searchData[i].name,
                                               textAlign: TextAlign.end,
                                               style: TextStyle(
                                                 color: const Color(colorNavy50),
-                                                fontSize:
-                                                    SizeConfig.textMultiplier *
-                                                        2.0,
+                                                fontSize: 16.sp,
                                               ),
                                             ),
                                           ),
@@ -478,15 +469,15 @@ class ShowFilterSheet {
                           Icon(
                             Icons.filter_alt,
                             color: const Color(colorDarkBlue),
-                            size: SizeConfig.imageSizeMultiplier * 6,
+                            size: 22.w,
                           ),
                           SizedBox(
-                            width: SizeConfig.widthMultiplier * 3.0,
+                            width: 3.w,
                           ),
                           Text(
                             "Filter",
                             style: TextStyle(
-                                fontSize: SizeConfig.textMultiplier * 2.2,
+                                fontSize: 18.sp,
                                 fontWeight: FontWeight.w500,
                                 color: const Color(colorDarkBlue)),
                           ),
@@ -498,21 +489,21 @@ class ShowFilterSheet {
                         },
                         child: Icon(
                           Icons.close_outlined,
-                          size: SizeConfig.imageSizeMultiplier * 7.0,
+                          size: 25.w,
                           color: const Color(colorDarkBlue),
                         ),
                       )
                     ],
                   ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier * 3.0,
+                    height: 16.h,
                   ),
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(radius),
+                      borderRadius: BorderRadius.circular(8.w),
                       border:
-                          Border.all(color: const Color(bgColor), width: 2.0),
+                          Border.all(color: const Color(bgColor), width: 2.0.w),
                     ),
                     child: StatefulBuilder(builder: (context, set) {
                       return DropDownFilter(
@@ -524,11 +515,11 @@ class ShowFilterSheet {
                     }),
                   ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier * 2.0,
+                    height: 16.h,
                   ),
                   SizedBox(
                     width: double.infinity,
-                    height: SizeConfig.heightMultiplier * 6.0,
+                    height: 40.h,
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pop(
@@ -541,8 +532,9 @@ class ShowFilterSheet {
                       child: Text(
                         "Apply",
                         style: TextStyle(
-                            fontSize: SizeConfig.textMultiplier * 1.8,
-                            color: Colors.white),
+                            fontSize: 16.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal),
                       ),
                     ),
                   )

@@ -1,22 +1,22 @@
-import 'dart:convert';
+
 
 class WeatherForecast {
   WeatherForecast({
-    required this.updates,
+    // required this.updates,
     required this.data,
   });
 
-  final Updates updates;
+  // final Updates updates;
   final Data data;
 
   factory WeatherForecast.fromJson(Map<String, dynamic> json) =>
       WeatherForecast(
-        updates: Updates.fromJson(json["updates"]),
+        // updates: Updates.fromJson(json["updates"] ?? {}),
         data: Data.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "updates": updates.toJson(),
+        // "updates": updates.toJson(),
         "data": data.toJson(),
       };
 }
@@ -25,23 +25,23 @@ class Data {
   Data({
     required this.areainfo,
     required this.params,
-    required this.warning,
+    // required this.warning,
   });
 
   final Areainfo areainfo;
   final Map<String, dynamic> params;
-  final Warning warning;
+  // final Warning warning;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         areainfo: Areainfo.fromJson(json["areainfo"]),
         params: json["params"],
-        warning: Warning.fromJson(json["warning"]),
+        // warning: Warning.fromJson(json["warning"]),
       );
 
   Map<String, dynamic> toJson() => {
         "areainfo": areainfo.toJson(),
-        // "params": params.toString(),
-        "warning": warning.toJson(),
+        "params": params.toString(),
+        // "warning": warning.toJson(),
       };
 }
 
@@ -113,57 +113,57 @@ class ForecastArea {
       };
 }
 
-class Warning {
-  Warning({
-    required this.level,
-    required this.levelName,
-    required this.areaId,
-    required this.areaName,
-  });
+// class Warning {
+//   Warning({
+//     required this.level,
+//     required this.levelName,
+//     required this.areaId,
+//     required this.areaName,
+//   });
 
-  final int level;
-  final String levelName;
-  final String areaId;
-  final String areaName;
+//   final String level;
+//   final String levelName;
+//   final String areaId;
+//   final String areaName;
 
-  factory Warning.fromJson(Map<String, dynamic> json) => Warning(
-        level: json["level"],
-        levelName: json["level_name"],
-        areaId: json["area_id"],
-        areaName: json["area_name"],
-      );
+//   factory Warning.fromJson(Map<String, dynamic> json) => Warning(
+//         level: json["level"],
+//         levelName: json["level_name"],
+//         areaId: json["area_id"],
+//         areaName: json["area_name"],
+//       );
 
-  Map<String, dynamic> toJson() => {
-        "level": level,
-        "level_name": levelName,
-        "area_id": areaId,
-        "area_name": areaName,
-      };
-}
+//   Map<String, dynamic> toJson() => {
+//         "level": level,
+//         "level_name": levelName,
+//         "area_id": areaId,
+//         "area_name": areaName,
+//       };
+// }
 
-class Updates {
-  Updates({
-    required this.forecastBugErrorXml,
-    required this.forecastXml,
-    required this.forecastAreasXml,
-  });
+// class Updates {
+//   Updates({
+//     required this.forecastBugErrorXml,
+//     required this.forecastXml,
+//     required this.forecastAreasXml,
+//   });
 
-  final DateTime forecastBugErrorXml;
-  final DateTime forecastXml;
-  final DateTime forecastAreasXml;
+//   final DateTime forecastBugErrorXml;
+//   final DateTime forecastXml;
+//   final DateTime forecastAreasXml;
 
-  factory Updates.fromJson(Map<String, dynamic> json) => Updates(
-        forecastBugErrorXml: DateTime.parse(json["forecast_bug_error.xml"]),
-        forecastXml: DateTime.parse(json["forecast.xml"]),
-        forecastAreasXml: DateTime.parse(json["forecast-areas.xml"]),
-      );
+//   factory Updates.fromJson(Map<String, dynamic> json) => Updates(
+//         forecastBugErrorXml: DateTime.parse(json["forecast_bug_error.xml"]),
+//         forecastXml: DateTime.parse(json["forecast.xml"]),
+//         forecastAreasXml: DateTime.parse(json["forecast-areas.xml"]),
+//       );
 
-  Map<String, dynamic> toJson() => {
-        "forecast_bug_error.xml": forecastBugErrorXml.toIso8601String(),
-        "forecast.xml": forecastXml.toIso8601String(),
-        "forecast-areas.xml": forecastAreasXml.toIso8601String(),
-      };
-}
+//   Map<String, dynamic> toJson() => {
+//         "forecast_bug_error.xml": forecastBugErrorXml.toIso8601String(),
+//         "forecast.xml": forecastXml.toIso8601String(),
+//         "forecast-areas.xml": forecastAreasXml.toIso8601String(),
+//       };
+// }
 
 class WeatherTemperature {
   WeatherTemperature({

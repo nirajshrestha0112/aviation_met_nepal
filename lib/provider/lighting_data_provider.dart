@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LightingDataProvider extends ChangeNotifier {
   LightingData? lightingData;
@@ -28,8 +29,8 @@ class LightingDataProvider extends ChangeNotifier {
         }
         lightingData = LightingData.fromJson(jsonDecode(response.body));
 
-        final Uint8List markerIcon = await getBytesFromAsset(
-            lightingsImg, (SizeConfig.imageSizeMultiplier * 6).toInt());
+        final Uint8List markerIcon =
+            await getBytesFromAsset(lightingsImg, (16.w).toInt());
 /* 
         final icon = await BitmapDescriptor.fromAssetImage(
             ImageConfiguration(size: Size(30, 30)),lightingsImg); */

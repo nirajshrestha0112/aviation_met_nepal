@@ -9,9 +9,10 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom_loading_indicator.dart';
 import '../widgets/custom_sheet.dart';
+import '../widgets/general_icon.dart';
 
 class ContactUs extends StatefulWidget {
   const ContactUs({Key? key}) : super(key: key);
@@ -79,22 +80,28 @@ class _ContactUsBodyState extends State<ContactUsBody> {
       child: SingleChildScrollView(
           child: Column(children: [
         Container(
-          color: const Color(colorWhite),
-          height: SizeConfig.heightMultiplier * 6.5,
-          width: double.infinity,
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              ListTile(
-                  title: Text(
-                "Contact Us",
-                textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(fontSize: SizeConfig.textMultiplier * 2.2),
-              )),
-              Positioned(
+            color: const Color(colorWhite),
+            height: 42.h,
+            width: double.infinity,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                ListTile(
+                    title: Text(
+                  "Contact Us",
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(fontSize: 18.sp),
+                )),
+                Positioned(
+                    top: 14.h,
+                    left: 6.w,
+                    child: const GeneralIcon(
+                      isPadding: EdgeInsets.zero,
+                    ))
+                /* Positioned(
                 top: SizeConfig.heightMultiplier * 2,
                 left: SizeConfig.widthMultiplier * 3.5,
                 child: GestureDetector(
@@ -107,25 +114,21 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                     Navigator.pop(context);
                   },
                 ),
-              ),
-            ],
-          ),
-        ),
+              ), */
+              ],
+            )),
         SizedBox(
-          height: SizeConfig.heightMultiplier * 3.0,
+          height: 16.h,
         ),
-        SvgPicture.asset(locationImg,
-            height: SizeConfig.widthMultiplier * 35.0),
+        SvgPicture.asset(locationImg, height: 100.h),
         Padding(
-          padding: const EdgeInsets.only(
-              left: padding, right: padding, top: padding),
+          padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h),
           child: SingleChildScrollView(
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: padding, vertical: padding),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(radius)),
+                  borderRadius: BorderRadius.circular(8.w)),
               child: Column(
                 children: [
                   Image.asset(governmentImg),
@@ -134,18 +137,18 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                     thickness: 1.0,
                   ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier,
+                    height: 10.h,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Icon(
                         Icons.location_pin,
-                        size: SizeConfig.imageSizeMultiplier * 5.5,
+                        size: 22.w,
                         color: const Color(colorDarkBlue),
                       ),
                       SizedBox(
-                        width: SizeConfig.widthMultiplier * 2.0,
+                        width: 10.h,
                       ),
                       Expanded(
                           child: Text(
@@ -158,16 +161,16 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                     ],
                   ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier,
+                    height: 6.h,
                   ),
                   BuildRowWidget(
+                    icon: Icons.phone,
                       onTap: (() =>
                           launch(getPhoneUrl(phone: "+977144868699"))),
                       getText: "+977144868699"),
-                  SizedBox(
-                    height: SizeConfig.heightMultiplier,
-                  ),
+                  SizedBox(height: 6.h),
                   BuildRowWidget(
+                    icon: Icons.email,
                       onTap: () => ShowFabSheet.launchUrl(
                           ShowFabSheet.getEmailUrl(email: "info@mfd.gov.np")),
                       getText: "info@mfd.gov.np"),
@@ -178,9 +181,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                     color: Color(bgColor),
                     thickness: 1.0,
                   ),
-                  SizedBox(
-                    height: SizeConfig.heightMultiplier,
-                  ),
+                  SizedBox(height: 6.h),
                   Column(
                     children: [
                       Text(
@@ -188,7 +189,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                         style: Theme.of(context).textTheme.bodyText2!,
                       ),
                       SizedBox(
-                        height: SizeConfig.heightMultiplier * 2.5,
+                        height: 6.h,
                       ),
                       const CustomContactText(
                           leftText: "Kathmandu :",
@@ -271,10 +272,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                                                 .policyDetails,
                                             style: {
                                                 "span": Style(
-                                                  fontSize: FontSize(
-                                                    SizeConfig.textMultiplier *
-                                                        1.8,
-                                                  ),
+                                                  fontSize: FontSize(14.sp),
                                                 ),
                                               })
                                     : !isViewMore
@@ -287,10 +285,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                                                 .policyDetailsNp,
                                             style: {
                                                 "span": Style(
-                                                  fontSize: FontSize(
-                                                    SizeConfig.textMultiplier *
-                                                        1.8,
-                                                  ),
+                                                  fontSize: FontSize(14.sp),
                                                 ),
                                               })
                                         : Text(Provider.of<PrivacyPolicyProvider>(
@@ -358,10 +353,11 @@ class _TxtBtnState extends State<TxtBtn> {
 }
 
 class BuildRowWidget extends StatefulWidget {
-  const BuildRowWidget({required this.onTap, required this.getText, Key? key})
+  const BuildRowWidget({required this.onTap, required this.getText, Key? key, required this.icon})
       : super(key: key);
   final VoidCallback onTap;
   final String getText;
+  final IconData icon;
   @override
   State<BuildRowWidget> createState() => _BuildRowWidgetState();
 }
@@ -374,18 +370,18 @@ class _BuildRowWidgetState extends State<BuildRowWidget> {
       child: Row(
         children: [
           Icon(
-            Icons.phone,
-            size: SizeConfig.imageSizeMultiplier * 5.5,
+            widget.icon,
+            size: 22.w,
             color: const Color(colorDarkBlue),
           ),
           SizedBox(
-            width: SizeConfig.widthMultiplier * 2.0,
+            width: 4.w,
           ),
           Text(widget.getText,
               style: Theme.of(context)
                   .textTheme
                   .headline6!
-                  .copyWith(fontSize: SizeConfig.textMultiplier * 1.8))
+                  .copyWith(fontSize: 14.sp))
         ],
       ),
     );
@@ -417,23 +413,23 @@ class _EnglishNepaliTapState extends State<EnglishNepaliTap> {
         child: Row(children: [
           Container(
             alignment: Alignment.center,
-            height: SizeConfig.heightMultiplier * 3,
-            width: SizeConfig.widthMultiplier * 7,
+            height: 20.h,
+            width: 24.w,
             color: widget.isEng ? const Color(colorDarkBlue) : null,
             child: Text("EN",
                 style: TextStyle(
                     color: widget.isEng
                         ? const Color(colorWhite)
                         : const Color(colorDarkBlue),
-                    fontSize: SizeConfig.textMultiplier * 2.0)),
+                    fontSize: 16.sp)),
           ),
           const VerticalDivider(
             thickness: 1.5,
             color: Color(colorDarkBlue),
           ),
           Container(
-            height: SizeConfig.heightMultiplier * 3,
-            width: SizeConfig.widthMultiplier * 7,
+            height: 20.h,
+            width: 24.w,
             color: widget.isEng ? null : const Color(colorDarkBlue),
             alignment: Alignment.center,
             child: Text("NP",
@@ -441,7 +437,7 @@ class _EnglishNepaliTapState extends State<EnglishNepaliTap> {
                     color: widget.isEng
                         ? const Color(colorDarkBlue)
                         : const Color(colorWhite),
-                    fontSize: SizeConfig.textMultiplier * 2.0)),
+                    fontSize: 16.sp)),
           ),
         ]),
       ),
@@ -465,14 +461,14 @@ class CustomContactText extends StatelessWidget {
       children: [
         Text(leftText, style: Theme.of(context).textTheme.bodyText2),
         SizedBox(
-          width: SizeConfig.widthMultiplier * 2.0,
+          width: 6.h,
         ),
         Expanded(
           child: Text(rightText,
               style: Theme.of(context)
                   .textTheme
                   .headline6!
-                  .copyWith(fontSize: SizeConfig.textMultiplier * 1.8)),
+                  .copyWith(fontSize: 14.sp)),
         ),
       ],
     );

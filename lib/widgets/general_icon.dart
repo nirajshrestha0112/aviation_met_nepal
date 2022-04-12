@@ -5,13 +5,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GeneralIcon extends StatelessWidget {
   const GeneralIcon({
+    this.isPadding,
     Key? key,
   }) : super(key: key);
+  final EdgeInsetsGeometry? isPadding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 10.w),
+      padding: isPadding ?? EdgeInsets.only(right: 6.w),
       child: InkWell(
         onTap: () {
           Navigator.pop(context);

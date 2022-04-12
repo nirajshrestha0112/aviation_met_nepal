@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../constant/colors_properties.dart';
 import '../constant/images.dart';
 import '../constant/values.dart';
-import '../utils/size_config.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomErrorTab extends StatelessWidget {
   const CustomErrorTab({this.margin = true, Key? key}) : super(key: key);
@@ -12,11 +12,10 @@ class CustomErrorTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          const EdgeInsets.symmetric(horizontal: padding, vertical: padding),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       child: Container(
-        height: SizeConfig.heightMultiplier * 16.0,
-        margin: margin ? const EdgeInsets.only(bottom: padding * 28.0) : null,
+        height: 100.h,
+        margin: margin ? EdgeInsets.only(bottom: 440.h) : null,
         // alignment: Alignment.topCenter,
         width: double.infinity,
         decoration: BoxDecoration(
@@ -29,8 +28,8 @@ class CustomErrorTab extends StatelessWidget {
           children: [
             SvgPicture.asset(
               noDataImg,
-              width: SizeConfig.heightMultiplier * 26,
-              height: SizeConfig.widthMultiplier * 26,
+              width: 100.w,
+              height: 80.h,
             ),
             Text("No data Available",
                 style: Theme.of(context)

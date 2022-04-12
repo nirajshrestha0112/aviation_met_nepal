@@ -3,6 +3,7 @@ import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomRawCard extends StatelessWidget {
   const CustomRawCard({
@@ -16,15 +17,15 @@ class CustomRawCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(
-          top: padding,
-          left: padding,
-          bottom: padding,
+        padding: EdgeInsets.only(
+          top: 16.h,
+          left: 16.w,
+          bottom: 16.h,
         ),
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color(colorWhite),
-            borderRadius: BorderRadius.circular(radius)),
+            borderRadius: BorderRadius.circular(6.w)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -33,15 +34,15 @@ class CustomRawCard extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .headline6!
-                  .copyWith(fontSize: SizeConfig.textMultiplier * 2.0),
+                  .copyWith(fontSize: 16.sp),
             ),
-            SizedBox(height: SizeConfig.heightMultiplier * 1.5),
+            SizedBox(height: 2.h),
             ListView.separated(
               padding: EdgeInsets.zero,
               primary: false,
               itemBuilder: (context, index) => Html(data: rawBodyText[index]),
               separatorBuilder: (context, index) => SizedBox(
-                height: SizeConfig.heightMultiplier * 1.5,
+                height: 2.h,
               ),
               itemCount: rawBodyText.length,
               shrinkWrap: true,

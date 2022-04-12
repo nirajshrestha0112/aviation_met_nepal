@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../utils/size_config.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DropDownFilter extends StatefulWidget {
   const DropDownFilter({
@@ -46,7 +47,7 @@ class _DropDownFilterState extends State<DropDownFilter> {
       child: ButtonTheme(
         alignedDropdown: true,
         child: DropdownButton(
-          menuMaxHeight: SizeConfig.heightMultiplier * 70.0,
+          menuMaxHeight: 500.h,
           elevation: 0,
           isExpanded: true,
           value: selectedValue,
