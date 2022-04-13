@@ -2,6 +2,7 @@ import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
+import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/utils/validation.dart';
 import 'package:aviation_met_nepal/widgets/general_icon.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../utils/show_internet_connection_snack_bar.dart';
 import '../widgets/custom_loading_indicator.dart';
 
 class LoginPage extends StatefulWidget {
@@ -27,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leading: const GeneralIcon(),
+          // leading: const GeneralIcon(),
           // leadingWidth: 16.w,
           title: const Text(
             "Login",
@@ -49,7 +51,6 @@ class _LoginPageState extends State<LoginPage> {
                     Image.asset(
                       logoOnlyImg,
                       width: 100.w,
-                      // height: SizeConfig.widthMultiplier*30,
                     ),
                     SizedBox(
                       height: 15.h,
@@ -108,16 +109,27 @@ class _LoginPageState extends State<LoginPage> {
                       text: "Login",
                       onPressed: () async {
                         if (_formGlobalKey.currentState!.validate()) {
-                          showDialog(
-                            context: context,
-                            builder: (_) => const CustomLoadingIndicator(),
-                          );
-                          await Future.delayed(const Duration(seconds: 3));
-                          await Provider.of<LoginProvider>(context,
-                                  listen: false)
-                              .loginPostApi(context,
-                                  userName: _usernameController.text,
-                                  password: _passwordController.text);
+                          if (getIsOnline(context)) {
+                            showDialog(
+                              context: context,
+                              builder: (_) => const CustomLoadingIndicator(),
+                            );
+                            await Future.delayed(const Duration(seconds: 3));
+                            await Provider.of<LoginProvider>(context,
+                                    listen: false)
+                                .loginPostApi(context,
+                                    userName: _usernameController.text,
+                                    password: _passwordController.text);
+                          } else {
+                            showInternetConnectionSnackBar(
+                                icon: Icons.close,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                bgColor: Colors.red,
+                                circleAvatarbgColor: Colors.white,
+                                iconColor: Colors.red,
+                                statusText: "Error",
+                                message: "Server Error...Please Try Again");
+                          }
                         }
                       },
                       height: 40.h,

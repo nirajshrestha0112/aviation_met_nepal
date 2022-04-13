@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constant/values.dart';
-import '../utils/size_config.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ShowAlertDialogBox extends StatefulWidget {
   const ShowAlertDialogBox({
@@ -19,14 +18,14 @@ class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
         content: Builder(
           builder: (context) {
             // Get available height and width of the build area of this widget. Make a choice depending on the size.
-            var height = SizeConfig.heightMultiplier * 5.0;
-            var width = SizeConfig.widthMultiplier * 100.0;
+            var height = 20.h;
+            var width = MediaQuery.of(context).size.width * 100;
             return SizedBox(
               height: height,
               width: width,
               child: Text("Are you sure you want to exit?",
                   style: TextStyle(
-                    fontSize: SizeConfig.textMultiplier * 1.8,
+                    fontSize: 14.sp,
                     color: Colors.black,
                   )),
             );
@@ -35,12 +34,11 @@ class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
         title: Text(
           'Confirm to Exit',
           style: TextStyle(
-              fontSize: SizeConfig.textMultiplier * 2.2,
+              fontSize: 18.sp,
               color: Colors.black,
               fontWeight: FontWeight.w600),
         ),
-        contentPadding:
-            const EdgeInsets.only(top: padding / 2.0, left: padding * 1.5),
+        contentPadding: EdgeInsets.only(top: 8.h, left: 23.w),
         actions: <Widget>[
           TextButton(
               onPressed: () {
@@ -48,7 +46,7 @@ class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
               },
               child: Text('No',
                   style: TextStyle(
-                    fontSize: SizeConfig.textMultiplier * 1.8,
+                    fontSize: 14.sp,
                     color: Colors.green[800],
                   ))),
           TextButton(
@@ -58,7 +56,7 @@ class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
               },
               child: Text('Yes',
                   style: TextStyle(
-                    fontSize: SizeConfig.textMultiplier * 1.8,
+                    fontSize: 14.sp,
                     color: Colors.green[800],
                   ))),
         ]);

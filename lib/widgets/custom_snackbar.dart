@@ -1,54 +1,56 @@
 import 'package:flutter/material.dart';
 
-import '../constant/values.dart';
-import '../utils/size_config.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomSnackBar {
   static customSnackBar(
       {required String statusText,
       required String message,
+      Color? circleAvatarbgColor,
       Color? bgColor,
-      Color? colorBlue,
+      Color? iconColor,
+      CrossAxisAlignment? crossAxisAlignment,
+      double? size,
       IconData? icon}) {
     return SnackBar(
       behavior: SnackBarBehavior.floating,
-      margin: const EdgeInsets.symmetric(
-          vertical: radius * 2.5, horizontal: padding),
-      backgroundColor: bgColor ?? Colors.green,
+      margin: EdgeInsets.symmetric(vertical: 18.h, horizontal: 16.w),
+      backgroundColor: bgColor ?? Colors.transparent,
       // duration: Duration(minutes: 2),
       content: SizedBox(
-        height: SizeConfig.heightMultiplier * 5,
+        height: 30.h,
         width: double.infinity,
-        child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          CircleAvatar(
-            radius: SizeConfig.imageSizeMultiplier * 3.5,
-            backgroundColor: Colors.white,
-            child: Icon(
-              icon ?? Icons.done,
-              color: colorBlue ?? Colors.green,
-              semanticLabel: "done",
-              size: SizeConfig.imageSizeMultiplier * 4.5,
-            ),
-          ),
-          SizedBox(
-            width: SizeConfig.widthMultiplier * 3.0,
-          ),
-          Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  statusText,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: SizeConfig.textMultiplier * 1.8),
+        child: Row(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: crossAxisAlignment??CrossAxisAlignment.start,
+            children: [
+              CircleAvatar(
+                radius: 13.w,
+                backgroundColor: circleAvatarbgColor ?? Colors.transparent,
+                child: Icon(
+                  icon ?? Icons.done,
+                  color: iconColor ?? Colors.transparent,
+                  size: size ?? 20.w,
                 ),
-                Text(
-                  message,
-                  style: TextStyle(fontSize: SizeConfig.textMultiplier * 1.6),
-                ),
-              ]),
-        ]),
+              ),
+              SizedBox(
+                width: 16.w,
+              ),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      statusText,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500, fontSize: 14.sp),
+                    ),
+                    Text(
+                      message,
+                      style: TextStyle(fontSize: 12.sp),
+                    ),
+                  ]),
+            ]),
       ),
     );
   }

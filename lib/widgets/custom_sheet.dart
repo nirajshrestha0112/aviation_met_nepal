@@ -6,6 +6,7 @@ import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
+import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/widgets/custom_alert_dialog.dart';
 import 'package:aviation_met_nepal/widgets/custom_icon_image.dart';
 import 'package:aviation_met_nepal/widgets/each_text.dart';
@@ -13,8 +14,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../constant/values.dart';
+import '../provider/weather_forecast_provider.dart';
 import '../utils/custom_scroll_behavior.dart';
-import '../utils/size_config.dart';
+import '../utils/show_internet_connection_snack_bar.dart';
 import 'custom_loading_indicator.dart';
 import 'general_filter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -213,8 +215,7 @@ class ShowFabSheet {
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText2!),
-                                    SizedBox(
-                                        height: SizeConfig.heightMultiplier),
+                                    SizedBox(height: 4.h),
                                     Text(
                                       Provider.of<LoginProvider>(context,
                                               listen: true)
@@ -224,8 +225,7 @@ class ShowFabSheet {
                                           .textTheme
                                           .bodyText2!
                                           .copyWith(
-                                            fontSize:
-                                                SizeConfig.textMultiplier * 1.5,
+                                            fontSize: 16.sp,
                                           ),
                                     )
                                   ],
@@ -283,19 +283,35 @@ class ShowFabSheet {
                           leading: data[i]['icon'],
                           title: data[i]['title'],
                           onTap: () {
-                            data.last == data[i]
-                                ? launchUrl(data[i]["url"])
-                                : data[i]["toCheck"]
-                                    ? Provider.of<LoginProvider>(context,
-                                                    listen: false)
-                                                .loginName !=
-                                            null
-                                        ? Navigator.pushNamed(
-                                            context, data[i]['navigate'])
-                                        : Navigator.pushNamed(
-                                            context, loginRoute)
-                                    : Navigator.pushNamed(
-                                        context, data[i]['navigate']);
+                            if (data.last == data[i]) {
+                              launchUrl(data[i]["url"]);
+                            } else {
+                              if (data[i]["toCheck"]) {
+                                if (Provider.of<LoginProvider>(context,
+                                            listen: false)
+                                        .loginName !=
+                                    null) {
+                                  Navigator.pushNamed(
+                                      context, data[i]['navigate']);
+                                } else {
+                                  Navigator.pushNamed(context, loginRoute);
+                                }
+                              } else {
+                                if (getIsOnline(context)) {
+                                Navigator.pushNamed(
+                                    context, data[i]['navigate']); } else {
+                                      Navigator.pop(context);
+                                       showInternetConnectionSnackBar(
+                                icon: Icons.close,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                bgColor: Colors.red,
+                                circleAvatarbgColor: Colors.white,
+                                iconColor: Colors.red,
+                                statusText: "Error",
+                                message: "Server Error...Please Try Again");
+                                    }
+                              }
+                            }
                           },
                         );
                       }),
@@ -338,7 +354,7 @@ class ShowLocationSheet {
                           size: 20.w,
                         ),
                         SizedBox(
-                          width: SizeConfig.widthMultiplier * 3.0,
+                          width: 4.w,
                         ),
                         Text(
                           "Select Aiport",
@@ -544,5 +560,145 @@ class ShowFilterSheet {
           );
         });
     return value;
+  }
+}
+
+class ShowWeatherForecastCities {
+  static Future showWeatherForecastCities({
+    required BuildContext context,
+    // required TextEditingController editingController,
+    required Future future,
+  }) async {
+    final editingController = TextEditingController();
+    editingController.addListener(() {
+      Provider.of<CitiesProvider>(context, listen: false)
+          .filterSearchWeatherForecastResults(editingController.text);
+    });
+
+    return await showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        context: context,
+        isScrollControlled: true,
+        builder: (_) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.7,
+            color: const Color(colorWhite),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
+              child: Column(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.location_on,
+                          color: const Color(colorDarkBlue),
+                          size: 20.w,
+                        ),
+                        SizedBox(
+                          width: 4.w,
+                        ),
+                        Text(
+                          "Select Aiport",
+                          style: Theme.of(context).textTheme.bodyText1,
+                        )
+                      ],
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.close_outlined,
+                        size: 25.w,
+                        color: const Color(colorDarkBlue),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 6.h,
+                ),
+                TextFormField(
+                    controller: editingController,
+                    decoration: InputDecoration(
+                        hintText: "Select Airport",
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(8.w)),
+                        suffixIcon: Icon(
+                          Icons.search,
+                          size: 24.w,
+                        ))),
+                SizedBox(
+                  height: 6.h,
+                ),
+                Expanded(
+                    child: ScrollConfiguration(
+                  behavior: MyBehavior(),
+                  child: RawScrollbar(
+                    isAlwaysShown: true,
+                    thumbColor: const Color(bgColor),
+                    child: FutureBuilder(
+                        future: future,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const CustomLoadingIndicator();
+                          }
+                          return Consumer<CitiesProvider>(
+                              builder: (_, value, __) {
+                            return value.searchWeatherForecastData.isEmpty
+                                ? Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Text("No Data Found",
+                                        style: TextStyle(
+                                            color: const Color(colorGrey20),
+                                            fontSize: 18.sp)))
+                                : ListView.builder(
+                                    itemCount:
+                                        value.searchWeatherForecastData.length,
+                                    itemBuilder: (c, i) {
+                                      return InkWell(
+                                        onTap: () async {
+                                          await Provider.of<
+                                                      WeatherForecastProvider>(
+                                                  context,
+                                                  listen: false)
+                                              .fetchWeatherForecast(
+                                                  id: value
+                                                      .searchWeatherForecastData[
+                                                          i]
+                                                      .id);
+                                          Navigator.pop(
+                                              context,
+                                              value.searchWeatherForecastData[i]
+                                                  .description);
+                                        },
+                                        child: ListTile(
+                                          contentPadding:
+                                              EdgeInsets.only(left: 4.w),
+                                          leading: Text(
+                                            value.searchWeatherForecastData[i]
+                                                .description,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .copyWith(
+                                                    color: const Color(
+                                                        colorPrimary)),
+                                          ),
+                                        ),
+                                      );
+                                    });
+                          });
+                        }),
+                  ),
+                ))
+              ]),
+            ),
+          );
+        });
   }
 }

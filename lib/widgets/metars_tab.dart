@@ -46,8 +46,7 @@ class _MetarsTabState extends State<MetarsTab> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-           EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       child: FutureBuilder(
         future: _future,
         builder: (context, AsyncSnapshot snapshot) {
@@ -70,9 +69,7 @@ class _MetarsTabState extends State<MetarsTab> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(fontWeight: FontWeight.normal)
-                        // TextStyle(fontSize: SizeConfig.textMultiplier * 2.0),
-                        ),
+                            .copyWith(fontWeight: FontWeight.normal)),
                     InkWell(
                       onTap: () async {
                         final value =
@@ -83,6 +80,7 @@ class _MetarsTabState extends State<MetarsTab> {
                         }
                       },
                       child: Container(
+                        padding: EdgeInsets.only(left: 8.w),
                         height: 36.h,
                         width: 72.w,
                         decoration: BoxDecoration(
@@ -91,9 +89,6 @@ class _MetarsTabState extends State<MetarsTab> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(
-                              width: SizeConfig.widthMultiplier,
-                            ),
                             Text("Filter",
                                 style: Theme.of(context)
                                     .textTheme
@@ -174,14 +169,14 @@ class _MetarsTabState extends State<MetarsTab> {
                                     value.metarDataDecoded.data!.decoded
                                         .winds[index]),
                                 SizedBox(
-                                  height:1.h,
+                                  height: 1.h,
                                 ),
                                 buildRow(
                                     "Visibility",
                                     value.metarDataDecoded.data!.decoded
                                         .visibility[index]),
                                 SizedBox(
-                                  height:1.h,
+                                  height: 1.h,
                                 ),
                                 buildRow(
                                     "Ceiling",

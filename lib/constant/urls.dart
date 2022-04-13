@@ -1,6 +1,8 @@
 const String baseUrl = "http://beta.dhm.gov.np:8080/api";
 const String baseUrlCities =
     "http://webapiserver.dhm.gov.np/api/cities?domain=Nepal";
+const String baseUrlCitiesById =
+    "http://webapiserver.dhm.gov.np/api/forecastbypoi/id";
 const String airporListUrl = "$baseUrl/getAirportList";
 const String tafsRawUrl = '$baseUrl/getTAFData/raw/';
 const String tafsDecodedUrl = '$baseUrl/getTAFData/decoded/';

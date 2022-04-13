@@ -18,7 +18,6 @@ import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
 import 'package:aviation_met_nepal/screens/weather_forecast_screen.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
-import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,7 +27,10 @@ import 'provider/gamet_data_provider.dart';
 import 'provider/lighting_data_provider.dart';
 import 'provider/opmet_data_provider.dart';
 import 'provider/satellite_image_provider.dart';
+import 'screens/internet_connection_screen.dart';
 import 'screens/splash_screen.dart';
+
+final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
 void main() {
   runApp(
@@ -60,12 +62,8 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
-
   @override
   Widget build(BuildContext context) {
-    // Provider.of<AviationProvider>(context, listen: false).fetchData();
-
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -76,22 +74,20 @@ class MyApp extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       return OrientationBuilder(builder: (context, orientation) {
         final checkProvider = Provider.of<ConnectivityProvider>(context);
-
-        // SizeConfig().init(constraints, orientation);
         return ScreenUtilInit(
           designSize: const Size(360, 723),
           builder: () => MaterialApp(
             theme: lightTheme(context),
+            scaffoldMessengerKey: messengerKey,
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            initialRoute: '/weatherForecast',
+            initialRoute: homeRoute,
 
-            /*  home: checkProvider.isConnected
+            /* home: checkProvider.isConnected
                 ? const SplashScreen()
                 : const InternetConnectionScreen(), */
             routes: {
               splashRoute: (context) => const SplashScreen(),
-              '/loading': (context) => const CustomLoadingIndicator(),
               homeRoute: (context) => const HomeScreen(),
               detailsRoute: (context) => const DetailsScreen(),
               contactRoute: (context) => const ContactUs(),
@@ -104,7 +100,7 @@ class MyApp extends StatelessWidget {
                   const SatelliteScreen(screenName: "Satellite Images"),
               windChartRoute: (context) => const Scaffold(),
               sigwxChartRoute: (context) => const Scaffold(),
-              weatherForecastRoute: (context) => const Scaffold(),
+              // weatherForecastRoute: (context) => const Scaffold(),
               airmetDataRoute: (context) =>
                   const CustomScreen(screenName: "Airmet Data"),
               ashtamsDataRoute: (context) =>
@@ -113,7 +109,7 @@ class MyApp extends StatelessWidget {
                   const CustomScreen(screenName: "Gamet Data"),
               opmetDataRoute: (context) =>
                   const CustomScreen(screenName: "Opmet Data"),
-              '/weatherForecast': ((context) => const WeatherForecastScreen())
+              weatherForecastRoute: ((context) => const WeatherForecastScreen())
             },
           ),
         );
