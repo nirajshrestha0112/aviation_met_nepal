@@ -33,10 +33,14 @@ class LoginProvider extends ChangeNotifier {
         if (jsonDecode(response.body)["status"] == "error") {
           final SnackBar errorSnackBar = CustomSnackBar.customSnackBar(
               message: jsonDecode(response.body)["message"],
-              statusText: jsonDecode(response.body)["status"],
+              statusText: jsonDecode(response.body)["status"]
+                  .toString()
+                  .toCapitalized(),
+              crossAxisAlignment: CrossAxisAlignment.center,
               icon: Icons.close,
               bgColor: Colors.red,
-              colorBlue: Colors.red);
+              circleAvatarbgColor: Colors.white,
+              iconColor: Colors.red);
 
           ScaffoldMessenger.of(context).showSnackBar(errorSnackBar);
           Navigator.pop(context);
@@ -48,8 +52,14 @@ class LoginProvider extends ChangeNotifier {
           loginName = data["LOGIN_NAME"];
           userId = data["USERID"];
           final SnackBar successMessage = CustomSnackBar.customSnackBar(
+              circleAvatarbgColor: Colors.white,
+              iconColor: Colors.green,
+              bgColor: Colors.green,
+              crossAxisAlignment:CrossAxisAlignment.center,
               message: jsonDecode(response.body)["message"],
-              statusText: jsonDecode(response.body)["status"]);
+              statusText: jsonDecode(response.body)["status"]
+                  .toString()
+                  .toCapitalized());
           ScaffoldMessenger.of(context).showSnackBar(successMessage);
           await SecureStorage.writeSecureData(
               key: SecureStorageConstants.token, value: token!);
@@ -72,4 +82,14 @@ class LoginProvider extends ChangeNotifier {
     userId = null;
     notifyListeners();
   }
+}
+
+extension StringCasingExtension on String {
+  String toCapitalized() =>
+      length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
+
+  String toTitleCase() => replaceAll(RegExp(' +'), ' ')
+      .split(' ')
+      .map((str) => str.toCapitalized())
+      .join(' ');
 }

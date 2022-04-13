@@ -2,6 +2,9 @@ import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
+import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
+import 'package:aviation_met_nepal/utils/is_online_checker.dart';
+import 'package:aviation_met_nepal/utils/show_internet_connection_snack_bar.dart';
 import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -23,22 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return WillPopScope(
       onWillPop: () async => await showDialog(
           context: context, builder: (context) => const ShowAlertDialogBox()),
-      /*     await showDialog(
-                  context: context,
-                  builder: (_) => AlertDialog(
-                        content: Builder(
-                          builder: (context) {
-                            // Get available height and width of the build area of this widget. Make a choice depending on the size.
-                            var height = SizeConfig.heightMultiplier * 12;
-                            var width = SizeConfig.widthMultiplier * 80;
-                            return SizedBox(
-                              height: height,
-                              width: width,
-                              child: ,
-                            );
-                          },
-                        ),
-                      )), */
       child: SafeArea(
         child: Scaffold(
             appBar: PreferredSize(
@@ -65,6 +52,8 @@ class HomeScreenBody extends StatefulWidget {
 class _HomeScreenBodyState extends State<HomeScreenBody> {
   @override
   void initState() {
+    Provider.of<ConnectivityProvider>(context, listen: false)
+        .monitorConnection();
     _future = Provider.of<AirportListProvider>(context, listen: false)
         .fetchAirportList();
     _editingController.addListener(() {
@@ -85,10 +74,20 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
           child: InkWell(
             // overlayColor: Colors.transparent,
             splashColor: Colors.transparent,
-            onTap: () => ShowLocationSheet.showLocationSheet(
-                context: context,
-                editingController: _editingController,
-                future: _future),
+            onTap: () => getIsOnline(context)
+                ? ShowLocationSheet.showLocationSheet(
+                    context: context,
+                    editingController: _editingController,
+                    future: _future)
+                : showInternetConnectionSnackBar(
+                    icon: Icons.error,
+                    
+                    // crossAxisAlignment: true,
+                    size: 32.w,
+                    iconColor: const Color(colorAccent),
+                    bgColor: const Color(colorPrimary),
+                    statusText: "Attention",
+                    message: "No Airport Data Available"),
             child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 14.w),
                 height: 42.h,

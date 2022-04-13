@@ -21,7 +21,6 @@ class CitiesProvider extends ChangeNotifier {
           'authorization': "Basic ZGhtOk1maURITTIwMjEk",
         },
       );
-      log(response.body);
       if (response.statusCode == 200) {
         final map = jsonDecode(response.body) as Map;
         map.forEach((key, value) {
@@ -57,7 +56,6 @@ class WeatherForecastProvider extends ChangeNotifier {
   List<WindSpeed> windSpeedList = [];
   List<Humidity> humidityList = [];
   List<Rain> rainList = [];
-  // List<WeatherForecast> weatherForecast = [];
   WeatherForecast? weatherForecastData;
 
   clear() {
@@ -69,60 +67,48 @@ class WeatherForecastProvider extends ChangeNotifier {
   }
 
   fetchWeatherForecast({required String id}) async {
-    // try {
-    final url = "http://webapiserver.dhm.gov.np/api/forecastbypoi/id/$id";
-    log(url);
+    try {
+      final url = "$baseUrlCitiesById/$id";
+      log(url);
 
-    http.Response response = await http.get(
-      Uri.parse(url),
-      headers: <String, String>{
-        'authorization': "Basic ZGhtOk1maURITTIwMjEk",
-      },
-    );
-    log(response.body);
-    if (response.statusCode == 200) {
-      clear();
-      /* final map = jsonDecode(response.body) as Map;
-        map.forEach((key, value) {
-          weatherForecast.add(WeatherForecast.fromJson(value));
-        }); */
+      http.Response response = await http.get(
+        Uri.parse(url),
+        headers: <String, String>{
+          'authorization': "Basic ZGhtOk1maURITTIwMjEk",
+        },
+      );
+      log(response.body);
+      if (response.statusCode == 200) {
+        clear();
+        final parsedData = jsonDecode(response.body);
+        weatherForecastData = WeatherForecast.fromJson(parsedData);
 
-      final parsedData = jsonDecode(response.body);
-      weatherForecastData = WeatherForecast.fromJson(parsedData);
-      log("data1");
-      getDynamicValue(dataKey: "t");
-      log("data1");
-      log("data2");
-      getDynamicValue(dataKey: "wd");
-      log("data2");
-      log("data3");
-      getDynamicValue(dataKey: "ws");
-      log("data3");
-      log("data4");
-      getDynamicValue(dataKey: "hu");
-      log("data4");
-      log("data5");
-      getDynamicValue(dataKey: "rain06h");
-      log("data5");
-      notifyListeners();
-    } else {
-      throw jsonDecode(response.body)['message'];
+        getDynamicValue(dataKey: "t");
+
+        getDynamicValue(dataKey: "wd");
+
+        getDynamicValue(dataKey: "ws");
+
+        getDynamicValue(dataKey: "hu");
+
+        getDynamicValue(dataKey: "rain06h");
+
+        notifyListeners();
+      } else {
+        throw jsonDecode(response.body)['message'];
+      }
+    } catch (e) {
+      log(e.toString());
     }
-    // } catch (e) {
-    //   log(e.toString());
-    // }
   }
 
   List<DateTime> dateList = [];
   dynamic getDynamicValue({required String dataKey}) {
     Map<String, dynamic> tempJsonObject =
         weatherForecastData!.data.params[dataKey];
-    // tempJsonObject.remove('description');
-    // TODO: parse as a date
 
     tempJsonObject.remove("description");
     log(tempJsonObject.values.toString());
-    // List<String> dateList =
     if (dateList.isEmpty) {
       tempJsonObject.keys.toList().forEach(
         (element) {
@@ -132,8 +118,6 @@ class WeatherForecastProvider extends ChangeNotifier {
         },
       );
     }
-    log(dateList.toString());
-    log(tempJsonObject.toString());
 
     switch (dataKey) {
       case "wd":

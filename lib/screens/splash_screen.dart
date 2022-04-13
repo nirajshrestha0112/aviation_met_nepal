@@ -2,6 +2,7 @@ import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -45,16 +46,12 @@ class _SplashScreen extends State<SplashScreen> {
           // height: MediaQuery.of(context).size.height * 100,
         ),
         Positioned(
-          left: SizeConfig.widthMultiplier * 32.0,
-          top: SizeConfig.heightMultiplier * 48.0,
-          child: SizedBox(
-            height: SizeConfig.heightMultiplier * 10.0,
-            width: SizeConfig.widthMultiplier * 40,
-            child: Image.asset(
-              gifImg,
-              height: 20,
-              width: 20,
-            ),
+          left: 160,
+          top: 350.h,
+          child: Image.asset(
+            gifImg,
+            height: 60.h,
+            width: 80.w,
           ),
         )
       ])),

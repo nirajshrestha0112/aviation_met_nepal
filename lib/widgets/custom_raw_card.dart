@@ -1,6 +1,4 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
-import 'package:aviation_met_nepal/constant/values.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

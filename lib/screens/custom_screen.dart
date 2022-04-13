@@ -10,7 +10,6 @@ import '../provider/airmet_data_provider.dart';
 import '../provider/gamet_data_provider.dart';
 import '../provider/opmet_data_provider.dart';
 import '../utils/custom_scroll_behavior.dart';
-import '../utils/size_config.dart';
 import '../widgets/custom_floating_action_btn.dart';
 import '../widgets/custom_loading_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,8 +53,8 @@ class _CustomScreenState extends State<CustomScreen> {
               behavior: MyBehavior(),
               child: RawScrollbar(
                 isAlwaysShown: true,
-                minThumbLength: SizeConfig.heightMultiplier,
-                thickness: SizeConfig.widthMultiplier,
+                minThumbLength: 2.h,
+                thickness: 4.w,
                 thumbColor: Colors.grey,
                 child: SingleChildScrollView(
                     child: Column(children: [
@@ -81,20 +80,6 @@ class _CustomScreenState extends State<CustomScreen> {
                             child: const GeneralIcon(
                               isPadding: EdgeInsets.zero,
                             ))
-                        /* Positioned(
-                          top: 6.h,
-                          left: SizeConfig.widthMultiplier * 3.5,
-                          child: GestureDetector(
-                            child: Icon(
-                              Icons.adaptive.arrow_back,
-                              color: const Color(colorDarkBlue),
-                              size: SizeConfig.imageSizeMultiplier * 6.0,
-                            ),
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ), */
                       ],
                     ),
                   ),

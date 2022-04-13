@@ -1,4 +1,4 @@
-import 'dart:async';
+/* import 'dart:async';
 
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
@@ -65,4 +65,4 @@ class _InternetConnectionScreenState extends State<InternetConnectionScreen> {
       ),
     );
   }
-}
+} */

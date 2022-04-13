@@ -1,9 +1,9 @@
+import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
-import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/privacy_policy_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -101,20 +101,6 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                     child: const GeneralIcon(
                       isPadding: EdgeInsets.zero,
                     ))
-                /* Positioned(
-                top: SizeConfig.heightMultiplier * 2,
-                left: SizeConfig.widthMultiplier * 3.5,
-                child: GestureDetector(
-                  child: Icon(
-                    Icons.adaptive.arrow_back,
-                    color: const Color(colorDarkBlue),
-                    size: SizeConfig.imageSizeMultiplier * 6.0,
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ), */
               ],
             )),
         SizedBox(
@@ -163,19 +149,25 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                   SizedBox(
                     height: 6.h,
                   ),
-                  BuildRowWidget(
-                    icon: Icons.phone,
-                      onTap: (() =>
-                          launch(getPhoneUrl(phone: "+977144868699"))),
-                      getText: "+977144868699"),
+                  
+                                   BuildRowWidget(
+                      icon: Icons.phone,
+                      getText: "+977144868699",
+                      onTap: () {
+                        ShowFabSheet.launchUrl(
+                            getPhoneUrl(phone: "+977144868699"));
+                      }),
                   SizedBox(height: 6.h),
                   BuildRowWidget(
                     icon: Icons.email,
-                      onTap: () => ShowFabSheet.launchUrl(
-                          ShowFabSheet.getEmailUrl(email: "info@mfd.gov.np")),
-                      getText: "info@mfd.gov.np"),
+                    getText: "info@mfd.gov.np",
+                    onTap: () {
+                      ShowFabSheet.launchUrl(
+                          ShowFabSheet.getEmailUrl(email: "info@mfd.gov.np"));
+                    },
+                  ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier,
+                    height: 4.h,
                   ),
                   const Divider(
                     color: Color(bgColor),
@@ -196,21 +188,21 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                           rightText:
                               "1618 07 07 33333(for daily weather updates)"),
                       SizedBox(
-                        height: SizeConfig.heightMultiplier,
+                        height: 4.h,
                       ),
                       const CustomContactText(
                         leftText: "Surkhet :       ",
                         rightText: "1618 083 523519(for daily weather data)",
                       ),
                       SizedBox(
-                        height: SizeConfig.heightMultiplier,
+                        height: 4.h,
                       ),
                       const CustomContactText(
                         leftText: "Pokhara :      ",
                         rightText: "1618 061 465299(for daily weather data)",
                       ),
                       SizedBox(
-                        height: SizeConfig.heightMultiplier,
+                        height: 4.h,
                       ),
                       const CustomContactText(
                         leftText: "Dharan :        ",
@@ -219,7 +211,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                     ],
                   ),
                   SizedBox(
-                    height: SizeConfig.heightMultiplier,
+                    height: 4.h,
                   ),
                   FutureBuilder(
                       future: _future,
@@ -293,22 +285,6 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                                                 listen: false)
                                             .privacyTitleNp!
                                             .substring(0, 90)),
-                                /* Html(
-                                            data: Provider.of<PrivacyPolicyProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .privacyPolicyData!
-                                                .data[0]
-                                                .policyDetailsNp,
-                                            style: {
-                                                "span": Style(
-                                                  fontSize: FontSize(
-                                                    SizeConfig.textMultiplier *
-                                                        1.8,
-                                                  ),
-                                                ),
-                                              }),
- */
                                 TxtBtn(
                                   callback: toggleViewMore,
                                   isViewMore: isViewMore,
@@ -353,9 +329,13 @@ class _TxtBtnState extends State<TxtBtn> {
 }
 
 class BuildRowWidget extends StatefulWidget {
-  const BuildRowWidget({required this.onTap, required this.getText, Key? key, required this.icon})
+  const BuildRowWidget(
+      {required this.onTap,
+      required this.getText,
+      Key? key,
+      required this.icon})
       : super(key: key);
-  final VoidCallback onTap;
+  final void Function() onTap;
   final String getText;
   final IconData icon;
   @override
@@ -365,8 +345,8 @@ class BuildRowWidget extends StatefulWidget {
 class _BuildRowWidgetState extends State<BuildRowWidget> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => widget.onTap,
+    return GestureDetector(
+      onTap: () => widget.onTap(),
       child: Row(
         children: [
           Icon(
@@ -397,18 +377,12 @@ class EnglishNepaliTap extends StatefulWidget {
   @override
   State<EnglishNepaliTap> createState() => _EnglishNepaliTapState();
 }
-// bool isEng = true;
 
 class _EnglishNepaliTapState extends State<EnglishNepaliTap> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: widget.callBack,
-      /* () {
-        setState(() {
-          isEng = !isEng;
-        });
-      }, */
       child: IntrinsicHeight(
         child: Row(children: [
           Container(
@@ -456,7 +430,6 @@ class CustomContactText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      // mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(leftText, style: Theme.of(context).textTheme.bodyText2),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../utils/size_config.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DropDownFilter extends StatefulWidget {

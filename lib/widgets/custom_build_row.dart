@@ -27,7 +27,7 @@ Widget buildRow(String label, String value,
             isDecoded
                 ? Column(children: [
                     SizedBox(
-                      height: SizeConfig.heightMultiplier,
+                      height: 2.h,
                     ),
                     Text(
                       "Decoded",
