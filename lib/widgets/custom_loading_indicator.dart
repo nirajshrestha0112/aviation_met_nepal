@@ -1,5 +1,4 @@
 import 'package:aviation_met_nepal/constant/images.dart';
-import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,7 +15,7 @@ class CustomLoadingIndicator extends StatelessWidget {
             radius: 28.w,
             backgroundColor: Colors.white,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(padding * 2.0),
+              borderRadius: BorderRadius.circular(16.w * 2.0),
               child: Image.asset(
                 // you can replace this with Image.asset
                 logoOnlyImg,

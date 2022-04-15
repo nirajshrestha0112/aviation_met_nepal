@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/provider/privacy_policy_provider.dart';
@@ -7,8 +5,8 @@ import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom_loading_indicator.dart';
 import '../widgets/custom_sheet.dart';
@@ -81,10 +79,11 @@ class _ContactUsBodyState extends State<ContactUsBody> {
           child: Column(children: [
         Container(
             color: const Color(colorWhite),
-            height: 42.h,
+            height: 46.h,
             width: double.infinity,
             child: Stack(
-              fit: StackFit.expand,
+              alignment: Alignment.center,
+              // fit: StackFit.expand,
               children: [
                 ListTile(
                     title: Text(
@@ -149,8 +148,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                   SizedBox(
                     height: 6.h,
                   ),
-                  
-                                   BuildRowWidget(
+                  BuildRowWidget(
                       icon: Icons.phone,
                       getText: "+977144868699",
                       onTap: () {
@@ -381,7 +379,7 @@ class EnglishNepaliTap extends StatefulWidget {
 class _EnglishNepaliTapState extends State<EnglishNepaliTap> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: widget.callBack,
       child: IntrinsicHeight(
         child: Row(children: [

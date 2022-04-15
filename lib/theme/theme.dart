@@ -1,20 +1,16 @@
-import 'package:aviation_met_nepal/constant/values.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
-
 import '../constant/colors_properties.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ThemeData lightTheme(BuildContext context) {
   return ThemeData(
-
-      // splashColor: Colors.transparent,
-      // highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       hoverColor: Colors.transparent,
       tabBarTheme: TabBarTheme(
         indicator: BoxDecoration(
           border: Border.all(color: Colors.red),
-          borderRadius: BorderRadius.circular(radius),
+          borderRadius: BorderRadius.circular(8.w),
           color: Colors.red,
         ),
         labelColor: Colors.white,
@@ -54,14 +50,14 @@ ThemeData lightTheme(BuildContext context) {
         suffixIconColor: const Color(colorPrimary),
         fillColor: const Color(colorWhite),
         filled: true,
-        contentPadding: const EdgeInsets.symmetric(
-            horizontal: padding, vertical: padding / 2.0),
+        contentPadding:
+            EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h / 2.0),
         hintStyle: TextStyle(
             color: const Color(colorGrey10),
             fontSize: 16.sp,
             fontWeight: FontWeight.w400),
         border: OutlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(radius)),
+            borderRadius: BorderRadius.circular(8.w)),
       ));
 }

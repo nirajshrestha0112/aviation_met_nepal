@@ -14,7 +14,7 @@ class GeneralIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: isPadding ?? EdgeInsets.only(right: 6.w),
-      child: InkWell(
+      child: GestureDetector(
         onTap: () {
           Navigator.pop(context);
         },

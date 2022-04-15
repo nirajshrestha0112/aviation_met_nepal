@@ -26,17 +26,17 @@ class DatumCities {
   late final String tags;
 
   DatumCities.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
-    description = json['description'];
-    type = json['type'];
-    coordinate = json['coordinate'];
-    region = json['region'];
-    level = json['level'];
-    geometry = json['geometry'];
-    domain = json['domain'];
-    tags = json['tags'];
+    id = json['id']??"";
+    latitude = json['latitude']??"";
+    longitude = json['longitude']??"";
+    description = json['description']??"";
+    type = json['type']??"";
+    coordinate = json['coordinate']??"";
+    region = json['region']??"";
+    level = json['level']??"";
+    geometry = json['geometry']??"";
+    domain = json['domain']??"";
+    tags = json['tags']??"";
   }
 
   Map<String, dynamic> toJson() {

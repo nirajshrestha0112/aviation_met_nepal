@@ -33,6 +33,11 @@ class _DetailsScreenState extends State<DetailsScreen>
     super.initState();
   }
 
+  @override
+  void dispose(){
+    _tabController.dispose();
+    super.dispose();
+  }
   late List<Widget> _views;
   late TabController _tabController;
 
@@ -62,10 +67,13 @@ class _DetailsScreenState extends State<DetailsScreen>
             // leadingWidth: 0.w,
             leading: GeneralIcon(isPadding: EdgeInsets.only(right: 18.w)),
             bottom: TabBar(
+
+              // overlayColor: MaterialStateProperty.all(Colors.transparent),
               indicatorPadding:
                   EdgeInsets.symmetric(horizontal: 8.w, vertical: 5.5.w),
               controller: _tabController,
               tabs: _tabs,
+
             ),
           )),
       body: ScrollConfiguration(
@@ -77,15 +85,3 @@ class _DetailsScreenState extends State<DetailsScreen>
     );
   }
 }
-
-/* class TabEachText extends StatelessWidget {
-  const TabEachText({
-    Key? key,
-    required this.tabText,
-  }) : super(key: key);
-  final String tabText;
-  @override
-  Widget build(BuildContext context) {
-    return Text(tabText, style: TextStyle(fontSize: 14.sp));
-  }
-} */

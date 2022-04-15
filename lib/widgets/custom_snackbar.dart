@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +19,7 @@ class CustomSnackBar {
       backgroundColor: bgColor ?? Colors.transparent,
       // duration: Duration(minutes: 2),
       content: SizedBox(
-        height: 30.h,
+        height: 32.h,
         width: double.infinity,
         child: Row(
             // mainAxisAlignment: MainAxisAlignment.start,
@@ -43,11 +44,11 @@ class CustomSnackBar {
                     Text(
                       statusText,
                       style: TextStyle(
-                          fontWeight: FontWeight.w500, fontSize: 14.sp),
+                          fontWeight: FontWeight.w500, fontSize: 13.sp),
                     ),
-                    Text(
+                    AutoSizeText(
                       message,
-                      style: TextStyle(fontSize: 12.sp),
+                      style: TextStyle(fontSize: 11.5.sp),
                     ),
                   ]),
             ]),

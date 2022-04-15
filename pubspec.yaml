@@ -1,14 +1,12 @@
 name: aviation_met_nepal
 description: A new Flutter project.
 
-publish_to: 'none' 
+publish_to: 'none'
 
 version: 1.0.0+1
 
 environment:
   sdk: ">=2.15.1 <3.0.0"
-
-
 
 dependencies:
   auto_size_text: ^3.0.0
@@ -39,8 +37,6 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/
     - assets/images/
-    - assets/images/icons/
-
-  
+    - assets/images/png/
+    - assets/images/svg/

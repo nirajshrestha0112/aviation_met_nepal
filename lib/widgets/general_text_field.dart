@@ -55,7 +55,7 @@ class _GeneralTextFieldState extends State<GeneralTextField> {
               ),
             ),
             suffixIcon: widget.obscureText
-                ? InkWell(
+                ? GestureDetector(
                     onTap: _togglePasswordShow,
                     child: Icon(
                       Icons.visibility,

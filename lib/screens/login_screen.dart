@@ -1,10 +1,8 @@
 import 'package:aviation_met_nepal/constant/images.dart';
-import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/utils/validation.dart';
-import 'package:aviation_met_nepal/widgets/general_icon.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
 import 'package:aviation_met_nepal/widgets/general_text_field.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +36,8 @@ class _LoginPageState extends State<LoginPage> {
         behavior: MyBehavior(),
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-                vertical: padding, horizontal: padding),
+            padding:  EdgeInsets.symmetric(
+                vertical: 16.h, horizontal: 16.w),
             child: SizedBox(
               height: MediaQuery.of(context).size.height * 100,
               width: MediaQuery.of(context).size.width * 100,

@@ -62,4 +62,3 @@ class Datum {
       };
 }
 
-///TODO: please remove _model from every model filename and class name.

@@ -1,11 +1,9 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
-import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/ashtams_data_provider.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:aviation_met_nepal/widgets/general_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../provider/airmet_data_provider.dart';
 import '../provider/gamet_data_provider.dart';
 import '../provider/opmet_data_provider.dart';
@@ -60,7 +58,7 @@ class _CustomScreenState extends State<CustomScreen> {
                     child: Column(children: [
                   Container(
                     color: const Color(colorWhite),
-                    height: 42.h,
+                    height: 46.h,
                     width: double.infinity,
                     child: Stack(
                       fit: StackFit.expand,
@@ -84,8 +82,8 @@ class _CustomScreenState extends State<CustomScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: padding, vertical: padding),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                     child: FutureBuilder(
                       future: _future,
                       builder: (context, AsyncSnapshot snapshot) {
@@ -107,7 +105,7 @@ class _CustomScreenState extends State<CustomScreen> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(radius)),
+                              borderRadius: BorderRadius.circular(8.w)),
                           child: widget.screenName == "Gamet Data"
                               ? Consumer<GametDataProvider>(
                                   builder: (_, value, __) {

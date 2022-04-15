@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../constant/colors_properties.dart';
 import '../constant/images.dart';
-import '../constant/values.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomErrorTab extends StatelessWidget {
@@ -20,7 +19,7 @@ class CustomErrorTab extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color(colorWhite),
-            borderRadius: BorderRadius.circular(radius)),
+            borderRadius: BorderRadius.circular(8.w)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,

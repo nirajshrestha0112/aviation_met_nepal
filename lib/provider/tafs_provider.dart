@@ -18,19 +18,23 @@ class TafsDataProvider extends ChangeNotifier {
       log(url.toString());
       http.Response response = await http.get(url);
       log(response.body);
+      log(response.statusCode.toString());
       if (response.statusCode == 200) {
+        if (jsonDecode(response.body)['status'] == 'error') {
+          throw jsonDecode(response.body)['message'];
+        }
         tafsDataRaw = TafsDataRaw.fromJson(jsonDecode(response.body));
         log(tafsDataRaw!.toJson().toString());
         // notifyListeners();
       } else {
-        throw Exception("Failed to load data");
+        throw jsonDecode(response.body)['messsage'];
       }
     } catch (e) {
       log(e.toString());
     }
   }
 
-  late TafsDataDecoded tafsDataDecoded;
+  TafsDataDecoded? tafsDataDecoded;
   fetchTafsDataDecoded({
     required String ident,
   }) async {
@@ -41,7 +45,7 @@ class TafsDataProvider extends ChangeNotifier {
       log(response.body);
       if (response.statusCode == 200) {
         tafsDataDecoded = TafsDataDecoded.fromJson(jsonDecode(response.body));
-        log(tafsDataDecoded.toJson().toString());
+        log(tafsDataDecoded!.toJson().toString());
         // notifyListeners();
       } else {
         throw Exception("Failed to load data");

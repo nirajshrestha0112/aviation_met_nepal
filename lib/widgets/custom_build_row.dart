@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../constant/colors_properties.dart';
-import '../constant/values.dart';
-import '../utils/size_config.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget buildRow(String label, String value,
