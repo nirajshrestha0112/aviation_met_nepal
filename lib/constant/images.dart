@@ -1,26 +1,33 @@
+//baseImageUrl
 const String baseAsset = "assets/images";
-const String aiportImg = "$baseAsset/airport.png";
-const String deleteImg = "$baseAsset/delete.png";
-const String sendImg = "$baseAsset/send.png";
-const String locationImg = "$baseAsset/contact_us.svg";
-const String logoImg = "$baseAsset/logo.png";
-const String cloudyImg = "$baseAsset/cloudy.png";
+
+//png images
+const String aiportImg = "$baseAsset/png/airport.png";
+const String deleteImg = "$baseAsset/png/delete.png";
+const String sendImg = "$baseAsset/png/send.png";
+const String logoImg = "$baseAsset/png/logo.png";
+const String cloudyImg = "$baseAsset/png/cloudy.png";
+const String lightingsImg = "$baseAsset/png/lighting_data.png";
+const String weatherIconImg = "$baseAsset/png/weather_icon.png";
+const String logoOnlyImg = "$baseAsset/png/logoOnly.png";
+const String feedbackRocketImg = "$baseAsset/png/feedback_rocket.png";
+const String governmentImg = "$baseAsset/png/government.png";
+const String splashScreenImg = "$baseAsset/png/splash.png";
+
+//gif images
 const String gifImg = "$baseAsset/giphy.gif";
-const String lightingsImg = "$baseAsset/lighting_data.png";
-const String cameraImg = "$baseAsset/icons/camera.svg";
+
+//svg images
+const String locationImg = "$baseAsset/svg/contact_us.svg";
+const String cameraImg = "$baseAsset/svg/camera.svg";
 // const String chartImg = "$baseAsset/ic.svg";
-const String chartImg = "$baseAsset/icons/chart.svg";
-const String lightingImg = "$baseAsset/icons/lighting.svg";
-const String newsImg = "$baseAsset/icons/news.svg";
-const String satelliteImg = "$baseAsset/icons/satellite.svg";
-const String windImg = "$baseAsset/icons/wind.svg";
+const String chartImg = "$baseAsset/svg/chart.svg";
+const String lightingImg = "$baseAsset/svg/lighting.svg";
+const String newsImg = "$baseAsset/svg/news.svg";
+const String satelliteImg = "$baseAsset/svg/satellite.svg";
 const String contactUsImg = "$baseAsset/contact_us.svg";
 const String testSVG = "$baseAsset/test.svg";
-const String weatherIconImg = "$baseAsset/icons/weather_icon.png";
 
-const String controlTowerImg = "$baseAsset/control_tower.svg";
-const String feedbackRocketImg = "$baseAsset/feedback_rocket.png";
-const String governmentImg = "$baseAsset/government.png";
-const String noDataImg = "$baseAsset/no_data.svg";
-const String splashScreenImg = "$baseAsset/splash.png";
-const String logoOnlyImg = "$baseAsset/logoOnly.png";
+const String controlTowerImg = "$baseAsset/svg/control_tower.svg";
+const String windImg = "$baseAsset/svg/wind.svg";
+const String noDataImg = "$baseAsset/svg/no_data.svg";

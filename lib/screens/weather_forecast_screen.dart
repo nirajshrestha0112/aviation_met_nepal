@@ -62,7 +62,7 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            InkWell(
+            GestureDetector(
               onTap: (() async {
                 var desc =
                     await ShowWeatherForecastCities.showWeatherForecastCities(

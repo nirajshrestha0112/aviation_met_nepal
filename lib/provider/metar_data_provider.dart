@@ -31,7 +31,7 @@ class MetarDataProvider extends ChangeNotifier {
     }
   }
 
-  late MetarDataDecoded metarDataDecoded;
+   MetarDataDecoded? metarDataDecoded;
   fetchMetarDataDecoded({
     required String ident,
     required String filteredData,
@@ -41,12 +41,16 @@ class MetarDataProvider extends ChangeNotifier {
       log(url.toString());
       http.Response response = await http.get(url);
       log(response.body);
+      
       if (response.statusCode == 200) {
+        if (jsonDecode(response.body)['status'] == 'error') {
+          jsonDecode(response.body)['message'];
+        }
         metarDataDecoded = MetarDataDecoded.fromJson(jsonDecode(response.body));
-        log(metarDataDecoded.toJson().toString());
+        log(metarDataDecoded!.toJson().toString());
         notifyListeners();
       } else {
-        throw Exception("Failed to load data");
+        throw jsonDecode(response.body)['message'];
       }
     } catch (e) {
       log(e.toString());

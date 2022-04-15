@@ -9,8 +9,8 @@ class PrivacyPolicy {
   late final List<Data> data;
 
   PrivacyPolicy.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    message = json['message'];
+    status = json['status']??"";
+    message = json['message']??"";
     data = List.from(json['data']).map((e) => Data.fromJson(e)).toList();
   }
 

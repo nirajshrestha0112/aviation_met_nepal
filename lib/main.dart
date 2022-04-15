@@ -73,19 +73,27 @@ class MyApp extends StatelessWidget {
     );
     return LayoutBuilder(builder: (context, constraints) {
       return OrientationBuilder(builder: (context, orientation) {
-        final checkProvider = Provider.of<ConnectivityProvider>(context);
+        // final checkProvider = Provider.of<ConnectivityProvider>(context);
         return ScreenUtilInit(
           designSize: const Size(360, 723),
           builder: () => MaterialApp(
+            builder: (context, child) {
+              ScreenUtil.setContext(context);
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+                child: child!,
+              );
+            },
             theme: lightTheme(context),
             scaffoldMessengerKey: messengerKey,
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            initialRoute: homeRoute,
+            // initialRoute: homeRoute,
 
-            /* home: checkProvider.isConnected
-                ? const SplashScreen()
-                : const InternetConnectionScreen(), */
+            home: const SplashScreen(),
+            //  checkProvider.isConnected
+            /* ? const SplashScreen()
+                : const InternetConnectionScreen(),  */
             routes: {
               splashRoute: (context) => const SplashScreen(),
               homeRoute: (context) => const HomeScreen(),

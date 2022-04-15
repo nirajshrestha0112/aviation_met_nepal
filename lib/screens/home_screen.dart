@@ -1,6 +1,7 @@
+import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
-import 'package:aviation_met_nepal/constant/values.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
 import 'package:aviation_met_nepal/utils/is_online_checker.dart';
@@ -53,13 +54,13 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   @override
   void initState() {
     Provider.of<ConnectivityProvider>(context, listen: false)
-        .monitorConnection();
+        .monitorConnection(context);
     _future = Provider.of<AirportListProvider>(context, listen: false)
         .fetchAirportList();
     _editingController.addListener(() {
       Provider.of<AirportListProvider>(context, listen: false)
           .filterSearchResults(_editingController.text);
-    });
+          });
     super.initState();
   }
 
@@ -67,51 +68,49 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   late Future _future;
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: padding * 1.2, vertical: padding * 1.5),
-          child: InkWell(
-            // overlayColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            onTap: () => getIsOnline(context)
-                ? ShowLocationSheet.showLocationSheet(
-                    context: context,
-                    editingController: _editingController,
-                    future: _future)
-                : showInternetConnectionSnackBar(
-                    icon: Icons.error,
-                    
-                    // crossAxisAlignment: true,
-                    size: 32.w,
-                    iconColor: const Color(colorAccent),
-                    bgColor: const Color(colorPrimary),
-                    statusText: "Attention",
-                    message: "No Airport Data Available"),
-            child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 14.w),
-                height: 42.h,
-                width: double.infinity,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Select Airport",
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontWeight: FontWeight.normal,
-                            color:
-                                const Color(colorDarkBlue).withOpacity(0.65)),
-                      ),
-                      Icon(
-                        Icons.location_on,
-                        size: 20.h,
-                        color: const Color(colorPrimary),
-                      ),
-                    ]),
-                decoration: BoxDecoration(
-                    color: const Color(colorWhite),
-                    borderRadius: BorderRadius.circular(radius))),
-          )),
+       return Column(children: [
+      GestureDetector(
+        onTap: () => getIsOnline(context)
+            ? ShowLocationSheet.showLocationSheet(
+                context: context,
+                editingController: _editingController,
+                future: _future)
+            : showInternetConnectionSnackBar(
+                icon: Icons.error,
+
+                // crossAxisAlignment: true,
+                size: 32.w,
+                iconColor: const Color(colorAccent),
+                bgColor: const Color(colorPrimary),
+                statusText: "Attention",
+                message: "No Airport Data Available"),
+        child: Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: 24.w,
+              vertical: 16.h * 1.5,
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 14.w),
+            height: 42.h,
+            width: double.infinity,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Select Airport",
+                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontWeight: FontWeight.normal,
+                        color: const Color(colorDarkBlue).withOpacity(0.65)),
+                  ),
+                  Icon(
+                    Icons.location_on,
+                    size: 20.h,
+                    color: const Color(colorPrimary),
+                  ),
+                ]),
+            decoration: BoxDecoration(
+                color: const Color(colorWhite),
+                borderRadius: BorderRadius.circular(8.w))),
+      ),
       Expanded(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

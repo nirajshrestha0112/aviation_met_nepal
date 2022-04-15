@@ -13,7 +13,6 @@ import 'package:aviation_met_nepal/widgets/each_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../constant/values.dart';
 import '../provider/weather_forecast_provider.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/show_internet_connection_snack_bar.dart';
@@ -71,7 +70,7 @@ class ShowFabSheet {
       'icon': const CustomImage(assetName: windImg),
       'title': const EachText(text: "Wind Chart"),
       'navigate': windChartRoute,
-      'toCheck': false
+      'toCheck': true
     },
     {
       'icon': const CustomImage(assetName: chartImg),
@@ -168,7 +167,7 @@ class ShowFabSheet {
                           ),
                         ],
                       ),
-                      InkWell(
+                      GestureDetector(
                           onTap: () {
                             Navigator.pop(context);
                           },
@@ -225,7 +224,7 @@ class ShowFabSheet {
                                           .textTheme
                                           .bodyText2!
                                           .copyWith(
-                                            fontSize: 16.sp,
+                                            fontSize: 14.sp,
                                           ),
                                     )
                                   ],
@@ -240,7 +239,7 @@ class ShowFabSheet {
                                 borderRadius: BorderRadius.circular(2.w),
                                 color: const Color(bgColor),
                               ),
-                              child: InkWell(
+                              child: GestureDetector(
                                 child: Icon(
                                   Icons.logout,
                                   size: 16.w,
@@ -291,25 +290,111 @@ class ShowFabSheet {
                                             listen: false)
                                         .loginName !=
                                     null) {
-                                  Navigator.pushNamed(
-                                      context, data[i]['navigate']);
+                                  if (getIsOnline(context)) {
+                                    Navigator.pushNamed(
+                                        context, data[i]['navigate']);
+                                  } else {
+                                    if (data[i]['navigate'] ==
+                                        icingTurbulenceChartRoute) {
+                                      Navigator.pop(context);
+                                      showInternetConnectionSnackBar(
+                                          icon: Icons.close,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          bgColor: Colors.red,
+                                          circleAvatarbgColor: Colors.white,
+                                          iconColor: Colors.red,
+                                          statusText: "Error",
+                                          message:
+                                              "Cannot Get IcingTurbulence Image...Please Try Again");
+                                    } else if (data[i]['navigate'] ==
+                                        sigwxChartRoute) {
+                                      Navigator.pop(context);
+                                      showInternetConnectionSnackBar(
+                                          icon: Icons.close,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          bgColor: Colors.red,
+                                          circleAvatarbgColor: Colors.white,
+                                          iconColor: Colors.red,
+                                          statusText: "Error",
+                                          message:
+                                              "Cannot Get Sigwx Image...Please Try Again");
+                                    } else if (data[i]['navigate'] ==
+                                        windChartRoute) {
+                                      Navigator.pop(context);
+                                      showInternetConnectionSnackBar(
+                                          icon: Icons.close,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          bgColor: Colors.red,
+                                          circleAvatarbgColor: Colors.white,
+                                          iconColor: Colors.red,
+                                          statusText: "Error",
+                                          message:
+                                              "Cannot Get Wind Image...Please Try Again");
+                                    } else {
+                                      Navigator.pop(context);
+                                      showInternetConnectionSnackBar(
+                                          icon: Icons.close,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          bgColor: Colors.red,
+                                          circleAvatarbgColor: Colors.white,
+                                          iconColor: Colors.red,
+                                          statusText: "Error",
+                                          message:
+                                              "Cannot Get WeatherCamera Image...Please Try Again");
+                                    }
+                                  }
                                 } else {
                                   Navigator.pushNamed(context, loginRoute);
                                 }
                               } else {
                                 if (getIsOnline(context)) {
-                                Navigator.pushNamed(
-                                    context, data[i]['navigate']); } else {
-                                      Navigator.pop(context);
-                                       showInternetConnectionSnackBar(
-                                icon: Icons.close,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                bgColor: Colors.red,
-                                circleAvatarbgColor: Colors.white,
-                                iconColor: Colors.red,
-                                statusText: "Error",
-                                message: "Server Error...Please Try Again");
-                                    }
+                                  Navigator.pushNamed(
+                                      context, data[i]['navigate']);
+                                } else {
+                                  if (data[i]['navigate'] ==
+                                      satelliteImageDataRoute) {
+                                    Navigator.pop(context);
+                                    showInternetConnectionSnackBar(
+                                        icon: Icons.close,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        bgColor: Colors.red,
+                                        circleAvatarbgColor: Colors.white,
+                                        iconColor: Colors.red,
+                                        statusText: "Error",
+                                        message:
+                                            "Cannot Get Satellite Image...Please Try Again");
+                                  } else if (data[i]['navigate'] ==
+                                      lightingDataRoute) {
+                                    Navigator.pop(context);
+                                    showInternetConnectionSnackBar(
+                                        icon: Icons.close,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        bgColor: Colors.red,
+                                        circleAvatarbgColor: Colors.white,
+                                        iconColor: Colors.red,
+                                        statusText: "Error",
+                                        message:
+                                            "Cannot Get Lighting Image...Please Try Again");
+                                  } else {
+                                    Navigator.pop(context);
+                                    showInternetConnectionSnackBar(
+                                        icon: Icons.close,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        bgColor: Colors.red,
+                                        circleAvatarbgColor: Colors.white,
+                                        iconColor: Colors.red,
+                                        statusText: "Error",
+                                        message:
+                                            "Server Error...Please Try Again");
+                                  }
+                                }
                               }
                             }
                           },
@@ -340,8 +425,8 @@ class ShowLocationSheet {
             height: MediaQuery.of(context).size.height * 0.7,
             color: const Color(colorWhite),
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: padding / 1.5, vertical: padding),
+              padding:
+                  EdgeInsets.symmetric(horizontal: 16.w / 1.5, vertical: 16.h),
               child: Column(children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -362,7 +447,7 @@ class ShowLocationSheet {
                         )
                       ],
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
                       },
@@ -378,10 +463,10 @@ class ShowLocationSheet {
                     controller: editingController,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(left: 4.w),
-                        hintText: "Select Airport",
+                        hintText: "Search Airport",
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(radius)),
+                            borderRadius: BorderRadius.circular(8.w)),
                         suffixIcon: Padding(
                           padding: EdgeInsets.only(left: 18.w),
                           child: Icon(
@@ -414,7 +499,7 @@ class ShowLocationSheet {
                                 : ListView.builder(
                                     itemCount: value.searchData.length,
                                     itemBuilder: (c, i) {
-                                      return InkWell(
+                                      return GestureDetector(
                                         onTap: () {
                                           Navigator.push(
                                               context,
@@ -473,8 +558,7 @@ class ShowFilterSheet {
             height: MediaQuery.of(context).size.height * 0.3,
             width: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.only(
-                  left: padding, top: padding, right: padding),
+              padding: EdgeInsets.only(left: 16.w, top: 16.h, right: 16.w),
               child: Column(
                 children: [
                   Row(
@@ -499,7 +583,7 @@ class ShowFilterSheet {
                           ),
                         ],
                       ),
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           Navigator.pop(context);
                         },
@@ -605,7 +689,7 @@ class ShowWeatherForecastCities {
                         )
                       ],
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
                       },
@@ -623,7 +707,7 @@ class ShowWeatherForecastCities {
                 TextFormField(
                     controller: editingController,
                     decoration: InputDecoration(
-                        hintText: "Select Airport",
+                        hintText: "Search Airport",
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.circular(8.w)),
@@ -660,7 +744,7 @@ class ShowWeatherForecastCities {
                                     itemCount:
                                         value.searchWeatherForecastData.length,
                                     itemBuilder: (c, i) {
-                                      return InkWell(
+                                      return GestureDetector(
                                         onTap: () async {
                                           await Provider.of<
                                                       WeatherForecastProvider>(

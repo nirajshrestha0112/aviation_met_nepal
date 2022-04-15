@@ -1,4 +1,4 @@
-import 'package:aviation_met_nepal/utils/size_config.dart';
+import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -53,152 +53,162 @@ class _MetarsTabState extends State<MetarsTab> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CustomLoadingIndicator();
           }
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                        Provider.of<MetarDataProvider>(context, listen: false)
-                            .metarDataRaw!
-                            .data!
-                            .date![0]
-                            .toString()
-                            .substring(8),
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(fontWeight: FontWeight.normal)),
-                    InkWell(
-                      onTap: () async {
-                        final value =
-                            await ShowFilterSheet.showFilterSheet(context);
-                        if (value != null) {
-                          _future = metarDataRawDecoded(value);
-                          setState(() {});
-                        }
-                      },
-                      child: Container(
-                        padding: EdgeInsets.only(left: 8.w),
-                        height: 36.h,
-                        width: 72.w,
-                        decoration: BoxDecoration(
-                            color: const Color(colorPrimary),
-                            borderRadius: BorderRadius.circular(6.w)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Filter",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2!
-                                    .copyWith(color: const Color(colorWhite))),
-                            Icon(Icons.arrow_drop_down,
-                                size: 25.w, color: const Color(colorWhite))
-                          ],
+          if (Provider.of<MetarDataProvider>(context, listen: false)
+                      .metarDataRaw !=
+                  null &&
+              Provider.of<MetarDataProvider>(context, listen: false)
+                      .metarDataDecoded !=
+                  null) {
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                          Provider.of<MetarDataProvider>(context, listen: false)
+                              .metarDataRaw!
+                              .data!
+                              .date![0]
+                              .toString()
+                              .substring(8),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2!
+                              .copyWith(fontWeight: FontWeight.normal)),
+                      GestureDetector(
+                        onTap: () async {
+                          final value =
+                              await ShowFilterSheet.showFilterSheet(context);
+                          if (value != null) {
+                            _future = metarDataRawDecoded(value);
+                            setState(() {});
+                          }
+                        },
+                        child: Container(
+                          padding: EdgeInsets.only(left: 8.w),
+                          height: 36.h,
+                          width: 72.w,
+                          decoration: BoxDecoration(
+                              color: const Color(colorPrimary),
+                              borderRadius: BorderRadius.circular(6.w)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Filter",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(
+                                          color: const Color(colorWhite))),
+                              Icon(Icons.arrow_drop_down,
+                                  size: 25.w, color: const Color(colorWhite))
+                            ],
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                CustomRawCard(
-                    rawHeaderText: "Raw",
-                    rawBodyText:
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  CustomRawCard(
+                      rawHeaderText: "Raw",
+                      rawBodyText:
+                          Provider.of<MetarDataProvider>(context, listen: false)
+                              .metarDataRaw!
+                              .data!
+                              .raw!),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Column(
+                    children: [
+                      buildRow(
+                        "Metar For",
                         Provider.of<MetarDataProvider>(context, listen: false)
-                            .metarDataRaw!
+                            .metarDataDecoded!
                             .data!
-                            .raw!),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Column(
-                  children: [
-                    buildRow(
-                      "Metar For",
-                      Provider.of<MetarDataProvider>(context, listen: false)
-                          .metarDataDecoded
-                          .data!
-                          .decoded
-                          .metarFor
-                          .first,
-                      isMetarFor: true,
-                      isDecoded: true,
-                    ),
-                    Consumer<MetarDataProvider>(builder: (_, value, __) {
-                      return ListView.builder(
-                          itemCount:
-                              value.metarDataDecoded.data!.decoded.text.length,
-                          primary: false,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                buildRow(
-                                  "Text",
-                                  value.metarDataDecoded.data!.decoded
-                                      .text[index],
-                                  isText: true,
-                                ),
-                                buildRow(
-                                    "Temp.",
-                                    value.metarDataDecoded.data!.decoded
-                                        .temperature[index]),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                buildRow(
-                                    "Dew Point",
-                                    value.metarDataDecoded.data!.decoded
-                                        .dewpoint[index]),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                buildRow(
-                                    "Pressure(altimeter)",
-                                    value.metarDataDecoded.data!.decoded
-                                        .pressureAltimeter[index]),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                buildRow(
-                                    "Winds",
-                                    value.metarDataDecoded.data!.decoded
-                                        .winds[index]),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                buildRow(
-                                    "Visibility",
-                                    value.metarDataDecoded.data!.decoded
-                                        .visibility[index]),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                buildRow(
-                                    "Ceiling",
-                                    value.metarDataDecoded.data!.decoded
-                                        .ceiling[index]),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                buildRow(
-                                    "Clouds",
-                                    value.metarDataDecoded.data!.decoded
-                                        .clouds[index],
-                                    isClouds: true),
-                              ],
-                            );
-                          });
-                    })
-                  ],
-                ),
-              ],
-            ),
-          );
+                            .decoded
+                            .metarFor
+                            .first,
+                        isMetarFor: true,
+                        isDecoded: true,
+                      ),
+                      Consumer<MetarDataProvider>(builder: (_, value, __) {
+                        return ListView.builder(
+                            itemCount: value
+                                .metarDataDecoded!.data!.decoded.text.length,
+                            primary: false,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                children: [
+                                  buildRow(
+                                    "Text",
+                                    value.metarDataDecoded!.data!.decoded
+                                        .text[index],
+                                    isText: true,
+                                  ),
+                                  buildRow(
+                                      "Temp.",
+                                      value.metarDataDecoded!.data!.decoded
+                                          .temperature[index]),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
+                                  buildRow(
+                                      "Dew Point",
+                                      value.metarDataDecoded!.data!.decoded
+                                          .dewpoint[index]),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
+                                  buildRow(
+                                      "Pressure(altimeter)",
+                                      value.metarDataDecoded!.data!.decoded
+                                          .pressureAltimeter[index]),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
+                                  buildRow(
+                                      "Winds",
+                                      value.metarDataDecoded!.data!.decoded
+                                          .winds[index]),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
+                                  buildRow(
+                                      "Visibility",
+                                      value.metarDataDecoded!.data!.decoded
+                                          .visibility[index]),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
+                                  buildRow(
+                                      "Ceiling",
+                                      value.metarDataDecoded!.data!.decoded
+                                          .ceiling[index]),
+                                  SizedBox(
+                                    height: 1.h,
+                                  ),
+                                  buildRow(
+                                      "Clouds",
+                                      value.metarDataDecoded!.data!.decoded
+                                          .clouds[index],
+                                      isClouds: true),
+                                ],
+                              );
+                            });
+                      })
+                    ],
+                  ),
+                ],
+              ),
+            );
+          } else {
+           return const CustomErrorTab();
+          }
         },
       ),
     );
