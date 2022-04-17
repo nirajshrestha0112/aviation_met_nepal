@@ -60,7 +60,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
     _editingController.addListener(() {
       Provider.of<AirportListProvider>(context, listen: false)
           .filterSearchResults(_editingController.text);
-          });
+    });
     super.initState();
   }
 
@@ -68,7 +68,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   late Future _future;
   @override
   Widget build(BuildContext context) {
-       return Column(children: [
+    return Column(children: [
       GestureDetector(
         onTap: () => getIsOnline(context)
             ? ShowLocationSheet.showLocationSheet(
@@ -77,10 +77,8 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                 future: _future)
             : showInternetConnectionSnackBar(
                 icon: Icons.error,
-
-                // crossAxisAlignment: true,
                 size: 32.w,
-                iconColor: const Color(colorAccent),
+                iconColor: Colors.white,
                 bgColor: const Color(colorPrimary),
                 statusText: "Attention",
                 message: "No Airport Data Available"),

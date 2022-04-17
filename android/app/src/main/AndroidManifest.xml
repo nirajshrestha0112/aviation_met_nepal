@@ -19,7 +19,7 @@
       </queries>
 
     <application android:name="${applicationName}" android:icon="@mipmap/ic_launcher" android:label="Aviation Met Nepal">
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBEmFtNjlcG0UXOkKRbfCUVIepFs1Jp8QI" />
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDAJyXBlhhUiVP9obP-Tar1zHKEeGszo9s" />
         <activity android:name=".MainActivity" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:exported="true" android:hardwareAccelerated="true" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:windowSoftInputMode="adjustResize">
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user

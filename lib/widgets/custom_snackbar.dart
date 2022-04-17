@@ -14,6 +14,7 @@ class CustomSnackBar {
       double? size,
       IconData? icon}) {
     return SnackBar(
+      duration: const Duration(seconds: 1),
       behavior: SnackBarBehavior.floating,
       margin: EdgeInsets.symmetric(vertical: 18.h, horizontal: 16.w),
       backgroundColor: bgColor ?? Colors.transparent,
