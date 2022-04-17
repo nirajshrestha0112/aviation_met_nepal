@@ -43,8 +43,11 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
   void initState() {
     _future =
         Provider.of<CitiesProvider>(context, listen: false).fetchCitiesData();
+        Provider.of<WeatherForecastProvider>(context,listen: false).fetchWeatherForecast(id: "4991");
     super.initState();
+    
   }
+  
 
   late Future _future;
   String description = "Kathmandu";
@@ -69,6 +72,7 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
                         context: context, future: _future);
                 if (desc != null) {
                   description = desc;
+
                 } else {
                   description = "Kathmandu";
                 }
@@ -102,11 +106,11 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
               thickness: 1.5,
             ),
             Consumer<WeatherForecastProvider>(builder: (_, value, __) {
-              return value.dateList.isEmpty
+              return/*  value.dateList.isEmpty
                   ? const CustomErrorTab(
                       margin: false,
                     )
-                  : Expanded(
+                  : */ Expanded(
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: value.dateList.length,

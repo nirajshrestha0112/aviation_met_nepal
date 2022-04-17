@@ -27,7 +27,6 @@ import 'provider/gamet_data_provider.dart';
 import 'provider/lighting_data_provider.dart';
 import 'provider/opmet_data_provider.dart';
 import 'provider/satellite_image_provider.dart';
-import 'screens/internet_connection_screen.dart';
 import 'screens/splash_screen.dart';
 
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -88,9 +87,9 @@ class MyApp extends StatelessWidget {
             scaffoldMessengerKey: messengerKey,
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            // initialRoute: homeRoute,
+            initialRoute: homeRoute,
 
-            home: const SplashScreen(),
+            // home: const SplashScreen(),
             //  checkProvider.isConnected
             /* ? const SplashScreen()
                 : const InternetConnectionScreen(),  */
