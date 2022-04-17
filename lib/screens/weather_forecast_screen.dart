@@ -1,6 +1,6 @@
 import 'package:aviation_met_nepal/provider/weather_forecast_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
-import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
+import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -39,15 +39,35 @@ class WeatherForecastBody extends StatefulWidget {
 }
 
 class _WeatherForecastBodyState extends State<WeatherForecastBody> {
+  bool isInit = false;
+  bool isLoading = true;
+
+  @override
+  void didChangeDependencies() async {
+    if (isInit == false) {
+      await Provider.of<WeatherForecastProvider>(context, listen: false)
+          .fetchWeatherForecast(id: "4991");
+      isLoading = false;
+      isInit = true;
+      setState(() {});
+    }
+
+    super.didChangeDependencies();
+  }
+
   @override
   void initState() {
     _future =
         Provider.of<CitiesProvider>(context, listen: false).fetchCitiesData();
-        Provider.of<WeatherForecastProvider>(context,listen: false).fetchWeatherForecast(id: "4991");
+
     super.initState();
-    
   }
-  
+
+  // fetchWeatherForecastData() {
+  //   Provider.of<CitiesProvider>(context, listen: false).fetchCitiesData();
+  //   Provider.of<WeatherForecastProvider>(context, listen: false)
+  //       .fetchWeatherForecast(id: "4991");
+  // }
 
   late Future _future;
   String description = "Kathmandu";
@@ -72,7 +92,6 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
                         context: context, future: _future);
                 if (desc != null) {
                   description = desc;
-
                 } else {
                   description = "Kathmandu";
                 }
@@ -105,12 +124,16 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
             const Divider(
               thickness: 1.5,
             ),
-            Consumer<WeatherForecastProvider>(builder: (_, value, __) {
-              return/*  value.dateList.isEmpty
+            isLoading
+                ? const 
+                 CustomLoadingIndicator()
+                : Consumer<WeatherForecastProvider>(builder: (_, value, __) {
+                    return /*  value.dateList.isEmpty
                   ? const CustomErrorTab(
                       margin: false,
                     )
-                  : */ Expanded(
+                  : */
+                        Expanded(
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: value.dateList.length,
@@ -192,7 +215,7 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
                         },
                       ),
                     );
-            })
+                  })
           ],
         ),
       ),

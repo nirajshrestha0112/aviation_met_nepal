@@ -12,10 +12,10 @@ class CustomLoadingIndicator extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           CircleAvatar(
-            radius: 28.w,
+            radius: 19.w,
             backgroundColor: Colors.white,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.w * 2.0),
+              borderRadius: BorderRadius.circular(18.w * 2.0),
               child: Image.asset(
                 // you can replace this with Image.asset
                 logoOnlyImg,
@@ -28,8 +28,7 @@ class CustomLoadingIndicator extends StatelessWidget {
           // you can replace
           const CircularProgressIndicator(
               // valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
-              // strokeWidth: 0.7,
-              ),
+              strokeWidth: 4.5),
         ],
       ),
     );

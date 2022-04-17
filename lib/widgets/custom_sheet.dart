@@ -28,12 +28,12 @@ class ShowFabSheet {
     );
     return params.toString();
   }
-
+  
   static final List<Map<String, dynamic>> data = [
     {
       'icon': const CustomIcon(icon: Icons.home),
       'title': const EachText(text: "Home"),
-      'navigate': homeRoute,
+      'navigate':homeRoute,
       'toCheck': false
     },
     {
@@ -291,6 +291,8 @@ class ShowFabSheet {
                                         .loginName !=
                                     null) {
                                   if (getIsOnline(context)) {
+                                    debugger();
+                                    
                                     Navigator.pushNamed(
                                         context, data[i]['navigate']);
                                   } else {
@@ -352,8 +354,13 @@ class ShowFabSheet {
                                 }
                               } else {
                                 if (getIsOnline(context)) {
-                                  Navigator.pushNamed(
-                                      context, data[i]['navigate']);
+                                  if(data[i]['navigate']==homeRoute){
+                                      
+                                      Navigator.pop(context);
+                                      // return;
+                                    } 
+                                 else{ Navigator.pushNamed(
+                                      context, data[i]['navigate']);}
                                 } else {
                                   if (data[i]['navigate'] ==
                                       satelliteImageDataRoute) {
@@ -419,7 +426,8 @@ class ShowLocationSheet {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
-        isScrollControlled: true,
+        
+        // isScrollControlled: true,
         builder: (_) {
           return Container(
             height: MediaQuery.of(context).size.height * 0.7,

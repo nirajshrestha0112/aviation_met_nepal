@@ -72,7 +72,6 @@ class MyApp extends StatelessWidget {
     );
     return LayoutBuilder(builder: (context, constraints) {
       return OrientationBuilder(builder: (context, orientation) {
-        // final checkProvider = Provider.of<ConnectivityProvider>(context);
         return ScreenUtilInit(
           designSize: const Size(360, 723),
           builder: () => MaterialApp(
