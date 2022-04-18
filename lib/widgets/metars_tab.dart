@@ -2,6 +2,7 @@ import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:provider/provider.dart';
 
 import '../constant/colors_properties.dart';
@@ -22,6 +23,7 @@ class MetarsTab extends StatefulWidget {
 class _MetarsTabState extends State<MetarsTab> {
   @override
   void initState() {
+    _loadMoreVertical();
     _future = metarDataRawDecoded("");
     super.initState();
   }
@@ -42,6 +44,29 @@ class _MetarsTabState extends State<MetarsTab> {
     });
   }
 
+  // List<int> verticalData = [];
+  // List<int> horizontalData = [];
+
+  final int increment = 10;
+  bool isLoadingVertical = false;
+  Future _loadMoreVertical() async {
+    // setState(() {
+    //   isLoadingVertical = true;
+    // });
+
+
+
+    // // Add in an artificial delay
+    // await new Future.delayed(const Duration(seconds: 2));
+
+    // verticalData.addAll(
+    //     List.generate(increment, (index) => verticalData.length + index));
+
+    // setState(() {
+    //   isLoadingVertical = false;
+    // });
+  }
+
   late Future _future;
   @override
   Widget build(BuildContext context) {
@@ -59,155 +84,154 @@ class _MetarsTabState extends State<MetarsTab> {
               Provider.of<MetarDataProvider>(context, listen: false)
                       .metarDataDecoded !=
                   null) {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                          Provider.of<MetarDataProvider>(context, listen: false)
-                              .metarDataRaw!
-                              .data!
-                              .date![0]
-                              .toString()
-                              .substring(8),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2!
-                              .copyWith(fontWeight: FontWeight.normal)),
-                      GestureDetector(
-                        onTap: () async {
-                          final value =
-                              await ShowFilterSheet.showFilterSheet(context);
-                          if (value != null) {
-                            _future = metarDataRawDecoded(value);
-                            setState(() {});
-                          }
-                        },
-                        child: Container(
-                          padding: EdgeInsets.only(left: 8.w),
-                          height: 36.h,
-                          width: 72.w,
-                          decoration: BoxDecoration(
-                              color: const Color(colorPrimary),
-                              borderRadius: BorderRadius.circular(6.w)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Filter",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText2!
-                                      .copyWith(
-                                          color: const Color(colorWhite))),
-                              Icon(Icons.arrow_drop_down,
-                                  size: 25.w, color: const Color(colorWhite))
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  CustomRawCard(
-                      rawHeaderText: "Raw",
-                      rawBodyText:
-                          Provider.of<MetarDataProvider>(context, listen: false)
-                              .metarDataRaw!
-                              .data!
-                              .raw!),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Column(
-                    children: [
-                      buildRow(
-                        "Metar For",
+            return ListView(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
                         Provider.of<MetarDataProvider>(context, listen: false)
-                            .metarDataDecoded!
+                            .metarDataRaw!
                             .data!
-                            .decoded
-                            .metarFor
-                            .first,
-                        isMetarFor: true,
-                        isDecoded: true,
+                            .date![0]
+                            .toString()
+                            .substring(8),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontWeight: FontWeight.normal)),
+                    GestureDetector(
+                      onTap: () async {
+                        final value =
+                            await ShowFilterSheet.showFilterSheet(context);
+                        if (value != null) {
+                          _future = metarDataRawDecoded(value);
+                          setState(() {});
+                        }
+                      },
+                      child: Container(
+                        padding: EdgeInsets.only(left: 8.w),
+                        height: 36.h,
+                        width: 72.w,
+                        decoration: BoxDecoration(
+                            color: const Color(colorPrimary),
+                            borderRadius: BorderRadius.circular(6.w)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Filter",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(
+                                        color: const Color(colorWhite))),
+                            Icon(Icons.arrow_drop_down,
+                                size: 25.w, color: const Color(colorWhite))
+                          ],
+                        ),
                       ),
-                      Consumer<MetarDataProvider>(builder: (_, value, __) {
-                        return ListView.builder(
-                            itemCount: value
-                                .metarDataDecoded!.data!.decoded.text.length,
-                            primary: false,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  buildRow(
-                                    "Text",
-                                    value.metarDataDecoded!.data!.decoded
-                                        .text[index],
-                                    isText: true,
-                                  ),
-                                  buildRow(
-                                      "Temp.",
-                                      value.metarDataDecoded!.data!.decoded
-                                          .temperature[index]),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  buildRow(
-                                      "Dew Point",
-                                      value.metarDataDecoded!.data!.decoded
-                                          .dewpoint[index]),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  buildRow(
-                                      "Pressure(altimeter)",
-                                      value.metarDataDecoded!.data!.decoded
-                                          .pressureAltimeter[index]),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  buildRow(
-                                      "Winds",
-                                      value.metarDataDecoded!.data!.decoded
-                                          .winds[index]),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  buildRow(
-                                      "Visibility",
-                                      value.metarDataDecoded!.data!.decoded
-                                          .visibility[index]),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  buildRow(
-                                      "Ceiling",
-                                      value.metarDataDecoded!.data!.decoded
-                                          .ceiling[index]),
-                                  SizedBox(
-                                    height: 1.h,
-                                  ),
-                                  buildRow(
-                                      "Clouds",
-                                      value.metarDataDecoded!.data!.decoded
-                                          .clouds[index],
-                                      isClouds: true),
-                                ],
-                              );
-                            });
-                      })
-                    ],
-                  ),
-                ],
-              ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                CustomRawCard(
+                    rawHeaderText: "Raw",
+                    rawBodyText:
+                        Provider.of<MetarDataProvider>(context, listen: false)
+                            .metarDataRaw!
+                            .data!
+                            .raw!),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Column(
+                  children: [
+                    buildRow(
+                      "Metar For",
+                      Provider.of<MetarDataProvider>(context, listen: false)
+                          .metarDataDecoded!
+                          .data!
+                          .decoded
+                          .metarFor
+                          .first,
+                      isMetarFor: true,
+                      isDecoded: true,
+                    ),
+                    // Consumer<MetarDataProvider>(builder: (_, value, __) {
+                    //   return ListView.builder(
+                    //       itemCount: value
+                    //           .metarDataDecoded!.data!.decoded.text.length,
+                    //       primary: false,
+                    //       shrinkWrap: true,
+                    //       itemBuilder: (context, index) {
+                    //         return Column(
+                    //           children: [
+                    //             buildRow(
+                    //               "Text",
+                    //               value.metarDataDecoded!.data!.decoded
+                    //                   .text[index],
+                    //               isText: true,
+                    //             ),
+                    //             buildRow(
+                    //                 "Temp.",
+                    //                 value.metarDataDecoded!.data!.decoded
+                    //                     .temperature[index]),
+                    //             SizedBox(
+                    //               height: 1.h,
+                    //             ),
+                    //             buildRow(
+                    //                 "Dew Point",
+                    //                 value.metarDataDecoded!.data!.decoded
+                    //                     .dewpoint[index]),
+                    //             SizedBox(
+                    //               height: 1.h,
+                    //             ),
+                    //             buildRow(
+                    //                 "Pressure(altimeter)",
+                    //                 value.metarDataDecoded!.data!.decoded
+                    //                     .pressureAltimeter[index]),
+                    //             SizedBox(
+                    //               height: 1.h,
+                    //             ),
+                    //             buildRow(
+                    //                 "Winds",
+                    //                 value.metarDataDecoded!.data!.decoded
+                    //                     .winds[index]),
+                    //             SizedBox(
+                    //               height: 1.h,
+                    //             ),
+                    //             buildRow(
+                    //                 "Visibility",
+                    //                 value.metarDataDecoded!.data!.decoded
+                    //                     .visibility[index]),
+                    //             SizedBox(
+                    //               height: 1.h,
+                    //             ),
+                    //             buildRow(
+                    //                 "Ceiling",
+                    //                 value.metarDataDecoded!.data!.decoded
+                    //                     .ceiling[index]),
+                    //             SizedBox(
+                    //               height: 1.h,
+                    //             ),
+                    //             buildRow(
+                    //                 "Clouds",
+                    //                 value.metarDataDecoded!.data!.decoded
+                    //                     .clouds[index],
+                    //                 isClouds: true),
+                    //           ],
+                    //         );
+                    //       });
+                    // })
+                 
+                  ],
+                ),
+              ],
             );
           } else {
-           return const CustomErrorTab();
+            return const CustomErrorTab();
           }
         },
       ),

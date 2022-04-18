@@ -10,6 +10,7 @@ import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/widgets/custom_alert_dialog.dart';
 import 'package:aviation_met_nepal/widgets/custom_icon_image.dart';
 import 'package:aviation_met_nepal/widgets/each_text.dart';
+import 'package:aviation_met_nepal/widgets/general_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -20,6 +21,8 @@ import 'custom_loading_indicator.dart';
 import 'general_filter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'modal_sheet_header.dart';
+
 class ShowFabSheet {
   static String getEmailUrl({required String email}) {
     final Uri params = Uri(
@@ -28,12 +31,12 @@ class ShowFabSheet {
     );
     return params.toString();
   }
-  
+
   static final List<Map<String, dynamic>> data = [
     {
       'icon': const CustomIcon(icon: Icons.home),
       'title': const EachText(text: "Home"),
-      'navigate':homeRoute,
+      'navigate': homeRoute,
       'toCheck': false
     },
     {
@@ -137,7 +140,7 @@ class ShowFabSheet {
       builder: (_) {
         return DraggableScrollableSheet(
           expand: false,
-          initialChildSize: 0.65,
+          initialChildSize: 0.7,
           builder: (_, controller) {
             return Column(children: [
               Padding(
@@ -292,7 +295,7 @@ class ShowFabSheet {
                                     null) {
                                   if (getIsOnline(context)) {
                                     debugger();
-                                    
+
                                     Navigator.pushNamed(
                                         context, data[i]['navigate']);
                                   } else {
@@ -354,13 +357,13 @@ class ShowFabSheet {
                                 }
                               } else {
                                 if (getIsOnline(context)) {
-                                  if(data[i]['navigate']==homeRoute){
-                                      
-                                      Navigator.pop(context);
-                                      // return;
-                                    } 
-                                 else{ Navigator.pushNamed(
-                                      context, data[i]['navigate']);}
+                                  if (data[i]['navigate'] == homeRoute) {
+                                    Navigator.pop(context);
+                                    // return;
+                                  } else {
+                                    Navigator.pushNamed(
+                                        context, data[i]['navigate']);
+                                  }
                                 } else {
                                   if (data[i]['navigate'] ==
                                       satelliteImageDataRoute) {
@@ -426,8 +429,7 @@ class ShowLocationSheet {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
-        
-        // isScrollControlled: true,
+        isScrollControlled: true,
         builder: (_) {
           return Container(
             height: MediaQuery.of(context).size.height * 0.7,
@@ -436,36 +438,9 @@ class ShowLocationSheet {
               padding:
                   EdgeInsets.symmetric(horizontal: 16.w / 1.5, vertical: 16.h),
               child: Column(children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.location_on,
-                          color: const Color(colorDarkBlue),
-                          size: 20.w,
-                        ),
-                        SizedBox(
-                          width: 4.w,
-                        ),
-                        Text(
-                          "Select Aiport",
-                          style: Theme.of(context).textTheme.bodyText1,
-                        )
-                      ],
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(
-                        Icons.close_outlined,
-                        size: 25.w,
-                        color: const Color(colorDarkBlue),
-                      ),
-                    )
-                  ],
+                const ModalSheetHeader(),
+                SizedBox(
+                  height: 6.h,
                 ),
                 TextFormField(
                     controller: editingController,
@@ -678,37 +653,7 @@ class ShowWeatherForecastCities {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
               child: Column(children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.location_on,
-                          color: const Color(colorDarkBlue),
-                          size: 20.w,
-                        ),
-                        SizedBox(
-                          width: 4.w,
-                        ),
-                        Text(
-                          "Select Aiport",
-                          style: Theme.of(context).textTheme.bodyText1,
-                        )
-                      ],
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(
-                        Icons.close_outlined,
-                        size: 25.w,
-                        color: const Color(colorDarkBlue),
-                      ),
-                    )
-                  ],
-                ),
+                const ModalSheetHeader(),
                 SizedBox(
                   height: 6.h,
                 ),

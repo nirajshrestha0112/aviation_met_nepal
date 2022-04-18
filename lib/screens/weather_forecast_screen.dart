@@ -77,7 +77,7 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
       behavior: MyBehavior(),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-        height: 200.h,
+        height: 210.h,
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color(colorWhite),
