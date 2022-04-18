@@ -30,14 +30,13 @@ class _LoginPageState extends State<LoginPage> {
           // leading: const GeneralIcon(),
           // leadingWidth: 16.w,
           title: const Text(
-            "Login",
-          )),
+        "Login",
+      )),
       body: ScrollConfiguration(
         behavior: MyBehavior(),
         child: SingleChildScrollView(
           child: Padding(
-            padding:  EdgeInsets.symmetric(
-                vertical: 16.h, horizontal: 16.w),
+            padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
             child: SizedBox(
               height: MediaQuery.of(context).size.height * 100,
               width: MediaQuery.of(context).size.width * 100,

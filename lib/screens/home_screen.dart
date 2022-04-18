@@ -24,6 +24,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance?.addPostFrameCallback(
+    (_) => ShowFabSheet.showFabSheet(context: context));
     return WillPopScope(
       onWillPop: () async => await showDialog(
           context: context, builder: (context) => const ShowAlertDialogBox()),

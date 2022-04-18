@@ -21,6 +21,7 @@ import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:provider/provider.dart';
 import 'provider/ashtams_data_provider.dart';
 import 'provider/gamet_data_provider.dart';
@@ -36,6 +37,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
+          
           create: (_) => AirportListProvider(),
         ),
         ChangeNotifierProvider(create: (_) => ConnectivityProvider()),
@@ -72,7 +74,6 @@ class MyApp extends StatelessWidget {
     );
     return LayoutBuilder(builder: (context, constraints) {
       return OrientationBuilder(builder: (context, orientation) {
-        // final checkProvider = Provider.of<ConnectivityProvider>(context);
         return ScreenUtilInit(
           designSize: const Size(360, 723),
           builder: () => MaterialApp(

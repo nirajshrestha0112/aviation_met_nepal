@@ -32,15 +32,14 @@ class _SatelliteScreenState extends State<SatelliteScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      
       child: Scaffold(
-        appBar: AppBar(
-        leading: const GeneralIcon(),
-        title: const Text(
-          "Satellite Images",
-        ),
-        centerTitle: true,
-      ),
+          appBar: AppBar(
+            leading: const GeneralIcon(),
+            title: const Text(
+              "Satellite Images",
+            ),
+            centerTitle: true,
+          ),
           floatingActionButton: const CustomFloatingActionBtn(),
           body: ScrollConfiguration(
               behavior: MyBehavior(),

@@ -36,6 +36,7 @@ class _LightingDataState extends State<LightingData> {
         return GoogleMap(
           zoomControlsEnabled: false,
           markers: value.markers,
+          myLocationButtonEnabled: false,
           initialCameraPosition: const CameraPosition(
             target: _center,
             zoom: 5.0,

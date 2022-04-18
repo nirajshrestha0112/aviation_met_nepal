@@ -66,7 +66,7 @@ class WeatherForecastProvider extends ChangeNotifier {
     rainList.clear();
   }
 
-  fetchWeatherForecast({required String id}) async {
+  Future fetchWeatherForecast({required String id}) async {
     try {
       final url = "$baseUrlCitiesById/$id";
       log(url);
