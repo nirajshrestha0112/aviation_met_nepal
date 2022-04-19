@@ -424,6 +424,7 @@ class ShowLocationSheet {
   static void showLocationSheet({
     required BuildContext context,
     required TextEditingController editingController,
+    required ScrollController scrollController,
     required Future future,
   }) {
     showModalBottomSheet(
@@ -461,6 +462,7 @@ class ShowLocationSheet {
                     child: ScrollConfiguration(
                   behavior: MyBehavior(),
                   child: RawScrollbar(
+                    controller: scrollController,
                     isAlwaysShown: true,
                     thumbColor: const Color(bgColor),
                     child: FutureBuilder(
@@ -481,6 +483,7 @@ class ShowLocationSheet {
                                             fontSize: 20.sp)))
                                 : ListView.builder(
                                     itemCount: value.searchData.length,
+                                    controller: scrollController,
                                     itemBuilder: (c, i) {
                                       return GestureDetector(
                                         onTap: () {
