@@ -35,9 +35,9 @@ class _MetarsTabState extends State<MetarsTab> {
     await Provider.of<MetarDataProvider>(context, listen: false)
         .fetchMetarDataDecoded(
             ident: widget.metarData!.ident, filteredData: filteredData);
-            setState(() {
-              isLoadingIndicator=true;
-            });
+    setState(() {
+      isLoadingIndicator = true;
+    });
     //
   }
 
@@ -57,10 +57,11 @@ class _MetarsTabState extends State<MetarsTab> {
       child: FutureBuilder(
         future: _future,
         builder: (context, AsyncSnapshot snapshot) {
-        if(isLoadingIndicator==false){
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CustomLoadingIndicator();
-          }}
+          if (isLoadingIndicator == false) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CustomLoadingIndicator();
+            }
+          }
           if (Provider.of<MetarDataProvider>(context, listen: false)
                       .metarDataRaw !=
                   null &&
@@ -144,6 +145,7 @@ class _MetarsTabState extends State<MetarsTab> {
                         isDecoded: true,
                       ),
                       Consumer<MetarDataProvider>(builder: (_, value, __) {
+                       
                         return ListView.builder(
                             itemCount: value
                                 .metarDataDecoded!.data!.decoded.text.length,
@@ -152,12 +154,16 @@ class _MetarsTabState extends State<MetarsTab> {
                             itemBuilder: (context, index) {
                               return Column(
                                 children: [
+                                  if(value.metarDataDecoded!.data!.decoded
+                                          .text.length > index)
                                   buildRow(
                                     "Text",
                                     value.metarDataDecoded!.data!.decoded
                                         .text[index],
                                     isText: true,
                                   ),
+                                  if(value.metarDataDecoded!.data!.decoded
+                                          .temperature.length > index)
                                   buildRow(
                                       "Temp.",
                                       value.metarDataDecoded!.data!.decoded
@@ -165,6 +171,8 @@ class _MetarsTabState extends State<MetarsTab> {
                                   SizedBox(
                                     height: 1.h,
                                   ),
+                                  if(value.metarDataDecoded!.data!.decoded
+                                          .dewpoint.length > index)
                                   buildRow(
                                       "Dew Point",
                                       value.metarDataDecoded!.data!.decoded
@@ -172,6 +180,8 @@ class _MetarsTabState extends State<MetarsTab> {
                                   SizedBox(
                                     height: 1.h,
                                   ),
+                                  if(value.metarDataDecoded!.data!.decoded
+                                          .pressureAltimeter.length > index)
                                   buildRow(
                                       "Pressure(altimeter)",
                                       value.metarDataDecoded!.data!.decoded
@@ -179,6 +189,8 @@ class _MetarsTabState extends State<MetarsTab> {
                                   SizedBox(
                                     height: 1.h,
                                   ),
+                                  if(value.metarDataDecoded!.data!.decoded
+                                          .winds.length > index)
                                   buildRow(
                                       "Winds",
                                       value.metarDataDecoded!.data!.decoded
@@ -186,6 +198,8 @@ class _MetarsTabState extends State<MetarsTab> {
                                   SizedBox(
                                     height: 1.h,
                                   ),
+                                  if(value.metarDataDecoded!.data!.decoded
+                                          .visibility.length > index)
                                   buildRow(
                                       "Visibility",
                                       value.metarDataDecoded!.data!.decoded
@@ -193,6 +207,8 @@ class _MetarsTabState extends State<MetarsTab> {
                                   SizedBox(
                                     height: 1.h,
                                   ),
+                                  if(value.metarDataDecoded!.data!.decoded
+                                          .ceiling.length > index)
                                   buildRow(
                                       "Ceiling",
                                       value.metarDataDecoded!.data!.decoded
@@ -200,6 +216,8 @@ class _MetarsTabState extends State<MetarsTab> {
                                   SizedBox(
                                     height: 1.h,
                                   ),
+                                  if(value.metarDataDecoded!.data!.decoded
+                                          .clouds.length > index)
                                   buildRow(
                                       "Clouds",
                                       value.metarDataDecoded!.data!.decoded

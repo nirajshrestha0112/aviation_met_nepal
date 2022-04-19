@@ -2,6 +2,7 @@ import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/provider/airmet_data_provider.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
+import 'package:aviation_met_nepal/provider/checking_modal_sheet.dart';
 import 'package:aviation_met_nepal/provider/weather_forecast_provider.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
@@ -16,7 +17,6 @@ import 'package:aviation_met_nepal/screens/lighting_screen.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
-import 'package:aviation_met_nepal/screens/test_screen.dart';
 import 'package:aviation_met_nepal/screens/weather_forecast_screen.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +55,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => PrivacyPolicyProvider()),
         ChangeNotifierProvider(create: (_) => CitiesProvider()),
         ChangeNotifierProvider(create: (_) => WeatherForecastProvider()),
+        ChangeNotifierProvider(create: (_) => CheckingModalSheet()),
       ],
       child: const MyApp(),
     ),
@@ -89,16 +90,15 @@ class MyApp extends StatelessWidget {
             scaffoldMessengerKey: messengerKey,
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            initialRoute: homeRoute,
+            // initialRoute: homeRoute,
             // '/test',
 
-            // home: const SplashScreen(),
+            home: const SplashScreen(),
             //  checkProvider.isConnected
             /* ? const SplashScreen()
                 : const InternetConnectionScreen(),  */
             routes: {
               splashRoute: (context) => const SplashScreen(),
-              '/test': (context) =>  ScrollLimitReached(),
               homeRoute: (context) => const HomeScreen(),
               detailsRoute: (context) => const DetailsScreen(),
               contactRoute: (context) => const ContactUs(),

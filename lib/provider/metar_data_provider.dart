@@ -64,8 +64,16 @@ class MetarDataProvider extends ChangeNotifier {
           jsonDecode(response.body)['message'];
         }
         // metarDataDecoded = await compute(parsedMetaDataDecoded, response.body);
-      metarDataDecoded = MetarDataDecoded.fromJson(jsonDecode(response.body));
-
+        metarDataDecoded = MetarDataDecoded.fromJson(jsonDecode(response.body));
+        log(metarDataDecoded!.data!.decoded.text.length.toString());
+        log(metarDataDecoded!.data!.decoded.temperature.length.toString());
+        log(metarDataDecoded!.data!.decoded.dewpoint.length.toString());
+        log(metarDataDecoded!.data!.decoded.pressureAltimeter.length.toString());
+        log(metarDataDecoded!.data!.decoded.winds.length.toString());
+        log(metarDataDecoded!.data!.decoded.visibility.length.toString());
+        log(metarDataDecoded!.data!.decoded.ceiling.length.toString());
+        log(metarDataDecoded!.data!.decoded.clouds.length.toString());
+        //  log(metarDataDecoded!.data!.decoded..toString());
         notifyListeners();
       } else {
         throw jsonDecode(response.body)['message'];

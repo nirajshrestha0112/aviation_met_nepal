@@ -38,7 +38,10 @@ class CustomRawCard extends StatelessWidget {
             ListView.separated(
               padding: EdgeInsets.zero,
               primary: false,
-              itemBuilder: (context, index) => Html(data: rawBodyText[index]),
+              itemBuilder: (context, index){
+                // log(rawBodyText.length.toString());
+                return Html(data: rawBodyText[index]);
+              },
               separatorBuilder: (context, index) => SizedBox(
                 height: 2.h,
               ),
