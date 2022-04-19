@@ -5,7 +5,6 @@ import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom_loading_indicator.dart';

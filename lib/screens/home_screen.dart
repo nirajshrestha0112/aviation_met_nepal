@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
+import 'package:aviation_met_nepal/provider/checking_modal_sheet.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
 import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/utils/show_internet_connection_snack_bar.dart';
@@ -10,6 +11,7 @@ import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:html/dom_parsing.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom_alert_dialog.dart';
@@ -22,10 +24,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // bool isShowing = true;
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance?.addPostFrameCallback(
-        (_) => ShowFabSheet.showFabSheet(context: context));
+
+    Provider.of<CheckingModalSheet>(context,listen: false).checkingModalSheet(context);
+    // if (isShowing == true) {
+    //   WidgetsBinding.instance?.addPostFrameCallback(
+    //       (_) => ShowFabSheet.showFabSheet(context: context));
+    //   setState(() {
+    //     isShowing = !isShowing;
+    //   });
+    // }
+    /*  WidgetsBinding.instance?.addPostFrameCallback(
+        (_) => ShowFabSheet.showFabSheet(context: context)); */
     return WillPopScope(
       onWillPop: () async => await showDialog(
           context: context, builder: (context) => const ShowAlertDialogBox()),
@@ -56,7 +68,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   late final ScrollController scrollController;
   @override
   void initState() {
-     scrollController = ScrollController();
+    scrollController = ScrollController();
     Provider.of<ConnectivityProvider>(context, listen: false)
         .monitorConnection(context);
     _future = Provider.of<AirportListProvider>(context, listen: false)
@@ -67,8 +79,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
     });
     super.initState();
   }
-  
-  
+
   final _editingController = TextEditingController();
   late Future _future;
   @override

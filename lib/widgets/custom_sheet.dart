@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
@@ -10,7 +9,6 @@ import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/widgets/custom_alert_dialog.dart';
 import 'package:aviation_met_nepal/widgets/custom_icon_image.dart';
 import 'package:aviation_met_nepal/widgets/each_text.dart';
-import 'package:aviation_met_nepal/widgets/general_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -294,7 +292,7 @@ class ShowFabSheet {
                                         .loginName !=
                                     null) {
                                   if (getIsOnline(context)) {
-                                    debugger();
+                                    
 
                                     Navigator.pushNamed(
                                         context, data[i]['navigate']);
@@ -357,13 +355,15 @@ class ShowFabSheet {
                                 }
                               } else {
                                 if (getIsOnline(context)) {
-                                  if (data[i]['navigate'] == homeRoute) {
+                                  Navigator.pushNamed(
+                                        context, data[i]['navigate']);
+                                 /*  if (data[i]['navigate'] == homeRoute) {
                                     Navigator.pop(context);
                                     // return;
                                   } else {
                                     Navigator.pushNamed(
                                         context, data[i]['navigate']);
-                                  }
+                                  } */
                                 } else {
                                   if (data[i]['navigate'] ==
                                       satelliteImageDataRoute) {
