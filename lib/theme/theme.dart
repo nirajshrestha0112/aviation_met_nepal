@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../constant/colors_properties.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-ThemeData lightTheme(BuildContext context) {
+ThemeData theme(BuildContext context) {
   return ThemeData(
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
@@ -23,10 +23,12 @@ ThemeData lightTheme(BuildContext context) {
       ),
       appBarTheme: AppBarTheme(
           centerTitle: true,
-          iconTheme: IconThemeData(
+          toolbarHeight: 44.h,
+          /* iconTheme: IconThemeData(
             color: const Color(colorDarkBlue),
             size: 16.w,
-          ),
+          ), */
+
           elevation: 0.0,
           color: const Color(colorWhite),
           titleTextStyle: TextStyle(

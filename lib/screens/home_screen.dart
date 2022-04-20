@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
@@ -11,45 +9,26 @@ import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:html/dom_parsing.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom_alert_dialog.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  // bool isShowing = true;
-  @override
   Widget build(BuildContext context) {
-
-    Provider.of<CheckingModalSheet>(context,listen: false).checkingModalSheet(context);
-    // if (isShowing == true) {
-    //   WidgetsBinding.instance?.addPostFrameCallback(
-    //       (_) => ShowFabSheet.showFabSheet(context: context));
-    //   setState(() {
-    //     isShowing = !isShowing;
-    //   });
-    // }
-    /*  WidgetsBinding.instance?.addPostFrameCallback(
-        (_) => ShowFabSheet.showFabSheet(context: context)); */
+    Provider.of<CheckingModalSheet>(context, listen: false)
+        .checkingModalSheet(context);
     return WillPopScope(
       onWillPop: () async => await showDialog(
           context: context, builder: (context) => const ShowAlertDialogBox()),
       child: SafeArea(
         child: Scaffold(
-            appBar: PreferredSize(
-              preferredSize: Size.fromHeight(42.h),
-              child: AppBar(
-                  title: const Text(
-                "Discover",
-              )),
-            ),
+            appBar: AppBar(
+                title: const Text(
+              "Discover",
+            )),
             floatingActionButton: const CustomFloatingActionBtn(),
             body: const HomeScreenBody()),
       ),

@@ -10,14 +10,9 @@ import '../constant/images.dart';
 import '../widgets/general_icon.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class WeatherForecastScreen extends StatefulWidget {
+class WeatherForecastScreen extends StatelessWidget {
   const WeatherForecastScreen({Key? key}) : super(key: key);
 
-  @override
-  State<WeatherForecastScreen> createState() => _WeatherForecastScreenState();
-}
-
-class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +46,6 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
       isInit = true;
       setState(() {});
     }
-
     super.didChangeDependencies();
   }
 
@@ -63,12 +57,6 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
     super.initState();
   }
 
-  // fetchWeatherForecastData() {
-  //   Provider.of<CitiesProvider>(context, listen: false).fetchCitiesData();
-  //   Provider.of<WeatherForecastProvider>(context, listen: false)
-  //       .fetchWeatherForecast(id: "4991");
-  // }
-
   late Future _future;
   String description = "Kathmandu";
   @override
@@ -77,7 +65,7 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
       behavior: MyBehavior(),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-        height: 210.h,
+        height: 230.h,
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color(colorWhite),
@@ -125,15 +113,9 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
               thickness: 1.5,
             ),
             isLoading
-                ? const 
-                 CustomLoadingIndicator()
+                ? const CustomLoadingIndicator()
                 : Consumer<WeatherForecastProvider>(builder: (_, value, __) {
-                    return /*  value.dateList.isEmpty
-                  ? const CustomErrorTab(
-                      margin: false,
-                    )
-                  : */
-                        Expanded(
+                    return Expanded(
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: value.dateList.length,

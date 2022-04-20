@@ -9,6 +9,8 @@ import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/widgets/custom_alert_dialog.dart';
 import 'package:aviation_met_nepal/widgets/custom_icon_image.dart';
 import 'package:aviation_met_nepal/widgets/each_text.dart';
+import 'package:aviation_met_nepal/widgets/general_text_button.dart';
+import 'package:aviation_met_nepal/widgets/general_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -147,7 +149,6 @@ class ShowFabSheet {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // SizedBox(width: 3.w,),
                       Row(
                         children: [
                           Icon(
@@ -275,7 +276,6 @@ class ShowFabSheet {
                 child: ScrollConfiguration(
                   behavior: MyBehavior(),
                   child: ListView.builder(
-                      // physics: NeverScrollableScrollPhysics(),
                       controller: controller,
                       itemCount: data.length,
                       itemBuilder: (c, i) {
@@ -292,8 +292,6 @@ class ShowFabSheet {
                                         .loginName !=
                                     null) {
                                   if (getIsOnline(context)) {
-                                    
-
                                     Navigator.pushNamed(
                                         context, data[i]['navigate']);
                                   } else {
@@ -309,7 +307,7 @@ class ShowFabSheet {
                                           iconColor: Colors.red,
                                           statusText: "Error",
                                           message:
-                                              "Cannot Get IcingTurbulence Image...Please Try Again");
+                                              "Cannot Get Data...Please Try Again");
                                     } else if (data[i]['navigate'] ==
                                         sigwxChartRoute) {
                                       Navigator.pop(context);
@@ -347,7 +345,7 @@ class ShowFabSheet {
                                           iconColor: Colors.red,
                                           statusText: "Error",
                                           message:
-                                              "Cannot Get WeatherCamera Image...Please Try Again");
+                                              "Cannot Get Data...Please Try Again");
                                     }
                                   }
                                 } else {
@@ -356,14 +354,7 @@ class ShowFabSheet {
                               } else {
                                 if (getIsOnline(context)) {
                                   Navigator.pushNamed(
-                                        context, data[i]['navigate']);
-                                 /*  if (data[i]['navigate'] == homeRoute) {
-                                    Navigator.pop(context);
-                                    // return;
-                                  } else {
-                                    Navigator.pushNamed(
-                                        context, data[i]['navigate']);
-                                  } */
+                                      context, data[i]['navigate']);
                                 } else {
                                   if (data[i]['navigate'] ==
                                       satelliteImageDataRoute) {
@@ -443,21 +434,14 @@ class ShowLocationSheet {
                 SizedBox(
                   height: 6.h,
                 ),
-                TextFormField(
-                    controller: editingController,
-                    decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 4.w),
-                        hintText: "Search Airport",
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(8.w)),
-                        suffixIcon: Padding(
-                          padding: EdgeInsets.only(left: 18.w),
-                          child: Icon(
-                            Icons.search,
-                            size: 25.w,
-                          ),
-                        ))),
+                GeneralTextFormField(
+                  suffixIconsSize: 25.w,
+                  contextPadding: EdgeInsets.only(left: 8.w),
+                  prefixIconsPadding: false,
+                  suffixIcons: Icons.search,
+                  hintText: "Search Airport",
+                  obscureText: false,
+                ),
                 Expanded(
                     child: ScrollConfiguration(
                   behavior: MyBehavior(),
@@ -536,7 +520,7 @@ class ShowLocationSheet {
 
 class ShowFilterSheet {
   static Future showFilterSheet(context) async {
-    String? value;
+    String? _value;
     await showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
@@ -594,7 +578,7 @@ class ShowFilterSheet {
                     child: StatefulBuilder(builder: (context, set) {
                       return DropDownFilter(
                         setValue: (val) {
-                          value = val;
+                          _value = val;
                           set(() {});
                         },
                       );
@@ -603,40 +587,22 @@ class ShowFilterSheet {
                   SizedBox(
                     height: 16.h,
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 40.h,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(
-                          context,
-                        );
-                      },
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(colorBlue)),
-                      child: Text(
-                        "Apply",
-                        style: TextStyle(
-                            fontSize: 16.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.normal),
-                      ),
-                    ),
-                  )
+                  GeneralTextButton(
+                      height: 40.h,
+                      text: "Apply",
+                      onPressed: () => Navigator.pop(context))
                 ],
               ),
             ),
           );
         });
-    return value;
+    return _value;
   }
 }
 
 class ShowWeatherForecastCities {
   static Future showWeatherForecastCities({
     required BuildContext context,
-    // required TextEditingController editingController,
     required Future future,
   }) async {
     final editingController = TextEditingController();
@@ -660,17 +626,14 @@ class ShowWeatherForecastCities {
                 SizedBox(
                   height: 6.h,
                 ),
-                TextFormField(
-                    controller: editingController,
-                    decoration: InputDecoration(
-                        hintText: "Search Airport",
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(8.w)),
-                        suffixIcon: Icon(
-                          Icons.search,
-                          size: 24.w,
-                        ))),
+                GeneralTextFormField(
+                  suffixIconsSize: 25.w,
+                  contextPadding: EdgeInsets.only(left: 8.w),
+                  prefixIconsPadding: false,
+                  suffixIcons: Icons.search,
+                  hintText: "Search Airport",
+                  obscureText: false,
+                ),
                 SizedBox(
                   height: 6.h,
                 ),

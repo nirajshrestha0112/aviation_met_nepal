@@ -11,15 +11,9 @@ import '../widgets/custom_loading_indicator.dart';
 import '../widgets/custom_sheet.dart';
 import '../widgets/general_icon.dart';
 
-class ContactUs extends StatefulWidget {
+class ContactUs extends StatelessWidget {
   const ContactUs({Key? key}) : super(key: key);
 
-  @override
-  State<ContactUs> createState() => _ContactUsState();
-}
-
-class _ContactUsState extends State<ContactUs> {
-  // late Future _future;
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
@@ -46,7 +40,6 @@ class _ContactUsBodyState extends State<ContactUsBody> {
   }
 
   late Future _future;
-
   bool isViewMore = false;
 
   toggleViewMore() {
@@ -78,29 +71,20 @@ class _ContactUsBodyState extends State<ContactUsBody> {
           child: Column(children: [
         Container(
             color: const Color(colorWhite),
-            height: 46.h,
+            height: 44.h,
             width: double.infinity,
-            child: Stack(
-              alignment: Alignment.center,
-              // fit: StackFit.expand,
-              children: [
-                ListTile(
-                    title: Text(
+            child: ListTile(
+                dense: true,
+                contentPadding: EdgeInsets.only(left: 16.w, right: 42.w),
+                leading: const GeneralIcon(),
+                title: Text(
                   "Contact Us",
                   textAlign: TextAlign.center,
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1!
                       .copyWith(fontSize: 18.sp),
-                )),
-                Positioned(
-                    top: 14.h,
-                    left: 6.w,
-                    child: const GeneralIcon(
-                      isPadding: EdgeInsets.zero,
-                    ))
-              ],
-            )),
+                ))),
         SizedBox(
           height: 16.h,
         ),
@@ -282,7 +266,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                                                 listen: false)
                                             .privacyTitleNp!
                                             .substring(0, 90)),
-                                TxtBtn(
+                                TextBtn(
                                   callback: toggleViewMore,
                                   isViewMore: isViewMore,
                                 )
@@ -299,17 +283,17 @@ class _ContactUsBodyState extends State<ContactUsBody> {
   }
 }
 
-class TxtBtn extends StatefulWidget {
-  const TxtBtn({Key? key, required this.callback, required this.isViewMore})
+class TextBtn extends StatefulWidget {
+  const TextBtn({Key? key, required this.callback, required this.isViewMore})
       : super(key: key);
   final VoidCallback callback;
   final bool isViewMore;
 
   @override
-  State<TxtBtn> createState() => _TxtBtnState();
+  State<TextBtn> createState() => _TextBtnState();
 }
 
-class _TxtBtnState extends State<TxtBtn> {
+class _TextBtnState extends State<TextBtn> {
   // bool isViewMore = true;
 
   @override

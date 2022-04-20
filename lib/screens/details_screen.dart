@@ -5,7 +5,6 @@ import 'package:aviation_met_nepal/widgets/metars_tab.dart';
 import 'package:aviation_met_nepal/widgets/sigmets_tab.dart';
 import 'package:aviation_met_nepal/widgets/tafs_tab.dart';
 import 'package:flutter/material.dart';
-
 import '../widgets/custom_floating_action_btn.dart';
 import '../widgets/general_icon.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,17 +33,16 @@ class _DetailsScreenState extends State<DetailsScreen>
   }
 
   @override
-  void dispose(){
+  void dispose() {
     _tabController.dispose();
     super.dispose();
   }
+
   late List<Widget> _views;
   late TabController _tabController;
 
   final List<Tab> _tabs = const [
-    Tab(child: Text("METARS")
-        // TabEachText(tabText: "METARS"),
-        ),
+    Tab(child: Text("METARS")),
     Tab(
       child: Text("TAFS"),
     ),
@@ -64,16 +62,12 @@ class _DetailsScreenState extends State<DetailsScreen>
             title: Text(
               "${widget.data!.ident} ${widget.data!.name}",
             ),
-            // leadingWidth: 0.w,
             leading: GeneralIcon(isPadding: EdgeInsets.only(right: 18.w)),
             bottom: TabBar(
-
-              // overlayColor: MaterialStateProperty.all(Colors.transparent),
               indicatorPadding:
                   EdgeInsets.symmetric(horizontal: 8.w, vertical: 5.5.w),
               controller: _tabController,
               tabs: _tabs,
-
             ),
           )),
       body: ScrollConfiguration(

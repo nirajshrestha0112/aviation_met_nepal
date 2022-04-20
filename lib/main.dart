@@ -22,7 +22,6 @@ import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:provider/provider.dart';
 import 'provider/ashtams_data_provider.dart';
 import 'provider/gamet_data_provider.dart';
@@ -31,14 +30,13 @@ import 'provider/opmet_data_provider.dart';
 import 'provider/satellite_image_provider.dart';
 import 'screens/splash_screen.dart';
 
-final messengerKey = GlobalKey<ScaffoldMessengerState>();
 
+final messengerKey = GlobalKey<ScaffoldMessengerState>();
 void main() {
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          
           create: (_) => AirportListProvider(),
         ),
         ChangeNotifierProvider(create: (_) => ConnectivityProvider()),
@@ -86,17 +84,12 @@ class MyApp extends StatelessWidget {
                 child: child!,
               );
             },
-            theme: lightTheme(context),
+            theme: theme(context),
             scaffoldMessengerKey: messengerKey,
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            // initialRoute: homeRoute,
-            // '/test',
-
-            home: const SplashScreen(),
-            //  checkProvider.isConnected
-            /* ? const SplashScreen()
-                : const InternetConnectionScreen(),  */
+            initialRoute: homeRoute,
+            // home: const SplashScreen(),
             routes: {
               splashRoute: (context) => const SplashScreen(),
               homeRoute: (context) => const HomeScreen(),
@@ -108,10 +101,9 @@ class MyApp extends StatelessWidget {
               icingTurbulenceChartRoute: (context) => const Scaffold(),
               weatherCameraImagesRoute: (context) => const Scaffold(),
               satelliteImageDataRoute: (context) =>
-                  const SatelliteScreen(screenName: "Satellite Images"),
+                  const SatelliteScreen(),
               windChartRoute: (context) => const Scaffold(),
               sigwxChartRoute: (context) => const Scaffold(),
-              // weatherForecastRoute: (context) => const Scaffold(),
               airmetDataRoute: (context) =>
                   const CustomScreen(screenName: "Airmet Data"),
               ashtamsDataRoute: (context) =>

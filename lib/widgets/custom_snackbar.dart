@@ -20,7 +20,7 @@ class CustomSnackBar {
       backgroundColor: bgColor ?? Colors.transparent,
       // duration: Duration(minutes: 2),
       content: SizedBox(
-        height: 32.h,
+        height: 34.h,
         width: double.infinity,
         child: Row(
             // mainAxisAlignment: MainAxisAlignment.start,
