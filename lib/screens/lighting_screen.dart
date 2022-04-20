@@ -4,23 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
-class LightingData extends StatefulWidget {
+class LightingData extends StatelessWidget {
   const LightingData({Key? key}) : super(key: key);
-
-  @override
-  State<LightingData> createState() => _LightingDataState();
-}
-
-class _LightingDataState extends State<LightingData> {
-  @override
-  void initState() {
-    Provider.of<LightingDataProvider>(context, listen: false)
-        .fetchLightingData();
-
-    super.initState();
-  }
-
-  static const LatLng _center = LatLng(23.7351, 85.3612);
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +15,43 @@ class _LightingDataState extends State<LightingData> {
         title: const Text(
           "Lighting Data",
         ),
-        centerTitle: true,
       ),
-      body: Consumer<LightingDataProvider>(builder: (_, value, __) {
-        return GoogleMap(
-          zoomControlsEnabled: false,
-          markers: value.markers,
-          myLocationButtonEnabled: false,
-          initialCameraPosition: const CameraPosition(
-            target: _center,
-            zoom: 5.0,
-          ),
-        );
-      }),
+      body: const LightingScreenBody(),
     );
+  }
+}
+
+class LightingScreenBody extends StatefulWidget {
+  const LightingScreenBody({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<LightingScreenBody> createState() => _LightingScreenBodyState();
+}
+
+class _LightingScreenBodyState extends State<LightingScreenBody> {
+  static const LatLng _center = LatLng(23.7351, 85.3612);
+
+  @override
+  void initState() {
+    Provider.of<LightingDataProvider>(context, listen: false)
+        .fetchLightingData();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<LightingDataProvider>(builder: (_, value, __) {
+      return GoogleMap(
+        zoomControlsEnabled: false,
+        markers: value.markers,
+        myLocationButtonEnabled: false,
+        initialCameraPosition: const CameraPosition(
+          target: _center,
+          zoom: 5.0,
+        ),
+      );
+    });
   }
 }

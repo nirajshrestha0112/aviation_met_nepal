@@ -1,6 +1,5 @@
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -35,26 +34,35 @@ class _SplashScreen extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          body: Stack(children: [
-        Image.asset(
-          splashScreenImg,
-          fit: BoxFit.fill,
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          // height: MediaQuery.of(context).size.height * 100,
-        ),
-        Positioned(
-          left: 160,
-          top: 350.h,
-          child: Image.asset(
-            gifImg,
-            height: 60.h,
-            width: 80.w,
-          ),
-        )
-      ])),
+    return const SafeArea(
+      child: Scaffold(body: SplashScreenBody()),
     );
+  }
+}
+
+class SplashScreenBody extends StatelessWidget {
+  const SplashScreenBody({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(children: [
+      Image.asset(
+        splashScreenImg,
+        fit: BoxFit.fill,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+      ),
+      Positioned(
+        left: 160,
+        top: 350.h,
+        child: Image.asset(
+          gifImg,
+          height: 60.h,
+          width: 80.w,
+        ),
+      )
+    ]);
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../constant/colors_properties.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
