@@ -17,6 +17,7 @@ import 'package:aviation_met_nepal/screens/lighting_screen.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
+import 'package:aviation_met_nepal/screens/test_screen.dart';
 import 'package:aviation_met_nepal/screens/weather_forecast_screen.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -88,10 +89,12 @@ class MyApp extends StatelessWidget {
             scaffoldMessengerKey: messengerKey,
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            initialRoute: homeRoute,
+            initialRoute: '/test',
             // home: const SplashScreen(),
             routes: {
+
               splashRoute: (context) => const SplashScreen(),
+              // '/test': (context) => const CustomGrad(),
               homeRoute: (context) => const HomeScreen(),
               detailsRoute: (context) => const DetailsScreen(),
               contactRoute: (context) => const ContactUs(),
