@@ -1,5 +1,6 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/provider/ashtams_data_provider.dart';
+import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:aviation_met_nepal/widgets/general_icon.dart';
 import 'package:flutter/material.dart';
@@ -56,105 +57,108 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
     }
     super.initState();
   }
+
   late Future _future;
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
         behavior: MyBehavior(),
-        child: RawScrollbar(
-          isAlwaysShown: true,
-          minThumbLength: 2.h,
-          thickness: 4.w,
-          thumbColor: Colors.grey,
-          child: SingleChildScrollView(
-              child: Column(children: [
-            Container(
-              color: const Color(colorWhite),
-              height: 44.h,
-              width: double.infinity,
-              child: ListTile(
-                  dense: true,
-                  contentPadding: EdgeInsets.only(left: 16.w, right: 42.w),
-                  leading: const GeneralIcon(),
-                  title: Text(
-                    widget.screenName,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1!
-                        .copyWith(fontSize: 18.sp),
-                  )),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-              child: FutureBuilder(
-                future: _future,
-                builder: (context, AsyncSnapshot snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return SizedBox(
-                      height: MediaQuery.of(context).size.height / 1.3,
-                      child: const CustomLoadingIndicator(),
-                    );
-                  }
+        child: Theme(
+          data: theme(context).copyWith(highlightColor: Colors.grey),
+          child: Scrollbar(
+            isAlwaysShown: true,
+            child: SingleChildScrollView(
+                child: Column(children: [
+              Container(
+                color: const Color(colorWhite),
+                height: 44.h,
+                width: double.infinity,
+                child: ListTile(
+                    dense: true,
+                    contentPadding: EdgeInsets.only(left: 16.w, right: 42.w),
+                    leading: const GeneralIcon(),
+                    title: Text(
+                      widget.screenName,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(fontSize: 18.sp),
+                    )),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                child: FutureBuilder(
+                  future: _future,
+                  builder: (context, AsyncSnapshot snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return SizedBox(
+                        height: MediaQuery.of(context).size.height / 1.3,
+                        child: const CustomLoadingIndicator(),
+                      );
+                    }
 
-                  return SingleChildScrollView(
-                      child: Container(
-                    padding: EdgeInsets.only(
-                      top: 16.h,
-                      left: 16.w,
-                      bottom: 16.h,
-                    ),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8.w)),
-                    child: widget.screenName == "Gamet Data"
-                        ? Consumer<GametDataProvider>(
-                            builder: (_, value, __) {
-                              return Text(
-                                value.gametData!.data.toString(),
-                                style: Theme.of(context).textTheme.bodyText2,
-                              );
-                            },
-                          )
-                        : widget.screenName == "Airmet Data"
-                            ? Consumer<AirmetDataProvider>(
-                                builder: (_, value, __) {
+                    return SingleChildScrollView(
+                        child: Container(
+                      padding: EdgeInsets.only(
+                        top: 16.h,
+                        left: 16.w,
+                        bottom: 16.h,
+                      ),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8.w)),
+                      child: widget.screenName == "Gamet Data"
+                          ? Consumer<GametDataProvider>(
+                              builder: (_, value, __) {
                                 return Text(
-                                  value.airmetData!.data.toString(),
+                                  value.gametData!.data.toString(),
                                   style: Theme.of(context).textTheme.bodyText2,
                                 );
-                              })
-                            : widget.screenName == "Opmet Data"
-                                ? Consumer<OpmetDataProvider>(
-                                    builder: (_, value, __) {
-                                    return Text(
-                                      value.opmetData!.data.toString(),
-                                      style:
-                                          Theme.of(context).textTheme.bodyText2,
-                                    );
-                                  })
-                                : widget.screenName == "Ashtams Data"
-                                    ? Consumer<AshtamsDataProvider>(
-                                        builder: (_, value, __) {
-                                        return value.ashtamsData?.data == null
-                                            ? const CustomErrorTab(
-                                                margin: false,
-                                              )
-                                            : Text(
-                                                value.ashtamsData!.data
-                                                    .toString(),
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText2,
-                                              );
-                                      })
-                                    : const SizedBox.shrink(),
-                  ));
-                },
-              ),
-            )
-          ])),
+                              },
+                            )
+                          : widget.screenName == "Airmet Data"
+                              ? Consumer<AirmetDataProvider>(
+                                  builder: (_, value, __) {
+                                  return Text(
+                                    value.airmetData!.data.toString(),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText2,
+                                  );
+                                })
+                              : widget.screenName == "Opmet Data"
+                                  ? Consumer<OpmetDataProvider>(
+                                      builder: (_, value, __) {
+                                      return Text(
+                                        value.opmetData!.data.toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2,
+                                      );
+                                    })
+                                  : widget.screenName == "Ashtams Data"
+                                      ? Consumer<AshtamsDataProvider>(
+                                          builder: (_, value, __) {
+                                          return value.ashtamsData?.data == null
+                                              ? const CustomErrorTab(
+                                                  margin: false,
+                                                )
+                                              : Text(
+                                                  value.ashtamsData!.data
+                                                      .toString(),
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText2,
+                                                );
+                                        })
+                                      : const SizedBox.shrink(),
+                    ));
+                  },
+                ),
+              )
+            ])),
+          ),
         ));
   }
 }
