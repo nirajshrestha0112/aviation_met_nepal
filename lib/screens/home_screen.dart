@@ -8,6 +8,7 @@ import 'package:aviation_met_nepal/utils/show_internet_connection_snack_bar.dart
 import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,7 +47,6 @@ class HomeScreenBody extends StatefulWidget {
 class _HomeScreenBodyState extends State<HomeScreenBody> {
   @override
   void initState() {
-    _scrollController=ScrollController();
     Provider.of<ConnectivityProvider>(context, listen: false)
         .monitorConnection(context);
     _future = Provider.of<AirportListProvider>(context, listen: false)
@@ -57,7 +57,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
     });
     super.initState();
   }
-    ScrollController _scrollController=ScrollController();
+
   final _editingController = TextEditingController();
   late Future _future;
   @override
@@ -66,7 +66,6 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
       GestureDetector(
         onTap: () => getIsOnline(context)
             ? ShowLocationSheet.showLocationSheet(
-                scrollController: _scrollController,
                 context: context,
                 editingController: _editingController,
                 future: _future)
