@@ -13,7 +13,9 @@ import 'package:aviation_met_nepal/widgets/each_text.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
 import 'package:aviation_met_nepal/widgets/general_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:html/dom_parsing.dart';
 import 'package:provider/provider.dart';
+import 'package:scroll_indicator/scroll_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../provider/weather_forecast_provider.dart';
 import '../utils/custom_scroll_behavior.dart';
@@ -415,9 +417,7 @@ class ShowFabSheet {
 class ShowLocationSheet {
   static void showLocationSheet({
     required BuildContext context,
-    required ScrollController scrollController,
     required TextEditingController editingController,
-   
     required Future future,
   }) {
     showModalBottomSheet(
@@ -445,82 +445,77 @@ class ShowLocationSheet {
                   obscureText: false,
                 ),
                 Expanded(
-                    child: ScrollConfiguration(
-                  behavior: MyBehavior(),
-                  child: Theme(
-                    data: theme(context)
-                        .copyWith(highlightColor: const Color(bgColor)),
-                    child: Scrollbar(
-                      // controller: scrollController,
-                      isAlwaysShown: true,
-                      child: FutureBuilder(
-                          future: future,
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const CustomLoadingIndicator();
-                            }
-                            return Consumer<AirportListProvider>(
-                                builder: (_, value, __) {
-                              return value.searchData.isEmpty
-                                  ? Align(
-                                      alignment: Alignment.topCenter,
-                                      child: Text("No Airport Data Found",
-                                          style: TextStyle(
-                                              color: const Color(colorGrey20),
-                                              fontSize: 20.sp)))
-                                  : ListView.builder(
-                                    // shrinkWrap: true,
-                                    // physics: const ScrollPhysics(),
-                                    // controller: scrollController,
-                                    // scrollDirection: Axis.vertical,
-                                      itemCount: value.searchData.length,
-                                      itemBuilder: (c, i) {
-                                        return GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        DetailsScreen(
-                                                            data: value
-                                                                    .searchData[
-                                                                i])));
-                                          },
-                                          child: ListTile(
-                                            contentPadding:
-                                                EdgeInsets.only(left: 4.w),
-                                            leading: Text(
-                                              value.searchData[i].ident,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1!
-                                                  .copyWith(
-                                                      color: const Color(
-                                                          colorPrimary)),
-                                            ),
-                                            trailing: Container(
-                                              padding:
-                                                  EdgeInsets.only(right: 10.w),
-                                              width: 160.w,
-                                              child: Text(
-                                                value.searchData[i].name,
-                                                textAlign: TextAlign.end,
-                                                style: TextStyle(
-                                                  color:
-                                                      const Color(colorNavy50),
-                                                  fontSize: 16.sp,
+                  child: ScrollConfiguration(
+                    behavior: MyBehavior(),
+                    child: Theme(
+                      data: theme(context)
+                          .copyWith(highlightColor: const Color(bgColor)),
+                      child: Scrollbar(
+                        child: FutureBuilder(
+                            future: future,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const CustomLoadingIndicator();
+                              }
+                              return Consumer<AirportListProvider>(
+                                  builder: (_, value, __) {
+                                return value.searchData.isEmpty
+                                    ? Align(
+                                        alignment: Alignment.topCenter,
+                                        child: Text("No Airport Data Found",
+                                            style: TextStyle(
+                                                color: const Color(colorGrey20),
+                                                fontSize: 20.sp)))
+                                    : ListView.builder(
+                                        itemCount: value.searchData.length,
+                                        itemBuilder: (c, i) {
+                                          return GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          DetailsScreen(
+                                                              data: value
+                                                                      .searchData[
+                                                                  i])));
+                                            },
+                                            child: ListTile(
+                                              contentPadding:
+                                                  EdgeInsets.only(left: 4.w),
+                                              leading: Text(
+                                                value.searchData[i].ident,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1!
+                                                    .copyWith(
+                                                        color: const Color(
+                                                            colorPrimary)),
+                                              ),
+                                              trailing: Container(
+                                                padding: EdgeInsets.only(
+                                                    right: 10.w),
+                                                width: 160.w,
+                                                child: Text(
+                                                  value.searchData[i].name,
+                                                  textAlign: TextAlign.end,
+                                                  style: TextStyle(
+                                                    color: const Color(
+                                                        colorNavy50),
+                                                    fontSize: 16.sp,
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        );
-                                      });
-                            });
-                          }),
+                                          );
+                                        });
+                              });
+                            }),
+                      ),
                     ),
                   ),
-                ))
+                )
               ]),
             ),
           );
@@ -654,7 +649,6 @@ class ShowWeatherForecastCities {
                     data: theme(context)
                         .copyWith(highlightColor: const Color(bgColor)),
                     child: Scrollbar(
-                      isAlwaysShown: true,
                       child: FutureBuilder(
                           future: future,
                           builder: (context, snapshot) {
