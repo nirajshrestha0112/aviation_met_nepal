@@ -44,10 +44,9 @@ class HomeScreenBody extends StatefulWidget {
 }
 
 class _HomeScreenBodyState extends State<HomeScreenBody> {
-  late final ScrollController scrollController;
   @override
   void initState() {
-    scrollController = ScrollController();
+    _scrollController=ScrollController();
     Provider.of<ConnectivityProvider>(context, listen: false)
         .monitorConnection(context);
     _future = Provider.of<AirportListProvider>(context, listen: false)
@@ -58,7 +57,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
     });
     super.initState();
   }
-
+    ScrollController _scrollController=ScrollController();
   final _editingController = TextEditingController();
   late Future _future;
   @override
@@ -67,7 +66,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
       GestureDetector(
         onTap: () => getIsOnline(context)
             ? ShowLocationSheet.showLocationSheet(
-                scrollController: scrollController,
+                scrollController: _scrollController,
                 context: context,
                 editingController: _editingController,
                 future: _future)

@@ -5,6 +5,7 @@ import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
+import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/widgets/custom_alert_dialog.dart';
 import 'package:aviation_met_nepal/widgets/custom_icon_image.dart';
@@ -414,8 +415,9 @@ class ShowFabSheet {
 class ShowLocationSheet {
   static void showLocationSheet({
     required BuildContext context,
-    required TextEditingController editingController,
     required ScrollController scrollController,
+    required TextEditingController editingController,
+   
     required Future future,
   }) {
     showModalBottomSheet(
@@ -445,70 +447,78 @@ class ShowLocationSheet {
                 Expanded(
                     child: ScrollConfiguration(
                   behavior: MyBehavior(),
-                  child: RawScrollbar(
-                    controller: scrollController,
-                    isAlwaysShown: true,
-                    thumbColor: const Color(bgColor),
-                    child: FutureBuilder(
-                        future: future,
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const CustomLoadingIndicator();
-                          }
-                          return Consumer<AirportListProvider>(
-                              builder: (_, value, __) {
-                            return value.searchData.isEmpty
-                                ? Align(
-                                    alignment: Alignment.topCenter,
-                                    child: Text("No Airport Data Found",
-                                        style: TextStyle(
-                                            color: const Color(colorGrey20),
-                                            fontSize: 20.sp)))
-                                : ListView.builder(
-                                    itemCount: value.searchData.length,
-                                    controller: scrollController,
-                                    itemBuilder: (c, i) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      DetailsScreen(
-                                                          data: value
-                                                              .searchData[i])));
-                                        },
-                                        child: ListTile(
-                                          contentPadding:
-                                              EdgeInsets.only(left: 4.w),
-                                          leading: Text(
-                                            value.searchData[i].ident,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1!
-                                                .copyWith(
-                                                    color: const Color(
-                                                        colorPrimary)),
-                                          ),
-                                          trailing: Container(
-                                            padding:
-                                                EdgeInsets.only(right: 10.w),
-                                            width: 160.w,
-                                            child: Text(
-                                              value.searchData[i].name,
-                                              textAlign: TextAlign.end,
-                                              style: TextStyle(
-                                                color: const Color(colorNavy50),
-                                                fontSize: 16.sp,
+                  child: Theme(
+                    data: theme(context)
+                        .copyWith(highlightColor: const Color(bgColor)),
+                    child: Scrollbar(
+                      // controller: scrollController,
+                      isAlwaysShown: true,
+                      child: FutureBuilder(
+                          future: future,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const CustomLoadingIndicator();
+                            }
+                            return Consumer<AirportListProvider>(
+                                builder: (_, value, __) {
+                              return value.searchData.isEmpty
+                                  ? Align(
+                                      alignment: Alignment.topCenter,
+                                      child: Text("No Airport Data Found",
+                                          style: TextStyle(
+                                              color: const Color(colorGrey20),
+                                              fontSize: 20.sp)))
+                                  : ListView.builder(
+                                    // shrinkWrap: true,
+                                    // physics: const ScrollPhysics(),
+                                    // controller: scrollController,
+                                    // scrollDirection: Axis.vertical,
+                                      itemCount: value.searchData.length,
+                                      itemBuilder: (c, i) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        DetailsScreen(
+                                                            data: value
+                                                                    .searchData[
+                                                                i])));
+                                          },
+                                          child: ListTile(
+                                            contentPadding:
+                                                EdgeInsets.only(left: 4.w),
+                                            leading: Text(
+                                              value.searchData[i].ident,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1!
+                                                  .copyWith(
+                                                      color: const Color(
+                                                          colorPrimary)),
+                                            ),
+                                            trailing: Container(
+                                              padding:
+                                                  EdgeInsets.only(right: 10.w),
+                                              width: 160.w,
+                                              child: Text(
+                                                value.searchData[i].name,
+                                                textAlign: TextAlign.end,
+                                                style: TextStyle(
+                                                  color:
+                                                      const Color(colorNavy50),
+                                                  fontSize: 16.sp,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    });
-                          });
-                        }),
+                                        );
+                                      });
+                            });
+                          }),
+                    ),
                   ),
                 ))
               ]),
@@ -640,63 +650,68 @@ class ShowWeatherForecastCities {
                 Expanded(
                     child: ScrollConfiguration(
                   behavior: MyBehavior(),
-                  child: RawScrollbar(
-                    isAlwaysShown: true,
-                    thumbColor: const Color(bgColor),
-                    child: FutureBuilder(
-                        future: future,
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const CustomLoadingIndicator();
-                          }
-                          return Consumer<CitiesProvider>(
-                              builder: (_, value, __) {
-                            return value.searchWeatherForecastData.isEmpty
-                                ? Align(
-                                    alignment: Alignment.topCenter,
-                                    child: Text("No Data Found",
-                                        style: TextStyle(
-                                            color: const Color(colorGrey20),
-                                            fontSize: 18.sp)))
-                                : ListView.builder(
-                                    itemCount:
-                                        value.searchWeatherForecastData.length,
-                                    itemBuilder: (c, i) {
-                                      return GestureDetector(
-                                        onTap: () async {
-                                          await Provider.of<
-                                                      WeatherForecastProvider>(
-                                                  context,
-                                                  listen: false)
-                                              .fetchWeatherForecast(
-                                                  id: value
-                                                      .searchWeatherForecastData[
-                                                          i]
-                                                      .id);
-                                          Navigator.pop(
-                                              context,
+                  child: Theme(
+                    data: theme(context)
+                        .copyWith(highlightColor: const Color(bgColor)),
+                    child: Scrollbar(
+                      isAlwaysShown: true,
+                      child: FutureBuilder(
+                          future: future,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const CustomLoadingIndicator();
+                            }
+                            return Consumer<CitiesProvider>(
+                                builder: (_, value, __) {
+                              return value.searchWeatherForecastData.isEmpty
+                                  ? Align(
+                                      alignment: Alignment.topCenter,
+                                      child: Text("No Data Found",
+                                          style: TextStyle(
+                                              color: const Color(colorGrey20),
+                                              fontSize: 18.sp)))
+                                  : ListView.builder(
+                                      itemCount: value
+                                          .searchWeatherForecastData.length,
+                                      itemBuilder: (c, i) {
+                                        return GestureDetector(
+                                          onTap: () async {
+                                            await Provider.of<
+                                                        WeatherForecastProvider>(
+                                                    context,
+                                                    listen: false)
+                                                .fetchWeatherForecast(
+                                                    id: value
+                                                        .searchWeatherForecastData[
+                                                            i]
+                                                        .id);
+                                            Navigator.pop(
+                                                context,
+                                                value
+                                                    .searchWeatherForecastData[
+                                                        i]
+                                                    .description);
+                                          },
+                                          child: ListTile(
+                                            contentPadding:
+                                                EdgeInsets.only(left: 4.w),
+                                            leading: Text(
                                               value.searchWeatherForecastData[i]
-                                                  .description);
-                                        },
-                                        child: ListTile(
-                                          contentPadding:
-                                              EdgeInsets.only(left: 4.w),
-                                          leading: Text(
-                                            value.searchWeatherForecastData[i]
-                                                .description,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1!
-                                                .copyWith(
-                                                    color: const Color(
-                                                        colorPrimary)),
+                                                  .description,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1!
+                                                  .copyWith(
+                                                      color: const Color(
+                                                          colorPrimary)),
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    });
-                          });
-                        }),
+                                        );
+                                      });
+                            });
+                          }),
+                    ),
                   ),
                 ))
               ]),
