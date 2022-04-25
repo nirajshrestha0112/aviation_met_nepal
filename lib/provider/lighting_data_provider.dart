@@ -35,7 +35,7 @@ class LightingDataProvider extends ChangeNotifier {
         final icon = await BitmapDescriptor.fromAssetImage(
             ImageConfiguration(size: Size(30, 30)),lightingsImg); */
         log(markerIcon.toString());
-
+        
         for (var data in lightingData!.data) {
           for (var eachData in data) {
             markers.add(Marker(
@@ -52,7 +52,6 @@ class LightingDataProvider extends ChangeNotifier {
                 )));
           }
         }
-
         notifyListeners();
       } else {
         throw jsonDecode(response.body)['message'];

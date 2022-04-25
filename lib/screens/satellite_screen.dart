@@ -1,4 +1,5 @@
 import 'package:aviation_met_nepal/provider/satellite_image_provider.dart';
+import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,6 @@ class SatelliteScreen extends StatelessWidget {
             title: const Text(
               "Satellite Images",
             ),
-            centerTitle: true,
           ),
           floatingActionButton: const CustomFloatingActionBtn(),
           body: const SatelliteScreenBody()),
@@ -62,22 +62,35 @@ class _SatelliteScreenBodyState extends State<SatelliteScreenBody> {
                         return const CustomLoadingIndicator();
                       }
                     }
-                    return InteractiveViewer(
-                      // panEnabled: false, // Set it to false
-                      boundaryMargin: EdgeInsets.all(100.w),
-                      minScale: 0.5,
-                      maxScale: 2.5,
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height / 1.2,
-                        child: CachedNetworkImage(
-                          imageUrl: Provider.of<SatelliteImageProvider>(context,
-                                  listen: false)
-                              .satelliteImageData!
-                              .data!
-                              .files![0],
-                        ),
-                      ),
-                    );
+
+                    return Provider.of<SatelliteImageProvider>(context,
+                                    listen: false)
+                                .satelliteImageData
+                                ?.data
+                                ?.files![0] !=
+                            null
+                        ? InteractiveViewer(
+                            // panEnabled: false, // Set it to false
+                            boundaryMargin: EdgeInsets.all(100.w),
+                            minScale: 0.5,
+                            maxScale: 2.5,
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height / 1.2,
+                              child: CachedNetworkImage(
+                                imageUrl: Provider.of<SatelliteImageProvider>(
+                                        context,
+                                        listen: false)
+                                    .satelliteImageData!
+                                    .data!
+                                    .files![0],
+                              ),
+                            ),
+                          )
+                        :  CustomErrorTab(
+                          height: 160.h,
+                          // margin:EdgeInsets.only(bottom: 100.h),
+                            // margin: false,
+                          );
                   })),
         ));
   }

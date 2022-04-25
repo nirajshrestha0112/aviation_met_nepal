@@ -27,7 +27,9 @@ class _DetailsScreenState extends State<DetailsScreen>
       MetarsTab(metarData: widget.data),
       TafsTab(tafsData: widget.data),
       SigmetsTab(sigmetsTabData: widget.data),
-      const CustomErrorTab(),
+      CustomErrorTab(
+        margin: EdgeInsets.only(bottom: 430.h),
+      ),
     ];
     super.initState();
   }

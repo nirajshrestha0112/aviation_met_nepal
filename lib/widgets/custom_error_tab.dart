@@ -6,15 +6,16 @@ import '../constant/images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomErrorTab extends StatelessWidget {
-  const CustomErrorTab({this.margin = true, Key? key}) : super(key: key);
-  final bool margin;
+  const CustomErrorTab({this.margin,this.height, Key? key}) : super(key: key);
+  final EdgeInsets? margin;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       child: Container(
-        height: 104.h,
-        margin: margin ? EdgeInsets.only(bottom: 440.h) : null,
+        height: height?? 104.h,
+        margin: margin ?? EdgeInsets.zero,
         // alignment: Alignment.topCenter,
         width: double.infinity,
         decoration: BoxDecoration(

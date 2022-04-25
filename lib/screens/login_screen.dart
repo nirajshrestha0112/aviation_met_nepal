@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/show_internet_connection_snack_bar.dart';
 import '../widgets/custom_loading_indicator.dart';
+import '../widgets/general_icon.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -23,9 +24,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          leading: const GeneralIcon(),
           title: const Text(
-        "Login",
-      )),
+            "Login",
+          )),
       body: const LoginScreenBody(),
     );
   }

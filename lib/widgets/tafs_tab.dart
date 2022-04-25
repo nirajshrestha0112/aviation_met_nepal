@@ -159,7 +159,9 @@ class _TafsTabState extends State<TafsTab> {
                 ),
               );
             } else {
-              return const CustomErrorTab();
+              return CustomErrorTab(
+                margin: EdgeInsets.only(bottom: 430.h),
+              );
             }
           }),
     );

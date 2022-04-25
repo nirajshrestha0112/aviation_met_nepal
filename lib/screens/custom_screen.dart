@@ -113,38 +113,45 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                       child: widget.screenName == "Gamet Data"
                           ? Consumer<GametDataProvider>(
                               builder: (_, value, __) {
-                                return Text(
-                                  value.gametData!.data.toString(),
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                );
+                                return value.gametData?.data != null
+                                    ? Text(
+                                        value.gametData!.data.toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2,
+                                      )
+                                    : const CustomErrorTab();
                               },
                             )
                           : widget.screenName == "Airmet Data"
                               ? Consumer<AirmetDataProvider>(
                                   builder: (_, value, __) {
-                                  return Text(
-                                    value.airmetData!.data.toString(),
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2,
-                                  );
+                                  return value.airmetData?.data != null
+                                      ? Text(
+                                          value.airmetData!.data.toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText2,
+                                        )
+                                      : const CustomErrorTab();
                                 })
                               : widget.screenName == "Opmet Data"
                                   ? Consumer<OpmetDataProvider>(
                                       builder: (_, value, __) {
-                                      return Text(
-                                        value.opmetData!.data.toString(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText2,
-                                      );
+                                      return value.opmetData?.data != null
+                                          ? Text(
+                                              value.opmetData!.data.toString(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText2,
+                                            )
+                                          : const CustomErrorTab();
                                     })
                                   : widget.screenName == "Ashtams Data"
                                       ? Consumer<AshtamsDataProvider>(
                                           builder: (_, value, __) {
                                           return value.ashtamsData?.data == null
-                                              ? const CustomErrorTab(
-                                                  margin: false,
-                                                )
+                                              ? const CustomErrorTab()
                                               : Text(
                                                   value.ashtamsData!.data
                                                       .toString(),
