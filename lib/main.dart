@@ -88,10 +88,12 @@ class MyApp extends StatelessWidget {
             scaffoldMessengerKey: messengerKey,
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            initialRoute: homeRoute,
-            // home: const SplashScreen(),
+            // initialRoute: homeRoute,
+            home: const SplashScreen(),
             routes: {
+
               splashRoute: (context) => const SplashScreen(),
+              // '/test': (context) => const CustomGrad(),
               homeRoute: (context) => const HomeScreen(),
               detailsRoute: (context) => const DetailsScreen(),
               contactRoute: (context) => const ContactUs(),

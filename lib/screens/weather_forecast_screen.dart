@@ -120,80 +120,86 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
                         scrollDirection: Axis.horizontal,
                         itemCount: value.dateList.length,
                         itemBuilder: (context, int index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 8.h, horizontal: 16.w),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    DateFormat("hh:mm a")
-                                        .format(value.dateList[index]),
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2),
-                                SizedBox(
-                                  height: 8.h,
-                                ),
-                                Image.asset(
-                                  weatherIconImg,
-                                  height: 40.h,
-                                ),
-                                SizedBox(
-                                  height: 8.h,
-                                ),
-                                Text(
-                                  "${value.weatherTemperatureList[index].c}\u2103",
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
-                                SizedBox(
-                                  height: 8.h,
-                                ),
-                                Row(
-                                  children: [
-                                    index == 0
-                                        ? Text("Wind",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2)
-                                        : const SizedBox.shrink(),
-                                    index == 0
-                                        ? SizedBox(
-                                            width: 4.w,
-                                          )
-                                        : const SizedBox.shrink(),
-                                    Text(
-                                        "${value.windSpeedList[index].kph} km/hr",
+                          return value.dateList[index].day != DateTime.now().day
+                              ? const SizedBox.shrink()
+                              : Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 8.h, horizontal: 16.w),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          DateFormat("hh:mm a")
+                                              .format(value.dateList[index]),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText2),
+                                      SizedBox(
+                                        height: 8.h,
+                                      ),
+                                      Image.asset(
+                                        weatherIconImg,
+                                        height: 40.h,
+                                      ),
+                                      SizedBox(
+                                        height: 8.h,
+                                      ),
+                                      Text(
+                                        "${value.weatherTemperatureList[index].c}\u2103",
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText2),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 8.h,
-                                ),
-                                Row(
-                                  children: [
-                                    index == 0
-                                        ? Text("Humidity",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2)
-                                        : const SizedBox.shrink(),
-                                    index == 0
-                                        ? SizedBox(
-                                            width: 4.w,
-                                          )
-                                        : const SizedBox.shrink(),
-                                    Text(
-                                        "${value.humidityList[index].percentage}%",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText2),
-                                  ],
-                                )
-                              ],
-                            ),
-                          );
+                                            .bodyText2,
+                                      ),
+                                      SizedBox(
+                                        height: 8.h,
+                                      ),
+                                      Row(
+                                        children: [
+                                          index == 0
+                                              ? Text("Wind",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText2)
+                                              : const SizedBox.shrink(),
+                                          index == 0
+                                              ? SizedBox(
+                                                  width: 4.w,
+                                                )
+                                              : const SizedBox.shrink(),
+                                          Text(
+                                              "${value.windSpeedList[index].kph} km/hr",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText2),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 8.h,
+                                      ),
+                                      Row(
+                                        children: [
+                                          index == 0
+                                              ? Text("Humidity",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText2)
+                                              : const SizedBox.shrink(),
+                                          index == 0
+                                              ? SizedBox(
+                                                  width: 4.w,
+                                                )
+                                              : const SizedBox.shrink(),
+                                          Text(
+                                              "${value.humidityList[index].percentage}%",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText2),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                );
                         },
                       ),
                     );

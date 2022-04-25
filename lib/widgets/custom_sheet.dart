@@ -13,9 +13,7 @@ import 'package:aviation_met_nepal/widgets/each_text.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
 import 'package:aviation_met_nepal/widgets/general_text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:html/dom_parsing.dart';
 import 'package:provider/provider.dart';
-import 'package:scroll_indicator/scroll_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../provider/weather_forecast_provider.dart';
 import '../utils/custom_scroll_behavior.dart';
@@ -443,6 +441,7 @@ class ShowLocationSheet {
                   suffixIcons: Icons.search,
                   hintText: "Search Airport",
                   obscureText: false,
+                  controller: editingController,
                 ),
                 Expanded(
                   child: ScrollConfiguration(
@@ -638,6 +637,7 @@ class ShowWeatherForecastCities {
                   suffixIcons: Icons.search,
                   hintText: "Search Airport",
                   obscureText: false,
+                  controller: editingController,
                 ),
                 SizedBox(
                   height: 6.h,

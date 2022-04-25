@@ -75,7 +75,9 @@ class _SigmetsTabState extends State<SigmetsTab> {
                   ),
                 ),
               )
-            : const CustomErrorTab();
+            :  CustomErrorTab(
+              margin: EdgeInsets.only(bottom: 430.h),
+            );
       },
     );
   }

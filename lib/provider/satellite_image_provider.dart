@@ -23,6 +23,9 @@ class SatelliteImageProvider extends ChangeNotifier {
         if (jsonDecode(response.body)['status'] == false) {
           throw jsonDecode(response.body)['message'];
         }
+        if (jsonDecode(response.body)['data'] == false) {
+          throw jsonDecode(response.body)['message'];
+        }
         satelliteImageData =
             SatelliteImageData.fromJson(jsonDecode(response.body));
         log(satelliteImageData.toString());
