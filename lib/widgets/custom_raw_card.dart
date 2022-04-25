@@ -15,11 +15,6 @@ class CustomRawCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(
-          top: 16.h,
-          left: 16.w,
-          bottom: 16.h,
-        ),
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color(colorWhite),
@@ -27,18 +22,24 @@ class CustomRawCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              rawHeaderText,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6!
-                  .copyWith(fontSize: 16.sp),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 16.h,
+                left: 16.w,
+              ),
+              child: Text(
+                rawHeaderText,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(fontSize: 16.sp),
+              ),
             ),
             SizedBox(height: 2.h),
             ListView.separated(
-              padding: EdgeInsets.zero,
+              padding: EdgeInsets.only(left: 8.w, bottom: 16.h),
               primary: false,
-              itemBuilder: (context, index){
+              itemBuilder: (context, index) {
                 // log(rawBodyText.length.toString());
                 return Html(data: rawBodyText[index]);
               },

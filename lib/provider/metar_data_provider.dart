@@ -27,7 +27,18 @@ MetarDataDecoded parsedMetaDataDecoded(String response) {
 
 class MetarDataProvider extends ChangeNotifier {
   MetarDataRaw? metarDataRaw;
-  fetchMetarDataRaw({
+  fetchMetarDataRaw(
+      {required String ident,
+      required String filteredData,
+      bool shouldLoadRaw = false}) async {
+    if (metarDataRaw == null) {
+      await addRawData(ident: ident, filteredData: filteredData);
+    } else if (shouldLoadRaw) {
+      await addRawData(ident: ident, filteredData: filteredData);
+    }
+  }
+
+  addRawData({
     required String ident,
     required String filteredData,
   }) async {
@@ -50,36 +61,48 @@ class MetarDataProvider extends ChangeNotifier {
   }
 
   MetarDataDecoded? metarDataDecoded;
-  fetchMetarDataDecoded({
-    required String ident,
-    required String filteredData,
-  }) async {
-    try {
-      final url = Uri.parse(metaDataDecodedUrl + ident + "/" + filteredData);
-      log(url.toString());
-      http.Response response = await http.get(url);
-// debugger();
-      if (response.statusCode == 200) {
-        if (jsonDecode(response.body)['status'] == 'error') {
-          jsonDecode(response.body)['message'];
-        }
-        // metarDataDecoded = await compute(parsedMetaDataDecoded, response.body);
-        metarDataDecoded = MetarDataDecoded.fromJson(jsonDecode(response.body));
-        log(metarDataDecoded!.data!.decoded.text.length.toString());
-        log(metarDataDecoded!.data!.decoded.temperature.length.toString());
-        log(metarDataDecoded!.data!.decoded.dewpoint.length.toString());
-        log(metarDataDecoded!.data!.decoded.pressureAltimeter.length.toString());
-        log(metarDataDecoded!.data!.decoded.winds.length.toString());
-        log(metarDataDecoded!.data!.decoded.visibility.length.toString());
-        log(metarDataDecoded!.data!.decoded.ceiling.length.toString());
-        log(metarDataDecoded!.data!.decoded.clouds.length.toString());
-        //  log(metarDataDecoded!.data!.decoded..toString());
-        notifyListeners();
-      } else {
-        throw jsonDecode(response.body)['message'];
-      }
-    } catch (e) {
-      log(e.toString());
+  fetchMetarDataDecoded(
+      {required String ident,
+      required String filteredData,
+      bool shouldLoadDecoded = false}) async {
+    if (metarDataDecoded == null ) {
+      await addDecodedData(ident: ident, filteredData: filteredData);
+    } else if (shouldLoadDecoded) {
+      await addDecodedData(ident: ident, filteredData: filteredData);
     }
+  }
+
+  addDecodedData(
+      {required String ident,
+      required String filteredData,}) async{
+    try {
+        final url = Uri.parse(metaDataDecodedUrl + ident + "/" + filteredData);
+        log(url.toString());
+        http.Response response = await http.get(url);
+// debugger();
+        if (response.statusCode == 200) {
+          if (jsonDecode(response.body)['status'] == 'error') {
+            jsonDecode(response.body)['message'];
+          }
+          // metarDataDecoded = await compute(parsedMetaDataDecoded, response.body);
+          metarDataDecoded =
+              MetarDataDecoded.fromJson(jsonDecode(response.body));
+          log(metarDataDecoded!.data!.decoded.text.length.toString());
+          log(metarDataDecoded!.data!.decoded.temperature.length.toString());
+          log(metarDataDecoded!.data!.decoded.dewpoint.length.toString());
+          log(metarDataDecoded!.data!.decoded.pressureAltimeter.length
+              .toString());
+          log(metarDataDecoded!.data!.decoded.winds.length.toString());
+          log(metarDataDecoded!.data!.decoded.visibility.length.toString());
+          log(metarDataDecoded!.data!.decoded.ceiling.length.toString());
+          log(metarDataDecoded!.data!.decoded.clouds.length.toString());
+          //  log(metarDataDecoded!.data!.decoded..toString());
+          notifyListeners();
+        } else {
+          throw jsonDecode(response.body)['message'];
+        }
+      } catch (e) {
+        log(e.toString());
+      }
   }
 }
