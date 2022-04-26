@@ -1,5 +1,6 @@
 import 'package:aviation_met_nepal/provider/weather_forecast_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
+import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,11 @@ class WeatherForecastScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text(
-            "Weather Forecast",
+          title: Padding(
+            padding: EdgeInsets.only(bottom: 4.h),
+            child: const Text(
+              "Weather Forecast",
+            ),
           ),
           leading: const GeneralIcon(),
         ),
@@ -65,7 +69,7 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
       behavior: MyBehavior(),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-        height: 230.h,
+        height: DeviceUtil.isMobile?230.h:280.h,
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color(colorWhite),

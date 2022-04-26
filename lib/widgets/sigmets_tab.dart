@@ -4,6 +4,7 @@ import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../model/airport_list.dart';
+import '../utils/get_device_size.dart';
 import 'custom_loading_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -75,9 +76,9 @@ class _SigmetsTabState extends State<SigmetsTab> {
                   ),
                 ),
               )
-            :  CustomErrorTab(
-              margin: EdgeInsets.only(bottom: 430.h),
-            );
+            : CustomErrorTab(
+                margin: EdgeInsets.only(bottom: DeviceUtil.isMobile?430.h:350.h),
+              );
       },
     );
   }

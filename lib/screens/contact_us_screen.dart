@@ -7,6 +7,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../utils/get_device_size.dart';
 import '../widgets/custom_loading_indicator.dart';
 import '../widgets/custom_sheet.dart';
 import '../widgets/general_icon.dart';
@@ -70,8 +71,8 @@ class _ContactUsBodyState extends State<ContactUsBody> {
       child: SingleChildScrollView(
           child: Column(children: [
         Container(
-            color: const Color(colorWhite),
-            height: 44.h,
+            color: Color.fromRGBO(255, 255, 255, 1),
+            height: DeviceUtil.isMobile?44.h:56.h,
             width: double.infinity,
             child: ListTile(
                 dense: true,
@@ -368,7 +369,7 @@ class _EnglishNepaliTapState extends State<EnglishNepaliTap> {
         child: Row(children: [
           Container(
             alignment: Alignment.center,
-            height: 20.h,
+            height: DeviceUtil.isMobile?20.h:28.h,
             width: 24.w,
             color: widget.isEng ? const Color(colorDarkBlue) : null,
             child: Text("EN",
@@ -383,7 +384,7 @@ class _EnglishNepaliTapState extends State<EnglishNepaliTap> {
             color: Color(colorDarkBlue),
           ),
           Container(
-            height: 20.h,
+            height: DeviceUtil.isMobile?20.h:28.h,
             width: 24.w,
             color: widget.isEng ? null : const Color(colorDarkBlue),
             alignment: Alignment.center,

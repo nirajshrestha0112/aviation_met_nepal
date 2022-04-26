@@ -3,6 +3,7 @@ import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../model/airport_list.dart';
+import '../utils/get_device_size.dart';
 import 'custom_build_row.dart';
 import 'custom_loading_indicator.dart';
 import 'custom_raw_card.dart';
@@ -19,21 +20,24 @@ class TafsTab extends StatefulWidget {
 class _TafsTabState extends State<TafsTab> {
   @override
   void initState() {
-    _future = tafsDataRawDecoded("");
+    _future = tafsDataRawDecoded();
     super.initState();
   }
 
-  tafsDataRawDecoded(String filteredData) async {
+  tafsDataRawDecoded() async {
     await Provider.of<TafsDataProvider>(context, listen: false)
         .fetchTafsDataRaw(
-      ident: widget.tafsData!.ident,
-    );
+            ident: widget.tafsData!.ident,);
     await Provider.of<TafsDataProvider>(context, listen: false)
         .fetchTafsDataDecoded(
-      ident: widget.tafsData!.ident,
-    );
+            ident: widget.tafsData!.ident,);
+    setState(() {
+      isLoadingIndicator = true;
+      
+    });
   }
 
+  bool isLoadingIndicator = false;
   late Future _future;
   @override
   Widget build(BuildContext context) {
@@ -43,8 +47,10 @@ class _TafsTabState extends State<TafsTab> {
       child: FutureBuilder(
           future: _future,
           builder: (context, AsyncSnapshot snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CustomLoadingIndicator();
+            if (isLoadingIndicator = false) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CustomLoadingIndicator();
+              }
             }
             if (Provider.of<TafsDataProvider>(context, listen: false)
                         .tafsDataRaw !=
@@ -103,52 +109,73 @@ class _TafsTabState extends State<TafsTab> {
                               itemBuilder: (context, index) {
                                 return Column(
                                   children: [
-                                    buildRow(
-                                      "Text",
-                                      value.tafsDataDecoded!.data!.decoded!
-                                          .text![index],
-                                      isText: true,
-                                    ),
-                                    buildRow(
-                                        "Forecast Period",
+                                    if (value.tafsDataDecoded!.data!.decoded!
+                                            .text!.length >
+                                        index)
+                                      buildRow(
+                                        "Text",
                                         value.tafsDataDecoded!.data!.decoded!
-                                            .forecastPeriod![index]),
+                                            .text![index],
+                                        isText: true,
+                                      ),
+                                    if (value.tafsDataDecoded!.data!.decoded!
+                                            .forecastPeriod!.length >
+                                        index)
+                                      buildRow(
+                                          "Forecast Period",
+                                          value.tafsDataDecoded!.data!.decoded!
+                                              .forecastPeriod![index]),
                                     SizedBox(
                                       height: 1.h,
                                     ),
-                                    buildRow(
-                                        "Forecast Type",
-                                        value.tafsDataDecoded!.data!.decoded!
-                                            .forecastType![index]),
+                                    if (value.tafsDataDecoded!.data!.decoded!
+                                            .forecastType!.length >
+                                        index)
+                                      buildRow(
+                                          "Forecast Type",
+                                          value.tafsDataDecoded!.data!.decoded!
+                                              .forecastType![index]),
                                     SizedBox(
                                       height: 1.h,
                                     ),
-                                    buildRow(
-                                        "Winds",
-                                        value.tafsDataDecoded!.data!.decoded!
-                                            .winds![index]),
+                                    if (value.tafsDataDecoded!.data!.decoded!
+                                            .winds!.length >
+                                        index)
+                                      buildRow(
+                                          "Winds",
+                                          value.tafsDataDecoded!.data!.decoded!
+                                              .winds![index]),
                                     SizedBox(
                                       height: 1.h,
                                     ),
-                                    buildRow(
-                                        "Visibility",
-                                        value.tafsDataDecoded!.data!.decoded!
-                                            .visibility![index]),
+                                    if (value.tafsDataDecoded!.data!.decoded!
+                                            .visibility!.length >
+                                        index)
+                                      buildRow(
+                                          "Visibility",
+                                          value.tafsDataDecoded!.data!.decoded!
+                                              .visibility![index]),
                                     SizedBox(
                                       height: 1.h,
                                     ),
-                                    buildRow(
-                                        "Ceiling",
-                                        value.tafsDataDecoded!.data!.decoded!
-                                            .ceilings![index]),
+                                    if (value.tafsDataDecoded!.data!.decoded!
+                                            .ceilings!.length >
+                                        index)
+                                      buildRow(
+                                          "Ceiling",
+                                          value.tafsDataDecoded!.data!.decoded!
+                                              .ceilings![index]),
                                     SizedBox(
                                       height: 1.h,
                                     ),
-                                    buildRow(
-                                        "Clouds",
-                                        value.tafsDataDecoded!.data!.decoded!
-                                            .clouds![index],
-                                        isClouds: true),
+                                    if (value.tafsDataDecoded!.data!.decoded!
+                                            .clouds!.length >
+                                        index)
+                                      buildRow(
+                                          "Clouds",
+                                          value.tafsDataDecoded!.data!.decoded!
+                                              .clouds![index],
+                                          isClouds: true),
                                   ],
                                 );
                               });
@@ -160,7 +187,7 @@ class _TafsTabState extends State<TafsTab> {
               );
             } else {
               return CustomErrorTab(
-                margin: EdgeInsets.only(bottom: 430.h),
+                margin: EdgeInsets.only(bottom: DeviceUtil.isMobile?430.h:300.h),
               );
             }
           }),

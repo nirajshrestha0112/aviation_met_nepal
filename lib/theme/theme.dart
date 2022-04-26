@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../constant/colors_properties.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../utils/get_device_size.dart';
+
 ThemeData theme(BuildContext context) {
   return ThemeData(
       splashColor: Colors.transparent,
@@ -23,7 +25,8 @@ ThemeData theme(BuildContext context) {
       ),
       appBarTheme: AppBarTheme(
           centerTitle: true,
-          toolbarHeight: 44.h,
+          toolbarHeight: DeviceUtil.isMobile?44.h:56.h,
+
           /* iconTheme: IconThemeData(
             color: const Color(colorDarkBlue),
             size: 16.w,

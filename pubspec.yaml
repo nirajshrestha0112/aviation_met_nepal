@@ -16,7 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_html: ^2.2.1
-  flutter_osm_plugin: ^0.28.0+1
+  flutter_osm_plugin: ^0.33.0+2
   flutter_screenutil: ^5.3.1
   flutter_secure_storage: ^5.0.2
   flutter_svg: ^0.23.0+1

@@ -1,6 +1,7 @@
 import 'package:aviation_met_nepal/provider/lighting_data_provider.dart';
 import 'package:aviation_met_nepal/widgets/general_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -12,8 +13,11 @@ class LightingData extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const GeneralIcon(),
-        title: const Text(
-          "Lighting Data",
+        title: Padding(
+          padding: EdgeInsets.only(bottom: 4.h),
+          child: const Text(
+            "Lighting Data",
+          ),
         ),
       ),
       body: const LightingScreenBody(),

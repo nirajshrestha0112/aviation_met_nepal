@@ -13,6 +13,14 @@ class TafsDataProvider extends ChangeNotifier {
   fetchTafsDataRaw({
     required String ident,
   }) async {
+    if (tafsDataRaw == null) {
+      await addTafsRawData(ident: ident);
+    }
+  }
+
+  addTafsRawData({
+    required String ident,
+  }) async {
     try {
       final url = Uri.parse(tafsRawUrl + ident);
       log(url.toString());
@@ -35,9 +43,12 @@ class TafsDataProvider extends ChangeNotifier {
   }
 
   TafsDataDecoded? tafsDataDecoded;
-  fetchTafsDataDecoded({
-    required String ident,
-  }) async {
+  fetchTafsDataDecoded({required String ident}) async {
+    if (tafsDataDecoded == null) {
+      await addTafsDecodedData(ident: ident);
+    }
+  }
+  addTafsDecodedData({required String ident}) async {
     try {
       final url = Uri.parse(tafsDecodedUrl + ident);
       log(url.toString());
