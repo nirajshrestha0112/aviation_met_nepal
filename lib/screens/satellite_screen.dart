@@ -18,8 +18,11 @@ class SatelliteScreen extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             leading: const GeneralIcon(),
-            title: const Text(
-              "Satellite Images",
+            title: Padding(
+              padding: EdgeInsets.only(bottom: 4.h),
+              child: const Text(
+                "Satellite Images",
+              ),
             ),
           ),
           floatingActionButton: const CustomFloatingActionBtn(),

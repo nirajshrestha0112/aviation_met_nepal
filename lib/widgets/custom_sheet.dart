@@ -17,6 +17,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../provider/weather_forecast_provider.dart';
 import '../utils/custom_scroll_behavior.dart';
+import '../utils/get_device_size.dart';
 import '../utils/show_internet_connection_snack_bar.dart';
 import 'custom_loading_indicator.dart';
 import 'general_filter.dart';
@@ -592,7 +593,7 @@ class ShowFilterSheet {
                     height: 16.h,
                   ),
                   GeneralTextButton(
-                      height: 40.h,
+                      height: DeviceUtil.isMobile?44.h:56.h,
                       text: "Apply",
                       onPressed: () => Navigator.pop(context))
                 ],

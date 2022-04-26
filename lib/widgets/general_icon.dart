@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../constant/colors_properties.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../utils/get_device_size.dart';
+
 class GeneralIcon extends StatelessWidget {
   const GeneralIcon({
     this.isPadding,
@@ -20,7 +22,7 @@ class GeneralIcon extends StatelessWidget {
         child: Icon(
           Icons.adaptive.arrow_back,
           color: const Color(colorDarkBlue),
-          size: 20.h,
+          size: DeviceUtil.isMobile?20.h:30,
         ),
       ),
     );

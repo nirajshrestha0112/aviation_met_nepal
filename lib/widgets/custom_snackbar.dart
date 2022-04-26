@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../utils/get_device_size.dart';
+
 class CustomSnackBar {
   static customSnackBar(
       {required String statusText,
@@ -20,7 +22,7 @@ class CustomSnackBar {
       backgroundColor: bgColor ?? Colors.transparent,
       // duration: Duration(minutes: 2),
       content: SizedBox(
-        height: 34.h,
+        height: DeviceUtil.isMobile?34.h:48.h,
         width: double.infinity,
         child: Row(
             // mainAxisAlignment: MainAxisAlignment.start,

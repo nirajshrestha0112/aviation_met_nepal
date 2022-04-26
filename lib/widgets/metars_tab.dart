@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../constant/colors_properties.dart';
 import '../model/airport_list.dart';
 import '../provider/metar_data_provider.dart';
+import '../utils/get_device_size.dart';
 import 'custom_build_row.dart';
 import 'custom_raw_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -96,7 +97,7 @@ class _MetarsTabState extends State<MetarsTab> {
                         },
                         child: Container(
                           padding: EdgeInsets.only(left: 8.w),
-                          height: 36.h,
+                          height: DeviceUtil.isMobile?36.h:46.h,
                           width: 72.w,
                           decoration: BoxDecoration(
                               color: const Color(colorPrimary),

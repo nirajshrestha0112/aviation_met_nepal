@@ -1,5 +1,6 @@
 import 'package:aviation_met_nepal/model/airport_list.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
+import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:aviation_met_nepal/widgets/metars_tab.dart';
 import 'package:aviation_met_nepal/widgets/sigmets_tab.dart';
@@ -27,8 +28,7 @@ class _DetailsScreenState extends State<DetailsScreen>
       MetarsTab(metarData: widget.data),
       TafsTab(tafsData: widget.data),
       SigmetsTab(sigmetsTabData: widget.data),
-      CustomErrorTab(
-        margin: EdgeInsets.only(bottom: 430.h),
+      CustomErrorTab( margin: EdgeInsets.only(bottom: DeviceUtil.isMobile?430.h:350.h)
       ),
     ];
     super.initState();
@@ -59,15 +59,17 @@ class _DetailsScreenState extends State<DetailsScreen>
     return Scaffold(
       floatingActionButton: const CustomFloatingActionBtn(),
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80.h),
+          preferredSize: DeviceUtil.isMobile
+              ? Size.fromHeight(80.h)
+              : Size.fromHeight(100.h),
           child: AppBar(
             title: Text(
               "${widget.data!.ident} ${widget.data!.name}",
             ),
             leading: GeneralIcon(isPadding: EdgeInsets.only(right: 18.w)),
             bottom: TabBar(
-              indicatorPadding:
-                  EdgeInsets.symmetric(horizontal: 8.w, vertical: 5.5.w),
+              indicatorPadding: EdgeInsets.symmetric(
+                  horizontal: DeviceUtil.isMobile ? 8.w : 6.w, vertical: 5.5.h),
               controller: _tabController,
               tabs: _tabs,
             ),

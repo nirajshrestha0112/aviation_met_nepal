@@ -1,5 +1,6 @@
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
+import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -54,8 +55,16 @@ class SplashScreenBody extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
       ),
-      Positioned(
-        left: 160,
+     DeviceUtil.isMobile? Positioned(
+        left: 140.h,
+        top: 350.h,
+        child: Image.asset(
+          gifImg,
+          height: 60.h,
+          width: 80.w,
+        ),
+      ) : Positioned(
+        left: 230.h,
         top: 350.h,
         child: Image.asset(
           gifImg,

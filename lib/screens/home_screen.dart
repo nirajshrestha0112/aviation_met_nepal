@@ -3,6 +3,7 @@ import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/provider/checking_modal_sheet.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
+import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/utils/show_internet_connection_snack_bar.dart';
 import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
@@ -27,9 +28,12 @@ class HomeScreen extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
             appBar: AppBar(
-                title: const Text(
-              "Discover",
-            )),
+                title: Padding(
+                  padding: EdgeInsets.only(bottom: 4.h),
+                  child: const Text(
+                              "Discover",
+                            ),
+                )),
             floatingActionButton: const CustomFloatingActionBtn(),
             body: const HomeScreenBody()),
       ),
@@ -82,8 +86,8 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
               vertical: 16.h * 1.5,
             ),
             padding: EdgeInsets.symmetric(horizontal: 14.w),
-            height: 42.h,
-            width: double.infinity,
+        height: DeviceUtil.isMobile?40.h:56.h,
+            width: MediaQuery.of(context).size.height,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -95,7 +99,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                   ),
                   Icon(
                     Icons.location_on,
-                    size: 20.h,
+                    size: DeviceUtil.isMobile?20.h:30.h,
                     color: const Color(colorPrimary),
                   ),
                 ]),

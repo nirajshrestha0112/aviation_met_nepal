@@ -8,6 +8,7 @@ import 'package:aviation_met_nepal/widgets/general_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../utils/get_device_size.dart';
 import '../utils/show_internet_connection_snack_bar.dart';
 import '../widgets/custom_loading_indicator.dart';
 import '../widgets/general_icon.dart';
@@ -25,8 +26,11 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
           leading: const GeneralIcon(),
-          title: const Text(
-            "Login",
+          title: Padding(
+            padding: EdgeInsets.only(bottom: 4.h),
+            child: const Text(
+              "Login",
+            ),
           )),
       body: const LoginScreenBody(),
     );
@@ -145,7 +149,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                         }
                       }
                     },
-                    height: 40.h,
+                    height: DeviceUtil.isMobile?44.h:56.h,
                   )
                 ],
               ),

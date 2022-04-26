@@ -30,7 +30,6 @@ import 'provider/opmet_data_provider.dart';
 import 'provider/satellite_image_provider.dart';
 import 'screens/splash_screen.dart';
 
-
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
 void main() {
   runApp(
@@ -75,9 +74,11 @@ class MyApp extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       return OrientationBuilder(builder: (context, orientation) {
         return ScreenUtilInit(
+          // splitScreenMode: false,
           designSize: const Size(360, 723),
-          builder: () => MaterialApp(
-            builder: (context, child) {
+          builder: (_) => MaterialApp(
+            scaffoldMessengerKey: messengerKey,
+            builder: (BuildContext context, Widget? child) {
               ScreenUtil.setContext(context);
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
@@ -85,13 +86,11 @@ class MyApp extends StatelessWidget {
               );
             },
             theme: theme(context),
-            scaffoldMessengerKey: messengerKey,
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            // initialRoute: homeRoute,
-            home: const SplashScreen(),
+            initialRoute: homeRoute,
+            // home: const SplashScreen(),
             routes: {
-
               splashRoute: (context) => const SplashScreen(),
               // '/test': (context) => const CustomGrad(),
               homeRoute: (context) => const HomeScreen(),
@@ -102,8 +101,7 @@ class MyApp extends StatelessWidget {
               notificationRoute: (context) => const Scaffold(),
               icingTurbulenceChartRoute: (context) => const Scaffold(),
               weatherCameraImagesRoute: (context) => const Scaffold(),
-              satelliteImageDataRoute: (context) =>
-                  const SatelliteScreen(),
+              satelliteImageDataRoute: (context) => const SatelliteScreen(),
               windChartRoute: (context) => const Scaffold(),
               sigwxChartRoute: (context) => const Scaffold(),
               airmetDataRoute: (context) =>

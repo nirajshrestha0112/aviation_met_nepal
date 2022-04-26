@@ -10,6 +10,7 @@ import '../provider/gamet_data_provider.dart';
 import '../provider/opmet_data_provider.dart';
 import '../theme/theme.dart';
 import '../utils/custom_scroll_behavior.dart';
+import '../utils/get_device_size.dart';
 import '../widgets/custom_floating_action_btn.dart';
 import '../widgets/custom_loading_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -72,19 +73,22 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                 child: Column(children: [
               Container(
                 color: const Color(colorWhite),
-                height: 44.h,
+                height: DeviceUtil.isMobile?44.h:56.h,
                 width: double.infinity,
                 child: ListTile(
                     dense: true,
                     contentPadding: EdgeInsets.only(left: 16.w, right: 42.w),
                     leading: const GeneralIcon(),
-                    title: Text(
-                      widget.screenName,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText1!
-                          .copyWith(fontSize: 18.sp),
+                    title: Padding(
+                      padding: EdgeInsets.zero,
+                      child: Text(
+                        widget.screenName,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText1!
+                            .copyWith(fontSize: 18.sp),
+                      ),
                     )),
               ),
               Padding(

@@ -14,7 +14,7 @@ class CustomErrorTab extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       child: Container(
-        height: height?? 104.h,
+        height: height?? 115.h,
         margin: margin ?? EdgeInsets.zero,
         // alignment: Alignment.topCenter,
         width: double.infinity,
