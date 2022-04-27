@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-import '../model/matar_data_raw.dart';
+import '../model/metar_data_raw.dart';
 import '../model/metar_data_decoded.dart';
 /* 
 MetarDataRaw parsedMetarDataRaw(String response) {
@@ -27,19 +27,22 @@ MetarDataDecoded parsedMetaDataDecoded(String response) {
 
 class MetarDataProvider extends ChangeNotifier {
   MetarDataRaw? metarDataRaw;
-  late String id;
+  late String rawId;
+  late String decodedId;
   fetchMetarDataRaw(
       {required String ident,
       required String filteredData,
       bool shouldLoadRaw = false}) async {
     if (metarDataRaw == null) {
-      id = ident;
+      rawId = ident;
       // id = id
       await addRawData(ident: ident, filteredData: filteredData);
     } else if (shouldLoadRaw) {
       await addRawData(ident: ident, filteredData: filteredData);
-    } else if (id != ident) {
-      await addRawData(ident: ident, filteredData: filteredData);
+    } else if (rawId != ident) {
+      rawId = ident;
+
+      await addRawData(ident: rawId, filteredData: filteredData);
     }
     //
   }
@@ -63,6 +66,7 @@ class MetarDataProvider extends ChangeNotifier {
       }
     } catch (e) {
       log(e.toString());
+      metarDataRaw = null;
     }
   }
 
@@ -71,13 +75,21 @@ class MetarDataProvider extends ChangeNotifier {
       {required String ident,
       required String filteredData,
       bool shouldLoadDecoded = false}) async {
-    String id = ident;
+        log(ident + "is ident");
+        log(decodedId);
     if (metarDataDecoded == null) {
+      decodedId = ident;
       await addDecodedData(ident: ident, filteredData: filteredData);
+      log("add empty data");
     } else if (shouldLoadDecoded) {
+      log("true");
       await addDecodedData(ident: ident, filteredData: filteredData);
-    } else if (id != ident) {
+      log("added filter dataa");
+    } else if(decodedId!= ident) {
+      decodedId = ident;
       await addDecodedData(ident: ident, filteredData: filteredData);
+      log(rawId);
+      log("out of metartab");
     }
   }
 
@@ -96,22 +108,13 @@ class MetarDataProvider extends ChangeNotifier {
         }
         // metarDataDecoded = await compute(parsedMetaDataDecoded, response.body);
         metarDataDecoded = MetarDataDecoded.fromJson(jsonDecode(response.body));
-        log(metarDataDecoded!.data!.decoded.text.length.toString());
-        log(metarDataDecoded!.data!.decoded.temperature.length.toString());
-        log(metarDataDecoded!.data!.decoded.dewpoint.length.toString());
-        log(metarDataDecoded!.data!.decoded.pressureAltimeter.length
-            .toString());
-        log(metarDataDecoded!.data!.decoded.winds.length.toString());
-        log(metarDataDecoded!.data!.decoded.visibility.length.toString());
-        log(metarDataDecoded!.data!.decoded.ceiling.length.toString());
-        log(metarDataDecoded!.data!.decoded.clouds.length.toString());
-        //  log(metarDataDecoded!.data!.decoded..toString());
         notifyListeners();
       } else {
         throw jsonDecode(response.body)['message'];
       }
     } catch (e) {
       log(e.toString());
+      metarDataDecoded = null;
     }
   }
 }

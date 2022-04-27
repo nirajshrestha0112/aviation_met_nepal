@@ -9,6 +9,7 @@ class GametData {
     status = json['status'] ?? "";
     message = json['message'] ?? "";
     data = json['data'] ?? "";
+    
   }
 
   Map<String, dynamic> toJson() {

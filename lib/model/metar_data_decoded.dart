@@ -31,8 +31,8 @@ class Data {
   late final Decoded decoded;
 
   Data.fromJson(Map<String, dynamic> json) {
-    date = List.castFrom<dynamic, String>(json['Date']);
-    decoded = Decoded.fromJson(json['Decoded']);
+    date = json['Date']!=null?List.castFrom<dynamic, String>(json['Date']):[];
+    decoded =Decoded.fromJson(json['Decoded']);
   }
 
   Map<String, dynamic> toJson() {
@@ -66,16 +66,16 @@ class Decoded {
   late final List<String> clouds;
 
   Decoded.fromJson(Map<String, dynamic> json) {
-    metarFor = List.castFrom<dynamic, String>(json['METAR for:']);
-    text = List.castFrom<dynamic, String>(json['Text:']);
-    temperature = List.castFrom<dynamic, String>(json['Temperature:']);
-    dewpoint = List.castFrom<dynamic, String>(json['Dewpoint:']);
+    metarFor =  json['METAR for:'] != null ? List.castFrom<dynamic, String>(json['METAR for:']) : [];
+    text = json['Text:']!=null?List.castFrom<dynamic, String>(json['Text:']):[];
+    temperature = json['Temperature:']!=null?List.castFrom<dynamic, String>(json['Temperature:']):[];
+    dewpoint = json['Dewpoint:']!=null?List.castFrom<dynamic, String>(json['Dewpoint:']):[];
     pressureAltimeter =
-        List.castFrom<dynamic, String>(json['Pressure (altimeter):']);
-    winds = List.castFrom<dynamic, String>(json['Winds:']);
-    visibility = List.castFrom<dynamic, String>(json['Visibility:']);
-    ceiling = List.castFrom<dynamic, String>(json['Ceiling:']);
-    clouds = List.castFrom<dynamic, String>(json['Clouds:']);
+        json['Pressure (altimeter):']!=null?List.castFrom<dynamic, String>(json['Pressure (altimeter):']):[];
+    winds = json['Winds:']!=null?List.castFrom<dynamic, String>(json['Winds:']):[];
+    visibility =json['Visibility:']!=null? List.castFrom<dynamic, String>(json['Visibility:']):[];
+    ceiling = json['Ceiling:']!=null?List.castFrom<dynamic, String>(json['Ceiling:']):[];
+    clouds = json['Clouds:']!=null?List.castFrom<dynamic, String>(json['Clouds:']):[];
   }
 
   Map<String, dynamic> toJson() {
