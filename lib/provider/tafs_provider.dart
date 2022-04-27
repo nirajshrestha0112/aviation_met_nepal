@@ -10,11 +10,16 @@ import '../model/tafs_raw.dart';
 
 class TafsDataProvider extends ChangeNotifier {
   TafsDataRaw? tafsDataRaw;
+  late String id;
   fetchTafsDataRaw({
     required String ident,
   }) async {
     if (tafsDataRaw == null) {
+      id = ident;
       await addTafsRawData(ident: ident);
+    } else if (id != ident) {
+      id = ident;
+      await addTafsRawData(ident: id);
     }
   }
 
@@ -45,9 +50,14 @@ class TafsDataProvider extends ChangeNotifier {
   TafsDataDecoded? tafsDataDecoded;
   fetchTafsDataDecoded({required String ident}) async {
     if (tafsDataDecoded == null) {
+      id = ident;
       await addTafsDecodedData(ident: ident);
+    } else if (id != ident) {
+      id = ident;
+      await addTafsRawData(ident: id);
     }
   }
+
   addTafsDecodedData({required String ident}) async {
     try {
       final url = Uri.parse(tafsDecodedUrl + ident);

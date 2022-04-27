@@ -67,6 +67,7 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: MyBehavior(),
+      
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         height: DeviceUtil.isMobile?230.h:280.h,

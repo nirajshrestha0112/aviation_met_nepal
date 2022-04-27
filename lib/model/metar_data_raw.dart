@@ -26,8 +26,8 @@ class Data {
   Data({this.date, this.raw});
 
   Data.fromJson(Map<String, dynamic> json) {
-    date = json['Date'].cast<String>();
-    raw = json['Raw'].cast<String>();
+    date =json['Date'].cast<String>()??"";
+    raw = json['Raw'].cast<String>()??"";
   }
 
   Map<String, dynamic> toJson() {

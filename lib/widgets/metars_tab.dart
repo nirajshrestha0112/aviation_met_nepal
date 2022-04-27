@@ -32,10 +32,14 @@ class _MetarsTabState extends State<MetarsTab> {
   metarDataRawDecoded(String filteredData, {bool shouldReload = false}) async {
     await Provider.of<MetarDataProvider>(context, listen: false)
         .fetchMetarDataRaw(
-            ident: widget.metarData!.ident, filteredData: filteredData, shouldLoadRaw: shouldReload);
+            ident: widget.metarData!.ident,
+            filteredData: filteredData,
+            shouldLoadRaw: shouldReload);
     await Provider.of<MetarDataProvider>(context, listen: false)
         .fetchMetarDataDecoded(
-            ident: widget.metarData!.ident, filteredData: filteredData, shouldLoadDecoded: shouldReload);
+            ident: widget.metarData!.ident,
+            filteredData: filteredData,
+            shouldLoadDecoded: shouldReload);
     setState(() {
       isLoadingIndicator = true;
     });
@@ -91,13 +95,16 @@ class _MetarsTabState extends State<MetarsTab> {
                           final value =
                               await ShowFilterSheet.showFilterSheet(context);
                           if (value != null) {
-                            _future = metarDataRawDecoded(value, shouldReload: true,);
+                            _future = metarDataRawDecoded(
+                              value,
+                              shouldReload: true,
+                            );
                             setState(() {});
                           }
                         },
                         child: Container(
                           padding: EdgeInsets.only(left: 8.w),
-                          height: DeviceUtil.isMobile?36.h:46.h,
+                          height: DeviceUtil.isMobile ? 36.h : 46.h,
                           width: 72.w,
                           decoration: BoxDecoration(
                               color: const Color(colorPrimary),
