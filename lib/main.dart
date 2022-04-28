@@ -19,6 +19,7 @@ import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
 import 'package:aviation_met_nepal/screens/weather_forecast_screen.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
+import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -73,6 +74,7 @@ class MyApp extends StatelessWidget {
     );
     return LayoutBuilder(builder: (context, constraints) {
       return OrientationBuilder(builder: (context, orientation) {
+        SizeConfig().init(constraints,orientation);
         return ScreenUtilInit(
           // splitScreenMode: false,
           designSize: const Size(360, 723),

@@ -8,6 +8,7 @@ import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
 import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/utils/show_internet_connection_snack_bar.dart';
+import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -100,7 +101,7 @@ log(logicalPixelWidth.toString()); */
               vertical: 16.h * 1.5,
             ),
             padding: EdgeInsets.symmetric(horizontal: 14.w),
-        height: DeviceUtil.isMobile?40.h:56.h,
+        height: DeviceUtil.isMobile?SizeConfig.heightMultiplier*7.0:SizeConfig.heightMultiplier*10.0,
             width: MediaQuery.of(context).size.height,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

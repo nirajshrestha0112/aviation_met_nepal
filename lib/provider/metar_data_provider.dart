@@ -41,7 +41,6 @@ class MetarDataProvider extends ChangeNotifier {
       await addRawData(ident: ident, filteredData: filteredData);
     } else if (rawId != ident) {
       rawId = ident;
-
       await addRawData(ident: rawId, filteredData: filteredData);
     }
     //
@@ -65,7 +64,7 @@ class MetarDataProvider extends ChangeNotifier {
         throw Exception("Failed to load data");
       }
     } catch (e) {
-      log(e.toString());
+      // log(e.toString());
       metarDataRaw = null;
     }
   }
@@ -75,21 +74,20 @@ class MetarDataProvider extends ChangeNotifier {
       {required String ident,
       required String filteredData,
       bool shouldLoadDecoded = false}) async {
-        log(ident + "is ident");
-        log(decodedId);
+    // log(ident + "is ident");
     if (metarDataDecoded == null) {
       decodedId = ident;
       await addDecodedData(ident: ident, filteredData: filteredData);
-      log("add empty data");
+      // log("add empty data");
     } else if (shouldLoadDecoded) {
       log("true");
       await addDecodedData(ident: ident, filteredData: filteredData);
-      log("added filter dataa");
-    } else if(decodedId!= ident) {
+      // log("added filter dataa");
+    } else if (decodedId != ident) {
       decodedId = ident;
-      await addDecodedData(ident: ident, filteredData: filteredData);
-      log(rawId);
-      log("out of metartab");
+      await addDecodedData(ident: decodedId, filteredData: filteredData);
+      /* log(decodedId);
+      log("out of metartab"); */
     }
   }
 

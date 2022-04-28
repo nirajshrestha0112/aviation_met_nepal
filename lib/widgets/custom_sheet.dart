@@ -530,6 +530,8 @@ class ShowFilterSheet {
         context: context,
         builder: (BuildContext context) {
           return SizedBox(
+
+            
             height: MediaQuery.of(context).size.height * 0.3,
             width: double.infinity,
             child: Padding(
@@ -593,7 +595,7 @@ class ShowFilterSheet {
                     height: 16.h,
                   ),
                   GeneralTextButton(
-                      height: DeviceUtil.isMobile?44.h:56.h,
+                      height: DeviceUtil.isMobile?42.h:56.h,
                       text: "Apply",
                       onPressed: () => Navigator.pop(context))
                 ],

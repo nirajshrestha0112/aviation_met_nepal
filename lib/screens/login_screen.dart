@@ -149,7 +149,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                         }
                       }
                     },
-                    height: DeviceUtil.isMobile?44.h:56.h,
+                    height: DeviceUtil.isMobile?42.h:56.h,
                   )
                 ],
               ),

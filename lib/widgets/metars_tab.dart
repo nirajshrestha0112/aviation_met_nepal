@@ -131,11 +131,12 @@ class _MetarsTabState extends State<MetarsTab> {
                   ),
                   CustomRawCard(
                       rawHeaderText: "Raw",
-                      rawBodyText:
+                      rawBodyText: Provider.of<MetarDataProvider>(context, listen: false)
+                              .metarDataRaw  != null ? 
                           Provider.of<MetarDataProvider>(context, listen: false)
                               .metarDataRaw!
                               .data!
-                              .raw!),
+                              .raw! : ["No Data available"] ),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -146,7 +147,7 @@ class _MetarsTabState extends State<MetarsTab> {
                         Provider.of<MetarDataProvider>(context, listen: false)
                             .metarDataDecoded!
                             .data!
-                            .decoded
+                            .decoded!
                             .metarFor
                             .first,
                         isMetarFor: true,
@@ -155,87 +156,87 @@ class _MetarsTabState extends State<MetarsTab> {
                       Consumer<MetarDataProvider>(builder: (_, value, __) {
                         return ListView.builder(
                             itemCount: value
-                                .metarDataDecoded!.data!.decoded.text.length,
+                                .metarDataDecoded!.data!.decoded!.text.length,
                             primary: false,
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               return Column(
                                 children: [
-                                  if (value.metarDataDecoded!.data!.decoded.text
+                                  if (value.metarDataDecoded!.data!.decoded!.text
                                           .length >
                                       index)
                                     buildRow(
                                       "Text",
-                                      value.metarDataDecoded!.data!.decoded
+                                      value.metarDataDecoded!.data!.decoded!
                                           .text[index],
                                       isText: true,
                                     ),
-                                  if (value.metarDataDecoded!.data!.decoded
+                                  if (value.metarDataDecoded!.data!.decoded!
                                           .temperature.length >
                                       index)
                                     buildRow(
                                         "Temp.",
-                                        value.metarDataDecoded!.data!.decoded
+                                        value.metarDataDecoded!.data!.decoded!
                                             .temperature[index]),
                                   SizedBox(
                                     height: 1.h,
                                   ),
-                                  if (value.metarDataDecoded!.data!.decoded
+                                  if (value.metarDataDecoded!.data!.decoded!
                                           .dewpoint.length >
                                       index)
                                     buildRow(
                                         "Dew Point",
-                                        value.metarDataDecoded!.data!.decoded
+                                        value.metarDataDecoded!.data!.decoded!
                                             .dewpoint[index]),
                                   SizedBox(
                                     height: 1.h,
                                   ),
-                                  if (value.metarDataDecoded!.data!.decoded
+                                  if (value.metarDataDecoded!.data!.decoded!
                                           .pressureAltimeter.length >
                                       index)
                                     buildRow(
                                         "Pressure(altimeter)",
-                                        value.metarDataDecoded!.data!.decoded
+                                        value.metarDataDecoded!.data!.decoded!
                                             .pressureAltimeter[index]),
                                   SizedBox(
                                     height: 1.h,
                                   ),
-                                  if (value.metarDataDecoded!.data!.decoded
+                                  if (value.metarDataDecoded!.data!.decoded!
                                           .winds.length >
                                       index)
                                     buildRow(
                                         "Winds",
-                                        value.metarDataDecoded!.data!.decoded
+                                        value.metarDataDecoded!.data!.decoded!
                                             .winds[index]),
                                   SizedBox(
                                     height: 1.h,
                                   ),
-                                  if (value.metarDataDecoded!.data!.decoded
+                                  if (value.metarDataDecoded!.data!.decoded!
                                           .visibility.length >
                                       index)
                                     buildRow(
                                         "Visibility",
-                                        value.metarDataDecoded!.data!.decoded
+                                        value.metarDataDecoded!.data!.decoded!
                                             .visibility[index]),
                                   SizedBox(
                                     height: 1.h,
                                   ),
-                                  if (value.metarDataDecoded!.data!.decoded
+                                  if (value.metarDataDecoded!.data!.decoded!
                                           .ceiling.length >
                                       index)
                                     buildRow(
                                         "Ceiling",
-                                        value.metarDataDecoded!.data!.decoded
+                                        value.metarDataDecoded!.data!.decoded!
                                             .ceiling[index]),
                                   SizedBox(
                                     height: 1.h,
                                   ),
-                                  if (value.metarDataDecoded!.data!.decoded
+                                  if (value.metarDataDecoded!.data!.decoded!
                                           .clouds.length >
                                       index)
                                     buildRow(
                                         "Clouds",
-                                        value.metarDataDecoded!.data!.decoded
+                                        value.metarDataDecoded!.data!.decoded!
                                             .clouds[index],
                                         isClouds: true),
                                 ],
@@ -249,7 +250,7 @@ class _MetarsTabState extends State<MetarsTab> {
             );
           } else {
             return CustomErrorTab(
-              margin: EdgeInsets.only(bottom: 430.h),
+              margin: EdgeInsets.only(bottom: 410.h),
             );
           }
         },
