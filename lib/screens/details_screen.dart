@@ -1,6 +1,7 @@
 import 'package:aviation_met_nepal/model/airport_list.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/get_device_size.dart';
+import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:aviation_met_nepal/widgets/metars_tab.dart';
 import 'package:aviation_met_nepal/widgets/sigmets_tab.dart';
@@ -60,8 +61,8 @@ class _DetailsScreenState extends State<DetailsScreen>
       floatingActionButton: const CustomFloatingActionBtn(),
       appBar: PreferredSize(
           preferredSize: DeviceUtil.isMobile
-              ? Size.fromHeight(80.h)
-              : Size.fromHeight(100.h),
+              ? Size.fromHeight(SizeConfig.heightMultiplier*10.0)
+              : Size.fromHeight(SizeConfig.heightMultiplier*20.0),
           child: AppBar(
             title: Text(
               "${widget.data!.ident} ${widget.data!.name}",
@@ -69,7 +70,8 @@ class _DetailsScreenState extends State<DetailsScreen>
             leading: GeneralIcon(isPadding: EdgeInsets.only(right: 18.w)),
             bottom: TabBar(
               indicatorPadding: EdgeInsets.symmetric(
-                  horizontal: DeviceUtil.isMobile ? 8.w : 6.w, vertical: 5.5.h),
+                vertical: DeviceUtil.isMobile?SizeConfig.heightMultiplier*0.5:SizeConfig.heightMultiplier*0.8 ,
+                  horizontal: DeviceUtil.isMobile ? SizeConfig.widthMultiplier*2.0:SizeConfig.widthMultiplier*4.0),
               controller: _tabController,
               tabs: _tabs,
             ),

@@ -26,7 +26,7 @@ class Data {
   Data({this.date, this.decoded});
 
   Data.fromJson(Map<String, dynamic> json) {
-    date = json['Date'].cast<String>()??"";
+    date = json['Date'] != null ? json['Date'].cast<String>() : [];
     decoded =
         json['Decoded'] != null ? Decoded.fromJson(json['Decoded']) : null;
   }
@@ -64,15 +64,20 @@ class Decoded {
       this.weather});
 
   Decoded.fromJson(Map<String, dynamic> json) {
-    tAFFor = json['TAF for:'].cast<String>()??"";
-    text = json['Text:'].cast<String>()??"";
-    forecastPeriod = json['Forecast period:'].cast<String>()??"";
-    forecastType = json['Forecast type:'].cast<String>()??"";
-    winds = json['Winds:'].cast<String>()??"";
-    visibility = json['Visibility:'].cast<String>()??"";
-    clouds = json['Clouds:'].cast<String>()??"";
-    ceilings = json['Ceiling:'].cast<String>()??"";
-    weather = json['Weather:'].cast<String>()??"";
+    tAFFor = json['TAF for:'] != null ? json['TAF for:'].cast<String>() : [];
+    text = json['Text:'] != null ? json['TAF for:'].cast<String>() : [];
+    forecastPeriod = json['Forecast period:'] != null
+        ? json['Forecast period:'].cast<String>()
+        : [];
+    forecastType = json['Forecast type:'] != null
+        ? json['Forecast type:'].cast<String>()
+        : [];
+    winds = json['Winds:'] != null ? json['Winds:'].cast<String>() : [];
+    visibility =
+        json['Visibility:'] != null ? json['Visibility:'].cast<String>() : [];
+    clouds = json['Clouds:'] != null ? json['Clouds:'].cast<String>() : [];
+    ceilings = json['Ceiling:'] != null ? json['Ceiling:'].cast<String>() : [];
+    weather = json['Weather:'] != null ? ['Weather:'].cast<String>() : [];
   }
 
   Map<String, dynamic> toJson() {

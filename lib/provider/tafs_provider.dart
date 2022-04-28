@@ -10,16 +10,17 @@ import '../model/tafs_raw.dart';
 
 class TafsDataProvider extends ChangeNotifier {
   TafsDataRaw? tafsDataRaw;
-  late String id;
+  late String tafsRawId;
+  late String tafsDecodedId;
   fetchTafsDataRaw({
     required String ident,
   }) async {
     if (tafsDataRaw == null) {
-      id = ident;
+      tafsRawId = ident;
       await addTafsRawData(ident: ident);
-    } else if (id != ident) {
-      id = ident;
-      await addTafsRawData(ident: id);
+    } else if (tafsRawId != ident) {
+      tafsRawId = ident;
+      await addTafsRawData(ident: tafsRawId);
     }
   }
 
@@ -43,6 +44,7 @@ class TafsDataProvider extends ChangeNotifier {
         throw jsonDecode(response.body)['messsage'];
       }
     } catch (e) {
+      tafsDataRaw=null;
       log(e.toString());
     }
   }
@@ -50,11 +52,11 @@ class TafsDataProvider extends ChangeNotifier {
   TafsDataDecoded? tafsDataDecoded;
   fetchTafsDataDecoded({required String ident}) async {
     if (tafsDataDecoded == null) {
-      id = ident;
+      tafsDecodedId = ident;
       await addTafsDecodedData(ident: ident);
-    } else if (id != ident) {
-      id = ident;
-      await addTafsRawData(ident: id);
+    } else if (tafsDecodedId != ident) {
+      tafsDecodedId = ident;
+      await addTafsDecodedData(ident: tafsDecodedId);
     }
   }
 
@@ -72,6 +74,7 @@ class TafsDataProvider extends ChangeNotifier {
         throw Exception("Failed to load data");
       }
     } catch (e) {
+      tafsDataDecoded=null;
       log(e.toString());
     }
   }

@@ -14,6 +14,7 @@ class CustomRawCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(rawBodyText);
     return Container(
         width: double.infinity,
         decoration: BoxDecoration(
