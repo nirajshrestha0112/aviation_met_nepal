@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
@@ -13,16 +14,16 @@ import 'package:aviation_met_nepal/widgets/each_text.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
 import 'package:aviation_met_nepal/widgets/general_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../provider/weather_forecast_provider.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/get_device_size.dart';
 import '../utils/show_internet_connection_snack_bar.dart';
 import 'custom_loading_indicator.dart';
 import 'general_filter.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'modal_sheet_header.dart';
 
 class ShowFabSheet {
@@ -282,7 +283,12 @@ class ShowFabSheet {
                       itemCount: data.length,
                       itemBuilder: (c, i) {
                         return ListTile(
+                          minVerticalPadding: DeviceUtil.isMobile ? null : 8.h,
+                          contentPadding: DeviceUtil.isMobile
+                              ? null
+                              : EdgeInsets.only(left: 14.w),
                           leading: data[i]['icon'],
+                          horizontalTitleGap: DeviceUtil.isMobile ? null : 8.w,
                           title: data[i]['title'],
                           onTap: () {
                             if (data.last == data[i]) {
@@ -484,6 +490,10 @@ class ShowLocationSheet {
                                             child: ListTile(
                                               contentPadding:
                                                   EdgeInsets.only(left: 4.w),
+                                              minVerticalPadding:
+                                                  DeviceUtil.isMobile
+                                                      ? null
+                                                      : 24.h,
                                               leading: Text(
                                                 value.searchData[i].ident,
                                                 style: Theme.of(context)
@@ -530,8 +540,6 @@ class ShowFilterSheet {
         context: context,
         builder: (BuildContext context) {
           return SizedBox(
-
-            
             height: MediaQuery.of(context).size.height * 0.3,
             width: double.infinity,
             child: Padding(
@@ -576,6 +584,8 @@ class ShowFilterSheet {
                     height: 16.h,
                   ),
                   Container(
+                    // height: 150.h,
+                    height: !DeviceUtil.isMobile ? 56.h : null,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.w),
@@ -595,7 +605,7 @@ class ShowFilterSheet {
                     height: 16.h,
                   ),
                   GeneralTextButton(
-                      height: DeviceUtil.isMobile?42.h:56.h,
+                      height: DeviceUtil.isMobile ? 42.h : 56.h,
                       text: "Apply",
                       onPressed: () => Navigator.pop(context))
                 ],

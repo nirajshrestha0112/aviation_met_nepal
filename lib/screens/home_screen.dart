@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
@@ -8,14 +6,13 @@ import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
 import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/utils/show_internet_connection_snack_bar.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../widgets/custom_alert_dialog.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,11 +29,11 @@ class HomeScreen extends StatelessWidget {
         child: Scaffold(
             appBar: AppBar(
                 title: Padding(
-                  padding: EdgeInsets.only(bottom: 4.h),
-                  child: const Text(
-                              "Discover",
-                            ),
-                )),
+              padding: EdgeInsets.only(bottom: 4.h),
+              child: const Text(
+                "Discover",
+              ),
+            )),
             floatingActionButton: const CustomFloatingActionBtn(),
             body: const HomeScreenBody()),
       ),
@@ -69,10 +66,10 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   late Future _future;
   @override
   Widget build(BuildContext context) {
- /*    var mediaQuery = MediaQuery.of(context);
+    /*    var mediaQuery = MediaQuery.of(context);
 var physicalPixelWidth = mediaQuery.size.width * mediaQuery.devicePixelRatio;
 var physicalPixelHeight = mediaQuery.size.height * mediaQuery.devicePixelRatio;
-    
+
 var logicalPixelWidth = mediaQuery.size.width;
 var logicalPixelHeight = mediaQuery.size.height;
 
@@ -97,11 +94,11 @@ log(logicalPixelWidth.toString()); */
                 message: "No Airport Data Available"),
         child: Container(
             margin: EdgeInsets.symmetric(
-              horizontal: 24.w,
+              horizontal: DeviceUtil.isMobile ? 24.w : 16.w,
               vertical: 16.h * 1.5,
             ),
             padding: EdgeInsets.symmetric(horizontal: 14.w),
-        height: DeviceUtil.isMobile?SizeConfig.heightMultiplier*7.0:SizeConfig.heightMultiplier*10.0,
+            height: DeviceUtil.isMobile ? 44.h : 56.h,
             width: MediaQuery.of(context).size.height,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,7 +111,7 @@ log(logicalPixelWidth.toString()); */
                   ),
                   Icon(
                     Icons.location_on,
-                    size: DeviceUtil.isMobile?20.h:30.h,
+                    size: DeviceUtil.isMobile ? 20.h : 30.h,
                     color: const Color(colorPrimary),
                   ),
                 ]),

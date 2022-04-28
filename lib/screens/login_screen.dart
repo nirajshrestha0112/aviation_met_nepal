@@ -6,8 +6,9 @@ import 'package:aviation_met_nepal/utils/validation.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
 import 'package:aviation_met_nepal/widgets/general_text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
 import '../utils/get_device_size.dart';
 import '../utils/show_internet_connection_snack_bar.dart';
 import '../widgets/custom_loading_indicator.dart';
@@ -149,7 +150,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                         }
                       }
                     },
-                    height: DeviceUtil.isMobile?42.h:56.h,
+                    height: DeviceUtil.isMobile ? 42.h : 56.h,
                   )
                 ],
               ),

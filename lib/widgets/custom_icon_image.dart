@@ -1,7 +1,8 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
+import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class CustomIcon extends StatelessWidget {
   final IconData icon;
@@ -15,7 +16,7 @@ class CustomIcon extends StatelessWidget {
     return Icon(
       icon,
       color: const Color(textColor),
-      size: 18.h,
+      size: DeviceUtil.isMobile ? 18.h : 26.h,
     );
   }
 }

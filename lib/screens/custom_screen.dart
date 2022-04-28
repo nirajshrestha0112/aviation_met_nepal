@@ -4,7 +4,9 @@ import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:aviation_met_nepal/widgets/general_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
 import '../provider/airmet_data_provider.dart';
 import '../provider/gamet_data_provider.dart';
 import '../provider/opmet_data_provider.dart';
@@ -13,7 +15,6 @@ import '../utils/custom_scroll_behavior.dart';
 import '../utils/get_device_size.dart';
 import '../widgets/custom_floating_action_btn.dart';
 import '../widgets/custom_loading_indicator.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomScreen extends StatelessWidget {
   const CustomScreen({Key? key, required this.screenName}) : super(key: key);
@@ -73,11 +74,14 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                 child: Column(children: [
               Container(
                 color: const Color(colorWhite),
-                height: DeviceUtil.isMobile?44.h:56.h,
+                height: DeviceUtil.isMobile ? 44.h : 56.h,
                 width: double.infinity,
                 child: ListTile(
                     dense: true,
-                    contentPadding: EdgeInsets.only(left: 16.w, right: 42.w),
+                    contentPadding: EdgeInsets.only(
+                        left: DeviceUtil.isMobile ? 16.w : 0.w,
+                        right: 42.w,
+                        top: !DeviceUtil.isMobile ? 8.h : 0.h),
                     leading: const GeneralIcon(),
                     title: Padding(
                       padding: EdgeInsets.zero,

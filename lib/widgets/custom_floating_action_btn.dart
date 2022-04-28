@@ -1,6 +1,7 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../utils/get_device_size.dart';
 import 'custom_sheet.dart';
 
@@ -12,8 +13,8 @@ class CustomFloatingActionBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // height: 30.h,
-      width: 40.w,
+      height: DeviceUtil.isMobile ? 45.h : 60.h,
+      width: DeviceUtil.isMobile ? 50.w : 60.w,
       child: FloatingActionButton(
         backgroundColor: colorBlue,
         child: Icon(

@@ -1,4 +1,5 @@
 import 'package:aviation_met_nepal/constant/images.dart';
+import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,9 +27,14 @@ class CustomLoadingIndicator extends StatelessWidget {
             ),
           ),
           // you can replace
-          const CircularProgressIndicator(
-              // valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
-              strokeWidth: 4.5),
+          SizedBox(
+            height: DeviceUtil.isMobile ? 0.h : 36.h,
+            width: DeviceUtil.isMobile ? 0.w : 24.w,
+            child: const CircularProgressIndicator(
+
+                // valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
+                strokeWidth: 4.5),
+          ),
         ],
       ),
     );

@@ -4,9 +4,10 @@ import 'package:aviation_met_nepal/provider/privacy_policy_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../utils/get_device_size.dart';
 import '../widgets/custom_loading_indicator.dart';
 import '../widgets/custom_sheet.dart';
@@ -72,11 +73,14 @@ class _ContactUsBodyState extends State<ContactUsBody> {
           child: Column(children: [
         Container(
             color: Color.fromRGBO(255, 255, 255, 1),
-            height: DeviceUtil.isMobile?44.h:56.h,
+            height: DeviceUtil.isMobile ? 44.h : 56.h,
             width: double.infinity,
             child: ListTile(
                 dense: true,
-                contentPadding: EdgeInsets.only(left: 16.w, right: 42.w),
+                contentPadding: EdgeInsets.only(
+                    left: DeviceUtil.isMobile ? 16.w : 0.w,
+                    right: 42.w,
+                    top: !DeviceUtil.isMobile ? 8.h : 0.h),
                 leading: const GeneralIcon(),
                 title: Text(
                   "Contact Us",
@@ -369,7 +373,7 @@ class _EnglishNepaliTapState extends State<EnglishNepaliTap> {
         child: Row(children: [
           Container(
             alignment: Alignment.center,
-            height: DeviceUtil.isMobile?20.h:28.h,
+            height: DeviceUtil.isMobile ? 20.h : 28.h,
             width: 24.w,
             color: widget.isEng ? const Color(colorDarkBlue) : null,
             child: Text("EN",
@@ -384,7 +388,7 @@ class _EnglishNepaliTapState extends State<EnglishNepaliTap> {
             color: Color(colorDarkBlue),
           ),
           Container(
-            height: DeviceUtil.isMobile?20.h:28.h,
+            height: DeviceUtil.isMobile ? 20.h : 28.h,
             width: 24.w,
             color: widget.isEng ? null : const Color(colorDarkBlue),
             alignment: Alignment.center,
