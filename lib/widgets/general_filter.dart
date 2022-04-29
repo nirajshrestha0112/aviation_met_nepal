@@ -1,6 +1,8 @@
+import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../constant/colors_properties.dart';
 
 class DropDownFilter extends StatefulWidget {
   const DropDownFilter({
@@ -46,8 +48,15 @@ class _DropDownFilterState extends State<DropDownFilter> {
       child: ButtonTheme(
         alignedDropdown: true,
         child: DropdownButton(
-          menuMaxHeight: 500.h,
+          iconSize: !DeviceUtil.isMobile ? 30.w : 25.w,
+          // menuMaxHeight: !DeviceUtil.isMobile ? 700.h : 500.h,
+          itemHeight: !DeviceUtil.isMobile ? 50.h : null,
+
           elevation: 0,
+          style: TextStyle(
+              fontSize: 14.sp,
+              color: const Color(textColor),
+              fontWeight: FontWeight.w500),
           isExpanded: true,
           value: selectedValue,
           items: dropdownItems,

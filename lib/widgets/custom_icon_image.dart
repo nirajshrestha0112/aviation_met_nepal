@@ -16,7 +16,7 @@ class CustomIcon extends StatelessWidget {
     return Icon(
       icon,
       color: const Color(textColor),
-      size: DeviceUtil.isMobile ? 18.h : 26.h,
+      size: DeviceUtil.isMobile ? 20.h : 26.h,
     );
   }
 }
@@ -32,7 +32,7 @@ class CustomImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       assetName,
-      height: 18.h,
+      height: DeviceUtil.isMobile ? 20.h : 26.h,
     );
   }
 }
