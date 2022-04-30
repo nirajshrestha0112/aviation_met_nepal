@@ -278,18 +278,14 @@ class ShowFabSheet {
               Expanded(
                 child: ScrollConfiguration(
                   behavior: MyBehavior(),
-                  child: ListView.builder(
+                  child: ListView.separated(
+                      separatorBuilder: (context, index) => SizedBox(
+                            height: DeviceUtil.isMobile ? 12.h : 16.h,
+                          ),
                       controller: controller,
                       itemCount: data.length,
                       itemBuilder: (c, i) {
-                        return ListTile(
-                          minVerticalPadding: DeviceUtil.isMobile ? null : 8.h,
-                          contentPadding: DeviceUtil.isMobile
-                              ? null
-                              : EdgeInsets.only(left: 14.w),
-                          leading: data[i]['icon'],
-                          horizontalTitleGap: DeviceUtil.isMobile ? null : 8.w,
-                          title: data[i]['title'],
+                        return GestureDetector(
                           onTap: () {
                             if (data.last == data[i]) {
                               launchUrl(data[i]["url"]);
@@ -407,7 +403,146 @@ class ShowFabSheet {
                               }
                             }
                           },
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 12.w,
+                              ),
+                              data[i]['icon'],
+                              SizedBox(
+                                width: DeviceUtil.isMobile ? 24.w : 14.w,
+                              ),
+                              data[i]['title']
+                            ],
+                          ),
                         );
+                        // return ListTile(
+                        //   // minVerticalPadding: 0,
+                        //   // minVerticalPadding: DeviceUtil.isMobile ? null : 8.h,
+                        //   contentPadding: DeviceUtil.isMobile
+                        //       ? null
+                        //       : EdgeInsets.only(left: 14.w, top: 8.h),
+                        //   leading: data[i]['icon'],R
+                        //   horizontalTitleGap: DeviceUtil.isMobile ? 2.w : 12.w,
+                        //   title: data[i]['title'],
+                        //   onTap: () {
+                        //     if (data.last == data[i]) {
+                        //       launchUrl(data[i]["url"]);
+                        //     } else {
+                        //       if (data[i]["toCheck"]) {
+                        //         if (Provider.of<LoginProvider>(context,
+                        //                     listen: false)
+                        //                 .loginName !=
+                        //             null) {
+                        //           if (getIsOnline(context)) {
+                        //             Navigator.pushNamed(
+                        //                 context, data[i]['navigate']);
+                        //           } else {
+                        //             if (data[i]['navigate'] ==
+                        //                 icingTurbulenceChartRoute) {
+                        //               Navigator.pop(context);
+                        //               showInternetConnectionSnackBar(
+                        //                   icon: Icons.close,
+                        //                   crossAxisAlignment:
+                        //                       CrossAxisAlignment.center,
+                        //                   bgColor: Colors.red,
+                        //                   circleAvatarbgColor: Colors.white,
+                        //                   iconColor: Colors.red,
+                        //                   statusText: "Error",
+                        //                   message:
+                        //                       "Cannot Get Data...Please Try Again");
+                        //             } else if (data[i]['navigate'] ==
+                        //                 sigwxChartRoute) {
+                        //               Navigator.pop(context);
+                        //               showInternetConnectionSnackBar(
+                        //                   icon: Icons.close,
+                        //                   crossAxisAlignment:
+                        //                       CrossAxisAlignment.center,
+                        //                   bgColor: Colors.red,
+                        //                   circleAvatarbgColor: Colors.white,
+                        //                   iconColor: Colors.red,
+                        //                   statusText: "Error",
+                        //                   message:
+                        //                       "Cannot Get Sigwx Image...Please Try Again");
+                        //             } else if (data[i]['navigate'] ==
+                        //                 windChartRoute) {
+                        //               Navigator.pop(context);
+                        //               showInternetConnectionSnackBar(
+                        //                   icon: Icons.close,
+                        //                   crossAxisAlignment:
+                        //                       CrossAxisAlignment.center,
+                        //                   bgColor: Colors.red,
+                        //                   circleAvatarbgColor: Colors.white,
+                        //                   iconColor: Colors.red,
+                        //                   statusText: "Error",
+                        //                   message:
+                        //                       "Cannot Get Wind Image...Please Try Again");
+                        //             } else {
+                        //               Navigator.pop(context);
+                        //               showInternetConnectionSnackBar(
+                        //                   icon: Icons.close,
+                        //                   crossAxisAlignment:
+                        //                       CrossAxisAlignment.center,
+                        //                   bgColor: Colors.red,
+                        //                   circleAvatarbgColor: Colors.white,
+                        //                   iconColor: Colors.red,
+                        //                   statusText: "Error",
+                        //                   message:
+                        //                       "Cannot Get Data...Please Try Again");
+                        //             }
+                        //           }
+                        //         } else {
+                        //           Navigator.pushNamed(context, loginRoute);
+                        //         }
+                        //       } else {
+                        //         if (getIsOnline(context)) {
+                        //           Navigator.pushNamed(
+                        //               context, data[i]['navigate']);
+                        //         } else {
+                        //           if (data[i]['navigate'] ==
+                        //               satelliteImageDataRoute) {
+                        //             Navigator.pop(context);
+                        //             showInternetConnectionSnackBar(
+                        //                 icon: Icons.close,
+                        //                 crossAxisAlignment:
+                        //                     CrossAxisAlignment.center,
+                        //                 bgColor: Colors.red,
+                        //                 circleAvatarbgColor: Colors.white,
+                        //                 iconColor: Colors.red,
+                        //                 statusText: "Error",
+                        //                 message:
+                        //                     "Cannot Get Satellite Image...Please Try Again");
+                        //           } else if (data[i]['navigate'] ==
+                        //               lightingDataRoute) {
+                        //             Navigator.pop(context);
+                        //             showInternetConnectionSnackBar(
+                        //                 icon: Icons.close,
+                        //                 crossAxisAlignment:
+                        //                     CrossAxisAlignment.center,
+                        //                 bgColor: Colors.red,
+                        //                 circleAvatarbgColor: Colors.white,
+                        //                 iconColor: Colors.red,
+                        //                 statusText: "Error",
+                        //                 message:
+                        //                     "Cannot Get Lighting Image...Please Try Again");
+                        //           } else {
+                        //             Navigator.pop(context);
+                        //             showInternetConnectionSnackBar(
+                        //                 icon: Icons.close,
+                        //                 crossAxisAlignment:
+                        //                     CrossAxisAlignment.center,
+                        //                 bgColor: Colors.red,
+                        //                 circleAvatarbgColor: Colors.white,
+                        //                 iconColor: Colors.red,
+                        //                 statusText: "Error",
+                        //                 message:
+                        //                     "Server Error...Please Try Again");
+                        //           }
+                        //         }
+                        //       }
+                        //     }
+                        //   },
+                        // );
                       }),
                 ),
               ),

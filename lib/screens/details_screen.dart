@@ -1,7 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:aviation_met_nepal/model/airport_list.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/get_device_size.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:aviation_met_nepal/widgets/metars_tab.dart';
 import 'package:aviation_met_nepal/widgets/sigmets_tab.dart';
@@ -43,19 +43,23 @@ class _DetailsScreenState extends State<DetailsScreen>
 
   late List<Widget> _views;
   late TabController _tabController;
-  final List<Tab> _tabs = [
+  final List<Tab> _tabs = const [
     Tab(
         child: Text(
       "METARS",
-      style: TextStyle(fontSize: !DeviceUtil.isMobile ? 14.sp : null),
     )),
     Tab(
       child: Text("TAFS"),
     ),
     Tab(
-      child: Text("SIGMETs"),
+      child: Text(
+        "SIGMETs",
+      ),
     ),
-    Tab(child: Text("SPECI")),
+    Tab(
+        child: Text(
+      "SPECI",
+    )),
   ];
 
   @override
@@ -63,27 +67,37 @@ class _DetailsScreenState extends State<DetailsScreen>
     return Scaffold(
       floatingActionButton: const CustomFloatingActionBtn(),
       appBar: AppBar(
-        toolbarHeight: 100.h,
+        leadingWidth: !DeviceUtil.isMobile ? 4.w : 0.0,
+
+        toolbarHeight: !DeviceUtil.isMobile ? 110.h : 84.h,
         title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
             GeneralIcon(isPadding: EdgeInsets.only(right: 18.w)),
-            Text(
-              "${widget.data!.ident} ${widget.data!.name}",
+            SizedBox(
+              width: 300.w,
+              child: AutoSizeText(
+                "${widget.data!.ident} ${widget.data!.name}",
+                minFontSize: 14,
+                // maxFontSize: 16.sp,
+                style: TextStyle(overflow: TextOverflow.ellipsis),
+              ),
             ),
           ]),
           SizedBox(
-            height: DeviceUtil.isMobile ? 20.h : 50.h,
+            height: 10.h,
+          ),
+          SizedBox(
+            height: DeviceUtil.isMobile ? 30.h : 50.h,
             child: TabBar(
+              // padding: EdgeInsets.all(2),
               unselectedLabelStyle:
-                  TextStyle(fontSize: !DeviceUtil.isMobile ? 14.sp : 14.sp),
+                  TextStyle(fontSize: !DeviceUtil.isMobile ? 14.sp : 11.5.sp),
               indicatorPadding: EdgeInsets.symmetric(
-                vertical: DeviceUtil.isMobile
-                    ? SizeConfig.heightMultiplier * 0.5
-                    : SizeConfig.heightMultiplier * 0.5,
-                // horizontal: DeviceUtil.isMobile
-                //     ? SizeConfig.widthMultiplier * 2.0
-                //     : SizeConfig.widthMultiplier * 4.0),
+                vertical: DeviceUtil.isMobile ? 0.h : 4.h,
+                horizontal: DeviceUtil.isMobile ? 0.w : 4.w,
               ),
+              // labelStyle: TextStyle(fontSize: 32.sp),
+
               controller: _tabController,
               tabs: _tabs,
             ),

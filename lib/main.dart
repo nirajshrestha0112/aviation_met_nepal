@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
         SizeConfig().init(constraints, orientation);
         return ScreenUtilInit(
           // splitScreenMode: false,
-          designSize: const Size(360, 723),
+          designSize: const Size(375, 812),
           builder: (_) => MaterialApp(
             scaffoldMessengerKey: messengerKey,
             builder: (BuildContext context, Widget? child) {
@@ -92,8 +92,8 @@ class MyApp extends StatelessWidget {
             theme: theme(context),
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            // initialRoute: '/custom',
-            home: HomeScreen(),
+            initialRoute: homeRoute,
+            // home: HomeScreen(),
             routes: {
               splashRoute: (context) => CustomLoadingIndicator(),
               '/custom': (context) => const SplashScreen(),

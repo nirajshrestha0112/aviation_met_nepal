@@ -51,6 +51,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
   }
 
   bool isEng = true;
+
   toggleEng() {
     setState(() {
       isEng = !isEng;
@@ -72,24 +73,48 @@ class _ContactUsBodyState extends State<ContactUsBody> {
       child: SingleChildScrollView(
           child: Column(children: [
         Container(
-            color: Color.fromRGBO(255, 255, 255, 1),
-            height: DeviceUtil.isMobile ? 44.h : 56.h,
-            width: double.infinity,
-            child: ListTile(
-                dense: true,
-                contentPadding: EdgeInsets.only(
-                    left: DeviceUtil.isMobile ? 16.w : 0.w,
-                    right: 42.w,
-                    top: !DeviceUtil.isMobile ? 8.h : 0.h),
-                leading: const GeneralIcon(),
-                title: Text(
-                  "Contact Us",
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(fontSize: 18.sp),
-                ))),
+          color: Colors.white,
+          // color: Color.fromRGBO(255, 255, 255, 1),
+          height: DeviceUtil.isMobile ? 46.h : 56.h,
+          width: double.infinity,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: DeviceUtil.isMobile ? 8.w : 4.w,
+              ),
+              const GeneralIcon(),
+              SizedBox(
+                width: 120.w,
+              ),
+              Text(
+                "Contact Us",
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(fontSize: 18.sp),
+              )
+            ],
+          ),
+          // child: ListTile(
+          //     dense: true,
+          //     // minVerticalPadding: 8.0.h,
+          //     contentPadding: EdgeInsets.only(
+          //         left: DeviceUtil.isMobile ? 16.w : 0.w,
+          //         right: 42.w,
+          //         // bottom: !DeviceUtil.isMobile ? 8.h : 0.h,
+          //         top: !DeviceUtil.isMobile ? 8.h : 0.h),
+          //     leading: const GeneralIcon(),
+          //     title: Text(
+          //       "Contact Us",
+          //       textAlign: TextAlign.center,
+          //       style: Theme.of(context)
+          //           .textTheme
+          //           .bodyText1!
+          //           .copyWith(fontSize: 18.sp),
+          //     )),
+        ),
         SizedBox(
           height: 16.h,
         ),
@@ -324,6 +349,7 @@ class BuildRowWidget extends StatefulWidget {
   final void Function() onTap;
   final String getText;
   final IconData icon;
+
   @override
   State<BuildRowWidget> createState() => _BuildRowWidgetState();
 }
@@ -360,6 +386,7 @@ class EnglishNepaliTap extends StatefulWidget {
       : super(key: key);
   final VoidCallback callBack;
   final bool isEng;
+
   @override
   State<EnglishNepaliTap> createState() => _EnglishNepaliTapState();
 }
@@ -413,6 +440,7 @@ class CustomContactText extends StatelessWidget {
   }) : super(key: key);
   final String leftText;
   final String rightText;
+
   @override
   Widget build(BuildContext context) {
     return Row(

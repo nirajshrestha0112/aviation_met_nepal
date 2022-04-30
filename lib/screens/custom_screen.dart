@@ -76,24 +76,44 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                 color: const Color(colorWhite),
                 height: DeviceUtil.isMobile ? 44.h : 56.h,
                 width: double.infinity,
-                child: ListTile(
-                    dense: true,
-                    contentPadding: EdgeInsets.only(
-                        left: DeviceUtil.isMobile ? 16.w : 0.w,
-                        right: 42.w,
-                        top: !DeviceUtil.isMobile ? 8.h : 0.h),
-                    leading: const GeneralIcon(),
-                    title: Padding(
-                      padding: EdgeInsets.zero,
-                      child: Text(
-                        widget.screenName,
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText1!
-                            .copyWith(fontSize: 18.sp),
-                      ),
-                    )),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: DeviceUtil.isMobile ? 8.w : 4.w,
+                    ),
+                    const GeneralIcon(),
+                    SizedBox(
+                      width: 120.w,
+                    ),
+                    Text(
+                      widget.screenName,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(fontSize: 18.sp),
+                    )
+                  ],
+                ),
+                // child: ListTile(
+                //     dense: true,
+                //     contentPadding: EdgeInsets.only(
+                //         left: DeviceUtil.isMobile ? 16.w : 0.w,
+                //         right: 42.w,
+                //         top: !DeviceUtil.isMobile ? 8.h : 0.h),
+                //     leading: const GeneralIcon(),
+                //     title: Padding(
+                //       padding: EdgeInsets.zero,
+                //       child: Text(
+                //         widget.screenName,
+                //         textAlign: TextAlign.center,
+                //         style: Theme.of(context)
+                //             .textTheme
+                //             .bodyText1!
+                //             .copyWith(fontSize: 18.sp),
+                //       ),
+                //     )),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),

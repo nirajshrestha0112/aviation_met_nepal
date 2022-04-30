@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../constant/colors_properties.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../constant/colors_properties.dart';
 import '../utils/get_device_size.dart';
 
 ThemeData theme(BuildContext context) {
@@ -17,7 +17,9 @@ ThemeData theme(BuildContext context) {
         ),
         labelColor: Colors.white,
         unselectedLabelColor: const Color(textColor),
-        labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
+        labelStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: DeviceUtil.isMobile ? 11.5.sp : 14.sp),
       ),
       scaffoldBackgroundColor: const Color(bgColor),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -25,7 +27,7 @@ ThemeData theme(BuildContext context) {
       ),
       appBarTheme: AppBarTheme(
           centerTitle: true,
-          toolbarHeight: DeviceUtil.isMobile?44.h:56.h,
+          toolbarHeight: DeviceUtil.isMobile ? 44.h : 56.h,
 
           /* iconTheme: IconThemeData(
             color: const Color(colorDarkBlue),
