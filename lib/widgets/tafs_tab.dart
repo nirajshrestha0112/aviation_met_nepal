@@ -27,13 +27,14 @@ class _TafsTabState extends State<TafsTab> {
   tafsDataRawDecoded() async {
     await Provider.of<TafsDataProvider>(context, listen: false)
         .fetchTafsDataRaw(
-            ident: widget.tafsData!.ident,);
+      ident: widget.tafsData!.ident,
+    );
     await Provider.of<TafsDataProvider>(context, listen: false)
         .fetchTafsDataDecoded(
-            ident: widget.tafsData!.ident,);
+      ident: widget.tafsData!.ident,
+    );
     setState(() {
       isLoadingIndicator = true;
-      
     });
   }
 
@@ -47,10 +48,13 @@ class _TafsTabState extends State<TafsTab> {
       child: FutureBuilder(
           future: _future,
           builder: (context, AsyncSnapshot snapshot) {
-            if (isLoadingIndicator = false) {
+            /*        if (isLoadingIndicator = false) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const CustomLoadingIndicator();
               }
+       */
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CustomLoadingIndicator();
             }
             if (Provider.of<TafsDataProvider>(context, listen: false)
                         .tafsDataRaw !=
@@ -187,7 +191,8 @@ class _TafsTabState extends State<TafsTab> {
               );
             } else {
               return CustomErrorTab(
-                margin: EdgeInsets.only(bottom: DeviceUtil.isMobile?430.h:300.h),
+                margin: EdgeInsets.only(
+                    bottom: DeviceUtil.isMobile ? 430.h : 300.h),
               );
             }
           }),
