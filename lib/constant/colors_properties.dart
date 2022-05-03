@@ -18,3 +18,4 @@ const int hintColor = 0xFFF4CAF50;
 const int colorGrey10 = 0xFFF6E6E6E;
 const int colorGrey20 = 0xFFF3F3F3F;
 const int colorDarkBlue = 0xFFF48547c;
+const int colorLightYellow = 0xFFFffd740;

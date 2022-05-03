@@ -18,8 +18,9 @@ import 'package:aviation_met_nepal/screens/home_screen.dart';
 import 'package:aviation_met_nepal/screens/lighting_screen.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
+import 'package:aviation_met_nepal/screens/sigwx_chart_screen.dart';
 import 'package:aviation_met_nepal/screens/weather_forecast_screen.dart';
-import 'package:aviation_met_nepal/screens/wind_charts.dart';
+import 'package:aviation_met_nepal/screens/wind_chart_screen.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -42,13 +43,13 @@ void main() async {
       user: "aviego", pass: "aviegonasXcs#9");
   await ftpConnect.connect();
   print(ftpConnect); */
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
   // await FileDownloader.connectionFTP();
-  await FileDownloader.connectionFTP();
+ /*  await FileDownloader.connectionFTP();
   await FileDownloader.downloadFileFTP(
       filename: "something.gif",
       ftpFilename:
-          "Meteorological Forecasting Division/WIND AND TEMPERATURE CHARTS");
+          "Meteorological Forecasting Division/WIND AND TEMPERATURE CHARTS"); */
 
   runApp(
     MultiProvider(
@@ -123,7 +124,7 @@ class MyApp extends StatelessWidget {
               weatherCameraImagesRoute: (context) => const Scaffold(),
               satelliteImageDataRoute: (context) => const SatelliteScreen(),
               windChartRoute: (context) => const WindChartScreen(),
-              sigwxChartRoute: (context) => const Scaffold(),
+              sigwxChartRoute: (context) => const SigwxChartScreen(),
               airmetDataRoute: (context) =>
                   const CustomScreen(screenName: "Airmet Data"),
               ashtamsDataRoute: (context) =>
