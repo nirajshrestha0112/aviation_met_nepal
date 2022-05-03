@@ -6,10 +6,10 @@ import 'package:ftpconnect/ftpconnect.dart';
 import 'package:path_provider/path_provider.dart';
 
 class FileDownloader {
-  static File? file;
-  static FTPConnect? ftpConnect;
+  File? file;
+  FTPConnect? ftpConnect;
 
-  static Future<void> _fileMock(String strFileName) async {
+  Future<void> _fileMock(String strFileName) async {
     final Directory? appDocDir = await getExternalStorageDirectory();
     if (appDocDir != null) {
       String appDocPath = appDocDir.path;
@@ -20,13 +20,15 @@ class FileDownloader {
   }
 
   //connect FTP
-  static connectionFTP() async {
+  connectionFTP() async {
     ftpConnect = FTPConnect("hydrology.gov.np",
         user: "aviego", pass: "aviegonasXcs#9", port: 21);
+    log("ftp connected");
+    
   }
 
 //download file
-  static Future<void> downloadFileFTP({
+  Future downloadFileWindChart({
     required String filename,
     required String ftpFilename,
   }) async {
@@ -35,12 +37,123 @@ class FileDownloader {
         log("message");
         await connectionFTP();
       }
-      // bool bRes = await ftpConnect!.connect();
+      await ftpConnect!.connect();
       await _fileMock(filename);
-
       final dir = ftpFilename.split("/");
-      // print(dir);
-      // print(await ftpConnect!.currentDirectory());
+
+      print(await ftpConnect!.currentDirectory());
+      print("smothing");
+      for (var d in dir) {
+        // if (d != dir.last) {
+        await ftpConnect!.changeDirectory(d);
+        log(await ftpConnect!.currentDirectory(), name: "current dir");
+        // }
+      }
+
+      var dirData =
+          await ftpConnect!.listDirectoryContent(cmd: DIR_LIST_COMMAND.MLSD);
+      log("messageisGreat");
+      log(dirData.toString());
+
+      List<FTPEntry> tempList = [];
+      for (int i = 0; i < dirData.length; i++) {
+        if (i > 1) {
+          tempList.add(dirData[i]);
+        }
+      }
+
+      tempList.sort((a, b) => b.modifyTime!.compareTo(a.modifyTime!));
+
+      log(tempList.first.name.toString());
+      await ftpConnect!.downloadFileWithRetry(
+          tempList.first.name.toString(), file!,
+          pRetryCount: 1);
+      await SecureStorage.writeSecureData(
+          key: 'filedownloaded', value: file.toString());
+      await ftpConnect!.disconnect();
+      return file!;
+    } catch (e) {
+      print('Error : ${e.toString()}');
+    }
+  }
+  
+
+
+
+
+Future <Map?> getSigwxDir({
+    required String ftpFilename,
+  }) async {
+    try {
+      if (ftpConnect == null) {
+        log("message");
+        await connectionFTP();
+      }
+      await ftpConnect!.connect();
+      final dir = ftpFilename.split("/");
+      String currentDir="";
+  
+      for (var d in dir) {
+        await ftpConnect!.changeDirectory(d);
+        log(await ftpConnect!.currentDirectory(), name: "current dir");
+        currentDir=await ftpConnect!.currentDirectory();
+       
+      }
+
+      var dirData =
+          await ftpConnect!.listDirectoryContent(cmd: DIR_LIST_COMMAND.MLSD);
+          List<FTPEntry> tempList = [];
+      for (int i = 0; i < dirData.length; i++) {
+        if (i > 1) {
+          tempList.add(dirData[i]);
+        }
+      }
+   
+          
+      /* log("messageisGreat");
+      // log(dirData.toString());
+
+      List<FTPEntry> tempList = [];
+      for (int i = 0; i < dirData.length; i++) {
+        if (i > 1) {
+          tempList.add(dirData[i]);
+        }
+      } */
+
+      // tempList.sort((a, b) => b.modifyTime!.compareTo(a.modifyTime!));
+
+      /* log(tempList.first.name.toString());
+      await ftpConnect!.downloadFileWithRetry(
+          tempList.first.name.toString(), file!,
+          pRetryCount: 1); */
+      /* await SecureStorage.writeSecureData(
+          key: 'write folder', value: dirData.toString()); */
+      await ftpConnect!.disconnect();
+      return {'dirContents':tempList, 'currentDir': currentDir.substring(1)};
+    } catch (e) {
+      print('Error : ${e.toString()}');
+    }
+  }
+  // Future<File> localFile(String pathName) async{
+  //   final path=pathName;
+  //   return File(path);
+  // }
+
+   Future downloadFileSigwxChart({
+    required String filename,
+    required String ftpFilename,
+  }) async {
+    try {
+      if (ftpConnect == null) {
+        log("message");
+        await connectionFTP();
+      }
+      await ftpConnect!.connect();
+      await _fileMock(filename);
+      final dir = ftpFilename.split("/");
+
+      print(await ftpConnect!.currentDirectory());
+      print("smothing");
       for (var d in dir) {
         // if (d != dir.last) {
         await ftpConnect!.changeDirectory(d);
@@ -59,7 +172,7 @@ class FileDownloader {
           tempList.add(dirData[i]);
         }
       }
-
+      tempList.removeWhere((element) => (element.name!.contains('.SIG')));
       tempList.sort((a, b) => b.modifyTime!.compareTo(a.modifyTime!));
 
       log(tempList.first.name.toString());
@@ -69,16 +182,14 @@ class FileDownloader {
       await SecureStorage.writeSecureData(
           key: 'filedownloaded', value: file.toString());
       await ftpConnect!.disconnect();
-      print('file Name : ${file!}');
+      return file!;
     } catch (e) {
       print('Error : ${e.toString()}');
     }
   }
+  
 
-  // Future<File> localFile(String pathName) async{
-  //   final path=pathName;
-  //   return File(path);
-  // }
+
 }
  
 
