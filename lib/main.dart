@@ -1,5 +1,6 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
+import 'package:aviation_met_nepal/file_downloader.dart';
 import 'package:aviation_met_nepal/provider/airmet_data_provider.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/provider/checking_modal_sheet.dart';
@@ -18,11 +19,13 @@ import 'package:aviation_met_nepal/screens/lighting_screen.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
 import 'package:aviation_met_nepal/screens/weather_forecast_screen.dart';
+import 'package:aviation_met_nepal/screens/wind_charts.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ftpconnect/ftpconnect.dart';
 import 'package:provider/provider.dart';
 
 import 'provider/ashtams_data_provider.dart';
@@ -34,7 +37,19 @@ import 'screens/splash_screen.dart';
 import 'widgets/custom_loading_indicator.dart';
 
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
-void main() {
+void main() async {
+  /* FTPConnect ftpConnect = FTPConnect("hydrology.gov.np",
+      user: "aviego", pass: "aviegonasXcs#9");
+  await ftpConnect.connect();
+  print(ftpConnect); */
+  WidgetsFlutterBinding.ensureInitialized();
+  // await FileDownloader.connectionFTP();
+  await FileDownloader.connectionFTP();
+  await FileDownloader.downloadFileFTP(
+      filename: "something.gif",
+      ftpFilename:
+          "Meteorological Forecasting Division/WIND AND TEMPERATURE CHARTS");
+
   runApp(
     MultiProvider(
       providers: [
@@ -92,11 +107,11 @@ class MyApp extends StatelessWidget {
             theme: theme(context),
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            initialRoute: homeRoute,
+            initialRoute: splashRoute,
             // home: HomeScreen(),
             routes: {
-              splashRoute: (context) => CustomLoadingIndicator(),
-              '/custom': (context) => const SplashScreen(),
+              splashRoute: (context) => const SplashScreen(),
+              // '/custom': (context) => const SplashScreen(),
               // '/test': (context) => const CustomGrad(),
               homeRoute: (context) => const HomeScreen(),
               detailsRoute: (context) => const DetailsScreen(),
@@ -107,7 +122,7 @@ class MyApp extends StatelessWidget {
               icingTurbulenceChartRoute: (context) => const Scaffold(),
               weatherCameraImagesRoute: (context) => const Scaffold(),
               satelliteImageDataRoute: (context) => const SatelliteScreen(),
-              windChartRoute: (context) => const Scaffold(),
+              windChartRoute: (context) => const WindChartScreen(),
               sigwxChartRoute: (context) => const Scaffold(),
               airmetDataRoute: (context) =>
                   const CustomScreen(screenName: "Airmet Data"),
@@ -125,3 +140,18 @@ class MyApp extends StatelessWidget {
     });
   }
 }
+
+
+// Future<void> downloadFileFTP(FTPConnect ftpConnect) async{
+//     try {
+//       bool bRes = await ftpConnect.connect();
+//       _fileMock('/Meteorological Forecasting Division');
+//       await ftpConnect!.downloadFileWithRetry('FL 390.gif', file!, pRetryCount: 1);
+//       print('path2 : ${file!.path}');
+//       await ftpConnect!.disconnect();
+
+//       print('file Name : ${file!}');
+//     }catch(e){
+//       print('Error : ${e.toString()}');
+//     }
+// }
