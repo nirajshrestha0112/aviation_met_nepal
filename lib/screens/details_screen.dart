@@ -1,16 +1,15 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:aviation_met_nepal/model/airport_list.dart';
+import 'package:aviation_met_nepal/screens/sigmets_tab_screen.dart';
+import 'package:aviation_met_nepal/screens/tafs_tab_screen.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
-import 'package:aviation_met_nepal/widgets/metars_tab.dart';
-import 'package:aviation_met_nepal/widgets/sigmets_tab.dart';
-import 'package:aviation_met_nepal/widgets/tafs_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../widgets/custom_floating_action_btn.dart';
 import '../widgets/general_icon.dart';
+import 'metars_tab_screen.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({this.data, Key? key}) : super(key: key);
@@ -79,7 +78,7 @@ class _DetailsScreenState extends State<DetailsScreen>
                 "${widget.data!.ident} ${widget.data!.name}",
                 minFontSize: 14,
                 // maxFontSize: 16.sp,
-                style: TextStyle(overflow: TextOverflow.ellipsis),
+                style: const TextStyle(overflow: TextOverflow.ellipsis),
               ),
             ),
           ]),

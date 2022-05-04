@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../constant/colors_properties.dart';
 import '../utils/get_device_size.dart';
 

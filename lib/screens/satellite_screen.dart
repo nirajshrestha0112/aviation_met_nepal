@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../widgets/custom_floating_action_btn.dart';
-import '../widgets/custom_loading_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/general_icon.dart';
 
@@ -62,7 +61,7 @@ class _SatelliteScreenBodyState extends State<SatelliteScreenBody> {
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       {
-                        return const CustomLoadingIndicator();
+                        return const Center(child: CircularProgressIndicator.adaptive());
                       }
                     }
 

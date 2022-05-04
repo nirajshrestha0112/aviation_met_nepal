@@ -7,9 +7,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
 import '../utils/get_device_size.dart';
-import '../widgets/custom_loading_indicator.dart';
 import '../widgets/custom_sheet.dart';
 import '../widgets/general_icon.dart';
 
@@ -163,7 +161,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                   ),
                   BuildRowWidget(
                       icon: Icons.phone,
-                      getText: "+977144868699",
+                      getText: "+97714486869",
                       onTap: () {
                         ShowFabSheet.launchUrl(
                             getPhoneUrl(phone: "+977144868699"));
@@ -229,7 +227,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return const CustomLoadingIndicator();
+                          return const Center(child: CircularProgressIndicator.adaptive());
                         }
                         return Column(
                             mainAxisSize: MainAxisSize.min,

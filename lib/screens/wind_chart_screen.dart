@@ -1,25 +1,6 @@
-/* import 'package:aviation_met_nepal/file_downloader.dart';
-import 'package:flutter/material.dart';
-
-class WindChartScreen extends StatelessWidget {
-  const WindChartScreen({ Key? key }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Image.file(FileDownloader.file!),
-        
-      
-    );
-  }
-} */
-// import 'dart:html';
-
-import 'package:aviation_met_nepal/file_downloader.dart';
+import 'package:aviation_met_nepal/widgets/file_downloader.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
-import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
-import '../utils/custom_scroll_behavior.dart';
 import '../widgets/custom_floating_action_btn.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/general_icon.dart';
@@ -90,7 +71,7 @@ class _WindChartScreenBodyState extends State<WindChartScreenBody> {
             }
             return const CustomErrorTab();
           }
-          return const CustomLoadingIndicator();
+          return const Center(child: CircularProgressIndicator.adaptive());
         });
   }
 }

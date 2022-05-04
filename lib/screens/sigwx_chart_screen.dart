@@ -1,8 +1,5 @@
-
-import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
-import 'package:aviation_met_nepal/file_downloader.dart';
+import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom_floating_action_btn.dart';
@@ -10,8 +7,7 @@ import '../widgets/general_icon.dart';
 import 'sigwx_details_screen.dart';
 
 class SigwxChartScreen extends StatelessWidget {
-  const SigwxChartScreen({Key? key, this.path})
-      : super(key: key);
+  const SigwxChartScreen({Key? key, this.path}) : super(key: key);
   final String? path;
   @override
   Widget build(BuildContext context) {
@@ -63,37 +59,43 @@ List sigwxMap = [
 class _SigwxChartBodyState extends State<SigwxChartBody> {
   @override
   Widget build(BuildContext context) {
-    // FileDownloader sigwxFiles = FileDownloader();
-    // FileDownloader downloadSigwxFile = FileDownloader();
-
-    return ListView.builder(
-      itemCount: sigwxMap.length,
-      itemBuilder: (context, index) => GestureDetector(
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (_) => SigwaxDetailsScreen(
-                        path: "SADIS/SIGWX_PNG/${sigwxMap[index]}",fileName:"new.png" ,
-                        
-                      )));
-
-        },
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.folder,
-              color: const Color(colorLightYellow),
-              size: 38.h,
+    return ScrollConfiguration(
+      behavior: MyBehavior(),
+      child: ListView.builder(
+        itemCount: sigwxMap.length,
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => SigwaxDetailsScreen(
+                          path: "SADIS/SIGWX_PNG/${sigwxMap[index]}",
+                          fileName: "new.png",
+                        )));
+          },
+          child: Padding(
+            padding: EdgeInsets.only(left: 16.w, top: 8.h),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.folder,
+                  color: const Color(colorLightYellow),
+                  size: 38.h,
+                ),
+                SizedBox(
+                  width: 2.w,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 6.h),
+                  child: Expanded(
+                    child: Text(
+                        sigwxMap[index].toString().substring(8).toString(),
+                        style: TextStyle(fontSize: 22.sp, color: Colors.black)),
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: Text(sigwxMap[index].toString().substring(8).toString(),
-                  style: TextStyle(fontSize: 20.sp, color: Colors.black)),
-            ),
-          ],
+          ),
         ),
       ),
     );
