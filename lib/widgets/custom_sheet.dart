@@ -836,6 +836,10 @@ class ShowWeatherForecastCities {
                                                     .description);
                                           },
                                           child: ListTile(
+                                            minVerticalPadding:
+                                                !DeviceUtil.isMobile
+                                                    ? 24.h
+                                                    : null,
                                             contentPadding:
                                                 EdgeInsets.only(left: 4.w),
                                             leading: Text(

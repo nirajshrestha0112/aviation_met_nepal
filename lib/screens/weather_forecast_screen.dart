@@ -4,12 +4,13 @@ import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
 import '../constant/colors_properties.dart';
 import '../constant/images.dart';
 import '../widgets/general_icon.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WeatherForecastScreen extends StatelessWidget {
   const WeatherForecastScreen({Key? key}) : super(key: key);
@@ -67,10 +68,9 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: MyBehavior(),
-      
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-        height: DeviceUtil.isMobile?230.h:280.h,
+        height: DeviceUtil.isMobile ? 240.h : 280.h,
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color(colorWhite),
