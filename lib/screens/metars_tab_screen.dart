@@ -1,16 +1,15 @@
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
-import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../constant/colors_properties.dart';
 import '../model/airport_list.dart';
 import '../provider/metar_data_provider.dart';
 import '../utils/get_device_size.dart';
-import 'custom_build_row.dart';
-import 'custom_raw_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../widgets/custom_build_row.dart';
+import '../widgets/custom_raw_card.dart';
 
 class MetarsTab extends StatefulWidget {
   const MetarsTab({required this.metarData, Key? key}) : super(key: key);
@@ -64,7 +63,7 @@ class _MetarsTabState extends State<MetarsTab> {
         builder: (context, AsyncSnapshot snapshot) {
           if (isLoadingIndicator == false) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CustomLoadingIndicator();
+              return const Center(child: CircularProgressIndicator.adaptive());
             }
           }
           if (Provider.of<MetarDataProvider>(context, listen: false)
@@ -131,12 +130,16 @@ class _MetarsTabState extends State<MetarsTab> {
                   ),
                   CustomRawCard(
                       rawHeaderText: "Raw",
-                      rawBodyText: Provider.of<MetarDataProvider>(context, listen: false)
-                              .metarDataRaw  != null ? 
+                      rawBodyText:
                           Provider.of<MetarDataProvider>(context, listen: false)
-                              .metarDataRaw!
-                              .data!
-                              .raw! : ["No Data available"] ),
+                                      .metarDataRaw !=
+                                  null
+                              ? Provider.of<MetarDataProvider>(context,
+                                      listen: false)
+                                  .metarDataRaw!
+                                  .data!
+                                  .raw!
+                              : ["No Data available"]),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -162,8 +165,8 @@ class _MetarsTabState extends State<MetarsTab> {
                             itemBuilder: (context, index) {
                               return Column(
                                 children: [
-                                  if (value.metarDataDecoded!.data!.decoded!.text
-                                          .length >
+                                  if (value.metarDataDecoded!.data!.decoded!
+                                          .text.length >
                                       index)
                                     buildRow(
                                       "Text",
@@ -177,7 +180,9 @@ class _MetarsTabState extends State<MetarsTab> {
                                     buildRow(
                                         "Temp.",
                                         value.metarDataDecoded!.data!.decoded!
-                                            .temperature[index]),
+                                            .temperature[index]
+                                            .replaceAll("&deg;C", "\u2103")
+                                            .replaceAll("&deg;F", "\u2109")),
                                   SizedBox(
                                     height: 1.h,
                                   ),
@@ -187,7 +192,9 @@ class _MetarsTabState extends State<MetarsTab> {
                                     buildRow(
                                         "Dew Point",
                                         value.metarDataDecoded!.data!.decoded!
-                                            .dewpoint[index]),
+                                            .dewpoint[index]
+                                            .replaceAll("&deg;C", "\u2103")
+                                            .replaceAll("&deg;F", "\u2109")),
                                   SizedBox(
                                     height: 1.h,
                                   ),

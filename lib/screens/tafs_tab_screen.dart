@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../model/airport_list.dart';
 import '../utils/get_device_size.dart';
-import 'custom_build_row.dart';
-import 'custom_loading_indicator.dart';
-import 'custom_raw_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../widgets/custom_build_row.dart';
+import '../widgets/custom_raw_card.dart';
 
 class TafsTab extends StatefulWidget {
   const TafsTab({required this.tafsData, Key? key}) : super(key: key);
@@ -50,11 +50,11 @@ class _TafsTabState extends State<TafsTab> {
           builder: (context, AsyncSnapshot snapshot) {
             /*        if (isLoadingIndicator = false) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CustomLoadingIndicator();
+                return const Center(child: CircularProgressIndicator.adaptive());
               }
        */
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CustomLoadingIndicator();
+              return const Center(child: CircularProgressIndicator.adaptive());
             }
             if (Provider.of<TafsDataProvider>(context, listen: false)
                         .tafsDataRaw !=

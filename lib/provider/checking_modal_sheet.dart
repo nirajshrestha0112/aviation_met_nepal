@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
 import '../widgets/custom_sheet.dart';
 
 class CheckingModalSheet extends ChangeNotifier {

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../model/airport_list.dart';
 import '../utils/get_device_size.dart';
-import 'custom_loading_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SigmetsTab extends StatefulWidget {
@@ -32,7 +31,7 @@ class _SigmetsTabState extends State<SigmetsTab> {
       future: _future,
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CustomLoadingIndicator();
+          return const Center(child: CircularProgressIndicator.adaptive());
         }
         return Provider.of<SigmetsDataProvider>(context, listen: false)
                     .sigmetsData !=

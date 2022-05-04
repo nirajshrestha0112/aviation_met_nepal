@@ -1,7 +1,6 @@
 import 'package:aviation_met_nepal/provider/weather_forecast_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/get_device_size.dart';
-import 'package:aviation_met_nepal/widgets/custom_loading_indicator.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -67,16 +66,16 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: MyBehavior(),
-      
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-        height: DeviceUtil.isMobile?230.h:280.h,
+        height: DeviceUtil.isMobile ? 230.h : 280.h,
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color(colorWhite),
             borderRadius: BorderRadius.circular(8.w)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisAlignment: isLoMainAxisAlignment.center,
           children: [
             GestureDetector(
               onTap: (() async {
@@ -118,7 +117,11 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
               thickness: 1.5,
             ),
             isLoading
-                ? const CustomLoadingIndicator()
+                ? Padding(
+                    padding: EdgeInsets.only(top: 60.h),
+                    child: const Center(
+                        child: CircularProgressIndicator.adaptive()),
+                  )
                 : Consumer<WeatherForecastProvider>(builder: (_, value, __) {
                     return Expanded(
                       child: ListView.builder(

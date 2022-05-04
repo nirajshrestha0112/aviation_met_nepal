@@ -1,6 +1,5 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
-import 'package:aviation_met_nepal/file_downloader.dart';
 import 'package:aviation_met_nepal/provider/airmet_data_provider.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/provider/checking_modal_sheet.dart';
@@ -26,31 +25,16 @@ import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ftpconnect/ftpconnect.dart';
 import 'package:provider/provider.dart';
-
 import 'provider/ashtams_data_provider.dart';
 import 'provider/gamet_data_provider.dart';
 import 'provider/lighting_data_provider.dart';
 import 'provider/opmet_data_provider.dart';
 import 'provider/satellite_image_provider.dart';
 import 'screens/splash_screen.dart';
-import 'widgets/custom_loading_indicator.dart';
 
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
 void main() async {
-  /* FTPConnect ftpConnect = FTPConnect("hydrology.gov.np",
-      user: "aviego", pass: "aviegonasXcs#9");
-  await ftpConnect.connect();
-  print(ftpConnect); */
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await FileDownloader.connectionFTP();
- /*  await FileDownloader.connectionFTP();
-  await FileDownloader.downloadFileFTP(
-      filename: "something.gif",
-      ftpFilename:
-          "Meteorological Forecasting Division/WIND AND TEMPERATURE CHARTS"); */
-
   runApp(
     MultiProvider(
       providers: [
@@ -108,10 +92,11 @@ class MyApp extends StatelessWidget {
             theme: theme(context),
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            initialRoute: splashRoute,
+            initialRoute: homeRoute,
             // home: HomeScreen(),
             routes: {
               splashRoute: (context) => const SplashScreen(),
+              '/sigwx': (context) => const SigwxChartScreen(),
               // '/custom': (context) => const SplashScreen(),
               // '/test': (context) => const CustomGrad(),
               homeRoute: (context) => const HomeScreen(),
