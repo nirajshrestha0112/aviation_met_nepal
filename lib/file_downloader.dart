@@ -24,7 +24,6 @@ class FileDownloader {
     ftpConnect = FTPConnect("hydrology.gov.np",
         user: "aviego", pass: "aviegonasXcs#9", port: 21);
     log("ftp connected");
-    
   }
 
 //download file
@@ -76,12 +75,8 @@ class FileDownloader {
       print('Error : ${e.toString()}');
     }
   }
-  
 
-
-
-
-Future <Map?> getSigwxDir({
+  Future<Map?> getSigwxDir({
     required String ftpFilename,
   }) async {
     try {
@@ -91,25 +86,23 @@ Future <Map?> getSigwxDir({
       }
       await ftpConnect!.connect();
       final dir = ftpFilename.split("/");
-      String currentDir="";
-  
+      String currentDir = "";
+
       for (var d in dir) {
         await ftpConnect!.changeDirectory(d);
         log(await ftpConnect!.currentDirectory(), name: "current dir");
-        currentDir=await ftpConnect!.currentDirectory();
-       
+        currentDir = await ftpConnect!.currentDirectory();
       }
 
       var dirData =
           await ftpConnect!.listDirectoryContent(cmd: DIR_LIST_COMMAND.MLSD);
-          List<FTPEntry> tempList = [];
+      List<FTPEntry> tempList = [];
       for (int i = 0; i < dirData.length; i++) {
         if (i > 1) {
           tempList.add(dirData[i]);
         }
       }
-   
-          
+
       /* log("messageisGreat");
       // log(dirData.toString());
 
@@ -129,7 +122,7 @@ Future <Map?> getSigwxDir({
       /* await SecureStorage.writeSecureData(
           key: 'write folder', value: dirData.toString()); */
       await ftpConnect!.disconnect();
-      return {'dirContents':tempList, 'currentDir': currentDir.substring(1)};
+      return {'dirContents': tempList, 'currentDir': currentDir.substring(1)};
     } catch (e) {
       print('Error : ${e.toString()}');
     }
@@ -139,7 +132,7 @@ Future <Map?> getSigwxDir({
   //   return File(path);
   // }
 
-   Future downloadFileSigwxChart({
+  Future downloadFileSigwxChart({
     required String filename,
     required String ftpFilename,
   }) async {
@@ -151,21 +144,15 @@ Future <Map?> getSigwxDir({
       await ftpConnect!.connect();
       await _fileMock(filename);
       final dir = ftpFilename.split("/");
-
+      log(dir.toString());
       print(await ftpConnect!.currentDirectory());
-      print("smothing");
       for (var d in dir) {
-        // if (d != dir.last) {
         await ftpConnect!.changeDirectory(d);
         log(await ftpConnect!.currentDirectory(), name: "current dir");
-        // }
       }
-
       var dirData =
           await ftpConnect!.listDirectoryContent(cmd: DIR_LIST_COMMAND.MLSD);
       log("messageisGreat");
-      // log(dirData.toString());
-
       List<FTPEntry> tempList = [];
       for (int i = 0; i < dirData.length; i++) {
         if (i > 1) {
@@ -174,51 +161,14 @@ Future <Map?> getSigwxDir({
       }
       tempList.removeWhere((element) => (element.name!.contains('.SIG')));
       tempList.sort((a, b) => b.modifyTime!.compareTo(a.modifyTime!));
-
       log(tempList.first.name.toString());
       await ftpConnect!.downloadFileWithRetry(
           tempList.first.name.toString(), file!,
           pRetryCount: 1);
-      await SecureStorage.writeSecureData(
-          key: 'filedownloaded', value: file.toString());
       await ftpConnect!.disconnect();
       return file!;
     } catch (e) {
       print('Error : ${e.toString()}');
     }
   }
-  
-
-
 }
- 
-
-//download file
-
-// import 'dart:io';
-
-// import 'package:ftpclient/ftpclient.dart';
-// import 'package:path_provider/path_provider.dart';
-
-// class FileDownloader {
-//   static late File file;
-//   static late FTPClient ftpClient;
-//   static Future<void> _fileMock(String strFileName) async {
-//     final Directory? appDocDir = await getExternalStorageDirectory();
-//     if (appDocDir != null) {
-//       String appDocPath = appDocDir.path;
-//       file = File('$appDocPath/$strFileName');
-//       print('appDocPath : $appDocPath');
-//       print('file : $file');
-//     }
-//   }
-
-//   //connect FTP
-//   static connectionFTP() async {
-//     ftpClient = FTPClient("hydrology.gov.np",
-//         user: "aviego", pass: "aviegonasXcs#9", port: 21);
-//          print(ftpClient.listDirectoryContent());
-//   }
-
-
-// }
