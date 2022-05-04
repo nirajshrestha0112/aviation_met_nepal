@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
@@ -67,17 +66,17 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   late Future _future;
   @override
   Widget build(BuildContext context) {
-       var mediaQuery = MediaQuery.of(context);
-var physicalPixelWidth = mediaQuery.size.width * mediaQuery.devicePixelRatio;
-var physicalPixelHeight = mediaQuery.size.height * mediaQuery.devicePixelRatio;
-
-var logicalPixelWidth = mediaQuery.size.width;
-var logicalPixelHeight = mediaQuery.size.height;
-
-log(physicalPixelWidth.toString());
-log(physicalPixelHeight.toString());
-log(logicalPixelHeight.toString());
-log(logicalPixelWidth.toString());
+//        var mediaQuery = MediaQuery.of(context);
+// var physicalPixelWidth = mediaQuery.size.width * mediaQuery.devicePixelRatio;
+// var physicalPixelHeight = mediaQuery.size.height * mediaQuery.devicePixelRatio;
+//
+// var logicalPixelWidth = mediaQuery.size.width;
+// var logicalPixelHeight = mediaQuery.size.height;
+//
+// log(physicalPixelWidth.toString());
+// log(physicalPixelHeight.toString());
+// log(logicalPixelHeight.toString());
+// log(logicalPixelWidth.toString());
 
     return Column(children: [
       GestureDetector(
@@ -99,7 +98,7 @@ log(logicalPixelWidth.toString());
               vertical: 16.h * 1.5,
             ),
             padding: EdgeInsets.symmetric(horizontal: 14.w),
-            height: DeviceUtil.isMobile ? 44.h : 56.h,
+            height: DeviceUtil.isMobile ? 46.h : 56.h,
             width: MediaQuery.of(context).size.height,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -26,6 +26,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
 import 'provider/ashtams_data_provider.dart';
 import 'provider/gamet_data_provider.dart';
 import 'provider/lighting_data_provider.dart';
@@ -93,7 +94,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
             initialRoute: homeRoute,
-            // home: HomeScreen(),
+            // home: SplashScreen(),
             routes: {
               splashRoute: (context) => const SplashScreen(),
               '/sigwx': (context) => const SigwxChartScreen(),
@@ -126,7 +127,6 @@ class MyApp extends StatelessWidget {
     });
   }
 }
-
 
 // Future<void> downloadFileFTP(FTPConnect ftpConnect) async{
 //     try {

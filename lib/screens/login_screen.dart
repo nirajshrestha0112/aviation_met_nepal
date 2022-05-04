@@ -8,6 +8,7 @@ import 'package:aviation_met_nepal/widgets/general_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
 import '../utils/get_device_size.dart';
 import '../utils/show_internet_connection_snack_bar.dart';
 import '../widgets/general_icon.dart';
@@ -129,7 +130,8 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                         if (getIsOnline(context)) {
                           showDialog(
                             context: context,
-                            builder: (_) => const Center(child: CircularProgressIndicator.adaptive()),
+                            builder: (_) => const Center(
+                                child: CircularProgressIndicator.adaptive()),
                           );
                           await Future.delayed(const Duration(seconds: 3));
                           await Provider.of<LoginProvider>(context,
@@ -149,7 +151,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                         }
                       }
                     },
-                    height: DeviceUtil.isMobile ? 42.h : 56.h,
+                    height: DeviceUtil.isMobile ? 46.h : 56.h,
                   )
                 ],
               ),

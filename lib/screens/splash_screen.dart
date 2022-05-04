@@ -55,25 +55,21 @@ class SplashScreenBody extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
       ),
-      DeviceUtil.isMobile
-          ? Positioned(
-              left: 140.h,
-              top: 350.h,
-              child: Image.asset(
-                gifImg,
-                height: 60.h,
-                width: 80.w,
-              ),
-            )
-          : Positioned(
-              left: 230.h,
-              top: 350.h,
-              child: Image.asset(
-                gifImg,
-                height: 60.h,
-                width: 80.w,
-              ),
-            )
+      Positioned(
+        // left: DeviceUtil.isMobile
+        //     ? SizeConfig.widthMultiplier * 40
+        //     : SizeConfig.widthMultiplier * 50,
+        // top: DeviceUtil.isMobile
+        //     ? SizeConfig.heightMultiplier * 48
+        //     : SizeConfig.widthMultiplier * 70,
+        left: DeviceUtil.isMobile ? 160.w : 160.w,
+        top: DeviceUtil.isMobile ? 370.h : 380.h,
+        child: Image.asset(
+          gifImg,
+          height: 60.h,
+          width: 80.w,
+        ),
+      )
     ]);
   }
 }

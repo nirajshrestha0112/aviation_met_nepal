@@ -7,6 +7,7 @@ import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../widgets/custom_floating_action_btn.dart';
 import '../widgets/general_icon.dart';
 import 'metars_tab_screen.dart';
@@ -68,7 +69,7 @@ class _DetailsScreenState extends State<DetailsScreen>
       appBar: AppBar(
         leadingWidth: !DeviceUtil.isMobile ? 4.w : 0.0,
 
-        toolbarHeight: !DeviceUtil.isMobile ? 110.h : 84.h,
+        toolbarHeight: !DeviceUtil.isMobile ? 116.h : 88.h,
         title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
             GeneralIcon(isPadding: EdgeInsets.only(right: 18.w)),
@@ -86,7 +87,7 @@ class _DetailsScreenState extends State<DetailsScreen>
             height: 10.h,
           ),
           SizedBox(
-            height: DeviceUtil.isMobile ? 30.h : 50.h,
+            height: DeviceUtil.isMobile ? 36.h : 56.h,
             child: TabBar(
               // padding: EdgeInsets.all(2),
               unselectedLabelStyle:

@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
@@ -16,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../provider/weather_forecast_provider.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/get_device_size.dart';
@@ -595,7 +597,9 @@ class ShowLocationSheet {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return const Center(child: CircularProgressIndicator.adaptive());
+                                return const Center(
+                                    child:
+                                        CircularProgressIndicator.adaptive());
                               }
                               return Consumer<AirportListProvider>(
                                   builder: (_, value, __) {
@@ -738,7 +742,7 @@ class ShowFilterSheet {
                     height: 16.h,
                   ),
                   GeneralTextButton(
-                      height: DeviceUtil.isMobile ? 42.h : 56.h,
+                      height: DeviceUtil.isMobile ? 46.h : 56.h,
                       text: "Apply",
                       onPressed: () => Navigator.pop(context))
                 ],
@@ -800,7 +804,8 @@ class ShowWeatherForecastCities {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return const Center(child: CircularProgressIndicator.adaptive());
+                              return const Center(
+                                  child: CircularProgressIndicator.adaptive());
                             }
                             return Consumer<CitiesProvider>(
                                 builder: (_, value, __) {

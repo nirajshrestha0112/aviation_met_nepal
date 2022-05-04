@@ -1,11 +1,11 @@
 import 'package:aviation_met_nepal/provider/tafs_provider.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
 import '../model/airport_list.dart';
 import '../utils/get_device_size.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../widgets/custom_build_row.dart';
 import '../widgets/custom_raw_card.dart';
 
@@ -44,7 +44,7 @@ class _TafsTabState extends State<TafsTab> {
   Widget build(BuildContext context) {
     // log(Provider.of<TafsDataProvider>(context,listen: false).tafsDataDecoded.data!.decoded!.text!.length.toString());
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
       child: FutureBuilder(
           future: _future,
           builder: (context, AsyncSnapshot snapshot) {
@@ -191,8 +191,8 @@ class _TafsTabState extends State<TafsTab> {
               );
             } else {
               return CustomErrorTab(
-                margin: EdgeInsets.only(
-                    bottom: DeviceUtil.isMobile ? 430.h : 300.h),
+                margin:
+                    EdgeInsets.only(bottom: DeviceUtil.isMobile ? 0.h : 340.h),
               );
             }
           }),
