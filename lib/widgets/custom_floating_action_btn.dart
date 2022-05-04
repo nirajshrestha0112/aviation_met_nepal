@@ -1,7 +1,6 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../utils/get_device_size.dart';
 import 'custom_sheet.dart';
 

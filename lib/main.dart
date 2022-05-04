@@ -17,24 +17,24 @@ import 'package:aviation_met_nepal/screens/home_screen.dart';
 import 'package:aviation_met_nepal/screens/lighting_screen.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
+import 'package:aviation_met_nepal/screens/sigwx_chart_screen.dart';
 import 'package:aviation_met_nepal/screens/weather_forecast_screen.dart';
+import 'package:aviation_met_nepal/screens/wind_chart_screen.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import 'provider/ashtams_data_provider.dart';
 import 'provider/gamet_data_provider.dart';
 import 'provider/lighting_data_provider.dart';
 import 'provider/opmet_data_provider.dart';
 import 'provider/satellite_image_provider.dart';
 import 'screens/splash_screen.dart';
-import 'widgets/custom_loading_indicator.dart';
 
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
-void main() {
+void main() async {
   runApp(
     MultiProvider(
       providers: [
@@ -95,8 +95,9 @@ class MyApp extends StatelessWidget {
             initialRoute: homeRoute,
             // home: HomeScreen(),
             routes: {
-              splashRoute: (context) => CustomLoadingIndicator(),
-              '/custom': (context) => const SplashScreen(),
+              splashRoute: (context) => const SplashScreen(),
+              '/sigwx': (context) => const SigwxChartScreen(),
+              // '/custom': (context) => const SplashScreen(),
               // '/test': (context) => const CustomGrad(),
               homeRoute: (context) => const HomeScreen(),
               detailsRoute: (context) => const DetailsScreen(),
@@ -107,8 +108,8 @@ class MyApp extends StatelessWidget {
               icingTurbulenceChartRoute: (context) => const Scaffold(),
               weatherCameraImagesRoute: (context) => const Scaffold(),
               satelliteImageDataRoute: (context) => const SatelliteScreen(),
-              windChartRoute: (context) => const Scaffold(),
-              sigwxChartRoute: (context) => const Scaffold(),
+              windChartRoute: (context) => const WindChartScreen(),
+              sigwxChartRoute: (context) => const SigwxChartScreen(),
               airmetDataRoute: (context) =>
                   const CustomScreen(screenName: "Airmet Data"),
               ashtamsDataRoute: (context) =>
@@ -125,3 +126,18 @@ class MyApp extends StatelessWidget {
     });
   }
 }
+
+
+// Future<void> downloadFileFTP(FTPConnect ftpConnect) async{
+//     try {
+//       bool bRes = await ftpConnect.connect();
+//       _fileMock('/Meteorological Forecasting Division');
+//       await ftpConnect!.downloadFileWithRetry('FL 390.gif', file!, pRetryCount: 1);
+//       print('path2 : ${file!.path}');
+//       await ftpConnect!.disconnect();
+
+//       print('file Name : ${file!}');
+//     }catch(e){
+//       print('Error : ${e.toString()}');
+//     }
+// }

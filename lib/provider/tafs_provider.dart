@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:aviation_met_nepal/model/tafs_decoded.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
 import '../model/tafs_raw.dart';
 
 class TafsDataProvider extends ChangeNotifier {

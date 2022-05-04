@@ -123,7 +123,7 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return SizedBox(
                         height: MediaQuery.of(context).size.height / 1.3,
-                        child: const CustomLoadingIndicator(),
+                        child: const Center(child: CircularProgressIndicator.adaptive()),
                       );
                     }
 

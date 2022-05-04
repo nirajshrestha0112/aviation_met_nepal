@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
@@ -66,7 +67,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   late Future _future;
   @override
   Widget build(BuildContext context) {
-    /*    var mediaQuery = MediaQuery.of(context);
+       var mediaQuery = MediaQuery.of(context);
 var physicalPixelWidth = mediaQuery.size.width * mediaQuery.devicePixelRatio;
 var physicalPixelHeight = mediaQuery.size.height * mediaQuery.devicePixelRatio;
 
@@ -76,7 +77,7 @@ var logicalPixelHeight = mediaQuery.size.height;
 log(physicalPixelWidth.toString());
 log(physicalPixelHeight.toString());
 log(logicalPixelHeight.toString());
-log(logicalPixelWidth.toString()); */
+log(logicalPixelWidth.toString());
 
     return Column(children: [
       GestureDetector(

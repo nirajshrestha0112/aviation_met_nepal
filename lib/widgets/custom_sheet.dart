@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
@@ -17,12 +16,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../provider/weather_forecast_provider.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/get_device_size.dart';
 import '../utils/show_internet_connection_snack_bar.dart';
-import 'custom_loading_indicator.dart';
 import 'general_filter.dart';
 import 'modal_sheet_header.dart';
 
@@ -143,6 +140,7 @@ class ShowFabSheet {
       builder: (_) {
         return DraggableScrollableSheet(
           expand: false,
+          maxChildSize: 0.967,
           initialChildSize: 0.7,
           builder: (_, controller) {
             return Column(children: [
@@ -166,7 +164,7 @@ class ShowFabSheet {
                             "Menu",
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 18.sp,
+                                      fontSize: 19.sp,
                                       fontWeight: FontWeight.w500,
                                     ),
                           ),
@@ -280,7 +278,7 @@ class ShowFabSheet {
                   behavior: MyBehavior(),
                   child: ListView.separated(
                       separatorBuilder: (context, index) => SizedBox(
-                            height: DeviceUtil.isMobile ? 12.h : 16.h,
+                            height: DeviceUtil.isMobile ? 14.h : 16.h,
                           ),
                       controller: controller,
                       itemCount: data.length,
@@ -597,7 +595,7 @@ class ShowLocationSheet {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return const CustomLoadingIndicator();
+                                return const Center(child: CircularProgressIndicator.adaptive());
                               }
                               return Consumer<AirportListProvider>(
                                   builder: (_, value, __) {
@@ -802,7 +800,7 @@ class ShowWeatherForecastCities {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return const CustomLoadingIndicator();
+                              return const Center(child: CircularProgressIndicator.adaptive());
                             }
                             return Consumer<CitiesProvider>(
                                 builder: (_, value, __) {

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:aviation_met_nepal/model/satellite_images.dart';
 import 'package:flutter/cupertino.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EachText extends StatelessWidget {
   final String text;
@@ -17,7 +18,7 @@ class EachText extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .bodyText1!
-              .copyWith(fontWeight: FontWeight.w400)),
+              .copyWith(fontWeight: FontWeight.w400,fontSize: 19.sp)),
     );
   }
 }

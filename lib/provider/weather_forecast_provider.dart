@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:aviation_met_nepal/model/cities.dart';
 import 'package:aviation_met_nepal/model/weather_detail.dart';
