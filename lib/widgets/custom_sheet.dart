@@ -143,6 +143,7 @@ class ShowFabSheet {
       builder: (_) {
         return DraggableScrollableSheet(
           expand: false,
+          maxChildSize: 0.967,
           initialChildSize: 0.7,
           builder: (_, controller) {
             return Column(children: [

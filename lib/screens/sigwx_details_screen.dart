@@ -1,8 +1,8 @@
 /* import 'package:aviation_met_nepal/file_downloader.dart';
 import 'package:flutter/material.dart';
 
-class SigwaxScreen extends StatelessWidget {
-  const SigwaxScreen({ Key? key }) : super(key: key);
+class SigwaxDetailsScreen extends StatelessWidget {
+  const SigwaxDetailsScreen({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,10 @@ import '../widgets/custom_floating_action_btn.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/general_icon.dart';
 
-class SigwaxScreen extends StatelessWidget {
+class SigwaxDetailsScreen extends StatelessWidget {
   final String fileName;
   final String path;
-  const SigwaxScreen({Key? key, required this.fileName, required this.path}) : super(key: key);
+  const SigwaxDetailsScreen({Key? key, required this.fileName, required this.path}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,28 +41,28 @@ class SigwaxScreen extends StatelessWidget {
             title: Padding(
               padding: EdgeInsets.only(bottom: 4.h),
               child: const Text(
-                "Wind Chart Image",
+                "Sigwx Chart Image",
               ),
             ),
           ),
           floatingActionButton: const CustomFloatingActionBtn(),
-          body:  SigwaxScreenBody(fileName: fileName,path: path,)),
+          body:  SigwaxDetailsScreenBody(fileName: fileName,path: path,)),
     );
   }
 }
 
-class SigwaxScreenBody extends StatefulWidget {
+class SigwaxDetailsScreenBody extends StatefulWidget {
    final String fileName;
   final String path;
-  const SigwaxScreenBody({
+  const SigwaxDetailsScreenBody({
     Key? key, required this.fileName, required this.path,
   }) : super(key: key);
 
   @override
-  State<SigwaxScreenBody> createState() => _SigwaxScreenBodyState();
+  State<SigwaxDetailsScreenBody> createState() => _SigwaxDetailsScreenBodyState();
 }
 
-class _SigwaxScreenBodyState extends State<SigwaxScreenBody> {
+class _SigwaxDetailsScreenBodyState extends State<SigwaxDetailsScreenBody> {
  /*  Future<void> _pulltoRefresh() async {
     setState(() {});
   } */
@@ -76,9 +76,9 @@ class _SigwaxScreenBodyState extends State<SigwaxScreenBody> {
 
   @override
   Widget build(BuildContext context) {
-    FileDownloader windFiles = FileDownloader();
+    FileDownloader sigwxImageFiles = FileDownloader();
     return FutureBuilder(
-        future: windFiles.downloadFileSigwxChart(
+        future: sigwxImageFiles.downloadFileSigwxChart(
             filename:widget.fileName,
             ftpFilename:
                 widget.path),
@@ -92,7 +92,7 @@ class _SigwaxScreenBodyState extends State<SigwaxScreenBody> {
                 maxScale: 2.5,
                 child: SizedBox(
                     height: MediaQuery.of(context).size.height / 1.2,
-                    child: Image.file(windFiles.file!)),
+                    child: Image.file(sigwxImageFiles.file!)),
               );
             }
             return const CustomErrorTab();
