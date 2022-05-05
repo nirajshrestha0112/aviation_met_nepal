@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import '../constant/colors_properties.dart';
 import '../constant/images.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 class CustomErrorTab extends StatelessWidget {
-  const CustomErrorTab({this.margin,this.height, Key? key}) : super(key: key);
+  const CustomErrorTab({this.margin, this.height, Key? key}) : super(key: key);
   final EdgeInsets? margin;
   final double? height;
   @override
@@ -14,7 +14,7 @@ class CustomErrorTab extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       child: Container(
-        height: height?? 115.h,
+        height: height ?? 115.h,
         margin: margin ?? EdgeInsets.zero,
         // alignment: Alignment.topCenter,
         width: double.infinity,

@@ -23,17 +23,19 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          // leadingWidth: DeviceUtil.isMobile ? 0.w : 2.w,
-          leading: const GeneralIcon(),
-          title: Padding(
-            padding: EdgeInsets.only(bottom: 4.h),
-            child: const Text(
-              "Login",
-            ),
-          )),
-      body: const LoginScreenBody(),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+            // leadingWidth: DeviceUtil.isMobile ? 0.w : 2.w,
+            leading: const GeneralIcon(),
+            title: Padding(
+              padding: EdgeInsets.only(bottom: 4.h),
+              child: const Text(
+                "Login",
+              ),
+            )),
+        body: const LoginScreenBody(),
+      ),
     );
   }
 }
@@ -144,7 +146,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                               icon: Icons.close,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               bgColor: Colors.red,
-                              circleAvatarbgColor: Colors.white,
+                              circleAvatarBgColor: Colors.white,
                               iconColor: Colors.red,
                               statusText: "Error",
                               message: "Server Error...Please Try Again");

@@ -43,26 +43,26 @@ class _TafsTabState extends State<TafsTab> {
   @override
   Widget build(BuildContext context) {
     // log(Provider.of<TafsDataProvider>(context,listen: false).tafsDataDecoded.data!.decoded!.text!.length.toString());
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-      child: FutureBuilder(
-          future: _future,
-          builder: (context, AsyncSnapshot snapshot) {
-            /*        if (isLoadingIndicator = false) {
+    return FutureBuilder(
+        future: _future,
+        builder: (context, AsyncSnapshot snapshot) {
+          /*        if (isLoadingIndicator = false) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator.adaptive());
               }
        */
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator.adaptive());
-            }
-            if (Provider.of<TafsDataProvider>(context, listen: false)
-                        .tafsDataRaw !=
-                    null &&
-                Provider.of<TafsDataProvider>(context, listen: false)
-                        .tafsDataDecoded !=
-                    null) {
-              return SingleChildScrollView(
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator.adaptive());
+          }
+          if (Provider.of<TafsDataProvider>(context, listen: false)
+                      .tafsDataRaw !=
+                  null &&
+              Provider.of<TafsDataProvider>(context, listen: false)
+                      .tafsDataDecoded !=
+                  null) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -188,14 +188,14 @@ class _TafsTabState extends State<TafsTab> {
                     ),
                   ],
                 ),
-              );
-            } else {
-              return CustomErrorTab(
-                margin:
-                    EdgeInsets.only(bottom: DeviceUtil.isMobile ? 0.h : 340.h),
-              );
-            }
-          }),
-    );
+              ),
+            );
+          } else {
+            return CustomErrorTab(
+              margin:
+                  EdgeInsets.only(bottom: DeviceUtil.isMobile ? 430.h : 350.h),
+            );
+          }
+        });
   }
 }

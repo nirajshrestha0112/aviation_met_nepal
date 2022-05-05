@@ -16,17 +16,19 @@ class WeatherForecastScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Padding(
-            padding: EdgeInsets.only(bottom: 4.h),
-            child: const Text(
-              "Weather Forecast",
+    return SafeArea(
+      child: Scaffold(
+          appBar: AppBar(
+            title: Padding(
+              padding: EdgeInsets.only(bottom: 4.h),
+              child: const Text(
+                "Weather Forecast",
+              ),
             ),
+            leading: const GeneralIcon(),
           ),
-          leading: const GeneralIcon(),
-        ),
-        body: const WeatherForecastBody());
+          body: const WeatherForecastBody()),
+    );
   }
 }
 
@@ -90,8 +92,9 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
                 }
                 setState(() {});
               }),
-              child: Padding(
+              child: SingleChildScrollView(
                 padding: EdgeInsets.only(top: 10.h, left: 16.w, right: 16.w),
+                scrollDirection: Axis.horizontal,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

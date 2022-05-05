@@ -66,18 +66,6 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   late Future _future;
   @override
   Widget build(BuildContext context) {
-//        var mediaQuery = MediaQuery.of(context);
-// var physicalPixelWidth = mediaQuery.size.width * mediaQuery.devicePixelRatio;
-// var physicalPixelHeight = mediaQuery.size.height * mediaQuery.devicePixelRatio;
-//
-// var logicalPixelWidth = mediaQuery.size.width;
-// var logicalPixelHeight = mediaQuery.size.height;
-//
-// log(physicalPixelWidth.toString());
-// log(physicalPixelHeight.toString());
-// log(logicalPixelHeight.toString());
-// log(logicalPixelWidth.toString());
-
     return Column(children: [
       GestureDetector(
         onTap: () => getIsOnline(context)
@@ -98,7 +86,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
               vertical: 16.h * 1.5,
             ),
             padding: EdgeInsets.symmetric(horizontal: 14.w),
-            height: DeviceUtil.isMobile ? 46.h : 56.h,
+            height: DeviceUtil.isMobile ? 46.h : 60.h,
             width: MediaQuery.of(context).size.height,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

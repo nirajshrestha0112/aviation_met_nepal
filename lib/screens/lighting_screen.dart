@@ -10,17 +10,19 @@ class LightingData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const GeneralIcon(),
-        title: Padding(
-          padding: EdgeInsets.only(bottom: 4.h),
-          child: const Text(
-            "Lighting Data",
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: const GeneralIcon(),
+          title: Padding(
+            padding: EdgeInsets.only(bottom: 4.h),
+            child: const Text(
+              "Lighting Data",
+            ),
           ),
         ),
+        body: const LightingScreenBody(),
       ),
-      body: const LightingScreenBody(),
     );
   }
 }

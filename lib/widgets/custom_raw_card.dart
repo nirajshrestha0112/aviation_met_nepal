@@ -1,4 +1,5 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
+import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +39,8 @@ class CustomRawCard extends StatelessWidget {
             ),
             SizedBox(height: 2.h),
             ListView.separated(
-              padding: EdgeInsets.only(left: 8.w, bottom: 16.h),
+              padding: EdgeInsets.only(
+                  left: DeviceUtil.isMobile ? 8.w : 14.w, bottom: 16.h),
               primary: false,
               itemBuilder: (context, index) {
                 // log(rawBodyText.length.toString());

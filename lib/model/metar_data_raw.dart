@@ -26,8 +26,12 @@ class Data {
   Data({this.date, this.raw});
 
   Data.fromJson(Map<String, dynamic> json) {
-    date =json['Date'] != null ? json['Date'].cast<String>() : [];
-    raw = json['Raw'] != null ? json['Raw'].cast<String>() : ["No data available"]; 
+    // if (json['Error'] != null) {
+    //   throw "Something";
+    // }
+    date = json['Date'] != null ? json['Date'].cast<String>() : [];
+    raw = json['Raw'].cast<String>();
+    // : ["No data available"];
   }
 
   Map<String, dynamic> toJson() {

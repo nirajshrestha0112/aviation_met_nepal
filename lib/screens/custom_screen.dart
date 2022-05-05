@@ -14,7 +14,6 @@ import '../theme/theme.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/get_device_size.dart';
 import '../widgets/custom_floating_action_btn.dart';
-import '../widgets/custom_loading_indicator.dart';
 
 class CustomScreen extends StatelessWidget {
   const CustomScreen({Key? key, required this.screenName}) : super(key: key);
@@ -80,7 +79,7 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: DeviceUtil.isMobile ? 8.w : 4.w,
+                      width: DeviceUtil.isMobile ? 12.w : 4.w,
                     ),
                     const GeneralIcon(),
                     SizedBox(
@@ -115,29 +114,18 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                 //       ),
                 //     )),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                child: FutureBuilder(
-                  future: _future,
-                  builder: (context, AsyncSnapshot snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return SizedBox(
-                        height: MediaQuery.of(context).size.height / 1.3,
-                        child: const Center(child: CircularProgressIndicator.adaptive()),
-                      );
-                    }
+              FutureBuilder(
+                future: _future,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return SizedBox(
+                      height: MediaQuery.of(context).size.height / 1.3,
+                      child: const Center(
+                          child: CircularProgressIndicator.adaptive()),
+                    );
+                  }
 
-                    return SingleChildScrollView(
-                        child: Container(
-                      padding: EdgeInsets.only(
-                        top: 16.h,
-                        left: 16.w,
-                        bottom: 16.h,
-                      ),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8.w)),
+                  return SingleChildScrollView(
                       child: widget.screenName == "Gamet Data"
                           ? Consumer<GametDataProvider>(
                               builder: (_, value, __) {
@@ -148,7 +136,10 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                                             .textTheme
                                             .bodyText2,
                                       )
-                                    : const CustomErrorTab();
+                                    : CustomErrorTab(
+                                        height:
+                                            DeviceUtil.isMobile ? 230.h : 300.h,
+                                      );
                               },
                             )
                           : widget.screenName == "Airmet Data"
@@ -161,7 +152,11 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                                               .textTheme
                                               .bodyText2,
                                         )
-                                      : const CustomErrorTab();
+                                      : CustomErrorTab(
+                                          height: DeviceUtil.isMobile
+                                              ? 230.h
+                                              : 300.h,
+                                        );
                                 })
                               : widget.screenName == "Opmet Data"
                                   ? Consumer<OpmetDataProvider>(
@@ -173,13 +168,21 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                                                   .textTheme
                                                   .bodyText2,
                                             )
-                                          : const CustomErrorTab();
+                                          : CustomErrorTab(
+                                              height: DeviceUtil.isMobile
+                                                  ? 230.h
+                                                  : 300.h,
+                                            );
                                     })
                                   : widget.screenName == "Ashtams Data"
                                       ? Consumer<AshtamsDataProvider>(
                                           builder: (_, value, __) {
                                           return value.ashtamsData?.data == null
-                                              ? const CustomErrorTab()
+                                              ? CustomErrorTab(
+                                                  height: DeviceUtil.isMobile
+                                                      ? 230.h
+                                                      : 300.h,
+                                                )
                                               : Text(
                                                   value.ashtamsData!.data
                                                       .toString(),
@@ -188,10 +191,8 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                                                       .bodyText2,
                                                 );
                                         })
-                                      : const SizedBox.shrink(),
-                    ));
-                  },
-                ),
+                                      : const SizedBox.shrink());
+                },
               )
             ])),
           ),

@@ -64,64 +64,67 @@ class _DetailsScreenState extends State<DetailsScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: const CustomFloatingActionBtn(),
-      appBar: AppBar(
-        leadingWidth: !DeviceUtil.isMobile ? 4.w : 0.0,
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: const CustomFloatingActionBtn(),
+        appBar: AppBar(
+          leadingWidth: !DeviceUtil.isMobile ? 4.w : 0.0,
 
-        toolbarHeight: !DeviceUtil.isMobile ? 116.h : 88.h,
-        title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(children: [
-            GeneralIcon(isPadding: EdgeInsets.only(right: 18.w)),
+          toolbarHeight: !DeviceUtil.isMobile ? 116.h : 88.h,
+          title:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(children: [
+              GeneralIcon(isPadding: EdgeInsets.only(right: 18.w)),
+              SizedBox(
+                width: 300.w,
+                child: AutoSizeText(
+                  "${widget.data!.ident} ${widget.data!.name}",
+                  minFontSize: 14,
+                  // maxFontSize: 16.sp,
+                  style: const TextStyle(overflow: TextOverflow.ellipsis),
+                ),
+              ),
+            ]),
             SizedBox(
-              width: 300.w,
-              child: AutoSizeText(
-                "${widget.data!.ident} ${widget.data!.name}",
-                minFontSize: 14,
-                // maxFontSize: 16.sp,
-                style: const TextStyle(overflow: TextOverflow.ellipsis),
+              height: 10.h,
+            ),
+            SizedBox(
+              height: DeviceUtil.isMobile ? 36.h : 56.h,
+              child: TabBar(
+                // padding: EdgeInsets.all(2),
+                unselectedLabelStyle:
+                    TextStyle(fontSize: !DeviceUtil.isMobile ? 14.sp : 11.5.sp),
+                indicatorPadding: EdgeInsets.symmetric(
+                  vertical: DeviceUtil.isMobile ? 0.h : 4.h,
+                  horizontal: DeviceUtil.isMobile ? 0.w : 4.w,
+                ),
+                // labelStyle: TextStyle(fontSize: 32.sp),
+
+                controller: _tabController,
+                tabs: _tabs,
               ),
             ),
           ]),
-          SizedBox(
-            height: 10.h,
-          ),
-          SizedBox(
-            height: DeviceUtil.isMobile ? 36.h : 56.h,
-            child: TabBar(
-              // padding: EdgeInsets.all(2),
-              unselectedLabelStyle:
-                  TextStyle(fontSize: !DeviceUtil.isMobile ? 14.sp : 11.5.sp),
-              indicatorPadding: EdgeInsets.symmetric(
-                vertical: DeviceUtil.isMobile ? 0.h : 4.h,
-                horizontal: DeviceUtil.isMobile ? 0.w : 4.w,
-              ),
-              // labelStyle: TextStyle(fontSize: 32.sp),
-
+          // leading: GeneralIcon(isPadding: EdgeInsets.only(right: 18.w)),
+          // bottom: TabBar(
+          //   indicatorPadding: EdgeInsets.symmetric(
+          //       vertical: DeviceUtil.isMobile
+          //           ? SizeConfig.heightMultiplier * 0.5
+          //           : SizeConfig.heightMultiplier * 0.8,
+          //       horizontal: DeviceUtil.isMobile
+          //           ? SizeConfig.widthMultiplier * 2.0
+          //           : SizeConfig.widthMultiplier * 4.0),
+          //   controller: _tabController,
+          //   tabs: _tabs,
+          // ),
+        ),
+        body: ScrollConfiguration(
+            behavior: MyBehavior(),
+            child: TabBarView(
               controller: _tabController,
-              tabs: _tabs,
-            ),
-          ),
-        ]),
-        // leading: GeneralIcon(isPadding: EdgeInsets.only(right: 18.w)),
-        // bottom: TabBar(
-        //   indicatorPadding: EdgeInsets.symmetric(
-        //       vertical: DeviceUtil.isMobile
-        //           ? SizeConfig.heightMultiplier * 0.5
-        //           : SizeConfig.heightMultiplier * 0.8,
-        //       horizontal: DeviceUtil.isMobile
-        //           ? SizeConfig.widthMultiplier * 2.0
-        //           : SizeConfig.widthMultiplier * 4.0),
-        //   controller: _tabController,
-        //   tabs: _tabs,
-        // ),
+              children: _views,
+            )),
       ),
-      body: ScrollConfiguration(
-          behavior: MyBehavior(),
-          child: TabBarView(
-            controller: _tabController,
-            children: _views,
-          )),
     );
   }
 }
