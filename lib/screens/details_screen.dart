@@ -68,7 +68,7 @@ class _DetailsScreenState extends State<DetailsScreen>
       appBar: AppBar(
         leadingWidth: !DeviceUtil.isMobile ? 4.w : 0.0,
 
-        toolbarHeight: !DeviceUtil.isMobile ? 110.h : 84.h,
+        toolbarHeight: !DeviceUtil.isMobile ? 110.h : 90.h,
         title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
             GeneralIcon(isPadding: EdgeInsets.only(right: 18.w)),
@@ -86,7 +86,7 @@ class _DetailsScreenState extends State<DetailsScreen>
             height: 10.h,
           ),
           SizedBox(
-            height: DeviceUtil.isMobile ? 30.h : 50.h,
+            height: DeviceUtil.isMobile ? 44.h : 50.h,
             child: TabBar(
               // padding: EdgeInsets.all(2),
               unselectedLabelStyle:

@@ -18,7 +18,7 @@ class EachText extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .bodyText1!
-              .copyWith(fontWeight: FontWeight.w400,fontSize: 19.sp)),
+              .copyWith(fontWeight: FontWeight.w400,fontSize: 18.sp)),
     );
   }
 }

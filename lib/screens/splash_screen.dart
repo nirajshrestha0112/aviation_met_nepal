@@ -57,8 +57,8 @@ class SplashScreenBody extends StatelessWidget {
       ),
       DeviceUtil.isMobile
           ? Positioned(
-              left: 140.h,
-              top: 350.h,
+              left: 160.h,
+              top: 380.h,
               child: Image.asset(
                 gifImg,
                 height: 60.h,

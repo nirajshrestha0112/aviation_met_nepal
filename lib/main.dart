@@ -92,7 +92,7 @@ class MyApp extends StatelessWidget {
             theme: theme(context),
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            initialRoute: homeRoute,
+            initialRoute: splashRoute,
             // home: HomeScreen(),
             routes: {
               splashRoute: (context) => const SplashScreen(),
@@ -127,17 +127,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-// Future<void> downloadFileFTP(FTPConnect ftpConnect) async{
-//     try {
-//       bool bRes = await ftpConnect.connect();
-//       _fileMock('/Meteorological Forecasting Division');
-//       await ftpConnect!.downloadFileWithRetry('FL 390.gif', file!, pRetryCount: 1);
-//       print('path2 : ${file!.path}');
-//       await ftpConnect!.disconnect();
-
-//       print('file Name : ${file!}');
-//     }catch(e){
-//       print('Error : ${e.toString()}');
-//     }
-// }
