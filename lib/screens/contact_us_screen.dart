@@ -40,6 +40,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
     super.initState();
   }
 
+  String phoneNumber = "+97714486869";
   late Future _future;
   bool isViewMore = false;
 
@@ -162,10 +163,9 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                   ),
                   BuildRowWidget(
                       icon: Icons.phone,
-                      getText: "+97714486869",
+                      getText: phoneNumber,
                       onTap: () {
-                        ShowFabSheet.launchUrl(
-                            getPhoneUrl(phone: "+977144868699"));
+                        ShowFabSheet.launchUrl(getPhoneUrl(phone: phoneNumber));
                       }),
                   SizedBox(height: 6.h),
                   BuildRowWidget(
