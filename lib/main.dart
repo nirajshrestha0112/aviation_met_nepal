@@ -84,7 +84,7 @@ class MyApp extends StatelessWidget {
           builder: (_) => MaterialApp(
             scaffoldMessengerKey: messengerKey,
             builder: (BuildContext context, Widget? child) {
-              ScreenUtil.setContext(context);
+              ScreenUtil.init(context);
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
                 child: child!,
