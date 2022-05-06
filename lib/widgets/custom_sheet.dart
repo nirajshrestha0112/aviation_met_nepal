@@ -166,7 +166,7 @@ class ShowFabSheet {
                             "Menu",
                             style:
                                 Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 19.sp,
+                                      fontSize: 20.sp,
                                       fontWeight: FontWeight.w500,
                                     ),
                           ),
@@ -637,6 +637,7 @@ class ShowLocationSheet {
                                                     .textTheme
                                                     .bodyText1!
                                                     .copyWith(
+                                                      fontSize:18.sp,
                                                         color: const Color(
                                                             colorPrimary)),
                                               ),
@@ -650,7 +651,7 @@ class ShowLocationSheet {
                                                   style: TextStyle(
                                                     color: const Color(
                                                         colorNavy50),
-                                                    fontSize: 16.sp,
+                                                    fontSize: 18.sp,
                                                   ),
                                                 ),
                                               ),
