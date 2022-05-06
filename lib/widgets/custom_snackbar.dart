@@ -1,13 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../utils/get_device_size.dart';
 
 class CustomSnackBar {
   static customSnackBar(
       {required String statusText,
       required String message,
-      Color? circleAvatarbgColor,
+      Color? circleAvatarBgColor,
       Color? bgColor,
       Color? iconColor,
       CrossAxisAlignment? crossAxisAlignment,
@@ -20,15 +21,15 @@ class CustomSnackBar {
       backgroundColor: bgColor ?? Colors.transparent,
       // duration: Duration(minutes: 2),
       content: SizedBox(
-        height: DeviceUtil.isMobile?34.h:48.h,
+        height: DeviceUtil.isMobile ? 38.h : 48.h,
         width: double.infinity,
         child: Row(
             // mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: crossAxisAlignment??CrossAxisAlignment.start,
+            crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
             children: [
               CircleAvatar(
                 radius: 13.w,
-                backgroundColor: circleAvatarbgColor ?? Colors.transparent,
+                backgroundColor: circleAvatarBgColor ?? Colors.transparent,
                 child: Icon(
                   icon ?? Icons.done,
                   color: iconColor ?? Colors.transparent,

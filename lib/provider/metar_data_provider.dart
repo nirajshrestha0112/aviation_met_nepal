@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import '../model/metar_data_raw.dart';
+
 import '../model/metar_data_decoded.dart';
+import '../model/metar_data_raw.dart';
 /* 
 MetarDataRaw parsedMetarDataRaw(String response) {
   log("message");
@@ -44,6 +46,12 @@ class MetarDataProvider extends ChangeNotifier {
     //
   }
 
+  resetMetarData() {
+    metarDataDecoded = null;
+    metarDataRaw = null;
+    notifyListeners();
+  }
+
   addRawData({
     required String ident,
     required String filteredData,
@@ -52,6 +60,8 @@ class MetarDataProvider extends ChangeNotifier {
       final url = Uri.parse(metaDataRawUrl + ident + "/" + filteredData);
       log(url.toString());
       http.Response response = await http.get(url);
+      log(response.body);
+      log(response.statusCode.toString(), name: "codeForRaw");
       if (response.statusCode == 200) {
         // metarDataRaw = await compute(parsedMetarDataRaw, response.body);
         metarDataRaw = MetarDataRaw.fromJson(jsonDecode(response.body));
@@ -62,7 +72,7 @@ class MetarDataProvider extends ChangeNotifier {
         throw Exception("Failed to load data");
       }
     } catch (e) {
-      // log(e.toString());
+      log(e.toString(), name: "errorForRaw");
       metarDataRaw = null;
     }
   }
@@ -97,6 +107,9 @@ class MetarDataProvider extends ChangeNotifier {
       final url = Uri.parse(metaDataDecodedUrl + ident + "/" + filteredData);
       log(url.toString());
       http.Response response = await http.get(url);
+      log(response.body);
+
+      log(response.statusCode.toString(), name: "codeForDecoded");
 // debugger();
       if (response.statusCode == 200) {
         if (jsonDecode(response.body)['status'] == 'error') {
@@ -109,7 +122,7 @@ class MetarDataProvider extends ChangeNotifier {
         throw jsonDecode(response.body)['message'];
       }
     } catch (e) {
-      log(e.toString());
+      log(e.toString(), name: "error");
       metarDataDecoded = null;
     }
   }

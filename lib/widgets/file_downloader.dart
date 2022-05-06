@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:aviation_met_nepal/utils/secure_storage.dart';
 import 'package:ftpconnect/ftpconnect.dart';
 import 'package:path_provider/path_provider.dart';
@@ -9,7 +10,7 @@ class FileDownloader {
   FTPConnect? ftpConnect;
 
   Future<void> _fileMock(String strFileName) async {
-    final Directory? appDocDir = await getExternalStorageDirectory();
+    final Directory? appDocDir = await getApplicationDocumentsDirectory();
     if (appDocDir != null) {
       String appDocPath = appDocDir.path;
       file = File('$appDocPath/$strFileName');

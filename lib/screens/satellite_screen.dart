@@ -2,10 +2,12 @@ import 'package:aviation_met_nepal/provider/satellite_image_provider.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../utils/custom_scroll_behavior.dart';
-import '../widgets/custom_floating_action_btn.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+import '../utils/custom_scroll_behavior.dart';
+import '../utils/get_device_size.dart';
+import '../widgets/custom_floating_action_btn.dart';
 import '../widgets/general_icon.dart';
 
 class SatelliteScreen extends StatelessWidget {
@@ -61,7 +63,8 @@ class _SatelliteScreenBodyState extends State<SatelliteScreenBody> {
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       {
-                        return const Center(child: CircularProgressIndicator.adaptive());
+                        return const Center(
+                            child: CircularProgressIndicator.adaptive());
                       }
                     }
 
@@ -88,10 +91,8 @@ class _SatelliteScreenBodyState extends State<SatelliteScreenBody> {
                               ),
                             ),
                           )
-                        :  CustomErrorTab(
-                          height: 160.h,
-                          // margin:EdgeInsets.only(bottom: 100.h),
-                            // margin: false,
+                        : CustomErrorTab(
+                            height: DeviceUtil.isMobile ? 230.h : 300.h,
                           );
                   })),
         ));

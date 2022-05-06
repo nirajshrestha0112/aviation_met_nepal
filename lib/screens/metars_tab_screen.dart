@@ -1,13 +1,13 @@
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
 import '../constant/colors_properties.dart';
 import '../model/airport_list.dart';
 import '../provider/metar_data_provider.dart';
 import '../utils/get_device_size.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../widgets/custom_build_row.dart';
 import '../widgets/custom_raw_card.dart';
 
@@ -29,19 +29,23 @@ class _MetarsTabState extends State<MetarsTab> {
   //
 
   metarDataRawDecoded(String filteredData, {bool shouldReload = false}) async {
-    await Provider.of<MetarDataProvider>(context, listen: false)
-        .fetchMetarDataRaw(
-            ident: widget.metarData!.ident,
-            filteredData: filteredData,
-            shouldLoadRaw: shouldReload);
-    await Provider.of<MetarDataProvider>(context, listen: false)
-        .fetchMetarDataDecoded(
-            ident: widget.metarData!.ident,
-            filteredData: filteredData,
-            shouldLoadDecoded: shouldReload);
-    setState(() {
-      isLoadingIndicator = true;
-    });
+    try {
+      await Provider.of<MetarDataProvider>(context, listen: false)
+          .fetchMetarDataRaw(
+              ident: widget.metarData!.ident,
+              filteredData: filteredData,
+              shouldLoadRaw: shouldReload);
+      await Provider.of<MetarDataProvider>(context, listen: false)
+          .fetchMetarDataDecoded(
+              ident: widget.metarData!.ident,
+              filteredData: filteredData,
+              shouldLoadDecoded: shouldReload);
+      setState(() {
+        isLoadingIndicator = true;
+      });
+    } catch (ex) {
+      Provider.of<MetarDataProvider>(context, listen: false).resetMetarData();
+    }
     //
   }
 
@@ -56,23 +60,23 @@ class _MetarsTabState extends State<MetarsTab> {
   late Future _future;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-      child: FutureBuilder(
-        future: _future,
-        builder: (context, AsyncSnapshot snapshot) {
-          if (isLoadingIndicator == false) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator.adaptive());
-            }
+    return FutureBuilder(
+      future: _future,
+      builder: (context, AsyncSnapshot snapshot) {
+        if (isLoadingIndicator == false) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator.adaptive());
           }
-          if (Provider.of<MetarDataProvider>(context, listen: false)
-                      .metarDataRaw !=
-                  null &&
-              Provider.of<MetarDataProvider>(context, listen: false)
-                      .metarDataDecoded !=
-                  null) {
-            return SingleChildScrollView(
+        }
+        if (Provider.of<MetarDataProvider>(context, listen: false)
+                    .metarDataRaw !=
+                null &&
+            Provider.of<MetarDataProvider>(context, listen: false)
+                    .metarDataDecoded !=
+                null) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
               child: Column(
                 children: [
                   Row(
@@ -129,17 +133,22 @@ class _MetarsTabState extends State<MetarsTab> {
                     height: 10.h,
                   ),
                   CustomRawCard(
-                      rawHeaderText: "Raw",
-                      rawBodyText:
-                          Provider.of<MetarDataProvider>(context, listen: false)
-                                      .metarDataRaw !=
-                                  null
-                              ? Provider.of<MetarDataProvider>(context,
-                                      listen: false)
-                                  .metarDataRaw!
-                                  .data!
-                                  .raw!
-                              : ["No Data available"]),
+                    rawHeaderText: "Raw",
+                    rawBodyText:
+                        Provider.of<MetarDataProvider>(context, listen: false)
+                            .metarDataRaw!
+                            .data!
+                            .raw!,
+                  ),
+                  // Provider.of<MetarDataProvider>(context, listen: false)
+                  //             .metarDataRaw !=
+                  //         null
+                  //     ? Provider.of<MetarDataProvider>(context,
+                  //             listen: false)
+                  //         .metarDataRaw!
+                  //         .data!
+                  //         .raw!
+                  //     : ["No Data available"]),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -254,14 +263,15 @@ class _MetarsTabState extends State<MetarsTab> {
                   ),
                 ],
               ),
-            );
-          } else {
-            return CustomErrorTab(
-              margin: EdgeInsets.only(bottom: 410.h),
-            );
-          }
-        },
-      ),
+            ),
+          );
+        } else {
+          return CustomErrorTab(
+            margin:
+                EdgeInsets.only(bottom: DeviceUtil.isMobile ? 430.h : 350.h),
+          );
+        }
+      },
     );
   }
 }

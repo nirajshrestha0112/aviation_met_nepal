@@ -7,6 +7,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+
 import '../utils/get_device_size.dart';
 import '../widgets/custom_sheet.dart';
 import '../widgets/general_icon.dart';
@@ -79,7 +80,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
-                width: DeviceUtil.isMobile ? 8.w : 4.w,
+                width: DeviceUtil.isMobile ? 12.w : 4.w,
               ),
               const GeneralIcon(),
               SizedBox(
@@ -227,7 +228,8 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return const Center(child: CircularProgressIndicator.adaptive());
+                          return const Center(
+                              child: CircularProgressIndicator.adaptive());
                         }
                         return Column(
                             mainAxisSize: MainAxisSize.min,

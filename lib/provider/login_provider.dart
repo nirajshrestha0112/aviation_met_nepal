@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/constants.dart';
 import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:aviation_met_nepal/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
 import '../constant/routes.dart';
 import '../widgets/custom_snackbar.dart';
 
@@ -37,7 +39,7 @@ class LoginProvider extends ChangeNotifier {
               crossAxisAlignment: CrossAxisAlignment.center,
               icon: Icons.close,
               bgColor: Colors.red,
-              circleAvatarbgColor: Colors.white,
+              circleAvatarBgColor: Colors.white,
               iconColor: Colors.red);
 
           ScaffoldMessenger.of(context).showSnackBar(errorSnackBar);
@@ -50,10 +52,10 @@ class LoginProvider extends ChangeNotifier {
           loginName = data["LOGIN_NAME"];
           userId = data["USERID"];
           final SnackBar successMessage = CustomSnackBar.customSnackBar(
-              circleAvatarbgColor: Colors.white,
+              circleAvatarBgColor: Colors.white,
               iconColor: Colors.green,
               bgColor: Colors.green,
-              crossAxisAlignment:CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               message: jsonDecode(response.body)["message"],
               statusText: jsonDecode(response.body)["status"]
                   .toString()

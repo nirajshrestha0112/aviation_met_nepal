@@ -1,8 +1,10 @@
-import 'package:aviation_met_nepal/widgets/file_downloader.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
+import 'package:aviation_met_nepal/widgets/file_downloader.dart';
 import 'package:flutter/material.dart';
-import '../widgets/custom_floating_action_btn.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../utils/get_device_size.dart';
+import '../widgets/custom_floating_action_btn.dart';
 import '../widgets/general_icon.dart';
 
 class WindChartScreen extends StatelessWidget {
@@ -17,7 +19,7 @@ class WindChartScreen extends StatelessWidget {
             title: Padding(
               padding: EdgeInsets.only(bottom: 4.h),
               child: const Text(
-                "Wind Chart Image",
+                "Wind Chart",
               ),
             ),
           ),
@@ -37,7 +39,7 @@ class WindChartScreenBody extends StatefulWidget {
 }
 
 class _WindChartScreenBodyState extends State<WindChartScreenBody> {
- /*  Future<void> _pulltoRefresh() async {
+  /*  Future<void> _pulltoRefresh() async {
     setState(() {});
   } */
   /*  void initState() {
@@ -69,7 +71,9 @@ class _WindChartScreenBodyState extends State<WindChartScreenBody> {
                     child: Image.file(windFiles.file!)),
               );
             }
-            return const CustomErrorTab();
+            return CustomErrorTab(
+              height: DeviceUtil.isMobile ? 230.h : 300.h,
+            );
           }
           return const Center(child: CircularProgressIndicator.adaptive());
         });

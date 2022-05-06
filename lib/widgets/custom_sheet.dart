@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
@@ -16,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../provider/weather_forecast_provider.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/get_device_size.dart';
@@ -140,7 +142,7 @@ class ShowFabSheet {
       builder: (_) {
         return DraggableScrollableSheet(
           expand: false,
-          maxChildSize: 0.967,
+          maxChildSize: 0.95,
           initialChildSize: 0.7,
           builder: (_, controller) {
             return Column(children: [
@@ -305,7 +307,7 @@ class ShowFabSheet {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           bgColor: Colors.red,
-                                          circleAvatarbgColor: Colors.white,
+                                          circleAvatarBgColor: Colors.white,
                                           iconColor: Colors.red,
                                           statusText: "Error",
                                           message:
@@ -318,7 +320,7 @@ class ShowFabSheet {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           bgColor: Colors.red,
-                                          circleAvatarbgColor: Colors.white,
+                                          circleAvatarBgColor: Colors.white,
                                           iconColor: Colors.red,
                                           statusText: "Error",
                                           message:
@@ -331,7 +333,7 @@ class ShowFabSheet {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           bgColor: Colors.red,
-                                          circleAvatarbgColor: Colors.white,
+                                          circleAvatarBgColor: Colors.white,
                                           iconColor: Colors.red,
                                           statusText: "Error",
                                           message:
@@ -343,7 +345,7 @@ class ShowFabSheet {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           bgColor: Colors.red,
-                                          circleAvatarbgColor: Colors.white,
+                                          circleAvatarBgColor: Colors.white,
                                           iconColor: Colors.red,
                                           statusText: "Error",
                                           message:
@@ -366,7 +368,7 @@ class ShowFabSheet {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         bgColor: Colors.red,
-                                        circleAvatarbgColor: Colors.white,
+                                        circleAvatarBgColor: Colors.white,
                                         iconColor: Colors.red,
                                         statusText: "Error",
                                         message:
@@ -379,7 +381,7 @@ class ShowFabSheet {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         bgColor: Colors.red,
-                                        circleAvatarbgColor: Colors.white,
+                                        circleAvatarBgColor: Colors.white,
                                         iconColor: Colors.red,
                                         statusText: "Error",
                                         message:
@@ -391,7 +393,7 @@ class ShowFabSheet {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         bgColor: Colors.red,
-                                        circleAvatarbgColor: Colors.white,
+                                        circleAvatarBgColor: Colors.white,
                                         iconColor: Colors.red,
                                         statusText: "Error",
                                         message:
@@ -595,7 +597,9 @@ class ShowLocationSheet {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return const Center(child: CircularProgressIndicator.adaptive());
+                                return const Center(
+                                    child:
+                                        CircularProgressIndicator.adaptive());
                               }
                               return Consumer<AirportListProvider>(
                                   builder: (_, value, __) {
@@ -626,7 +630,7 @@ class ShowLocationSheet {
                                               minVerticalPadding:
                                                   DeviceUtil.isMobile
                                                       ? null
-                                                      : 24.h,
+                                                      : 28.h,
                                               leading: Text(
                                                 value.searchData[i].ident,
                                                 style: Theme.of(context)
@@ -719,7 +723,7 @@ class ShowFilterSheet {
                   ),
                   Container(
                     // height: 150.h,
-                    height: !DeviceUtil.isMobile ? 56.h : null,
+                    height: !DeviceUtil.isMobile ? 60.h : null,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.w),
@@ -786,9 +790,6 @@ class ShowWeatherForecastCities {
                   obscureText: false,
                   controller: editingController,
                 ),
-                SizedBox(
-                  height: 6.h,
-                ),
                 Expanded(
                     child: ScrollConfiguration(
                   behavior: MyBehavior(),
@@ -801,7 +802,8 @@ class ShowWeatherForecastCities {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return const Center(child: CircularProgressIndicator.adaptive());
+                              return const Center(
+                                  child: CircularProgressIndicator.adaptive());
                             }
                             return Consumer<CitiesProvider>(
                                 builder: (_, value, __) {
@@ -817,38 +819,47 @@ class ShowWeatherForecastCities {
                                           .searchWeatherForecastData.length,
                                       itemBuilder: (c, i) {
                                         return GestureDetector(
-                                          onTap: () async {
-                                            await Provider.of<
-                                                        WeatherForecastProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .fetchWeatherForecast(
-                                                    id: value
-                                                        .searchWeatherForecastData[
-                                                            i]
-                                                        .id);
-                                            Navigator.pop(
-                                                context,
-                                                value
-                                                    .searchWeatherForecastData[
-                                                        i]
-                                                    .description);
-                                          },
-                                          child: ListTile(
-                                            contentPadding:
-                                                EdgeInsets.only(left: 4.w),
-                                            leading: Text(
-                                              value.searchWeatherForecastData[i]
-                                                  .description,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1!
-                                                  .copyWith(
-                                                      color: const Color(
-                                                          colorPrimary)),
-                                            ),
-                                          ),
-                                        );
+                                            onTap: () async {
+                                              await Provider.of<
+                                                          WeatherForecastProvider>(
+                                                      context,
+                                                      listen: false)
+                                                  .fetchWeatherForecast(
+                                                      id: value
+                                                          .searchWeatherForecastData[
+                                                              i]
+                                                          .id);
+                                              Navigator.pop(
+                                                  context,
+                                                  value
+                                                      .searchWeatherForecastData[
+                                                          i]
+                                                      .description);
+                                            },
+                                            // child: ListTile(
+                                            //   // minVerticalPadding:
+                                            //   //     !DeviceUtil.isMobile
+                                            //   //         ? 24.h
+                                            //   //         : 0.h,
+                                            //   contentPadding:
+                                            //       EdgeInsets.only(left: 4.w),
+                                            //   leading:
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 16.h, left: 4.h),
+                                              child: Text(
+                                                  value
+                                                      .searchWeatherForecastData[
+                                                          i]
+                                                      .description,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText1!
+                                                      .copyWith(
+                                                          fontSize: 18.sp,
+                                                          color: const Color(
+                                                              colorPrimary))),
+                                            ));
                                       });
                             });
                           }),

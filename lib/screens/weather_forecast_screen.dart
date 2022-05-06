@@ -3,29 +3,32 @@ import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
 import '../constant/colors_properties.dart';
 import '../constant/images.dart';
 import '../widgets/general_icon.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WeatherForecastScreen extends StatelessWidget {
   const WeatherForecastScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Padding(
-            padding: EdgeInsets.only(bottom: 4.h),
-            child: const Text(
-              "Weather Forecast",
+    return SafeArea(
+      child: Scaffold(
+          appBar: AppBar(
+            title: Padding(
+              padding: EdgeInsets.only(bottom: 4.h),
+              child: const Text(
+                "Weather Forecast",
+              ),
             ),
+            leading: const GeneralIcon(),
           ),
-          leading: const GeneralIcon(),
-        ),
-        body: const WeatherForecastBody());
+          body: const WeatherForecastBody()),
+    );
   }
 }
 
@@ -68,7 +71,7 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
       behavior: MyBehavior(),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-        height: DeviceUtil.isMobile ? 230.h : 280.h,
+        height: DeviceUtil.isMobile ? 240.h : 280.h,
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color(colorWhite),
@@ -89,8 +92,9 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
                 }
                 setState(() {});
               }),
-              child: Padding(
+              child: SingleChildScrollView(
                 padding: EdgeInsets.only(top: 10.h, left: 16.w, right: 16.w),
+                scrollDirection: Axis.horizontal,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
