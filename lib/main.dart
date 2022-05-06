@@ -14,10 +14,13 @@ import 'package:aviation_met_nepal/screens/contact_us_screen.dart';
 import 'package:aviation_met_nepal/screens/custom_screen.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
+import 'package:aviation_met_nepal/screens/icing_turbulence_screen.dart';
 import 'package:aviation_met_nepal/screens/lighting_screen.dart';
 import 'package:aviation_met_nepal/screens/login_screen.dart';
+import 'package:aviation_met_nepal/screens/notifications_screen.dart';
 import 'package:aviation_met_nepal/screens/satellite_screen.dart';
 import 'package:aviation_met_nepal/screens/sigwx_chart_screen.dart';
+import 'package:aviation_met_nepal/screens/weather_camera_images_screen.dart';
 import 'package:aviation_met_nepal/screens/weather_forecast_screen.dart';
 import 'package:aviation_met_nepal/screens/wind_chart_screen.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
@@ -93,21 +96,20 @@ class MyApp extends StatelessWidget {
             theme: theme(context),
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            initialRoute: homeRoute,
-            // home: SplashScreen(),
+            initialRoute: splashRoute,
             routes: {
               splashRoute: (context) => const SplashScreen(),
               '/sigwx': (context) => const SigwxChartScreen(),
-              // '/custom': (context) => const SplashScreen(),
-              // '/test': (context) => const CustomGrad(),
               homeRoute: (context) => const HomeScreen(),
               detailsRoute: (context) => const DetailsScreen(),
               contactRoute: (context) => const ContactUs(),
               loginRoute: (context) => const LoginPage(),
               lightingDataRoute: (context) => const LightingData(),
-              notificationRoute: (context) => const Scaffold(),
-              icingTurbulenceChartRoute: (context) => const Scaffold(),
-              weatherCameraImagesRoute: (context) => const Scaffold(),
+              notificationRoute: (context) => const NotificationScreen(),
+              icingTurbulenceChartRoute: (context) =>
+                  const IcingTurbulenceScreen(),
+              weatherCameraImagesRoute: (context) =>
+                  const WeatherCameraImagesScreen(),
               satelliteImageDataRoute: (context) => const SatelliteScreen(),
               windChartRoute: (context) => const WindChartScreen(),
               sigwxChartRoute: (context) => const SigwxChartScreen(),
