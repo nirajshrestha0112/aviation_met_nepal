@@ -574,11 +574,13 @@ class ShowLocationSheet {
               child: Column(children: [
                 const ModalSheetHeader(),
                 SizedBox(
-                  height: 6.h,
+                  height: DeviceUtil.isMobile ? 6.h : 16.h,
                 ),
                 GeneralTextFormField(
                   suffixIconsSize: 25.w,
-                  contextPadding: EdgeInsets.only(left: 8.w),
+                  contextPadding: EdgeInsets.only(
+                    left: 5.w,
+                  ),
                   prefixIconsPadding: false,
                   suffixIcons: Icons.search,
                   hintText: "Search Airport",
@@ -605,7 +607,7 @@ class ShowLocationSheet {
                                   builder: (_, value, __) {
                                 return value.searchData.isEmpty
                                     ? Align(
-                                        alignment: Alignment.topCenter,
+                                        alignment: Alignment.center,
                                         child: Text("No Airport Data Found",
                                             style: TextStyle(
                                                 color: const Color(colorGrey20),
@@ -637,7 +639,7 @@ class ShowLocationSheet {
                                                     .textTheme
                                                     .bodyText1!
                                                     .copyWith(
-                                                      fontSize:18.sp,
+                                                        fontSize: 18.sp,
                                                         color: const Color(
                                                             colorPrimary)),
                                               ),

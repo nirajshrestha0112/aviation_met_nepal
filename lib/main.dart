@@ -93,7 +93,7 @@ class MyApp extends StatelessWidget {
             theme: theme(context),
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            initialRoute: splashRoute,
+            initialRoute: homeRoute,
             // home: SplashScreen(),
             routes: {
               splashRoute: (context) => const SplashScreen(),

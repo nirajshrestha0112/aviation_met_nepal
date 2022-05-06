@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +44,6 @@ class _GeneralTextFormFieldState extends State<GeneralTextFormField> {
   final FocusNode _focusNod = FocusNode();
   @override
   Widget build(BuildContext context) {
-    
     return TextFormField(
       validator: widget.validator,
       controller: widget.controller,
@@ -65,8 +62,8 @@ class _GeneralTextFormFieldState extends State<GeneralTextFormField> {
         prefixIcon: widget.prefixIconsPadding
             ? Padding(
                 padding: EdgeInsets.only(
-                    bottom: DeviceUtil.isMobile ? 4.h : 8.h,
-                    left: DeviceUtil.isMobile ? 0.w : 4.w),
+                  bottom: DeviceUtil.isMobile ? 4.h : 8.h,
+                ),
                 child: Icon(
                   widget.prefixIcons,
                   color: const Color(colorDarkBlue).withOpacity(0.85),
@@ -77,22 +74,23 @@ class _GeneralTextFormFieldState extends State<GeneralTextFormField> {
         suffixIcon: widget.obscureText
             ? GestureDetector(
                 onTap: _togglePasswordShow,
-                child: Padding(
-                  padding:
-                      EdgeInsets.only(right: DeviceUtil.isMobile ? 0.w : 8.w),
-                  child: Icon(
-                    widget.suffixIcons ?? Icons.visibility,
-                    size: widget.suffixIconsSize ?? 20.w,
-                    color: isHiddenPassword
-                        ? const Color(colorGrey10)
-                        : const Color(colorPrimary),
-                  ),
+                child: Icon(
+                  widget.suffixIcons ?? Icons.visibility,
+                  size: widget.suffixIconsSize ?? 20.w,
+                  color: isHiddenPassword
+                      ? const Color(colorGrey10)
+                      : const Color(colorPrimary),
                 ),
               )
             : widget.suffixIcons != null
-                ? Icon(
-                    widget.suffixIcons ?? Icons.visibility,
-                    size: widget.suffixIconsSize ?? 20.w,
+                ? IconButton(
+                    icon: Icon(
+                      widget.suffixIcons ?? Icons.visibility,
+                      size: widget.suffixIconsSize ?? 20.w,
+                    ),
+                    alignment: Alignment.centerRight,
+                    onPressed: () {},
+                    padding: EdgeInsets.zero,
                     color: const Color(colorPrimary),
                   )
                 : null,
