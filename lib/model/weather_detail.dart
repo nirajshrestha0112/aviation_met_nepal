@@ -1,4 +1,4 @@
-
+import 'dart:developer';
 
 class WeatherForecast {
   WeatherForecast({
@@ -32,11 +32,14 @@ class Data {
   final Map<String, dynamic> params;
   // final Warning warning;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        areainfo: Areainfo.fromJson(json["areainfo"]),
-        params: json["params"],
-        // warning: Warning.fromJson(json["warning"]),
-      );
+  factory Data.fromJson(Map<String, dynamic> json) {
+    return Data(
+      areainfo: Areainfo.fromJson(json["areainfo"]),
+   
+      params: json["params"],
+      // warning: Warning.fromJson(json["warning"]),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "areainfo": areainfo.toJson(),
@@ -176,8 +179,8 @@ class WeatherTemperature {
 
   factory WeatherTemperature.fromJson(Map<String, dynamic> json) =>
       WeatherTemperature(
-        c: json["C"]??"",
-        f: json["F"]??"",
+        c: json["C"] ?? "",
+        f: json["F"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -194,7 +197,7 @@ class Humidity {
   final String percentage;
 
   factory Humidity.fromJson(Map<String, dynamic> json) => Humidity(
-        percentage: json["%"]??"",
+        percentage: json["%"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -205,7 +208,8 @@ class Humidity {
 class Rain {
   Rain({required this.mm});
   final String mm;
-  factory Rain.fromJson(Map<String, dynamic> json) => Rain(mm: json['mm']??"");
+  factory Rain.fromJson(Map<String, dynamic> json) =>
+      Rain(mm: json['mm'] ?? "");
   Map<String, dynamic> toJson() => {"mm": mm};
 }
 
@@ -220,21 +224,31 @@ class WindSpeed {
   final String kt;
   final String ms;
   factory WindSpeed.fromJson(Map<String, dynamic> json) => WindSpeed(
-      kph: json['KPH']??"", kt: json['kt']??"", mph: json['MPH']??"", ms: json['MS']??"");
+      kph: json['KPH'] ?? "",
+      kt: json['kt'] ?? "",
+      mph: json['MPH'] ?? "",
+      ms: json['MS'] ?? "");
   Map<String, dynamic> toJson() => {"KPH": kph, 'MPH': mph, 'MS': ms, 'kt': kt};
 }
 
 class WindDirection {
-  WindDirection(
-      {required this.deg,
-      required this.card,
-      required this.sexa,
-      });
+  WindDirection({
+    required this.deg,
+    required this.card,
+    required this.sexa,
+  });
   final String deg;
   final String card;
   final String sexa;
- 
+
   factory WindDirection.fromJson(Map<String, dynamic> json) => WindDirection(
-      deg: json['deg']??"", card: json['CARD']??"", sexa: json['SEXA']??"",);
-       Map<String, dynamic> toJson() => {"deg": deg, 'CARD': card, 'SEXA': sexa,};
+        deg: json['deg'] ?? "",
+        card: json['CARD'] ?? "",
+        sexa: json['SEXA'] ?? "",
+      );
+  Map<String, dynamic> toJson() => {
+        "deg": deg,
+        'CARD': card,
+        'SEXA': sexa,
+      };
 }

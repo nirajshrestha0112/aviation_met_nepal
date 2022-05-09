@@ -24,6 +24,8 @@ class CitiesProvider extends ChangeNotifier {
         final map = jsonDecode(response.body) as Map;
         map.forEach((key, value) {
           citiesData.add(DatumCities.fromJson(value));
+         
+          log(citiesData.toString());
         });
         searchWeatherForecastData = [...citiesData];
         log(citiesData.toString());
