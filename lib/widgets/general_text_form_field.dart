@@ -54,11 +54,11 @@ class _GeneralTextFormFieldState extends State<GeneralTextFormField> {
       decoration: InputDecoration(
         hintText: widget.hintText,
         isDense: true,
-        contentPadding: widget.contextPadding != null
-            ? widget.contextPadding
-            : DeviceUtil.isMobile
+        
+        contentPadding:
+         widget.contextPadding ?? (DeviceUtil.isMobile
                 ? EdgeInsets.zero
-                : EdgeInsets.symmetric(vertical: 16.h),
+                : EdgeInsets.symmetric(vertical: 16.h)),
         prefixIcon: widget.prefixIconsPadding
             ? Padding(
                 padding: EdgeInsets.only(
