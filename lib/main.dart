@@ -72,25 +72,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
     ]);
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: colorBlue.withOpacity(0.8)),
     );
     return LayoutBuilder(builder: (context, constraints) {
       return OrientationBuilder(builder: (context, orientation) {
-        SizeConfig().init(constraints, orientation);
         return ScreenUtilInit(
-          // splitScreenMode: false,
+          splitScreenMode: true,
           designSize: const Size(375, 812),
           builder: (_) => MaterialApp(
             scaffoldMessengerKey: messengerKey,
             builder: (BuildContext context, Widget? child) {
-              ScreenUtil.init(context);
               return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
-                child: child!,
-              );
+                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                  child: child!);
             },
             theme: theme(context),
             debugShowCheckedModeBanner: false,

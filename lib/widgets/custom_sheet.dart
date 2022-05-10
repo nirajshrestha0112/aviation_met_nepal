@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
@@ -16,8 +15,7 @@ import 'package:aviation_met_nepal/widgets/general_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
-
+import 'package:url_launcher/url_launcher_string.dart';
 import '../provider/weather_forecast_provider.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/get_device_size.dart';
@@ -128,8 +126,8 @@ class ShowFabSheet {
   ];
 
   static launchUrl(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await canLaunchUrlString(url)) {
+      await launchUrlString(url);
     } else {
       log('Could not launch $url');
     }
