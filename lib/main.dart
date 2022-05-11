@@ -9,6 +9,7 @@ import 'package:aviation_met_nepal/provider/metar_data_provider.dart';
 import 'package:aviation_met_nepal/provider/privacy_policy_provider.dart';
 import 'package:aviation_met_nepal/provider/sigmets_data_provider.dart';
 import 'package:aviation_met_nepal/provider/tafs_provider.dart';
+import 'package:aviation_met_nepal/provider/weather_camera_images_provider.dart';
 import 'package:aviation_met_nepal/provider/weather_forecast_provider.dart';
 import 'package:aviation_met_nepal/screens/contact_us_screen.dart';
 import 'package:aviation_met_nepal/screens/custom_screen.dart';
@@ -59,6 +60,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => CitiesProvider()),
         ChangeNotifierProvider(create: (_) => WeatherForecastProvider()),
         ChangeNotifierProvider(create: (_) => CheckingModalSheet()),
+        ChangeNotifierProvider(create: (_) => WeatherCameraImagesProvider()),
       ],
       child: const MyApp(),
     ),
@@ -91,7 +93,7 @@ class MyApp extends StatelessWidget {
             theme: theme(context),
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            initialRoute: splashRoute,
+            initialRoute: homeRoute,
             routes: {
               splashRoute: (context) => const SplashScreen(),
               sigwxChartRoute: (context) => const SigwxChartScreen(),

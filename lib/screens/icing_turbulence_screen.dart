@@ -1,3 +1,4 @@
+import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
 import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +11,8 @@ class IcingTurbulenceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: CustomAppBar(text: "Icing Turbulence Images"),
+      /* AppBar(
         leading: const GeneralIcon(),
         title: Padding(
           padding: EdgeInsets.only(bottom: 4.h),
@@ -18,7 +20,7 @@ class IcingTurbulenceScreen extends StatelessWidget {
             "Icing Turbulence Images",
           ),
         ),
-      ),
+      ), */
       body: const IcingTurbulenceScreenBody(),
       floatingActionButton: const CustomFloatingActionBtn(),
     );

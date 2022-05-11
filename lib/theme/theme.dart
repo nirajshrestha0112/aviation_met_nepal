@@ -25,21 +25,18 @@ ThemeData theme(BuildContext context) {
         backgroundColor: Color(colorPrimary),
       ),
       appBarTheme: AppBarTheme(
-          centerTitle: true,
-          toolbarHeight: DeviceUtil.isMobile ? 44.h : 56.h,
-
-          /* iconTheme: IconThemeData(
-            color: const Color(colorDarkBlue),
-            size: 16.w,
-          ), */
-          
-          elevation: 0.0,
-          color: const Color(colorWhite),
-          titleTextStyle: TextStyle(
-              height: 1.5,
-              fontWeight: FontWeight.w500,
-              fontSize: 18.sp,
-              color: const Color(colorDarkBlue))),
+        centerTitle: true,
+        // toolbarHeight: DeviceUtil.isMobile ? 44.h : 56.h,
+        elevation: 0.0,
+        color: const Color(colorWhite),
+        titleTextStyle: TextStyle(
+          height: 1.5,
+          fontWeight: FontWeight.w500,
+          fontSize: 18.sp,
+          color: const Color(colorDarkBlue),
+        ),
+        
+      ),
       textTheme: TextTheme(
         headline6: TextStyle(
             fontWeight: FontWeight.w500,

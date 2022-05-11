@@ -3,6 +3,7 @@ import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/utils/validation.dart';
+import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
 import 'package:aviation_met_nepal/widgets/general_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+        appBar:CustomAppBar(text: "Login"),
+        /*  AppBar(
             // leadingWidth: DeviceUtil.isMobile ? 0.w : 2.w,
             leading: const GeneralIcon(),
             title: Padding(
@@ -33,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
               child: const Text(
                 "Login",
               ),
-            )),
+            )), */
         body: const LoginScreenBody(),
       ),
     );

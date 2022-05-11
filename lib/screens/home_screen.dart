@@ -6,6 +6,7 @@ import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
 import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/utils/show_internet_connection_snack_bar.dart';
+import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
 import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -27,13 +28,9 @@ class HomeScreen extends StatelessWidget {
           context: context, builder: (context) => const ShowAlertDialogBox()),
       child: SafeArea(
         child: Scaffold(
-            appBar: AppBar(
-                title: Padding(
-              padding: EdgeInsets.only(bottom: 4.h),
-              child: const Text(
-                "Discover",
-              ),
-            )),
+            appBar: CustomAppBar(
+              text: "Discover",
+            ),
             floatingActionButton: const CustomFloatingActionBtn(),
             body: const HomeScreenBody()),
       ),
