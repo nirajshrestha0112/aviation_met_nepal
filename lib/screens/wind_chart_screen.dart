@@ -1,3 +1,4 @@
+import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:aviation_met_nepal/widgets/file_downloader.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,8 @@ class WindChartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
+          appBar: CustomAppBar(text: "Wind Chart"),
+          /*  AppBar(
             leading: const GeneralIcon(),
             title: Padding(
               padding: EdgeInsets.only(bottom: 4.h),
@@ -22,7 +24,7 @@ class WindChartScreen extends StatelessWidget {
                 "Wind Chart",
               ),
             ),
-          ),
+          ), */
           floatingActionButton: const CustomFloatingActionBtn(),
           body: const WindChartScreenBody()),
     );

@@ -57,6 +57,7 @@ class AirportListProvider extends ChangeNotifier {
   fetchAirportList() async {
     try {
       final url = Uri.parse(airporListUrl);
+
       http.Response response = await http.get(url);
       if (response.statusCode == 200) {
         airportData = AirportList.fromJson(jsonDecode(response.body));

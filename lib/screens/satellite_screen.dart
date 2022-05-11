@@ -1,4 +1,5 @@
 import 'package:aviation_met_nepal/provider/satellite_image_provider.dart';
+import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,6 @@ import 'package:provider/provider.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/get_device_size.dart';
 import '../widgets/custom_floating_action_btn.dart';
-import '../widgets/general_icon.dart';
 
 class SatelliteScreen extends StatelessWidget {
   const SatelliteScreen({Key? key}) : super(key: key);
@@ -17,7 +17,8 @@ class SatelliteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
+          appBar: CustomAppBar(text: "Satellite Images"),
+          /* AppBar(
             leading: const GeneralIcon(),
             title: Padding(
               padding: EdgeInsets.only(bottom: 4.h),
@@ -25,7 +26,7 @@ class SatelliteScreen extends StatelessWidget {
                 "Satellite Images",
               ),
             ),
-          ),
+          ), */
           floatingActionButton: const CustomFloatingActionBtn(),
           body: const SatelliteScreenBody()),
     );

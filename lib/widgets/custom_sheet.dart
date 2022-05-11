@@ -4,6 +4,7 @@ import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
+import 'package:aviation_met_nepal/provider/weather_camera_images_provider.dart';
 import 'package:aviation_met_nepal/screens/details_screen.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
 import 'package:aviation_met_nepal/utils/is_online_checker.dart';
@@ -552,7 +553,7 @@ class ShowFabSheet {
   }
 }
 
-class ShowLocationSheet {
+/* class ShowLocationSheet {
   static void showLocationSheet({
     required BuildContext context,
     required TextEditingController editingController,
@@ -670,6 +671,79 @@ class ShowLocationSheet {
         });
   }
 }
+ */
+class ShowLocationSheet {
+  static Future showLocationSheet({
+    required BuildContext context,
+    required Future future,
+    required TextEditingController editingController,
+  }) async {
+    return await _showCustomizedBottomsheet(
+        context: context,
+        editingController: editingController,
+        child: getshowLocationWidget(future));
+  }
+
+  static getshowLocationWidget(Future future) {
+    return Scrollbar(
+      child: FutureBuilder(
+          future: future,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator.adaptive());
+            }
+            return Consumer<AirportListProvider>(builder: (_, value, __) {
+              return value.searchData.isEmpty
+                  ? Align(
+                      alignment: Alignment.center,
+                      child: Text("No Airport Data Found",
+                          style: TextStyle(
+                              color: const Color(colorGrey20),
+                              fontSize: 20.sp)))
+                  : ListView.builder(
+                      itemCount: value.searchData.length,
+                      itemBuilder: (c, i) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailsScreen(
+                                        data: value.searchData[i])));
+                          },
+                          child: ListTile(
+                            contentPadding: EdgeInsets.only(left: 4.w),
+                            minVerticalPadding:
+                                DeviceUtil.isMobile ? null : 28.h,
+                            leading: Text(
+                              value.searchData[i].ident,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                      fontSize: 18.sp,
+                                      color: const Color(colorPrimary)),
+                            ),
+                            trailing: Container(
+                              padding: EdgeInsets.only(right: 10.w),
+                              width: 160.w,
+                              child: Text(
+                                value.searchData[i].name,
+                                textAlign: TextAlign.end,
+                                style: TextStyle(
+                                  color: const Color(colorNavy50),
+                                  fontSize: 18.sp,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      });
+            });
+          }),
+    );
+  }
+}
 
 class ShowFilterSheet {
   static Future showFilterSheet(context) async {
@@ -766,7 +840,72 @@ class ShowWeatherForecastCities {
           .filterSearchWeatherForecastResults(editingController.text);
     });
 
-    return await showModalBottomSheet(
+    return await _showCustomizedBottomsheet(
+        context: context,
+        editingController: editingController,
+        child: getWeatherForecastCitiesWidget(future));
+  }
+
+  static getWeatherForecastCitiesWidget(Future future) {
+    return Scrollbar(
+      child: FutureBuilder(
+          future: future,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator.adaptive());
+            }
+            return Consumer<CitiesProvider>(builder: (_, value, __) {
+              return value.searchWeatherForecastData.isEmpty
+                  ? Align(
+                      alignment: Alignment.topCenter,
+                      child: Text("No Data Found",
+                          style: TextStyle(
+                              color: const Color(colorGrey20),
+                              fontSize: 18.sp)))
+                  : ListView.builder(
+                      itemCount: value.searchWeatherForecastData.length,
+                      itemBuilder: (c, i) {
+                        return GestureDetector(
+                            onTap: () async {
+                              await Provider.of<WeatherForecastProvider>(
+                                      context,
+                                      listen: false)
+                                  .fetchWeatherForecast(
+                                      id: value
+                                          .searchWeatherForecastData[i].id);
+                              Navigator.pop(
+                                  context,
+                                  value.searchWeatherForecastData[i]
+                                      .description);
+                            },
+                            // child: ListTile(
+                            //   // minVerticalPadding:
+                            //   //     !DeviceUtil.isMobile
+                            //   //         ? 24.h
+                            //   //         : 0.h,
+                            //   contentPadding:
+                            //       EdgeInsets.only(left: 4.w),
+                            //   leading:
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 16.h, left: 4.h),
+                              child: Text(
+                                  value
+                                      .searchWeatherForecastData[i].description,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                          fontSize: 18.sp,
+                                          color: const Color(colorPrimary))),
+                            ));
+                      });
+            });
+          }),
+    );
+  }
+}
+
+/*  showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
         isScrollControlled: true,
@@ -870,5 +1009,129 @@ class ShowWeatherForecastCities {
             ),
           );
         });
+  }
+} */
+
+_showCustomizedBottomsheet({
+  required BuildContext context,
+  required TextEditingController editingController,
+  required Widget child,
+}) async {
+  return await showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      isScrollControlled: true,
+      builder: (_) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.7,
+          color: const Color(colorWhite),
+          child: Padding(
+            padding:
+                EdgeInsets.symmetric(horizontal: 16.w / 1.5, vertical: 16.h),
+            child: Column(children: [
+              const ModalSheetHeader(),
+              SizedBox(
+                height: DeviceUtil.isMobile ? 6.h : 16.h,
+              ),
+              GeneralTextFormField(
+                suffixIconsSize: 25.w,
+                contextPadding: EdgeInsets.only(
+                  left: 5.w,
+                ),
+                prefixIconsPadding: false,
+                suffixIcons: Icons.search,
+                hintText: "Search Airport",
+                obscureText: false,
+                controller: editingController,
+              ),
+              Expanded(
+                child: ScrollConfiguration(
+                  behavior: MyBehavior(),
+                  child: Theme(
+                      data: theme(context)
+                          .copyWith(highlightColor: const Color(bgColor)),
+                      child: child),
+                ),
+              )
+            ]),
+          ),
+        );
+      });
+}
+
+class ShowWeatherCameraImagesSheet {
+  static showWeatherCameraImagesSheet({
+    required BuildContext context,
+    required TextEditingController editingController,
+    required Future future,
+  }) async {
+    return await _showCustomizedBottomsheet(
+        context: context,
+        editingController: editingController,
+        child: getshowWeatherCameraImagesWidget(future));
+  }
+
+  static getshowWeatherCameraImagesWidget(Future future) {
+    return Scrollbar(
+      child: FutureBuilder(
+          future: future,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator.adaptive());
+            }
+            return Consumer<WeatherCameraImagesProvider>(
+              builder: (_, value, __) {
+                return value.searchWeatherCameraImagesData.isEmpty
+                    ? Align(
+                        alignment: Alignment.center,
+                        child: Text("No Airport Data Found",
+                            style: TextStyle(
+                                color: const Color(colorGrey20),
+                                fontSize: 20.sp)))
+                    : ListView.builder(
+                        itemCount: value.searchWeatherCameraImagesData.length,
+                        itemBuilder: (c, i) {
+                          return ListTile(
+                            //onTap: ,
+                            onTap: (() => {
+                                  // log(value.searchWeatherCameraImagesData[i].name.toString());
+                                  Navigator.pop(context,
+                                      value.searchWeatherCameraImagesData[i])
+                                }),
+                            contentPadding: EdgeInsets.only(left: 4.w),
+                            minVerticalPadding:
+                                DeviceUtil.isMobile ? null : 28.h,
+                            leading: Text(
+                              value.searchWeatherCameraImagesData[i].name
+                                  .toString()
+                                  .toCapitalized()
+                                  .trim()
+                                  .replaceAll(" ", "_"),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                      fontSize: 18.sp,
+                                      color: const Color(colorPrimary)),
+                            ),
+                            trailing: Container(
+                              padding: EdgeInsets.only(right: 10.w),
+                              width: 160.w,
+                              child: Text(
+                                value.searchWeatherCameraImagesData[i].name
+                                    .toString(),
+                                textAlign: TextAlign.end,
+                                style: TextStyle(
+                                  color: const Color(colorNavy50),
+                                  fontSize: 18.sp,
+                                ),
+                              ),
+                            ),
+                          );
+                        });
+              },
+            );
+          }),
+    );
   }
 }

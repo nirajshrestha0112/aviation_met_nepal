@@ -1,4 +1,5 @@
 import 'package:aviation_met_nepal/provider/lighting_data_provider.dart';
+import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
 import 'package:aviation_met_nepal/widgets/general_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +13,8 @@ class LightingData extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+        appBar: CustomAppBar(text: "Lighting Data",),
+        /* AppBar(
           leading: const GeneralIcon(),
           title: Padding(
             padding: EdgeInsets.only(bottom: 4.h),
@@ -20,7 +22,7 @@ class LightingData extends StatelessWidget {
               "Lighting Data",
             ),
           ),
-        ),
+        ), */
         body: const LightingScreenBody(),
       ),
     );
