@@ -1,3 +1,4 @@
+
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
@@ -13,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
 import '../widgets/custom_alert_dialog.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -63,6 +63,8 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   late Future _future;
   @override
   Widget build(BuildContext context) {
+    _future = Provider.of<AirportListProvider>(context, listen: false)
+        .fetchAirportList();
     return Column(children: [
       GestureDetector(
         onTap: () => getIsOnline(context)

@@ -6,7 +6,7 @@ class CheckingModalSheet extends ChangeNotifier {
 
   checkingModalSheet(context) {
     if (isShowing) {
-      WidgetsBinding.instance?.addPostFrameCallback(
+      WidgetsBinding.instance.addPostFrameCallback(
           (_) => ShowFabSheet.showFabSheet(context: context));
       isShowing = !isShowing;
     }

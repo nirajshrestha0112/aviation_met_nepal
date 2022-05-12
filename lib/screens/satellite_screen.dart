@@ -18,15 +18,6 @@ class SatelliteScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           appBar: CustomAppBar(text: "Satellite Images"),
-          /* AppBar(
-            leading: const GeneralIcon(),
-            title: Padding(
-              padding: EdgeInsets.only(bottom: 4.h),
-              child: const Text(
-                "Satellite Images",
-              ),
-            ),
-          ), */
           floatingActionButton: const CustomFloatingActionBtn(),
           body: const SatelliteScreenBody()),
     );

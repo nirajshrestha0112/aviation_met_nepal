@@ -1,30 +1,6 @@
-/* import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget{
-  const CustomAppBar({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      title: Padding(
-        padding: EdgeInsets.only(bottom: 4.h),
-        child: const Text(
-          "Discover",
-        ),
-      ),
-    );
-  }
-
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize => throw UnimplementedError();
-} */
-
 import 'package:aviation_met_nepal/widgets/general_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../utils/get_device_size.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {

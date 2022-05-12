@@ -13,7 +13,6 @@ import '../utils/get_device_size.dart';
 import '../utils/is_online_checker.dart';
 import '../utils/show_internet_connection_snack_bar.dart';
 import '../widgets/custom_sheet.dart';
-import '../widgets/general_icon.dart';
 
 class WeatherCameraImagesScreen extends StatelessWidget {
   const WeatherCameraImagesScreen({Key? key}) : super(key: key);
@@ -22,15 +21,6 @@ class WeatherCameraImagesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(text: "Weather Camera Images"),
-      /* AppBar(
-        leading: const GeneralIcon(),
-        title: Padding(
-          padding: EdgeInsets.only(bottom: 4.h),
-          child: const Text(
-            "Weather Camera Images",
-          ),
-        ),
-      ), */
       body: const WeatherCameraImagesBody(),
       floatingActionButton: const CustomFloatingActionBtn(),
     );

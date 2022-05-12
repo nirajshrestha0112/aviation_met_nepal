@@ -36,6 +36,7 @@ class MetarDataProvider extends ChangeNotifier {
     if (metarDataRaw == null) {
       rawId = ident;
       // id = id
+      
       await addRawData(ident: ident, filteredData: filteredData);
     } else if (shouldLoadRaw) {
       await addRawData(ident: ident, filteredData: filteredData);
@@ -58,6 +59,7 @@ class MetarDataProvider extends ChangeNotifier {
   }) async {
     try {
       final url = Uri.parse(metaDataRawUrl + ident + "/" + filteredData);
+      
       log(url.toString());
       http.Response response = await http.get(url);
       log(response.body);

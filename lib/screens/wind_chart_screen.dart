@@ -3,10 +3,8 @@ import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:aviation_met_nepal/widgets/file_downloader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../utils/get_device_size.dart';
 import '../widgets/custom_floating_action_btn.dart';
-import '../widgets/general_icon.dart';
 
 class WindChartScreen extends StatelessWidget {
   const WindChartScreen({Key? key}) : super(key: key);
@@ -16,15 +14,6 @@ class WindChartScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           appBar: CustomAppBar(text: "Wind Chart"),
-          /*  AppBar(
-            leading: const GeneralIcon(),
-            title: Padding(
-              padding: EdgeInsets.only(bottom: 4.h),
-              child: const Text(
-                "Wind Chart",
-              ),
-            ),
-          ), */
           floatingActionButton: const CustomFloatingActionBtn(),
           body: const WindChartScreenBody()),
     );
@@ -41,17 +30,6 @@ class WindChartScreenBody extends StatefulWidget {
 }
 
 class _WindChartScreenBodyState extends State<WindChartScreenBody> {
-  /*  Future<void> _pulltoRefresh() async {
-    setState(() {});
-  } */
-  /*  void initState() {
-    _future = Provider.of<SatelliteImageProvider>(context, listen: false)
-        .postSatelliteImageDataData();
-    super.initState();
-  } */
-
-  // late Future _future;
-
   @override
   Widget build(BuildContext context) {
     FileDownloader windFiles = FileDownloader();

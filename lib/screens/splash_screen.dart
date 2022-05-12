@@ -27,7 +27,6 @@ class _SplashScreen extends State<SplashScreen> {
   }
 
   fetchDatas() async {
-    // await Provider.of<AviationProvider>(context, listen: false).fetchData();
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
       return const HomeScreen();
     }));
@@ -56,12 +55,6 @@ class SplashScreenBody extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
       ),
       Positioned(
-        // left: DeviceUtil.isMobile
-        //     ? SizeConfig.widthMultiplier * 40
-        //     : SizeConfig.widthMultiplier * 50,
-        // top: DeviceUtil.isMobile
-        //     ? SizeConfig.heightMultiplier * 48
-        //     : SizeConfig.widthMultiplier * 70,
         left: DeviceUtil.isMobile ? 160.w : 160.w,
         top: DeviceUtil.isMobile ? 370.h : 380.h,
         child: Image.asset(

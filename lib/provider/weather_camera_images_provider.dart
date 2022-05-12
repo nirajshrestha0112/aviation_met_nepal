@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:aviation_met_nepal/constant/urls.dart';
-import 'package:aviation_met_nepal/model/airmet_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
 import '../model/weather_camera_images.dart';
 
 class WeatherCameraImagesProvider extends ChangeNotifier {
@@ -25,27 +23,6 @@ class WeatherCameraImagesProvider extends ChangeNotifier {
         // log(weatherCameraImagesData.toString());
         log(weatherCameraImagesData.toString());
         searchWeatherCameraImagesData = [...weatherCameraImagesData];
-      } else {
-        throw Exception("Failed to load data");
-      }
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  fetchWeatherCameraImagesDataDetails(String urlSource) async {
-    try {
-      final url = Uri.parse(weatherCameraImagesDetailsUrl+urlSource);
-      log(url.toString());
-      http.Response response = await http.get(url);
-      if (response.statusCode == 200) {
-        
-        /* final obj = jsonDecode(response.body);
-        for (var i in obj) {
-          weatherCameraImagesData.add(WeatherCameraImages.fromJson(i));
-        } */
-        // log(weatherCameraImagesData.toString());
-         
       } else {
         throw Exception("Failed to load data");
       }

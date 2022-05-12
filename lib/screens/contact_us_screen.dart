@@ -7,7 +7,6 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
 import '../utils/get_device_size.dart';
 import '../widgets/custom_sheet.dart';
 import '../widgets/general_icon.dart';
@@ -23,40 +22,10 @@ class ContactUs extends StatelessWidget {
   }
 }
 
-class ContactUsBody extends StatefulWidget {
+class ContactUsBody extends StatelessWidget {
   const ContactUsBody({
     Key? key,
   }) : super(key: key);
-
-  @override
-  State<ContactUsBody> createState() => _ContactUsBodyState();
-}
-
-class _ContactUsBodyState extends State<ContactUsBody> {
-  @override
-  void initState() {
-    _future = Provider.of<PrivacyPolicyProvider>(context, listen: false)
-        .fetchPrivacyPolicyData();
-    super.initState();
-  }
-
-  String phoneNumber = "+97714486869";
-  late Future _future;
-  bool isViewMore = false;
-
-  toggleViewMore() {
-    setState(() {
-      isViewMore = !isViewMore;
-    });
-  }
-
-  bool isEng = true;
-
-  toggleEng() {
-    setState(() {
-      isEng = !isEng;
-    });
-  }
 
   String getPhoneUrl({required String phone}) {
     final Uri params = Uri(
@@ -66,6 +35,8 @@ class _ContactUsBodyState extends State<ContactUsBody> {
     return params.toString();
   }
 
+  final String phoneNumber = "+97714486869";
+
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
@@ -74,7 +45,6 @@ class _ContactUsBodyState extends State<ContactUsBody> {
           child: Column(children: [
         Container(
           color: Colors.white,
-          // color: Color.fromRGBO(255, 255, 255, 1),
           height: DeviceUtil.isMobile ? 46.h : 56.h,
           width: double.infinity,
           child: Row(
@@ -97,23 +67,6 @@ class _ContactUsBodyState extends State<ContactUsBody> {
               )
             ],
           ),
-          // child: ListTile(
-          //     dense: true,
-          //     // minVerticalPadding: 8.0.h,
-          //     contentPadding: EdgeInsets.only(
-          //         left: DeviceUtil.isMobile ? 16.w : 0.w,
-          //         right: 42.w,
-          //         // bottom: !DeviceUtil.isMobile ? 8.h : 0.h,
-          //         top: !DeviceUtil.isMobile ? 8.h : 0.h),
-          //     leading: const GeneralIcon(),
-          //     title: Text(
-          //       "Contact Us",
-          //       textAlign: TextAlign.center,
-          //       style: Theme.of(context)
-          //           .textTheme
-          //           .bodyText1!
-          //           .copyWith(fontSize: 18.sp),
-          //     )),
         ),
         SizedBox(
           height: 16.h,
@@ -223,86 +176,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                   SizedBox(
                     height: 4.h,
                   ),
-                  FutureBuilder(
-                      future: _future,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Center(
-                              child: CircularProgressIndicator.adaptive());
-                        }
-                        return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    isEng
-                                        ? Provider.of<PrivacyPolicyProvider>(
-                                                context)
-                                            .privacyPolicyData!
-                                            .data[0]
-                                            .policyTitle
-                                        : Provider.of<PrivacyPolicyProvider>(
-                                                context)
-                                            .privacyPolicyData!
-                                            .data[0]
-                                            .policyTitleNp,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2,
-                                  ),
-                                  EnglishNepaliTap(
-                                    callBack: toggleEng,
-                                    isEng: isEng,
-                                  )
-                                ],
-                              ),
-                              Column(children: [
-                                isEng
-                                    ? isViewMore
-                                        ? Text(Provider.of<PrivacyPolicyProvider>(context,
-                                                listen: false)
-                                            .privacyTitle!
-                                            .substring(0, 90))
-                                        : Html(
-                                            data: Provider.of<PrivacyPolicyProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .privacyPolicyData!
-                                                .data[0]
-                                                .policyDetails,
-                                            style: {
-                                                "span": Style(
-                                                  fontSize: FontSize(14.sp),
-                                                ),
-                                              })
-                                    : !isViewMore
-                                        ? Html(
-                                            data: Provider.of<PrivacyPolicyProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .privacyPolicyData!
-                                                .data[0]
-                                                .policyDetailsNp,
-                                            style: {
-                                                "span": Style(
-                                                  fontSize: FontSize(14.sp),
-                                                ),
-                                              })
-                                        : Text(Provider.of<PrivacyPolicyProvider>(
-                                                context,
-                                                listen: false)
-                                            .privacyTitleNp!
-                                            .substring(0, 90)),
-                                TextBtn(
-                                  callback: toggleViewMore,
-                                  isViewMore: isViewMore,
-                                )
-                              ])
-                            ]);
-                      }),
+                  const ClickAbleContain()
                 ],
               ),
             ),
@@ -313,29 +187,121 @@ class _ContactUsBodyState extends State<ContactUsBody> {
   }
 }
 
-class TextBtn extends StatefulWidget {
-  const TextBtn({Key? key, required this.callback, required this.isViewMore})
-      : super(key: key);
-  final VoidCallback callback;
-  final bool isViewMore;
+class ClickAbleContain extends StatefulWidget {
+  const ClickAbleContain({Key? key}) : super(key: key);
 
   @override
-  State<TextBtn> createState() => _TextBtnState();
+  State<ClickAbleContain> createState() => _ClickAbleContainState();
 }
 
-class _TextBtnState extends State<TextBtn> {
-  // bool isViewMore = true;
+class _ClickAbleContainState extends State<ClickAbleContain> {
+  @override
+  void initState() {
+    _future = Provider.of<PrivacyPolicyProvider>(context, listen: false)
+        .fetchPrivacyPolicyData();
+    super.initState();
+  }
+
+  late Future _future;
+  bool isViewMore = false;
+  bool isEng = true;
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: () {
-          widget.callback();
-        },
-        child: Text(
-          widget.isViewMore ? "View More" : "View Less",
-          style: Theme.of(context).textTheme.bodyText2,
-        ));
+    return FutureBuilder(
+        future: _future,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator.adaptive());
+          }
+          return Consumer<PrivacyPolicyProvider>(builder: (context, value, _) {
+            return Column(mainAxisSize: MainAxisSize.min, children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    isEng
+                        ? value.privacyPolicyData!.data[0].policyTitle
+                        : value.privacyPolicyData!.data[0].policyTitleNp,
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(
+                        () => isEng = !isEng,
+                      );
+                    },
+                    child: IntrinsicHeight(
+                      child: Row(children: [
+                        Container(
+                          alignment: Alignment.center,
+                          height: DeviceUtil.isMobile ? 20.h : 28.h,
+                          width: 24.w,
+                          color: isEng ? const Color(colorDarkBlue) : null,
+                          child: Text("EN",
+                              style: TextStyle(
+                                  color: isEng
+                                      ? const Color(colorWhite)
+                                      : const Color(colorDarkBlue),
+                                  fontSize: 16.sp)),
+                        ),
+                        const VerticalDivider(
+                          thickness: 1.5,
+                          color: Color(colorDarkBlue),
+                        ),
+                        Container(
+                          height: DeviceUtil.isMobile ? 20.h : 28.h,
+                          width: 24.w,
+                          color: isEng ? null : const Color(colorDarkBlue),
+                          alignment: Alignment.center,
+                          child: Text("NP",
+                              style: TextStyle(
+                                  color: isEng
+                                      ? const Color(colorDarkBlue)
+                                      : const Color(colorWhite),
+                                  fontSize: 16.sp)),
+                        ),
+                      ]),
+                    ),
+                  )
+                ],
+              ),
+              Column(children: [
+                isEng
+                    ? isViewMore
+                        ? Text(value.privacyTitle!.substring(0, 90))
+                        : Html(
+                            data:
+                                value.privacyPolicyData!.data[0].policyDetails,
+                            style: {
+                                "span": Style(
+                                  fontSize: FontSize(14.sp),
+                                ),
+                              })
+                    : !isViewMore
+                        ? Html(
+                            data: value
+                                .privacyPolicyData!.data[0].policyDetailsNp,
+                            style: {
+                                "span": Style(
+                                  fontSize: FontSize(14.sp),
+                                ),
+                              })
+                        : Text(value.privacyTitleNp!.substring(0, 90)),
+                TextButton(
+                    onPressed: () {
+                      setState(() {
+                        isViewMore = !isViewMore;
+                      });
+                    },
+                    child: Text(
+                      isViewMore ? "View More" : "View Less",
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ))
+              ])
+            ]);
+          });
+        });
   }
 }
 
@@ -375,58 +341,6 @@ class _BuildRowWidgetState extends State<BuildRowWidget> {
                   .headline6!
                   .copyWith(fontSize: 14.sp))
         ],
-      ),
-    );
-  }
-}
-
-class EnglishNepaliTap extends StatefulWidget {
-  const EnglishNepaliTap(
-      {required this.callBack, required this.isEng, Key? key})
-      : super(key: key);
-  final VoidCallback callBack;
-  final bool isEng;
-
-  @override
-  State<EnglishNepaliTap> createState() => _EnglishNepaliTapState();
-}
-
-class _EnglishNepaliTapState extends State<EnglishNepaliTap> {
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: widget.callBack,
-      child: IntrinsicHeight(
-        child: Row(children: [
-          Container(
-            alignment: Alignment.center,
-            height: DeviceUtil.isMobile ? 20.h : 28.h,
-            width: 24.w,
-            color: widget.isEng ? const Color(colorDarkBlue) : null,
-            child: Text("EN",
-                style: TextStyle(
-                    color: widget.isEng
-                        ? const Color(colorWhite)
-                        : const Color(colorDarkBlue),
-                    fontSize: 16.sp)),
-          ),
-          const VerticalDivider(
-            thickness: 1.5,
-            color: Color(colorDarkBlue),
-          ),
-          Container(
-            height: DeviceUtil.isMobile ? 20.h : 28.h,
-            width: 24.w,
-            color: widget.isEng ? null : const Color(colorDarkBlue),
-            alignment: Alignment.center,
-            child: Text("NP",
-                style: TextStyle(
-                    color: widget.isEng
-                        ? const Color(colorDarkBlue)
-                        : const Color(colorWhite),
-                    fontSize: 16.sp)),
-          ),
-        ]),
       ),
     );
   }

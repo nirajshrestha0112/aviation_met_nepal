@@ -7,7 +7,6 @@ import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../widgets/custom_floating_action_btn.dart';
 import '../widgets/general_icon.dart';
 import 'metars_tab_screen.dart';
@@ -69,7 +68,6 @@ class _DetailsScreenState extends State<DetailsScreen>
         floatingActionButton: const CustomFloatingActionBtn(),
         appBar: AppBar(
           leadingWidth: !DeviceUtil.isMobile ? 4.w : 0.0,
-
           toolbarHeight: !DeviceUtil.isMobile ? 116.h : 88.h,
           title:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -80,7 +78,6 @@ class _DetailsScreenState extends State<DetailsScreen>
                 child: AutoSizeText(
                   "${widget.data!.ident} ${widget.data!.name}",
                   minFontSize: 14,
-                  // maxFontSize: 16.sp,
                   style: const TextStyle(overflow: TextOverflow.ellipsis),
                 ),
               ),
@@ -91,32 +88,17 @@ class _DetailsScreenState extends State<DetailsScreen>
             SizedBox(
               height: DeviceUtil.isMobile ? 36.h : 56.h,
               child: TabBar(
-                // padding: EdgeInsets.all(2),
                 unselectedLabelStyle:
                     TextStyle(fontSize: !DeviceUtil.isMobile ? 14.sp : 11.5.sp),
                 indicatorPadding: EdgeInsets.symmetric(
                   vertical: DeviceUtil.isMobile ? 0.h : 4.h,
                   horizontal: DeviceUtil.isMobile ? 0.w : 4.w,
                 ),
-                // labelStyle: TextStyle(fontSize: 32.sp),
-
                 controller: _tabController,
                 tabs: _tabs,
               ),
             ),
           ]),
-          // leading: GeneralIcon(isPadding: EdgeInsets.only(right: 18.w)),
-          // bottom: TabBar(
-          //   indicatorPadding: EdgeInsets.symmetric(
-          //       vertical: DeviceUtil.isMobile
-          //           ? SizeConfig.heightMultiplier * 0.5
-          //           : SizeConfig.heightMultiplier * 0.8,
-          //       horizontal: DeviceUtil.isMobile
-          //           ? SizeConfig.widthMultiplier * 2.0
-          //           : SizeConfig.widthMultiplier * 4.0),
-          //   controller: _tabController,
-          //   tabs: _tabs,
-          // ),
         ),
         body: ScrollConfiguration(
             behavior: MyBehavior(),

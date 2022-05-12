@@ -9,10 +9,8 @@ import 'package:aviation_met_nepal/widgets/general_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import '../utils/get_device_size.dart';
 import '../utils/show_internet_connection_snack_bar.dart';
-import '../widgets/general_icon.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -26,16 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar:CustomAppBar(text: "Login"),
-        /*  AppBar(
-            // leadingWidth: DeviceUtil.isMobile ? 0.w : 2.w,
-            leading: const GeneralIcon(),
-            title: Padding(
-              padding: EdgeInsets.only(bottom: 4.h),
-              child: const Text(
-                "Login",
-              ),
-            )), */
+        appBar: CustomAppBar(text: "Login"),
         body: const LoginScreenBody(),
       ),
     );

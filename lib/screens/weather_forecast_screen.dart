@@ -7,10 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
 import '../constant/colors_properties.dart';
 import '../constant/images.dart';
-import '../widgets/general_icon.dart';
 
 class WeatherForecastScreen extends StatelessWidget {
   const WeatherForecastScreen({Key? key}) : super(key: key);
@@ -19,16 +17,7 @@ class WeatherForecastScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar:CustomAppBar(text: "Weather Forecast") ,
-          /* AppBar(
-            title: Padding(
-              padding: EdgeInsets.only(bottom: 4.h),
-              child: const Text(
-                "Weather Forecast",
-              ),
-            ),
-            leading: const GeneralIcon(),
-          ), */
+          appBar: CustomAppBar(text: "Weather Forecast"),
           body: const WeatherForecastBody()),
     );
   }
