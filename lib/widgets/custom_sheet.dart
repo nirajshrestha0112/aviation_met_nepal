@@ -415,133 +415,6 @@ class ShowFabSheet {
                             ],
                           ),
                         );
-                        // return ListTile(
-                        //   // minVerticalPadding: 0,
-                        //   // minVerticalPadding: DeviceUtil.isMobile ? null : 8.h,
-                        //   contentPadding: DeviceUtil.isMobile
-                        //       ? null
-                        //       : EdgeInsets.only(left: 14.w, top: 8.h),
-                        //   leading: data[i]['icon'],R
-                        //   horizontalTitleGap: DeviceUtil.isMobile ? 2.w : 12.w,
-                        //   title: data[i]['title'],
-                        //   onTap: () {
-                        //     if (data.last == data[i]) {
-                        //       launchUrl(data[i]["url"]);
-                        //     } else {
-                        //       if (data[i]["toCheck"]) {
-                        //         if (Provider.of<LoginProvider>(context,
-                        //                     listen: false)
-                        //                 .loginName !=
-                        //             null) {
-                        //           if (getIsOnline(context)) {
-                        //             Navigator.pushNamed(
-                        //                 context, data[i]['navigate']);
-                        //           } else {
-                        //             if (data[i]['navigate'] ==
-                        //                 icingTurbulenceChartRoute) {
-                        //               Navigator.pop(context);
-                        //               showInternetConnectionSnackBar(
-                        //                   icon: Icons.close,
-                        //                   crossAxisAlignment:
-                        //                       CrossAxisAlignment.center,
-                        //                   bgColor: Colors.red,
-                        //                   circleAvatarbgColor: Colors.white,
-                        //                   iconColor: Colors.red,
-                        //                   statusText: "Error",
-                        //                   message:
-                        //                       "Cannot Get Data...Please Try Again");
-                        //             } else if (data[i]['navigate'] ==
-                        //                 sigwxChartRoute) {
-                        //               Navigator.pop(context);
-                        //               showInternetConnectionSnackBar(
-                        //                   icon: Icons.close,
-                        //                   crossAxisAlignment:
-                        //                       CrossAxisAlignment.center,
-                        //                   bgColor: Colors.red,
-                        //                   circleAvatarbgColor: Colors.white,
-                        //                   iconColor: Colors.red,
-                        //                   statusText: "Error",
-                        //                   message:
-                        //                       "Cannot Get Sigwx Image...Please Try Again");
-                        //             } else if (data[i]['navigate'] ==
-                        //                 windChartRoute) {
-                        //               Navigator.pop(context);
-                        //               showInternetConnectionSnackBar(
-                        //                   icon: Icons.close,
-                        //                   crossAxisAlignment:
-                        //                       CrossAxisAlignment.center,
-                        //                   bgColor: Colors.red,
-                        //                   circleAvatarbgColor: Colors.white,
-                        //                   iconColor: Colors.red,
-                        //                   statusText: "Error",
-                        //                   message:
-                        //                       "Cannot Get Wind Image...Please Try Again");
-                        //             } else {
-                        //               Navigator.pop(context);
-                        //               showInternetConnectionSnackBar(
-                        //                   icon: Icons.close,
-                        //                   crossAxisAlignment:
-                        //                       CrossAxisAlignment.center,
-                        //                   bgColor: Colors.red,
-                        //                   circleAvatarbgColor: Colors.white,
-                        //                   iconColor: Colors.red,
-                        //                   statusText: "Error",
-                        //                   message:
-                        //                       "Cannot Get Data...Please Try Again");
-                        //             }
-                        //           }
-                        //         } else {
-                        //           Navigator.pushNamed(context, loginRoute);
-                        //         }
-                        //       } else {
-                        //         if (getIsOnline(context)) {
-                        //           Navigator.pushNamed(
-                        //               context, data[i]['navigate']);
-                        //         } else {
-                        //           if (data[i]['navigate'] ==
-                        //               satelliteImageDataRoute) {
-                        //             Navigator.pop(context);
-                        //             showInternetConnectionSnackBar(
-                        //                 icon: Icons.close,
-                        //                 crossAxisAlignment:
-                        //                     CrossAxisAlignment.center,
-                        //                 bgColor: Colors.red,
-                        //                 circleAvatarbgColor: Colors.white,
-                        //                 iconColor: Colors.red,
-                        //                 statusText: "Error",
-                        //                 message:
-                        //                     "Cannot Get Satellite Image...Please Try Again");
-                        //           } else if (data[i]['navigate'] ==
-                        //               lightingDataRoute) {
-                        //             Navigator.pop(context);
-                        //             showInternetConnectionSnackBar(
-                        //                 icon: Icons.close,
-                        //                 crossAxisAlignment:
-                        //                     CrossAxisAlignment.center,
-                        //                 bgColor: Colors.red,
-                        //                 circleAvatarbgColor: Colors.white,
-                        //                 iconColor: Colors.red,
-                        //                 statusText: "Error",
-                        //                 message:
-                        //                     "Cannot Get Lighting Image...Please Try Again");
-                        //           } else {
-                        //             Navigator.pop(context);
-                        //             showInternetConnectionSnackBar(
-                        //                 icon: Icons.close,
-                        //                 crossAxisAlignment:
-                        //                     CrossAxisAlignment.center,
-                        //                 bgColor: Colors.red,
-                        //                 circleAvatarbgColor: Colors.white,
-                        //                 iconColor: Colors.red,
-                        //                 statusText: "Error",
-                        //                 message:
-                        //                     "Server Error...Please Try Again");
-                        //           }
-                        //         }
-                        //       }
-                        //     }
-                        //   },
-                        // );
                       }),
                 ),
               ),
@@ -553,125 +426,6 @@ class ShowFabSheet {
   }
 }
 
-/* class ShowLocationSheet {
-  static void showLocationSheet({
-    required BuildContext context,
-    required TextEditingController editingController,
-    required Future future,
-  }) {
-    showModalBottomSheet(
-        backgroundColor: Colors.transparent,
-        context: context,
-        isScrollControlled: true,
-        builder: (_) {
-          return Container(
-            height: MediaQuery.of(context).size.height * 0.7,
-            color: const Color(colorWhite),
-            child: Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: 16.w / 1.5, vertical: 16.h),
-              child: Column(children: [
-                const ModalSheetHeader(),
-                SizedBox(
-                  height: DeviceUtil.isMobile ? 6.h : 16.h,
-                ),
-                GeneralTextFormField(
-                  suffixIconsSize: 25.w,
-                  contextPadding: EdgeInsets.only(
-                    left: 5.w,
-                  ),
-                  prefixIconsPadding: false,
-                  suffixIcons: Icons.search,
-                  hintText: "Search Airport",
-                  obscureText: false,
-                  controller: editingController,
-                ),
-                Expanded(
-                  child: ScrollConfiguration(
-                    behavior: MyBehavior(),
-                    child: Theme(
-                      data: theme(context)
-                          .copyWith(highlightColor: const Color(bgColor)),
-                      child: Scrollbar(
-                        child: FutureBuilder(
-                            future: future,
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return const Center(
-                                    child:
-                                        CircularProgressIndicator.adaptive());
-                              }
-                              return Consumer<AirportListProvider>(
-                                  builder: (_, value, __) {
-                                return value.searchData.isEmpty
-                                    ? Align(
-                                        alignment: Alignment.center,
-                                        child: Text("No Airport Data Found",
-                                            style: TextStyle(
-                                                color: const Color(colorGrey20),
-                                                fontSize: 20.sp)))
-                                    : ListView.builder(
-                                        itemCount: value.searchData.length,
-                                        itemBuilder: (c, i) {
-                                          return GestureDetector(
-                                            onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          DetailsScreen(
-                                                              data: value
-                                                                      .searchData[
-                                                                  i])));
-                                            },
-                                            child: ListTile(
-                                              contentPadding:
-                                                  EdgeInsets.only(left: 4.w),
-                                              minVerticalPadding:
-                                                  DeviceUtil.isMobile
-                                                      ? null
-                                                      : 28.h,
-                                              leading: Text(
-                                                value.searchData[i].ident,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText1!
-                                                    .copyWith(
-                                                        fontSize: 18.sp,
-                                                        color: const Color(
-                                                            colorPrimary)),
-                                              ),
-                                              trailing: Container(
-                                                padding: EdgeInsets.only(
-                                                    right: 10.w),
-                                                width: 160.w,
-                                                child: Text(
-                                                  value.searchData[i].name,
-                                                  textAlign: TextAlign.end,
-                                                  style: TextStyle(
-                                                    color: const Color(
-                                                        colorNavy50),
-                                                    fontSize: 18.sp,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        });
-                              });
-                            }),
-                      ),
-                    ),
-                  ),
-                )
-              ]),
-            ),
-          );
-        });
-  }
-}
- */
 class ShowLocationSheet {
   static Future showLocationSheet({
     required BuildContext context,
@@ -712,9 +466,12 @@ class ShowLocationSheet {
                                         data: value.searchData[i])));
                           },
                           child: ListTile(
-                            contentPadding: EdgeInsets.only(left: 4.w),
+                            contentPadding: EdgeInsets.only(
+                              left: 4.w,
+                              right: 8.w,
+                            ),
                             minVerticalPadding:
-                                DeviceUtil.isMobile ? null : 28.h,
+                                DeviceUtil.isMobile ? 0.h : 28.h,
                             leading: Text(
                               value.searchData[i].ident,
                               style: Theme.of(context)
@@ -725,8 +482,11 @@ class ShowLocationSheet {
                                       color: const Color(colorPrimary)),
                             ),
                             trailing: Container(
-                              padding: EdgeInsets.only(right: 10.w),
-                              width: 160.w,
+                              margin: EdgeInsets.only(
+                                bottom: 8.h,
+                              ),
+                              height: 100.h,
+                              width: 180.w,
                               child: Text(
                                 value.searchData[i].name,
                                 textAlign: TextAlign.end,
@@ -878,14 +638,6 @@ class ShowWeatherForecastCities {
                                   value.searchWeatherForecastData[i]
                                       .description);
                             },
-                            // child: ListTile(
-                            //   // minVerticalPadding:
-                            //   //     !DeviceUtil.isMobile
-                            //   //         ? 24.h
-                            //   //         : 0.h,
-                            //   contentPadding:
-                            //       EdgeInsets.only(left: 4.w),
-                            //   leading:
                             child: Padding(
                               padding: EdgeInsets.only(top: 16.h, left: 4.h),
                               child: Text(
@@ -904,113 +656,6 @@ class ShowWeatherForecastCities {
     );
   }
 }
-
-/*  showModalBottomSheet(
-        backgroundColor: Colors.transparent,
-        context: context,
-        isScrollControlled: true,
-        builder: (_) {
-          return Container(
-            height: MediaQuery.of(context).size.height * 0.7,
-            color: const Color(colorWhite),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
-              child: Column(children: [
-                const ModalSheetHeader(),
-                SizedBox(
-                  height: 6.h,
-                ),
-                GeneralTextFormField(
-                  suffixIconsSize: 25.w,
-                  contextPadding: EdgeInsets.only(left: 8.w),
-                  prefixIconsPadding: false,
-                  suffixIcons: Icons.search,
-                  hintText: "Search Airport",
-                  obscureText: false,
-                  controller: editingController,
-                ),
-                Expanded(
-                    child: ScrollConfiguration(
-                  behavior: MyBehavior(),
-                  child: Theme(
-                    data: theme(context)
-                        .copyWith(highlightColor: const Color(bgColor)),
-                    child: Scrollbar(
-                      child: FutureBuilder(
-                          future: future,
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const Center(
-                                  child: CircularProgressIndicator.adaptive());
-                            }
-                            return Consumer<CitiesProvider>(
-                                builder: (_, value, __) {
-                              return value.searchWeatherForecastData.isEmpty
-                                  ? Align(
-                                      alignment: Alignment.topCenter,
-                                      child: Text("No Data Found",
-                                          style: TextStyle(
-                                              color: const Color(colorGrey20),
-                                              fontSize: 18.sp)))
-                                  : ListView.builder(
-                                      itemCount: value
-                                          .searchWeatherForecastData.length,
-                                      itemBuilder: (c, i) {
-                                        return GestureDetector(
-                                            onTap: () async {
-                                              await Provider.of<
-                                                          WeatherForecastProvider>(
-                                                      context,
-                                                      listen: false)
-                                                  .fetchWeatherForecast(
-                                                      id: value
-                                                          .searchWeatherForecastData[
-                                                              i]
-                                                          .id);
-                                              Navigator.pop(
-                                                  context,
-                                                  value
-                                                      .searchWeatherForecastData[
-                                                          i]
-                                                      .description);
-                                            },
-                                            // child: ListTile(
-                                            //   // minVerticalPadding:
-                                            //   //     !DeviceUtil.isMobile
-                                            //   //         ? 24.h
-                                            //   //         : 0.h,
-                                            //   contentPadding:
-                                            //       EdgeInsets.only(left: 4.w),
-                                            //   leading:
-                                            child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 16.h, left: 4.h),
-                                              child: Text(
-                                                  value
-                                                      .searchWeatherForecastData[
-                                                          i]
-                                                      .description,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText1!
-                                                      .copyWith(
-                                                          fontSize: 18.sp,
-                                                          color: const Color(
-                                                              colorPrimary))),
-                                            ));
-                                      });
-                            });
-                          }),
-                    ),
-                  ),
-                ))
-              ]),
-            ),
-          );
-        });
-  }
-} */
 
 _showCustomizedBottomsheet({
   required BuildContext context,
@@ -1092,9 +737,7 @@ class ShowWeatherCameraImagesSheet {
                         itemCount: value.searchWeatherCameraImagesData.length,
                         itemBuilder: (c, i) {
                           return ListTile(
-                            //onTap: ,
                             onTap: (() => {
-                                  // log(value.searchWeatherCameraImagesData[i].name.toString());
                                   Navigator.pop(context,
                                       value.searchWeatherCameraImagesData[i])
                                 }),

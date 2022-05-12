@@ -1,11 +1,11 @@
 import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
+
 
 class CustomRawCard extends StatefulWidget {
   const CustomRawCard({
@@ -15,6 +15,7 @@ class CustomRawCard extends StatefulWidget {
   }) : super(key: key);
   final String rawHeaderText;
   final List<String> rawBodyText;
+ 
 
   @override
   State<CustomRawCard> createState() => _CustomRawCardState();
@@ -22,8 +23,12 @@ class CustomRawCard extends StatefulWidget {
 
 class _CustomRawCardState extends State<CustomRawCard> {
   bool isLoadingVertical = false;
+  List<String> verticalData=[];
+  final int increment=10;
   _loadMoreVertical() {
+    
     log("message", name: "at end");
+    //  verticalData.addAll(v)
     setState(() {
       isLoadingVertical = true;
     });
@@ -56,6 +61,7 @@ class _CustomRawCardState extends State<CustomRawCard> {
             SizedBox(height: 2.h),
             LazyLoadScrollView(
               isLoading: false,
+
               // controller
               onEndOfPage: () => _loadMoreVertical(),
               child: Scrollbar(

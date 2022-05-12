@@ -3,7 +3,6 @@ import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import '../model/airport_list.dart';
 import '../utils/get_device_size.dart';
 import '../widgets/custom_build_row.dart';
@@ -46,11 +45,6 @@ class _TafsTabState extends State<TafsTab> {
     return FutureBuilder(
         future: _future,
         builder: (context, AsyncSnapshot snapshot) {
-          /*        if (isLoadingIndicator = false) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator.adaptive());
-              }
-       */
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator.adaptive());
           }
@@ -66,46 +60,38 @@ class _TafsTabState extends State<TafsTab> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      Provider.of<TafsDataProvider>(context, listen: false)
-                          .tafsDataRaw!
-                          .data!
-                          .date![0]
-                          .toString()
-                          .substring(8),
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2!
-                          .copyWith(fontWeight: FontWeight.normal),
-                    ),
+                    Consumer<TafsDataProvider>(builder: (context, value, _) {
+                      return Text(
+                        value.tafsDataRaw!.data!.date![0]
+                            .toString()
+                            .substring(8),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(fontWeight: FontWeight.normal),
+                      );
+                    }),
                     SizedBox(
                       height: 10.h,
                     ),
-                    CustomRawCard(
-                        rawHeaderText: "Raw",
-                        rawBodyText: Provider.of<TafsDataProvider>(context,
-                                listen: false)
-                            .tafsDataRaw!
-                            .data!
-                            .raw!),
+                    Consumer<TafsDataProvider>(builder: (context, value, _) {
+                      return CustomRawCard(
+                          rawHeaderText: "Raw",
+                          rawBodyText: value.tafsDataRaw!.data!.raw!);
+                    }),
                     SizedBox(
                       height: 10.h,
                     ),
-                    Column(
-                      children: [
-                        buildRow(
-                          "TAF For",
-                          Provider.of<TafsDataProvider>(context, listen: false)
-                              .tafsDataDecoded!
-                              .data!
-                              .decoded!
-                              .tAFFor!
-                              .first,
-                          isMetarFor: true,
-                          isDecoded: true,
-                        ),
-                        Consumer<TafsDataProvider>(builder: (_, value, __) {
-                          return ListView.builder(
+                    Consumer<TafsDataProvider>(builder: (context, value, _) {
+                      return Column(
+                        children: [
+                          buildRow(
+                            "TAF For",
+                            value.tafsDataDecoded!.data!.decoded!.tAFFor!.first,
+                            isMetarFor: true,
+                            isDecoded: true,
+                          ),
+                          ListView.builder(
                               itemCount: value
                                   .tafsDataDecoded!.data!.decoded!.text!.length,
                               primary: false,
@@ -182,10 +168,10 @@ class _TafsTabState extends State<TafsTab> {
                                           isClouds: true),
                                   ],
                                 );
-                              });
-                        })
-                      ],
-                    ),
+                              })
+                        ],
+                      );
+                    }),
                   ],
                 ),
               ),

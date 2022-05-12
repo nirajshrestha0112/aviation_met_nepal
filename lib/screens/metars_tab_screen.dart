@@ -3,7 +3,6 @@ import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import '../constant/colors_properties.dart';
 import '../model/airport_list.dart';
 import '../provider/metar_data_provider.dart';
@@ -82,91 +81,84 @@ class _MetarsTabState extends State<MetarsTab> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                          Provider.of<MetarDataProvider>(context, listen: false)
-                              .metarDataRaw!
-                              .data!
-                              .date![0]
-                              .toString()
-                              .substring(8),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2!
-                              .copyWith(fontWeight: FontWeight.normal)),
-                      GestureDetector(
-                        onTap: () async {
-                          final value =
-                              await ShowFilterSheet.showFilterSheet(context);
-                          if (value != null) {
-                            _future = metarDataRawDecoded(
-                              value,
-                              shouldReload: true,
-                            );
-                            setState(() {});
-                          }
-                        },
-                        child: Container(
-                          padding: EdgeInsets.only(left: 8.w),
-                          height: DeviceUtil.isMobile ? 36.h : 46.h,
-                          width: 72.w,
-                          decoration: BoxDecoration(
-                              color: const Color(colorPrimary),
-                              borderRadius: BorderRadius.circular(6.w)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Filter",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText2!
-                                      .copyWith(
-                                          color: const Color(colorWhite))),
-                              Icon(Icons.arrow_drop_down,
-                                  size: 25.w, color: const Color(colorWhite))
-                            ],
+                      Consumer<MetarDataProvider>(builder: (context, value, _) {
+                        return Text(
+                            value.metarDataRaw!.data!.date![0]
+                                .toString()
+                                .substring(8),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2!
+                                .copyWith(fontWeight: FontWeight.normal));
+                      }),
+                      StatefulBuilder(builder: (context, setState) {
+                        return GestureDetector(
+                          onTap: () async {
+                            final value =
+                                await ShowFilterSheet.showFilterSheet(context);
+                            setState(() {
+                              if (value != null) {
+                                _future = metarDataRawDecoded(
+                                  value,
+                                  shouldReload: true,
+                                );
+                              }
+                            });
+                            /*  if (value != null) {l
+                                _future = metarDataRawDecoded(
+                                  value,
+                                  shouldReload: true,
+                                );
+                                setState(() {});
+                              } */
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(left: 8.w),
+                            height: DeviceUtil.isMobile ? 36.h : 46.h,
+                            width: 72.w,
+                            decoration: BoxDecoration(
+                                color: const Color(colorPrimary),
+                                borderRadius: BorderRadius.circular(6.w)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Filter",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(
+                                            color: const Color(colorWhite))),
+                                Icon(Icons.arrow_drop_down,
+                                    size: 25.w, color: const Color(colorWhite))
+                              ],
+                            ),
                           ),
-                        ),
-                      )
+                        );
+                      })
                     ],
                   ),
                   SizedBox(
                     height: 10.h,
                   ),
-                  CustomRawCard(
-                    rawHeaderText: "Raw",
-                    rawBodyText:
-                        Provider.of<MetarDataProvider>(context, listen: false)
-                            .metarDataRaw!
-                            .data!
-                            .raw!,
-                  ),
-                  // Provider.of<MetarDataProvider>(context, listen: false)
-                  //             .metarDataRaw !=
-                  //         null
-                  //     ? Provider.of<MetarDataProvider>(context,
-                  //             listen: false)
-                  //         .metarDataRaw!
-                  //         .data!
-                  //         .raw!
-                  //     : ["No Data available"]),
+                  Consumer<MetarDataProvider>(builder: (context, value, _) {
+                    return CustomRawCard(
+                      rawHeaderText: "Raw",
+                      rawBodyText: value.metarDataRaw!.data!.raw!,
+                    );
+                  }),
                   SizedBox(
                     height: 10.h,
                   ),
-                  Column(
-                    children: [
-                      buildRow(
-                        "Metar For",
-                        Provider.of<MetarDataProvider>(context, listen: false)
-                            .metarDataDecoded!
-                            .data!
-                            .decoded!
-                            .metarFor
-                            .first,
-                        isMetarFor: true,
-                        isDecoded: true,
-                      ),
-                      Consumer<MetarDataProvider>(builder: (_, value, __) {
-                        return ListView.builder(
+                  Consumer<MetarDataProvider>(builder: (context, value, _) {
+                    return Column(
+                      children: [
+                        buildRow(
+                          "Metar For",
+                          value.metarDataDecoded!.data!.decoded!.metarFor.first,
+                          isMetarFor: true,
+                          isDecoded: true,
+                        ),
+                        ListView.builder(
                             itemCount: value
                                 .metarDataDecoded!.data!.decoded!.text.length,
                             primary: false,
@@ -257,10 +249,10 @@ class _MetarsTabState extends State<MetarsTab> {
                                         isClouds: true),
                                 ],
                               );
-                            });
-                      })
-                    ],
-                  ),
+                            })
+                      ],
+                    );
+                  }),
                 ],
               ),
             ),

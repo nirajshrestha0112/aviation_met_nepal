@@ -6,7 +6,6 @@ import 'package:aviation_met_nepal/widgets/general_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import '../provider/airmet_data_provider.dart';
 import '../provider/gamet_data_provider.dart';
 import '../provider/opmet_data_provider.dart';
@@ -68,7 +67,6 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
         child: Theme(
           data: theme(context).copyWith(highlightColor: Colors.grey),
           child: Scrollbar(
-            isAlwaysShown: true,
             child: SingleChildScrollView(
                 child: Column(children: [
               Container(
@@ -95,24 +93,6 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                     )
                   ],
                 ),
-                // child: ListTile(
-                //     dense: true,
-                //     contentPadding: EdgeInsets.only(
-                //         left: DeviceUtil.isMobile ? 16.w : 0.w,
-                //         right: 42.w,
-                //         top: !DeviceUtil.isMobile ? 8.h : 0.h),
-                //     leading: const GeneralIcon(),
-                //     title: Padding(
-                //       padding: EdgeInsets.zero,
-                //       child: Text(
-                //         widget.screenName,
-                //         textAlign: TextAlign.center,
-                //         style: Theme.of(context)
-                //             .textTheme
-                //             .bodyText1!
-                //             .copyWith(fontSize: 18.sp),
-                //       ),
-                //     )),
               ),
               FutureBuilder(
                 future: _future,

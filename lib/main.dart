@@ -25,7 +25,6 @@ import 'package:aviation_met_nepal/screens/weather_camera_images_screen.dart';
 import 'package:aviation_met_nepal/screens/weather_forecast_screen.dart';
 import 'package:aviation_met_nepal/screens/wind_chart_screen.dart';
 import 'package:aviation_met_nepal/theme/theme.dart';
-import 'package:aviation_met_nepal/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,7 +36,6 @@ import 'provider/opmet_data_provider.dart';
 import 'provider/satellite_image_provider.dart';
 import 'screens/splash_screen.dart';
 
-final messengerKey = GlobalKey<ScaffoldMessengerState>();
 void main() async {
   runApp(
     MultiProvider(
@@ -67,6 +65,7 @@ void main() async {
   );
 }
 
+final messengerKey = GlobalKey<ScaffoldMessengerState>();
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -93,7 +92,7 @@ class MyApp extends StatelessWidget {
             theme: theme(context),
             debugShowCheckedModeBanner: false,
             title: 'Aviation Met Nepal',
-            initialRoute: homeRoute,
+            initialRoute: splashRoute,
             routes: {
               splashRoute: (context) => const SplashScreen(),
               sigwxChartRoute: (context) => const SigwxChartScreen(),
@@ -125,3 +124,45 @@ class MyApp extends StatelessWidget {
     });
   }
 }
+
+
+
+
+// import 'package:flutter/material.dart';
+// import 'package:flutter/src/foundation/key.dart';
+// import 'package:flutter/src/widgets/framework.dart';
+
+/* void main() => runApp(Home());
+
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  int count = 0;
+  Widget build(BuildContext context) {
+    print("build method");
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: StatefulBuilder(
+            builder: (context,set) {
+              return TextButton(
+                  onPressed: () {
+                    print("textbtn");
+                    set(() {
+                      count++;
+                    });
+                  },
+                  child: Text("$count"));
+            }
+          ),
+        ),
+      ),
+    );
+  }
+} */

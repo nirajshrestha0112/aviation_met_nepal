@@ -2,7 +2,6 @@ import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../widgets/custom_floating_action_btn.dart';
 import '../widgets/general_icon.dart';
 import 'sigwx_details_screen.dart';

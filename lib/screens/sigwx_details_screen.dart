@@ -1,14 +1,11 @@
 import 'dart:developer';
-
 import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:aviation_met_nepal/widgets/file_downloader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../utils/get_device_size.dart';
 import '../widgets/custom_floating_action_btn.dart';
-import '../widgets/general_icon.dart';
 
 class SigwaxDetailsScreen extends StatelessWidget {
   final String fileName;
@@ -22,16 +19,7 @@ class SigwaxDetailsScreen extends StatelessWidget {
     log(path);
     return SafeArea(
       child: Scaffold(
-          appBar:CustomAppBar(text: "SIGWX Chart"),
-           /* AppBar(
-            leading: const GeneralIcon(),
-            title: Padding(
-              padding: EdgeInsets.only(bottom: 4.h),
-              child: const Text(
-                "SIGWX Chart",
-              ),
-            ),
-          ), */
+          appBar: CustomAppBar(text: "SIGWX Chart"),
           floatingActionButton: const CustomFloatingActionBtn(),
           body: SigwaxDetailsScreenBody(
             fileName: fileName,

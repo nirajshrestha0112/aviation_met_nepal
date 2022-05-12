@@ -41,7 +41,6 @@ class FileDownloader {
       final dir = ftpFilename.split("/");
 
       log(await ftpConnect!.currentDirectory());
-      log("smothing");
       for (var d in dir) {
         await ftpConnect!.changeDirectory(d);
         log(await ftpConnect!.currentDirectory(), name: "current dir");
@@ -69,40 +68,6 @@ class FileDownloader {
       log('Error : ${e.toString()}');
     }
   }
-
-  /*  Future<Map?> getSigwxDir({
-    required String ftpFilename,
-  }) async {
-    try {
-      if (ftpConnect == null) {
-        log("message");
-        await connectionFTP();
-      }
-      await ftpConnect!.connect();
-      final dir = ftpFilename.split("/");
-      String currentDir = "";
-
-      for (var d in dir) {
-        await ftpConnect!.changeDirectory(d);
-        log(await ftpConnect!.currentDirectory(), name: "current dir");
-        currentDir = await ftpConnect!.currentDirectory();
-      }
-
-      var dirData =
-          await ftpConnect!.listDirectoryContent(cmd: DIR_LIST_COMMAND.MLSD);
-      List<FTPEntry> tempList = [];
-      for (int i = 0; i < dirData.length; i++) {
-        if (i > 1) {
-          tempList.add(dirData[i]);
-        }
-      }
-      await ftpConnect!.disconnect();
-      return {'dirContents': tempList, 'currentDir': currentDir.substring(1)};
-    } catch (e) {
-      log('Error : ${e.toString()}');
-    }
-    
-  } */
 
   Future downloadFileSigwxChart({
     required String filename,
