@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/constants.dart';
 import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:aviation_met_nepal/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
 import '../constant/routes.dart';
 import '../widgets/custom_snackbar.dart';
 
@@ -61,7 +63,8 @@ class LoginProvider extends ChangeNotifier {
           ScaffoldMessenger.of(context).showSnackBar(successMessage);
           await SecureStorage.writeSecureData(
               key: SecureStorageConstants.token, value: token!);
-          Navigator.pushNamed(context, homeRoute);
+          Navigator.pushNamedAndRemoveUntil(
+              context, homeRoute, (route) => false);
         }
       } else {
         final SnackBar errorSnackBar = CustomSnackBar.customSnackBar(

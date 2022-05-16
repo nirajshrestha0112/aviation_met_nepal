@@ -27,9 +27,9 @@ class _SplashScreen extends State<SplashScreen> {
   }
 
   fetchDatas() async {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
       return const HomeScreen();
-    }));
+    }), (route) => false);
   }
 
   @override
