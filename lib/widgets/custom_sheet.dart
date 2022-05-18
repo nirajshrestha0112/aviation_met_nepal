@@ -472,14 +472,20 @@ class ShowLocationSheet {
                             ),
                             minVerticalPadding:
                                 DeviceUtil.isMobile ? 0.h : 28.h,
-                            leading: Text(
-                              value.searchData[i].ident,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                      fontSize: 18.sp,
-                                      color: const Color(colorPrimary)),
+                            leading: Container(
+                              margin: EdgeInsets.only(
+                                bottom: 8.h,
+                              ),
+                              height: 100.h,
+                              child: Text(
+                                value.searchData[i].ident,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                        fontSize: 18.sp,
+                                        color: const Color(colorPrimary)),
+                              ),
                             ),
                             trailing: Container(
                               margin: EdgeInsets.only(
