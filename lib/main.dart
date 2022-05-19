@@ -29,6 +29,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
 import 'provider/ashtams_data_provider.dart';
 import 'provider/gamet_data_provider.dart';
 import 'provider/lighting_data_provider.dart';
@@ -66,6 +67,7 @@ void main() async {
 }
 
 final messengerKey = GlobalKey<ScaffoldMessengerState>();
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -80,89 +82,50 @@ class MyApp extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       return OrientationBuilder(builder: (context, orientation) {
         return ScreenUtilInit(
-          splitScreenMode: true,
-          designSize: const Size(375, 812),
-          builder: (_) => MaterialApp(
-            scaffoldMessengerKey: messengerKey,
+            splitScreenMode: true,
+            designSize: const Size(375, 812),
             builder: (BuildContext context, Widget? child) {
-              return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                  child: child!);
-            },
-            theme: theme(context),
-            debugShowCheckedModeBanner: false,
-            title: 'Aviation Met Nepal',
-            initialRoute: splashRoute,
-            routes: {
-              splashRoute: (context) => const SplashScreen(),
-              sigwxChartRoute: (context) => const SigwxChartScreen(),
-              homeRoute: (context) => const HomeScreen(),
-              detailsRoute: (context) => const DetailsScreen(),
-              contactRoute: (context) => const ContactUs(),
-              loginRoute: (context) => const LoginPage(),
-              lightingDataRoute: (context) => const LightingData(),
-              notificationRoute: (context) => const NotificationScreen(),
-              icingTurbulenceChartRoute: (context) =>
-                  const IcingTurbulenceScreen(),
-              weatherCameraImagesRoute: (context) =>
-                  const WeatherCameraImagesScreen(),
-              satelliteImageDataRoute: (context) => const SatelliteScreen(),
-              windChartRoute: (context) => const WindChartScreen(),
-              airmetDataRoute: (context) =>
-                  const CustomScreen(screenName: "Airmet Data"),
-              ashtamsDataRoute: (context) =>
-                  const CustomScreen(screenName: "Ashtams Data"),
-              gametDataRoute: (context) =>
-                  const CustomScreen(screenName: "Gamet Data"),
-              opmetDataRoute: (context) =>
-                  const CustomScreen(screenName: "Opmet Data"),
-              weatherForecastRoute: ((context) => const WeatherForecastScreen())
-            },
-          ),
-        );
+              return MaterialApp(
+                scaffoldMessengerKey: messengerKey,
+                builder: (BuildContext context, Widget? child) {
+                  return MediaQuery(
+                      data:
+                          MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                      child: child!);
+                },
+                theme: theme(context),
+                debugShowCheckedModeBanner: false,
+                title: 'Aviation Met Nepal',
+                initialRoute: splashRoute,
+                routes: {
+                  splashRoute: (context) => const SplashScreen(),
+                  sigwxChartRoute: (context) => const SigwxChartScreen(),
+                  homeRoute: (context) => const HomeScreen(),
+                  detailsRoute: (context) => const DetailsScreen(),
+                  contactRoute: (context) => const ContactUs(),
+                  loginRoute: (context) => const LoginPage(),
+                  lightingDataRoute: (context) => const LightingData(),
+                  notificationRoute: (context) => const NotificationScreen(),
+                  icingTurbulenceChartRoute: (context) =>
+                      const IcingTurbulenceScreen(),
+                  weatherCameraImagesRoute: (context) =>
+                      const WeatherCameraImagesScreen(),
+                  satelliteImageDataRoute: (context) => const SatelliteScreen(),
+                  windChartRoute: (context) => const WindChartScreen(),
+                  airmetDataRoute: (context) =>
+                      const CustomScreen(screenName: "Airmet Data"),
+                  ashtamsDataRoute: (context) =>
+                      const CustomScreen(screenName: "Ashtams Data"),
+                  gametDataRoute: (context) =>
+                      const CustomScreen(screenName: "Gamet Data"),
+                  opmetDataRoute: (context) =>
+                      const CustomScreen(screenName: "Opmet Data"),
+                  weatherForecastRoute: ((context) =>
+                      const WeatherForecastScreen())
+                },
+              );
+            });
       });
     });
   }
 }
-
-
-
-
-// import 'package:flutter/material.dart';
-// import 'package:flutter/src/foundation/key.dart';
-// import 'package:flutter/src/widgets/framework.dart';
-
-/* void main() => runApp(Home());
-
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
-  int count = 0;
-  Widget build(BuildContext context) {
-    print("build method");
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: StatefulBuilder(
-            builder: (context,set) {
-              return TextButton(
-                  onPressed: () {
-                    print("textbtn");
-                    set(() {
-                      count++;
-                    });
-                  },
-                  child: Text("$count"));
-            }
-          ),
-        ),
-      ),
-    );
-  }
-} */
