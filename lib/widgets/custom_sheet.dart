@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/routes.dart';
@@ -17,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+
 import '../provider/weather_forecast_provider.dart';
 import '../utils/custom_scroll_behavior.dart';
 import '../utils/get_device_size.dart';
@@ -432,13 +434,13 @@ class ShowLocationSheet {
     required Future future,
     required TextEditingController editingController,
   }) async {
-    return await _showCustomizedBottomsheet(
+    return await _showCustomizedBottomSheet(
         context: context,
         editingController: editingController,
-        child: getshowLocationWidget(future));
+        child: getShowLocationWidget(future));
   }
 
-  static getshowLocationWidget(Future future) {
+  static getShowLocationWidget(Future future) {
     return Scrollbar(
       child: FutureBuilder(
           future: future,
@@ -513,7 +515,7 @@ class ShowLocationSheet {
 
 class ShowFilterSheet {
   static Future showFilterSheet(context) async {
-    String? _value;
+    String? value;
     await showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
@@ -573,7 +575,7 @@ class ShowFilterSheet {
                     child: StatefulBuilder(builder: (context, set) {
                       return DropDownFilter(
                         setValue: (val) {
-                          _value = val;
+                          value = val;
                           set(() {});
                         },
                       );
@@ -591,7 +593,7 @@ class ShowFilterSheet {
             ),
           );
         });
-    return _value;
+    return value;
   }
 }
 
@@ -606,7 +608,7 @@ class ShowWeatherForecastCities {
           .filterSearchWeatherForecastResults(editingController.text);
     });
 
-    return await _showCustomizedBottomsheet(
+    return await _showCustomizedBottomSheet(
         context: context,
         editingController: editingController,
         child: getWeatherForecastCitiesWidget(future));
@@ -637,12 +639,13 @@ class ShowWeatherForecastCities {
                                       context,
                                       listen: false)
                                   .fetchWeatherForecast(
-                                      id: value
-                                          .searchWeatherForecastData[i].id);
-                              Navigator.pop(
-                                  context,
-                                  value.searchWeatherForecastData[i]
-                                      .description);
+                                      id: value.searchWeatherForecastData[i].id)
+                                  .then((_) {
+                                Navigator.pop(
+                                    context,
+                                    value.searchWeatherForecastData[i]
+                                        .description);
+                              });
                             },
                             child: Padding(
                               padding: EdgeInsets.only(top: 16.h, left: 4.h),
@@ -663,7 +666,7 @@ class ShowWeatherForecastCities {
   }
 }
 
-_showCustomizedBottomsheet({
+_showCustomizedBottomSheet({
   required BuildContext context,
   required TextEditingController editingController,
   required Widget child,
@@ -716,13 +719,13 @@ class ShowWeatherCameraImagesSheet {
     required TextEditingController editingController,
     required Future future,
   }) async {
-    return await _showCustomizedBottomsheet(
+    return await _showCustomizedBottomSheet(
         context: context,
         editingController: editingController,
-        child: getshowWeatherCameraImagesWidget(future));
+        child: getShowWeatherCameraImagesWidget(future));
   }
 
-  static getshowWeatherCameraImagesWidget(Future future) {
+  static getShowWeatherCameraImagesWidget(Future future) {
     return Scrollbar(
       child: FutureBuilder(
           future: future,

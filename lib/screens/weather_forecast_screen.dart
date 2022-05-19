@@ -1,12 +1,15 @@
+import 'package:aviation_met_nepal/constant/constants.dart';
 import 'package:aviation_met_nepal/provider/weather_forecast_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
+import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
 import '../constant/colors_properties.dart';
 import '../constant/images.dart';
 
@@ -31,31 +34,27 @@ class WeatherForecastBody extends StatefulWidget {
 }
 
 class _WeatherForecastBodyState extends State<WeatherForecastBody> {
-  bool isInit = false;
   bool isLoading = true;
-
-  @override
-  void didChangeDependencies() async {
-    if (isInit == false) {
-      await Provider.of<WeatherForecastProvider>(context, listen: false)
-          .fetchWeatherForecast(id: "4991");
-      isLoading = false;
-      isInit = true;
-      setState(() {});
-    }
-    super.didChangeDependencies();
-  }
+  late Future _future;
+  String selectedCityName = 'Kathmandu';
 
   @override
   void initState() {
-    _future =
-        Provider.of<CitiesProvider>(context, listen: false).fetchCitiesData();
+    fetchData();
 
     super.initState();
   }
 
-  late Future _future;
-  String description = "Kathmandu";
+  void fetchData() async {
+    _future =
+        Provider.of<CitiesProvider>(context, listen: false).fetchCitiesData();
+
+    await Provider.of<WeatherForecastProvider>(context, listen: false)
+        .fetchWeatherForecast(id: kathmanduCityId);
+    isLoading = false;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScrollConfiguration(
@@ -73,37 +72,26 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
           children: [
             GestureDetector(
               onTap: (() async {
-                var desc =
+                selectedCityName =
                     await ShowWeatherForecastCities.showWeatherForecastCities(
                         context: context, future: _future);
-                if (desc != null) {
-                  description = desc;
-                } else {
-                  description = "Kathmandu";
-                }
                 setState(() {});
               }),
               child: SingleChildScrollView(
                 padding: EdgeInsets.only(top: 10.h, left: 16.w, right: 16.w),
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Row(
-                        children: [
-                          Text(description,
-                              style: Theme.of(context).textTheme.bodyText2),
-                          Icon(
-                            Icons.arrow_drop_down,
-                            color: const Color(colorDarkBlue),
-                            size: 25.w,
-                          ),
-                        ],
+                      Text('$selectedCityName \u{25BC} ',
+                          style: Theme.of(context).textTheme.bodyText1),
+                      SizedBox(
+                        width: 16.w,
                       ),
                       Text(
                         DateFormat("EEE dd MMM yyy, hh:mm a")
                             .format(DateTime.now()),
-                        style: Theme.of(context).textTheme.bodyText2,
+                        style: Theme.of(context).textTheme.bodyText1,
                       )
                     ]),
               ),
@@ -117,96 +105,88 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
                     child: const Center(
                         child: CircularProgressIndicator.adaptive()),
                   )
-                : Consumer<WeatherForecastProvider>(builder: (_, value, __) {
-                    return Expanded(
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: value.dateList.length,
-                        itemBuilder: (context, int index) {
-                          return value.dateList[index].day != DateTime.now().day
-                              ? const SizedBox.shrink()
-                              : Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 8.h, horizontal: 16.w),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          DateFormat("hh:mm a")
-                                              .format(value.dateList[index]),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2),
-                                      SizedBox(
-                                        height: 8.h,
-                                      ),
-                                      Image.asset(
-                                        weatherIconImg,
-                                        height: 40.h,
-                                      ),
-                                      SizedBox(
-                                        height: 8.h,
-                                      ),
-                                      Text(
-                                        "${value.weatherTemperatureList[index].c}\u2103",
+                : Consumer<WeatherForecastProvider>(
+                    builder: (_, value, __) {
+                      if (value.dateList.first.day != DateTime.now().day) {
+                        return const CustomErrorTab();
+                      } else {
+                        return Expanded(
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: value.dateList.length,
+                            itemBuilder: (context, int index) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 8.h, horizontal: 16.w),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        DateFormat("hh:mm a")
+                                            .format(value.dateList[index]),
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText2,
-                                      ),
-                                      SizedBox(
-                                        height: 8.h,
-                                      ),
-                                      Row(
-                                        children: [
-                                          index == 0
-                                              ? Text("Wind",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText2)
-                                              : const SizedBox.shrink(),
-                                          index == 0
-                                              ? SizedBox(
-                                                  width: 4.w,
-                                                )
-                                              : const SizedBox.shrink(),
-                                          Text(
-                                              "${value.windSpeedList[index].kph} km/hr",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText2),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 8.h,
-                                      ),
-                                      Row(
-                                        children: [
-                                          index == 0
-                                              ? Text("Humidity",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText2)
-                                              : const SizedBox.shrink(),
-                                          index == 0
-                                              ? SizedBox(
-                                                  width: 4.w,
-                                                )
-                                              : const SizedBox.shrink(),
-                                          Text(
-                                              "${value.humidityList[index].percentage}%",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText2),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                );
-                        },
-                      ),
-                    );
-                  })
+                                            .bodyText2),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    Image.asset(
+                                      weatherIconImg,
+                                      height: 40.h,
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    Text(
+                                      "${value.weatherTemperatureList[index].c}\u2103",
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2,
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    Row(
+                                      children: [
+                                        index == 0
+                                            ? Text("Wind ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText2)
+                                            : const SizedBox.shrink(),
+                                        Text(
+                                            "${value.windSpeedList[index].kph} km/hr",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    Row(
+                                      children: [
+                                        index == 0
+                                            ? Text("Humidity ",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText2)
+                                            : const SizedBox.shrink(),
+                                        Text(
+                                            "${value.humidityList[index].percentage}%",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      }
+                    },
+                  ),
           ],
         ),
       ),
