@@ -14,19 +14,19 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreen extends State<SplashScreen> {
-  int splashtime = 3;
   // duration of splash screen on second
+  int splashTime = 3;
 
   @override
   void initState() {
-    Future.delayed(Duration(seconds: splashtime), () async {
-      await fetchDatas();
+    Future.delayed(Duration(seconds: splashTime), () async {
+      await navigateToHome();
     });
 
     super.initState();
   }
 
-  fetchDatas() async {
+  navigateToHome() async {
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
       return const HomeScreen();
     }), (route) => false);

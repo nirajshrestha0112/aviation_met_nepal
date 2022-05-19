@@ -47,6 +47,9 @@ class HomeScreenBody extends StatefulWidget {
 }
 
 class _HomeScreenBodyState extends State<HomeScreenBody> {
+  final _editingController = TextEditingController();
+  late Future _future;
+
   @override
   void initState() {
     Provider.of<ConnectivityProvider>(context, listen: false)
@@ -60,12 +63,10 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
     super.initState();
   }
 
-  final _editingController = TextEditingController();
-  late Future _future;
   @override
   Widget build(BuildContext context) {
-    _future = Provider.of<AirportListProvider>(context, listen: false)
-        .fetchAirportList();
+    // _future = Provider.of<AirportListProvider>(context, listen: false)
+    //     .fetchAirportList();
     return Column(children: [
       GestureDetector(
         onTap: () => getIsOnline(context)
@@ -88,6 +89,9 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
             padding: EdgeInsets.symmetric(horizontal: 14.w),
             height: DeviceUtil.isMobile ? 46.h : 60.h,
             width: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+                color: const Color(colorWhite),
+                borderRadius: BorderRadius.circular(8.w)),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -102,10 +106,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                     size: DeviceUtil.isMobile ? 20.h : 30.h,
                     color: const Color(colorPrimary),
                   ),
-                ]),
-            decoration: BoxDecoration(
-                color: const Color(colorWhite),
-                borderRadius: BorderRadius.circular(8.w))),
+                ])),
       ),
       Expanded(
         child: Column(
