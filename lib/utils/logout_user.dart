@@ -15,7 +15,7 @@ void showLogoutAlertDialog(BuildContext context) async {
           )).then((value) {
     if (value) {
       Provider.of<LoginProvider>(context, listen: false).clearLoginDetails();
-      Navigator.pushNamed(context, homeRoute);
+      Navigator.pushNamedAndRemoveUntil(context, homeRoute, (route) => false);
     } else {
       Navigator.pop(context);
     }
