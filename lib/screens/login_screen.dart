@@ -1,7 +1,6 @@
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
-import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/utils/validation.dart';
 import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
@@ -9,6 +8,8 @@ import 'package:aviation_met_nepal/widgets/general_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
+import '../provider/connectivity_provider.dart';
 import '../utils/get_device_size.dart';
 import '../utils/show_internet_connection_snack_bar.dart';
 

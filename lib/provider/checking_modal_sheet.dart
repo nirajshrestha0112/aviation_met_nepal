@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import '../widgets/custom_sheet.dart';
+
+import '../widgets/menu_bottom_sheet.dart';
 
 class CheckingModalSheet extends ChangeNotifier {
   bool isShowing = true;
@@ -7,7 +8,7 @@ class CheckingModalSheet extends ChangeNotifier {
   checkingModalSheet(context) {
     if (isShowing) {
       WidgetsBinding.instance.addPostFrameCallback(
-          (_) => ShowFabSheet.showFabSheet(context: context));
+          (_) => ShowMenuBottomSheet.showFabSheet(context: context));
       isShowing = !isShowing;
     }
   }

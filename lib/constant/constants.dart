@@ -1,5 +1,7 @@
 const String kathmanduCityId = '4991';
 
+const String feedbackEmail = 'mfddhm@gmail.com';
+
 /// Place Name and Details used on contact us page
 
 const String kathmanduText = 'Kathmandu';
@@ -25,6 +27,12 @@ const String dharanContactDetail = '1618 025 520272(for daily weather data)';
 
 const String surkhetText = 'Surkhet';
 const String surkhetContactDetail = '1618 083 523519(for daily weather data)';
+
+/// alert dialog title
+const String exitText = 'Exit';
+const String logoutText = 'Logout';
+const String exitMessage = 'Are you sure you want to exit?';
+const String loggingOutMessage = 'Are you sure you want to logout?';
 
 class SecureStorageConstants {
   static const token = "token";

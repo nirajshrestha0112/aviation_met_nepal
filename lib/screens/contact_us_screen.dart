@@ -10,7 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/get_device_size.dart';
-import '../widgets/custom_sheet.dart';
+import '../utils/open_external_app.dart';
 import '../widgets/general_icon.dart';
 
 class ContactUs extends StatelessWidget {
@@ -28,14 +28,6 @@ class ContactUsBody extends StatelessWidget {
   const ContactUsBody({
     Key? key,
   }) : super(key: key);
-
-  String getPhoneUrl({required String phone}) {
-    final Uri params = Uri(
-      scheme: 'tel',
-      path: phone,
-    );
-    return params.toString();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,16 +110,14 @@ class ContactUsBody extends StatelessWidget {
                       icon: Icons.phone,
                       getText: dhmPhoneNumber,
                       onTap: () {
-                        ShowFabSheet.launchUrl(
-                            getPhoneUrl(phone: dhmPhoneNumber));
+                        launchUrl(getPhoneUrl(phone: dhmPhoneNumber));
                       }),
                   SizedBox(height: 6.h),
                   BuildRowWidget(
                     icon: Icons.email,
                     getText: dhmEmail,
                     onTap: () {
-                      ShowFabSheet.launchUrl(
-                          ShowFabSheet.getEmailUrl(email: dhmEmail));
+                      launchUrl(getEmailUrl(email: dhmEmail));
                     },
                   ),
                   SizedBox(

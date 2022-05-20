@@ -4,7 +4,6 @@ import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/provider/checking_modal_sheet.dart';
 import 'package:aviation_met_nepal/provider/connectivity_provider.dart';
 import 'package:aviation_met_nepal/utils/get_device_size.dart';
-import 'package:aviation_met_nepal/utils/is_online_checker.dart';
 import 'package:aviation_met_nepal/utils/show_internet_connection_snack_bar.dart';
 import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
 import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
@@ -14,6 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import '../constant/constants.dart';
 import '../widgets/custom_alert_dialog.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -25,7 +25,11 @@ class HomeScreen extends StatelessWidget {
         .checkingModalSheet(context);
     return WillPopScope(
       onWillPop: () async => await showDialog(
-          context: context, builder: (context) => const ShowAlertDialogBox()),
+          context: context,
+          builder: (context) => const ShowAlertDialogBox(
+                title: exitText,
+                message: exitMessage,
+              )),
       child: SafeArea(
         child: Scaffold(
             appBar: CustomAppBar(

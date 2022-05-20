@@ -8,9 +8,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
 import '../constant/colors_properties.dart';
+import '../provider/connectivity_provider.dart';
 import '../utils/get_device_size.dart';
-import '../utils/is_online_checker.dart';
 import '../utils/show_internet_connection_snack_bar.dart';
 import '../widgets/custom_sheet.dart';
 

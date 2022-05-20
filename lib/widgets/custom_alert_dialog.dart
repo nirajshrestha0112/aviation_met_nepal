@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../utils/get_device_size.dart';
 
 class ShowAlertDialogBox extends StatefulWidget {
   const ShowAlertDialogBox({
     Key? key,
+    required this.message,
+    required this.title,
   }) : super(key: key);
+
+  final String title;
+  final String message;
 
   @override
   State<ShowAlertDialogBox> createState() => _ShowAlertDialogBoxState();
@@ -21,9 +27,9 @@ class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
             var height = 20.h;
             var width = MediaQuery.of(context).size.width * 100;
             return SizedBox(
-              height: DeviceUtil.isMobile?height:24.h,
+              height: DeviceUtil.isMobile ? height : 24.h,
               width: width,
-              child: Text("Are you sure you want to exit?",
+              child: Text(widget.message,
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: Colors.black,
@@ -32,7 +38,7 @@ class _ShowAlertDialogBoxState extends State<ShowAlertDialogBox> {
           },
         ),
         title: Text(
-          'Confirm to Exit',
+          'Confirm to ${widget.title}',
           style: TextStyle(
               fontSize: 18.sp,
               color: Colors.black,

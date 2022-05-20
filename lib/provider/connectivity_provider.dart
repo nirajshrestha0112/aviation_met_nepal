@@ -2,6 +2,11 @@ import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+getIsOnline(BuildContext context) {
+  return Provider.of<ConnectivityProvider>(context, listen: false).isOnline;
+}
 
 class ConnectivityProvider extends ChangeNotifier {
   final Connectivity _connectivity = Connectivity();
