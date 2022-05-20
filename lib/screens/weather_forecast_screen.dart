@@ -36,7 +36,7 @@ class WeatherForecastBody extends StatefulWidget {
 class _WeatherForecastBodyState extends State<WeatherForecastBody> {
   bool isLoading = true;
   late Future _future;
-  String selectedCityName = defaultCityName;
+  String selectedCityName = kathmanduText;
 
   @override
   void initState() {
@@ -75,7 +75,7 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
                 selectedCityName =
                     await ShowWeatherForecastCities.showWeatherForecastCities(
                             context: context, future: _future) ??
-                        defaultCityName;
+                        kathmanduText;
                 setState(() {});
               }),
               child: SingleChildScrollView(

@@ -1,4 +1,5 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
+import 'package:aviation_met_nepal/constant/constants.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/provider/privacy_policy_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+
 import '../utils/get_device_size.dart';
 import '../widgets/custom_sheet.dart';
 import '../widgets/general_icon.dart';
@@ -34,8 +36,6 @@ class ContactUsBody extends StatelessWidget {
     );
     return params.toString();
   }
-
-  final String phoneNumber = "+97714486869";
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +103,7 @@ class ContactUsBody extends StatelessWidget {
                       ),
                       Expanded(
                           child: Text(
-                        "Gauchar, Tribhuvan International Airport Kathmandu, Nepal",
+                        dhmLocation,
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
@@ -116,17 +116,18 @@ class ContactUsBody extends StatelessWidget {
                   ),
                   BuildRowWidget(
                       icon: Icons.phone,
-                      getText: phoneNumber,
+                      getText: dhmPhoneNumber,
                       onTap: () {
-                        ShowFabSheet.launchUrl(getPhoneUrl(phone: phoneNumber));
+                        ShowFabSheet.launchUrl(
+                            getPhoneUrl(phone: dhmPhoneNumber));
                       }),
                   SizedBox(height: 6.h),
                   BuildRowWidget(
                     icon: Icons.email,
-                    getText: "info@mfd.gov.np",
+                    getText: dhmEmail,
                     onTap: () {
                       ShowFabSheet.launchUrl(
-                          ShowFabSheet.getEmailUrl(email: "info@mfd.gov.np"));
+                          ShowFabSheet.getEmailUrl(email: dhmEmail));
                     },
                   ),
                   SizedBox(
@@ -140,41 +141,44 @@ class ContactUsBody extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        "Please Dial And Listen To Us For Notice Board Service",
+                        dhmRequestText,
                         style: Theme.of(context).textTheme.bodyText2!,
                       ),
                       SizedBox(
                         height: 6.h,
                       ),
                       const CustomContactText(
-                          leftText: "Kathmandu :",
-                          rightText:
-                              "1618 07 07 33333(for daily weather updates)"),
+                          leftText: "$kathmanduText :",
+                          rightText: kathmanduContactDetail),
                       SizedBox(
                         height: 4.h,
                       ),
                       const CustomContactText(
-                        leftText: "Surkhet :       ",
-                        rightText: "1618 083 523519(for daily weather data)",
-                      ),
-                      SizedBox(
-                        height: 4.h,
-                      ),
-                      const CustomContactText(
-                        leftText: "Pokhara :      ",
-                        rightText: "1618 061 465299(for daily weather data)",
+                        leftText: "$surkhetText :       ",
+                        rightText: surkhetContactDetail,
                       ),
                       SizedBox(
                         height: 4.h,
                       ),
                       const CustomContactText(
-                        leftText: "Dharan :        ",
-                        rightText: "1618 025 520272(for daily weather data)",
+                        leftText: "$pokharaText :      ",
+                        rightText: pokharaContactDetail,
+                      ),
+                      SizedBox(
+                        height: 4.h,
+                      ),
+                      const CustomContactText(
+                        leftText: "$dharanText :        ",
+                        rightText: dharanContactDetail,
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: 4.h,
+                    height: 16.h,
+                  ),
+                  const Divider(),
+                  SizedBox(
+                    height: 8.h,
                   ),
                   const ClickAbleContain()
                 ],
@@ -265,6 +269,9 @@ class _ClickAbleContainState extends State<ClickAbleContain> {
                     ),
                   )
                 ],
+              ),
+              SizedBox(
+                height: 8.h,
               ),
               Column(children: [
                 isEng
