@@ -635,17 +635,17 @@ class ShowWeatherForecastCities {
                       itemBuilder: (c, i) {
                         return GestureDetector(
                             onTap: () async {
+                              Navigator.pop(
+                                  context,
+                                  value.searchWeatherForecastData[i]
+                                      .description);
+
                               await Provider.of<WeatherForecastProvider>(
                                       context,
                                       listen: false)
                                   .fetchWeatherForecast(
                                       id: value.searchWeatherForecastData[i].id)
-                                  .then((_) {
-                                Navigator.pop(
-                                    context,
-                                    value.searchWeatherForecastData[i]
-                                        .description);
-                              });
+                                  .then((_) {});
                             },
                             child: Padding(
                               padding: EdgeInsets.only(top: 16.h, left: 4.h),

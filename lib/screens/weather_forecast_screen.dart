@@ -36,7 +36,7 @@ class WeatherForecastBody extends StatefulWidget {
 class _WeatherForecastBodyState extends State<WeatherForecastBody> {
   bool isLoading = true;
   late Future _future;
-  String selectedCityName = 'Kathmandu';
+  String selectedCityName = defaultCityName;
 
   @override
   void initState() {
@@ -74,7 +74,8 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
               onTap: (() async {
                 selectedCityName =
                     await ShowWeatherForecastCities.showWeatherForecastCities(
-                        context: context, future: _future);
+                            context: context, future: _future) ??
+                        defaultCityName;
                 setState(() {});
               }),
               child: SingleChildScrollView(
@@ -84,14 +85,14 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text('$selectedCityName \u{25BC} ',
-                          style: Theme.of(context).textTheme.bodyText1),
+                          style: Theme.of(context).textTheme.bodyText2),
                       SizedBox(
                         width: 16.w,
                       ),
                       Text(
                         DateFormat("EEE dd MMM yyy, hh:mm a")
                             .format(DateTime.now()),
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyText2,
                       )
                     ]),
               ),
