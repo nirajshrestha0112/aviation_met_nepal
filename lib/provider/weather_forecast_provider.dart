@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
+
+import 'package:aviation_met_nepal/constant/constants.dart';
 import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:aviation_met_nepal/model/cities.dart';
 import 'package:aviation_met_nepal/model/weather_detail.dart';
@@ -17,14 +19,14 @@ class CitiesProvider extends ChangeNotifier {
       http.Response response = await http.get(
         url,
         headers: <String, String>{
-          'authorization': "Basic ZGhtOk1maURITTIwMjEk",
+          'authorization': accessToken,
         },
       );
       if (response.statusCode == 200) {
         final map = jsonDecode(response.body) as Map;
         map.forEach((key, value) {
           citiesData.add(DatumCities.fromJson(value));
-         
+
           log(citiesData.toString());
         });
         searchWeatherForecastData = [...citiesData];
@@ -75,7 +77,7 @@ class WeatherForecastProvider extends ChangeNotifier {
       http.Response response = await http.get(
         Uri.parse(url),
         headers: <String, String>{
-          'authorization': "Basic ZGhtOk1maURITTIwMjEk",
+          'authorization': accessToken,
         },
       );
       log(response.body);

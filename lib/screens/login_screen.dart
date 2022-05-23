@@ -17,7 +17,7 @@ class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
@@ -127,8 +127,8 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                             builder: (_) => const Center(
                                 child: CircularProgressIndicator.adaptive()),
                           );
-                          await Future.delayed(const Duration(seconds: 3));
-                          await Provider.of<LoginProvider>(context,
+                          var response = await Provider.of<LoginProvider>(
+                                  context,
                                   listen: false)
                               .loginPostApi(context,
                                   userName: _usernameController.text,

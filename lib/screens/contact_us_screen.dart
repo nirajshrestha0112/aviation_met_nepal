@@ -138,8 +138,9 @@ class ContactUsBody extends StatelessWidget {
                         height: 6.h,
                       ),
                       const CustomContactText(
-                          leftText: "$kathmanduText :",
-                          rightText: kathmanduContactDetail),
+                        leftText: "$kathmanduText :",
+                        rightText: kathmanduContactDetail,
+                      ),
                       SizedBox(
                         height: 4.h,
                       ),
@@ -170,7 +171,7 @@ class ContactUsBody extends StatelessWidget {
                   SizedBox(
                     height: 8.h,
                   ),
-                  const ClickAbleContain()
+                  const ClickAbleContain(),
                 ],
               ),
             ),

@@ -10,7 +10,7 @@ import 'show_internet_connection_snack_bar.dart';
 /// method to check internet, is user logged in and navigate to screen if
 /// condition is satisfied.
 checkInternetLoginAndNavigate(BuildContext context, CustomMenu customMenu) {
-  /// checking if user has logined
+  /// checking if user has logged in
   bool isUserLoggedIn =
       Provider.of<LoginProvider>(context, listen: false).loginName == null
           ? false

@@ -34,6 +34,9 @@ const String logoutText = 'Logout';
 const String exitMessage = 'Are you sure you want to exit?';
 const String loggingOutMessage = 'Are you sure you want to logout?';
 
+/// header authorization
+const String accessToken = 'Basic ZGhtOk1maURITTIwMjEk';
+
 class SecureStorageConstants {
   static const token = "token";
 }

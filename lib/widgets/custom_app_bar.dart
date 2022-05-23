@@ -15,7 +15,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String text; // default is 56.0
   final bool isHome;
   @override
-  _CustomAppBarState createState() => _CustomAppBarState();
+  State<CustomAppBar> createState() => _CustomAppBarState();
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {

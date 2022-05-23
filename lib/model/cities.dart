@@ -26,17 +26,17 @@ class DatumCities {
   late final String tags;
 
   DatumCities.fromJson(Map<String, dynamic> json) {
-    id = json['id']??"";
-    latitude = json['latitude']??"";
-    longitude = json['longitude']??"";
-    description = json['description']??"";
-    type = json['type']??"";
-    coordinate = json['coordinate']??"";
-    region = json['region']??"";
-    level = json['level']??"";
-    geometry = json['geometry']??"";
-    domain = json['domain']??"";
-    tags = json['tags']??"";
+    id = json['id'] ?? "";
+    latitude = json['latitude'] ?? "";
+    longitude = json['longitude'] ?? "";
+    description = json['description'] ?? "";
+    type = json['type'] ?? "";
+    coordinate = json['coordinate'] ?? "";
+    region = json['region'] ?? "";
+    level = json['level'] ?? "";
+    geometry = json['geometry'] ?? "";
+    domain = json['domain'] ?? "";
+    tags = json['tags'] ?? "";
   }
 
   Map<String, dynamic> toJson() {
@@ -55,22 +55,3 @@ class DatumCities {
     return _data;
   }
 }
-
-// void parseJson() async {
-//   const jsonData = '{}';
-//   final parsedData = jsonDecode(jsonData);
-//   List<DatumCities> datumList = [];
-//   List<List<DatumCities>> data = Cities.fromJson(parsedData).data;
-//   for (var d in data) {
-//     datumList += d;
-//   }
-//   int count = 1;
-//   for (var d in datumList) {
-//     print(count);
-//     count++;
-//     print(d.longitude);
-//     print(d.latitude);
-//   }
-// }
-
-///TODO: please remove _model from every model filename and class name.

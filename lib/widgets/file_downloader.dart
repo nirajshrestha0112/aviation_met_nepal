@@ -10,13 +10,11 @@ class FileDownloader {
   FTPConnect? ftpConnect;
 
   Future<void> _fileMock(String strFileName) async {
-    final Directory? appDocDir = await getApplicationDocumentsDirectory();
-    if (appDocDir != null) {
-      String appDocPath = appDocDir.path;
-      file = File('$appDocPath/$strFileName');
-      log('appDocPath : $appDocPath');
-      log('file : $file');
-    }
+    final Directory appDocDir = await getApplicationDocumentsDirectory();
+    String appDocPath = appDocDir.path;
+    file = File('$appDocPath/$strFileName');
+    log('appDocPath : $appDocPath');
+    log('file : $file');
   }
 
   //connect FTP

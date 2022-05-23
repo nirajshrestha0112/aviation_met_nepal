@@ -1,6 +1,7 @@
 import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../constant/colors_properties.dart';
 
 class DropDownFilter extends StatefulWidget {
@@ -12,7 +13,7 @@ class DropDownFilter extends StatefulWidget {
   final Function(String value) setValue;
 
   @override
-  _DropDownFilterState createState() => _DropDownFilterState();
+  State<DropDownFilter> createState() => _DropDownFilterState();
 }
 
 class _DropDownFilterState extends State<DropDownFilter> {
@@ -20,23 +21,23 @@ class _DropDownFilterState extends State<DropDownFilter> {
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(
-        child: Text("Most Recent"),
         value: "Most Recent",
+        child: Text("Most Recent"),
       ),
-      const DropdownMenuItem(child: Text("Past 1 Hours"), value: "1"),
-      const DropdownMenuItem(child: Text("Past 2 Hours"), value: "2"),
-      const DropdownMenuItem(child: Text("Past 3 Hours"), value: "3"),
-      const DropdownMenuItem(child: Text("Past 4 Hours"), value: "4"),
-      const DropdownMenuItem(child: Text("Past 5 Hours"), value: "5"),
-      const DropdownMenuItem(child: Text("Past 6 Hours"), value: "6"),
-      const DropdownMenuItem(child: Text("Past 12 Hours"), value: "12"),
-      const DropdownMenuItem(child: Text("Past 18 Hours"), value: "18"),
-      const DropdownMenuItem(child: Text("Past 24 Hours"), value: "24"),
-      const DropdownMenuItem(child: Text("Past 36 Hours"), value: "36"),
-      const DropdownMenuItem(child: Text("Past 48 Hours"), value: "48"),
-      const DropdownMenuItem(child: Text("Past 72 Hours"), value: "72"),
-      const DropdownMenuItem(child: Text("Past 96 Hours"), value: "96"),
-      const DropdownMenuItem(child: Text("Past 120 Hours"), value: "120"),
+      const DropdownMenuItem(value: "1", child: Text("Past 1 Hours")),
+      const DropdownMenuItem(value: "2", child: Text("Past 2 Hours")),
+      const DropdownMenuItem(value: "3", child: Text("Past 3 Hours")),
+      const DropdownMenuItem(value: "4", child: Text("Past 4 Hours")),
+      const DropdownMenuItem(value: "5", child: Text("Past 5 Hours")),
+      const DropdownMenuItem(value: "6", child: Text("Past 6 Hours")),
+      const DropdownMenuItem(value: "12", child: Text("Past 12 Hours")),
+      const DropdownMenuItem(value: "18", child: Text("Past 18 Hours")),
+      const DropdownMenuItem(value: "24", child: Text("Past 24 Hours")),
+      const DropdownMenuItem(value: "36", child: Text("Past 36 Hours")),
+      const DropdownMenuItem(value: "48", child: Text("Past 48 Hours")),
+      const DropdownMenuItem(value: "72", child: Text("Past 72 Hours")),
+      const DropdownMenuItem(value: "96", child: Text("Past 96 Hours")),
+      const DropdownMenuItem(value: "120", child: Text("Past 120 Hours")),
     ];
     return menuItems;
   }

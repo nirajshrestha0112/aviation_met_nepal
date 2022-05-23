@@ -17,11 +17,11 @@ class AirportList {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['status'] = status;
-    _data['message'] = message;
-    _data['data'] = data?.map((e) => e.toJson()).toList();
-    return _data;
+    final airportData = <String, dynamic>{};
+    airportData['status'] = status;
+    airportData['message'] = message;
+    airportData['data'] = data?.map((e) => e.toJson()).toList();
+    return airportData;
   }
 }
 
@@ -69,19 +69,19 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['ident'] = ident;
-    _data['type'] = type;
-    _data['name'] = name;
-    _data['elevation_ft'] = elevationFt;
-    _data['continent'] = continent;
-    _data['iso_country'] = isoCountry;
-    _data['iso_region'] = isoRegion;
-    _data['municipality'] = municipality;
-    _data['gps_code'] = gpsCode;
-    _data['iata_code'] = iataCode;
-    _data['local_code'] = localCode;
-    _data['coordinates'] = coordinates;
-    return _data;
+    final data = <String, dynamic>{};
+    data['ident'] = ident;
+    data['type'] = type;
+    data['name'] = name;
+    data['elevation_ft'] = elevationFt;
+    data['continent'] = continent;
+    data['iso_country'] = isoCountry;
+    data['iso_region'] = isoRegion;
+    data['municipality'] = municipality;
+    data['gps_code'] = gpsCode;
+    data['iata_code'] = iataCode;
+    data['local_code'] = localCode;
+    data['coordinates'] = coordinates;
+    return data;
   }
 }

@@ -90,6 +90,9 @@ class _WeatherCameraImagesBodyState extends State<WeatherCameraImagesBody> {
             padding: EdgeInsets.symmetric(horizontal: 14.w),
             height: DeviceUtil.isMobile ? 46.h : 60.h,
             width: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+                color: const Color(colorWhite),
+                borderRadius: BorderRadius.circular(8.w)),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -104,10 +107,7 @@ class _WeatherCameraImagesBodyState extends State<WeatherCameraImagesBody> {
                     size: DeviceUtil.isMobile ? 20.h : 30.h,
                     color: const Color(colorPrimary),
                   ),
-                ]),
-            decoration: BoxDecoration(
-                color: const Color(colorWhite),
-                borderRadius: BorderRadius.circular(8.w))),
+                ])),
       ),
       if (weatherCameraImages != null &&
           weatherCameraImages!.files.isNotEmpty &&

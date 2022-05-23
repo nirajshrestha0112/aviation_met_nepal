@@ -36,7 +36,7 @@ class MetarDataProvider extends ChangeNotifier {
     if (metarDataRaw == null) {
       rawId = ident;
       // id = id
-      
+
       await addRawData(ident: ident, filteredData: filteredData);
     } else if (shouldLoadRaw) {
       await addRawData(ident: ident, filteredData: filteredData);
@@ -58,8 +58,8 @@ class MetarDataProvider extends ChangeNotifier {
     required String filteredData,
   }) async {
     try {
-      final url = Uri.parse(metaDataRawUrl + ident + "/" + filteredData);
-      
+      final url = Uri.parse("$metaDataRawUrl$ident/$filteredData");
+
       log(url.toString());
       http.Response response = await http.get(url);
       log(response.body);
@@ -92,12 +92,12 @@ class MetarDataProvider extends ChangeNotifier {
     } else if (shouldLoadDecoded) {
       log("true");
       await addDecodedData(ident: ident, filteredData: filteredData);
-      // log("added filter dataa");
+      // log("added filter data");
     } else if (decodedId != ident) {
       decodedId = ident;
       await addDecodedData(ident: decodedId, filteredData: filteredData);
       /* log(decodedId);
-      log("out of metartab"); */
+      log("out of metar tab"); */
     }
   }
 
@@ -106,7 +106,7 @@ class MetarDataProvider extends ChangeNotifier {
     required String filteredData,
   }) async {
     try {
-      final url = Uri.parse(metaDataDecodedUrl + ident + "/" + filteredData);
+      final url = Uri.parse("$metaDataDecodedUrl$ident/$filteredData");
       log(url.toString());
       http.Response response = await http.get(url);
       log(response.body);

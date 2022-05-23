@@ -17,31 +17,31 @@ class WeatherForecast {
 
 class Data {
   Data({
-    required this.areainfo,
+    required this.areaInfo,
     required this.params,
   });
 
-  final Areainfo areainfo;
+  final AreaInfo areaInfo;
   final Map<String, dynamic> params;
 
   factory Data.fromJson(Map<String, dynamic> json) {
     return Data(
-      areainfo: Areainfo.fromJson(json["areainfo"]),
+      areaInfo: AreaInfo.fromJson(json["areainfo"]),
       params: json["params"],
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "areainfo": areainfo.toJson(),
+        "areainfo": areaInfo.toJson(),
         "params": params.toString(),
       };
 }
 
-class Areainfo {
-  Areainfo({
+class AreaInfo {
+  AreaInfo({
     required this.id,
     required this.description,
-    required this.areainfoClass,
+    required this.areaInfoClass,
     required this.coordinate,
     required this.domain,
     required this.geometry,
@@ -52,7 +52,7 @@ class Areainfo {
 
   final String id;
   final String description;
-  final String areainfoClass;
+  final String areaInfoClass;
   final String coordinate;
   final String domain;
   final String geometry;
@@ -60,10 +60,10 @@ class Areainfo {
   final dynamic parentId;
   final ForecastArea forecastArea;
 
-  factory Areainfo.fromJson(Map<String, dynamic> json) => Areainfo(
+  factory AreaInfo.fromJson(Map<String, dynamic> json) => AreaInfo(
         id: json["id"],
         description: json["description"],
-        areainfoClass: json["class"],
+        areaInfoClass: json["class"],
         coordinate: json["coordinate"],
         domain: json["domain"],
         geometry: json["geometry"],
@@ -75,7 +75,7 @@ class Areainfo {
   Map<String, dynamic> toJson() => {
         "id": id,
         "description": description,
-        "class": areainfoClass,
+        "class": areaInfoClass,
         "coordinate": coordinate,
         "domain": domain,
         "geometry": geometry,

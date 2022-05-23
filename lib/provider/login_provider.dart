@@ -11,9 +11,6 @@ import '../constant/routes.dart';
 import '../widgets/custom_snackbar.dart';
 
 class LoginProvider extends ChangeNotifier {
-  /*  String? username;
-  static String? password; */
-
   String? loginName;
   String? userId;
   String? token;
@@ -23,11 +20,11 @@ class LoginProvider extends ChangeNotifier {
     try {
       final url = Uri.parse(loginUrl);
       log(url.toString());
-      Map<String, String> _requestBody = <String, String>{
+      Map<String, String> requestBody = <String, String>{
         "USERNAME": userName,
         "PASSWORD": password,
       };
-      final http.Response response = await http.post(url, body: _requestBody);
+      final http.Response response = await http.post(url, body: requestBody);
       log(response.body);
       if (response.statusCode == 200) {
         if (jsonDecode(response.body)["status"] == "error") {

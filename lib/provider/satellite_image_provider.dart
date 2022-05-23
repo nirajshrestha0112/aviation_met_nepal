@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:aviation_met_nepal/model/satellite_images.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,13 +11,13 @@ class SatelliteImageProvider extends ChangeNotifier {
   postSatelliteImageDataData() async {
     try {
       final url = Uri.parse(satelliteImageDataUrl);
-      Map<String, String> _requestBody = <String, String>{
+      Map<String, String> requestBody = <String, String>{
         "satellite": "1",
         "category": "1",
         "sub_category": "1"
       };
       log(url.toString());
-      http.Response response = await http.post(url, body: _requestBody);
+      http.Response response = await http.post(url, body: requestBody);
       log(response.body);
       if (response.statusCode == 200) {
         if (jsonDecode(response.body)['status'] == false) {
