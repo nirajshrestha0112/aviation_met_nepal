@@ -127,8 +127,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                             builder: (_) => const Center(
                                 child: CircularProgressIndicator.adaptive()),
                           );
-                          var response = await Provider.of<LoginProvider>(
-                                  context,
+                          await Provider.of<LoginProvider>(context,
                                   listen: false)
                               .loginPostApi(context,
                                   userName: _usernameController.text,

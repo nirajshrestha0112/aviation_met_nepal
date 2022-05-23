@@ -40,18 +40,18 @@ class DatumCities {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['latitude'] = latitude;
-    _data['longitude'] = longitude;
-    _data['description'] = description;
-    _data['type'] = type;
-    _data['coordinate'] = coordinate;
-    _data['region'] = region;
-    _data['level'] = level;
-    _data['geometry'] = geometry;
-    _data['domain'] = domain;
-    _data['tags'] = tags;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
+    data['description'] = description;
+    data['type'] = type;
+    data['coordinate'] = coordinate;
+    data['region'] = region;
+    data['level'] = level;
+    data['geometry'] = geometry;
+    data['domain'] = domain;
+    data['tags'] = tags;
+    return data;
   }
 }
