@@ -273,7 +273,7 @@ _showCustomizedBottomSheet({
             child: Column(children: [
               const ModalSheetHeader(),
               SizedBox(
-                height: DeviceUtil.isMobile ? 6.h : 16.h,
+                height: DeviceUtil.isMobile ? 8.h : 16.h,
               ),
               GeneralTextFormField(
                 suffixIconsSize: 25.w,
@@ -285,6 +285,9 @@ _showCustomizedBottomSheet({
                 hintText: "Search Airport",
                 obscureText: false,
                 controller: editingController,
+              ),
+              SizedBox(
+                height: DeviceUtil.isMobile ? 8.h : 16.h,
               ),
               Expanded(
                 child: ScrollConfiguration(
