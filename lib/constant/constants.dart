@@ -37,6 +37,11 @@ const String loggingOutMessage = 'Are you sure you want to logout?';
 /// header authorization
 const String accessToken = 'Basic ZGhtOk1maURITTIwMjEk';
 
+/// ftp credentials and port
+const String ftpUsername = 'aviego';
+const String ftpPassword = 'aviegonasXcs#9';
+const int ftpPort = 21;
+
 class SecureStorageConstants {
   static const token = "token";
 }

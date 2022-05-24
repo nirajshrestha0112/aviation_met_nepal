@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../constant/colors_properties.dart';
 
 class ModalSheetHeader extends StatelessWidget {
@@ -23,7 +24,7 @@ class ModalSheetHeader extends StatelessWidget {
               width: 4.w,
             ),
             Text(
-              "Select Aiport",
+              "Select Airport",
               style: Theme.of(context).textTheme.bodyText1,
             )
           ],

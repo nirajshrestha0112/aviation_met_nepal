@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:aviation_met_nepal/constant/constants.dart';
+import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:aviation_met_nepal/utils/secure_storage.dart';
 import 'package:ftpconnect/ftpconnect.dart';
 import 'package:path_provider/path_provider.dart';
@@ -19,8 +21,8 @@ class FileDownloader {
 
   //connect FTP
   connectionFTP() async {
-    ftpConnect = FTPConnect("hydrology.gov.np",
-        user: "aviego", pass: "aviegonasXcs#9", port: 21);
+    ftpConnect = FTPConnect(ftpBaseUrl,
+        user: ftpUsername, pass: ftpPassword, port: ftpPort);
     log("ftp connected");
   }
 
