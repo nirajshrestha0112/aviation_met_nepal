@@ -56,12 +56,6 @@ class ShowMenuBottomSheet {
       needLogin: true,
     ),
     CustomMenu(
-      icon: const CustomImage(assetName: windImg),
-      title: const EachText(text: "Wind Chart"),
-      navigateTo: windChartRoute,
-      needLogin: true,
-    ),
-    CustomMenu(
       icon: const CustomImage(assetName: chartImg),
       title: const EachText(text: "SIGWX Chart"),
       navigateTo: sigwxChartRoute,

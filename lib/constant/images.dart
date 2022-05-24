@@ -12,7 +12,7 @@ const String weatherIconImg = "$baseAsset/png/weather_icon.png";
 const String logoOnlyImg = "$baseAsset/png/logoOnly.png";
 const String feedbackRocketImg = "$baseAsset/png/feedback_rocket.png";
 const String governmentImg = "$baseAsset/png/government.png";
-const String splashScreenImg = "$baseAsset/png/splash.png";
+const String splashScreenImg = "$baseAsset/png/splash.jpeg";
 
 //gif images
 const String gifImg = "$baseAsset/giphy.gif";
