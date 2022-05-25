@@ -1,7 +1,9 @@
 import 'package:aviation_met_nepal/constant/images.dart';
+import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -18,9 +20,16 @@ class _SplashScreen extends State<SplashScreen> {
 
   @override
   void initState() {
-    Future.delayed(Duration(seconds: splashTime), () async {
-      await navigateToHome();
-    });
+    Provider.of<LoginProvider>(context, listen: false)
+        .readFromSecureStorage()
+        .then(
+          (value) => Future.delayed(
+            Duration(seconds: splashTime),
+            () async {
+              await navigateToHome();
+            },
+          ),
+        );
 
     super.initState();
   }
