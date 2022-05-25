@@ -58,8 +58,7 @@ class LoginProvider extends ChangeNotifier {
                   .toString()
                   .toCapitalized());
           ScaffoldMessenger.of(context).showSnackBar(successMessage);
-          await SecureStorage.writeSecureData(
-              key: SecureStorageConstants.token, value: token!);
+          await writeInSecureStorage(userId ?? "", loginName ?? "");
           Navigator.pushNamedAndRemoveUntil(
               context, homeRoute, (route) => false);
         }
@@ -75,7 +74,36 @@ class LoginProvider extends ChangeNotifier {
     }
   }
 
-  void clearLoginDetails() {
+  writeInSecureStorage(
+    String userId,
+    String loginName,
+  ) async {
+    await SecureStorage.writeSecureData(
+        key: SecureStorageConstants.token, value: token!);
+    await SecureStorage.writeSecureData(
+        key: SecureStorageConstants.userId, value: userId);
+    await SecureStorage.writeSecureData(
+        key: SecureStorageConstants.loginName, value: loginName);
+  }
+
+  removeFromSecureStorage() async {
+    await SecureStorage.deleteAll();
+  }
+
+  Future<void> readFromSecureStorage() async {
+    if (await SecureStorage.containsSecureData(
+        key: SecureStorageConstants.token)) {
+      loginName = await SecureStorage.readSecureData(
+          key: SecureStorageConstants.loginName);
+      userId = await SecureStorage.readSecureData(
+          key: SecureStorageConstants.userId);
+      token =
+          await SecureStorage.readSecureData(key: SecureStorageConstants.token);
+    }
+    notifyListeners();
+  }
+
+  void clearLoginDetails() async {
     loginName = null;
     userId = null;
     notifyListeners();

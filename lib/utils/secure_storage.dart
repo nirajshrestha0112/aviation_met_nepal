@@ -14,4 +14,14 @@ class SecureStorage {
     );
     return readData;
   }
+
+  static Future<bool> containsSecureData({required String key}) async {
+    return await storage.containsKey(
+      key: key,
+    );
+  }
+
+  static Future deleteAll() async {
+    await storage.deleteAll();
+  }
 }

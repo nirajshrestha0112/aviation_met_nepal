@@ -44,4 +44,6 @@ const int ftpPort = 21;
 
 class SecureStorageConstants {
   static const token = "token";
+  static const loginName = "loginName";
+  static const userId = "userId";
 }
