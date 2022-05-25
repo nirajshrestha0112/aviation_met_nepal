@@ -25,22 +25,11 @@ class LoginProvider extends ChangeNotifier {
         "PASSWORD": password,
       };
       final http.Response response = await http.post(url, body: requestBody);
-      log(response.body);
       if (response.statusCode == 200) {
         if (jsonDecode(response.body)["status"] == "error") {
-          final SnackBar errorSnackBar = CustomSnackBar.customSnackBar(
-              message: jsonDecode(response.body)["message"],
-              statusText: jsonDecode(response.body)["status"]
-                  .toString()
-                  .toCapitalized(),
-              crossAxisAlignment: CrossAxisAlignment.center,
-              icon: Icons.close,
-              bgColor: Colors.red,
-              circleAvatarBgColor: Colors.white,
-              iconColor: Colors.red);
-
-          ScaffoldMessenger.of(context).showSnackBar(errorSnackBar);
-          Navigator.pop(context);
+          throw jsonDecode(response.body)["message"] +
+              " ," +
+              jsonDecode(response.body)["status"].toString().toCapitalized();
         } else {
           log(response.body);
           token = jsonDecode(response.body)["token"];
@@ -48,29 +37,16 @@ class LoginProvider extends ChangeNotifier {
           final data = jsonDecode(response.body)["data"];
           loginName = data["LOGIN_NAME"];
           userId = data["USERID"];
-          final SnackBar successMessage = CustomSnackBar.customSnackBar(
-              circleAvatarBgColor: Colors.white,
-              iconColor: Colors.green,
-              bgColor: Colors.green,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              message: jsonDecode(response.body)["message"],
-              statusText: jsonDecode(response.body)["status"]
-                  .toString()
-                  .toCapitalized());
-          ScaffoldMessenger.of(context).showSnackBar(successMessage);
+
           await writeInSecureStorage(userId ?? "", loginName ?? "");
-          Navigator.pushNamedAndRemoveUntil(
-              context, homeRoute, (route) => false);
+          return response;
         }
       } else {
-        final SnackBar errorSnackBar = CustomSnackBar.customSnackBar(
-            message: "Server Error!!!", statusText: "500");
-        ScaffoldMessenger.of(context).showSnackBar(errorSnackBar);
-
-        throw Exception('Failed to login');
+        throw 'Server Error!!!, 500';
       }
     } catch (e) {
       log(e.toString());
+      rethrow;
     }
   }
 
