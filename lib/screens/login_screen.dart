@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:aviation_met_nepal/constant/images.dart';
+import 'package:aviation_met_nepal/constant/routes.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
 import 'package:aviation_met_nepal/utils/validation.dart';
 import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
+import 'package:aviation_met_nepal/widgets/custom_snackbar.dart';
 import 'package:aviation_met_nepal/widgets/general_text_button.dart';
 import 'package:aviation_met_nepal/widgets/general_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -127,11 +131,49 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                             builder: (_) => const Center(
                                 child: CircularProgressIndicator.adaptive()),
                           );
-                          await Provider.of<LoginProvider>(context,
-                                  listen: false)
-                              .loginPostApi(context,
-                                  userName: _usernameController.text,
-                                  password: _passwordController.text);
+                          try {
+                            final response = await Provider.of<LoginProvider>(
+                                    context,
+                                    listen: false)
+                                .loginPostApi(context,
+                                    userName: _usernameController.text,
+                                    password: _passwordController.text);
+                            final SnackBar successMessage =
+                                CustomSnackBar.customSnackBar(
+                                    circleAvatarBgColor: Colors.white,
+                                    iconColor: Colors.green,
+                                    bgColor: Colors.green,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    message:
+                                        jsonDecode(response.body)["message"],
+                                    statusText:
+                                        jsonDecode(response.body)["status"]
+                                            .toString()
+                                            .toCapitalized());
+                            if (mounted) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(successMessage);
+
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, homeRoute, (route) => false);
+                            }
+                          } catch (ex) {
+                            final SnackBar errorSnackBar =
+                                CustomSnackBar.customSnackBar(
+                                    message: ex.toString().split(",")[0],
+                                    statusText: ex.toString().split(",")[1],
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    icon: Icons.close,
+                                    bgColor: Colors.red,
+                                    circleAvatarBgColor: Colors.white,
+                                    iconColor: Colors.red);
+
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(errorSnackBar);
+                            Navigator.pop(context);
+                          }
                         } else {
                           showInternetConnectionSnackBar(
                               icon: Icons.close,
