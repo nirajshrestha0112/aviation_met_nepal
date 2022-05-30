@@ -55,7 +55,8 @@ class _SatelliteScreenBodyState extends State<SatelliteScreenBody> {
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       {
-                        return const Center(
+                        return const Align(
+                          alignment: Alignment.center,
                             child: CircularProgressIndicator.adaptive());
                       }
                     }

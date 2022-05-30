@@ -1,5 +1,6 @@
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
+import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom_floating_action_btn.dart';
@@ -13,13 +14,7 @@ class SigwxChartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          leading: const GeneralIcon(),
-          title: Padding(
-            padding: EdgeInsets.only(bottom: 4.h),
-            child: const Text("SIGWX Chart"),
-          ),
-        ),
+        appBar:CustomAppBar(text: "SIGWX Chart"),
         floatingActionButton: const CustomFloatingActionBtn(),
         body: SigwxChartBody(
           path: path,
