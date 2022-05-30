@@ -13,6 +13,8 @@ class WeatherCameraImagesProvider extends ChangeNotifier {
   WeatherCameraImages? weatherCameraImagesDetails;
 
   fetchWeatherCameraImagesData() async {
+    // weatherCameraImagesData = [];
+    if(weatherCameraImagesData.isEmpty){
     try {
       final url = Uri.parse(weatherCameraImagesUrl);
       log(url.toString());
@@ -30,6 +32,7 @@ class WeatherCameraImagesProvider extends ChangeNotifier {
       }
     } catch (e) {
       rethrow;
+    }
     }
   }
 

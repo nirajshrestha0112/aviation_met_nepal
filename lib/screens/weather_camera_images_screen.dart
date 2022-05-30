@@ -51,10 +51,10 @@ class _WeatherCameraImagesBodyState extends State<WeatherCameraImagesBody> {
     super.initState();
   }
 
-  Future weatherCameraImagesData() async {
-    await Provider.of<WeatherCameraImagesProvider>(context, listen: false)
-        .fetchWeatherCameraImagesData();
-  }
+  // Future weatherCameraImagesData() async {
+  //   await Provider.of<WeatherCameraImagesProvider>(context, listen: false)
+  //       .fetchWeatherCameraImagesData();
+  // }
 
   WeatherCameraImages? weatherCameraImages;
   @override
