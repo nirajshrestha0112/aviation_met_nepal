@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../constant/colors_properties.dart';
 import '../utils/get_device_size.dart';
 
@@ -35,7 +36,6 @@ ThemeData theme(BuildContext context) {
           fontSize: 18.sp,
           color: const Color(colorDarkBlue),
         ),
-        
       ),
       textTheme: TextTheme(
         headline6: TextStyle(

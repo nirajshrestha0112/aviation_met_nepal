@@ -22,10 +22,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        leading: Visibility(visible: widget.isHome, child: const GeneralIcon()),
-        title: Padding(
-          padding: EdgeInsets.only(bottom: 4.h),
-          child: Text(widget.text),
-        ));
+      toolbarHeight: DeviceUtil.isMobile ? 44.h : 56.h,
+      // leading: GeneralIcon(),
+      leading: Visibility(visible: widget.isHome, child: const GeneralIcon()),
+      title: Container(
+        padding: EdgeInsets.only(
+          bottom: DeviceUtil.isMobile ? 4.h : 0.h,
+          top: DeviceUtil.isMobile ? 0.h : 0.h,
+        ),
+        child: Text(widget.text),
+      ),
+    );
   }
 }

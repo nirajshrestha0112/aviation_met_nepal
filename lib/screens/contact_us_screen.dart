@@ -73,6 +73,7 @@ class ContactUsBody extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8.w)),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(governmentImg),
                   const Divider(

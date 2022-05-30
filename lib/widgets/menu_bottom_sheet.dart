@@ -201,7 +201,7 @@ class ShowMenuBottomSheet {
                             ),
                             Container(
                               margin: EdgeInsets.only(right: 5.3.w),
-                              height: 20.h,
+                              height: DeviceUtil.isMobile ? 20.h : 30.h,
                               width: 20.w,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(2.w),
@@ -242,7 +242,11 @@ class ShowMenuBottomSheet {
                             checkInternetLoginAndNavigate(context, menu);
                           }
                         },
+                        contentPadding: !DeviceUtil.isMobile
+                            ? EdgeInsets.only(left: 16.w)
+                            : null,
                         leading: menuListData[i].icon,
+                        horizontalTitleGap: !DeviceUtil.isMobile ? 24.w : null,
                         title: menuListData[i].title,
                       );
                     },

@@ -64,7 +64,7 @@ class ShowLocationSheet {
                                 DeviceUtil.isMobile ? 0.h : 28.h,
                             leading: Container(
                               margin: EdgeInsets.only(
-                                bottom: 8.h,
+                                bottom: DeviceUtil.isMobile ? 8.h : 0.h,
                               ),
                               height: 100.h,
                               child: Text(
@@ -79,7 +79,7 @@ class ShowLocationSheet {
                             ),
                             trailing: Container(
                               margin: EdgeInsets.only(
-                                bottom: 8.h,
+                                bottom: DeviceUtil.isMobile ? 8.h : 0.h,
                               ),
                               height: 100.h,
                               width: 180.w,
