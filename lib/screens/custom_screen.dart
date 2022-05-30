@@ -6,6 +6,7 @@ import 'package:aviation_met_nepal/widgets/general_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
 import '../provider/airmet_data_provider.dart';
 import '../provider/gamet_data_provider.dart';
 import '../provider/opmet_data_provider.dart';
@@ -110,11 +111,15 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                           ? Consumer<GametDataProvider>(
                               builder: (_, value, __) {
                                 return value.gametData?.data != null
-                                    ? Text(
-                                        value.gametData!.data.toString(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText2,
+                                    ? Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 16.w, top: 16.h),
+                                        child: Text(
+                                          value.gametData!.data.toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText2,
+                                        ),
                                       )
                                     : CustomErrorTab(
                                         height:
@@ -126,11 +131,15 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                               ? Consumer<AirmetDataProvider>(
                                   builder: (_, value, __) {
                                   return value.airmetData?.data != null
-                                      ? Text(
-                                          value.airmetData!.data.toString(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2,
+                                      ? Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 16.w, top: 16.h),
+                                          child: Text(
+                                            value.airmetData!.data.toString(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText2,
+                                          ),
                                         )
                                       : CustomErrorTab(
                                           height: DeviceUtil.isMobile
@@ -142,11 +151,16 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                                   ? Consumer<OpmetDataProvider>(
                                       builder: (_, value, __) {
                                       return value.opmetData?.data != null
-                                          ? Text(
-                                              value.opmetData!.data.toString(),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText2,
+                                          ? Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 16.w, top: 16.h),
+                                              child: Text(
+                                                value.opmetData!.data
+                                                    .toString(),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText2,
+                                              ),
                                             )
                                           : CustomErrorTab(
                                               height: DeviceUtil.isMobile
@@ -163,12 +177,16 @@ class _CustomScreenBodyState extends State<CustomScreenBody> {
                                                       ? 230.h
                                                       : 300.h,
                                                 )
-                                              : Text(
-                                                  value.ashtamsData!.data
-                                                      .toString(),
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText2,
+                                              : Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: 16.w, top: 16.h),
+                                                  child: Text(
+                                                    value.ashtamsData!.data
+                                                        .toString(),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText2,
+                                                  ),
                                                 );
                                         })
                                       : const SizedBox.shrink());
