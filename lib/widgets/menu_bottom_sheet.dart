@@ -147,7 +147,7 @@ class ShowMenuBottomSheet {
                     ],
                   ),
                   SizedBox(
-                    height: 5.h,
+                    height: 16.h,
                   ),
                   Provider.of<LoginProvider>(context, listen: true).loginName !=
                           null
@@ -227,22 +227,27 @@ class ShowMenuBottomSheet {
                 child: ScrollConfiguration(
                   behavior: MyBehavior(),
                   child: ListView.separated(
-                      separatorBuilder: (context, index) => SizedBox(
-                            height: DeviceUtil.isMobile ? 14.h : 16.h,
-                          ),
-                      controller: controller,
-                      itemCount: menuListData.length,
-                      itemBuilder: (c, i) {
-                        return GestureDetector(
-                          onTap: () {
-                            CustomMenu menu = menuListData[i];
-                            if (menu.needToOpenUrl) {
-                              launchUrl(menu.navigateTo);
-                            } else {
-                              checkInternetLoginAndNavigate(context, menu);
-                            }
-                          },
-                          child: Row(
+                    separatorBuilder: (context, index) => SizedBox(
+                      height: DeviceUtil.isMobile ? null : 16.h,
+                    ),
+                    controller: controller,
+                    itemCount: menuListData.length,
+                    itemBuilder: (c, i) {
+                      return ListTile(
+                        onTap: () {
+                          CustomMenu menu = menuListData[i];
+                          if (menu.needToOpenUrl) {
+                            launchUrl(menu.navigateTo);
+                          } else {
+                            checkInternetLoginAndNavigate(context, menu);
+                          }
+                        },
+                        leading: menuListData[i].icon,
+                        title: menuListData[i].title,
+                      );
+                    },
+                    /*  Row(
+                            // crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               SizedBox(
                                 width: 12.w,
@@ -253,9 +258,8 @@ class ShowMenuBottomSheet {
                               ),
                               menuListData[i].title
                             ],
-                          ),
-                        );
-                      }),
+                          ), */
+                  ),
                 ),
               ),
             ]);
