@@ -5,10 +5,8 @@ import 'package:aviation_met_nepal/constant/constants.dart';
 import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:aviation_met_nepal/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-
-import '../constant/routes.dart';
-import '../widgets/custom_snackbar.dart';
 
 class LoginProvider extends ChangeNotifier {
   String? loginName;
@@ -67,14 +65,19 @@ class LoginProvider extends ChangeNotifier {
   }
 
   Future<void> readFromSecureStorage() async {
-    if (await SecureStorage.containsSecureData(
-        key: SecureStorageConstants.token)) {
-      loginName = await SecureStorage.readSecureData(
-          key: SecureStorageConstants.loginName);
-      userId = await SecureStorage.readSecureData(
-          key: SecureStorageConstants.userId);
-      token =
-          await SecureStorage.readSecureData(key: SecureStorageConstants.token);
+    try {
+      if (await SecureStorage.containsSecureData(
+          key: SecureStorageConstants.token)) {
+        loginName = await SecureStorage.readSecureData(
+            key: SecureStorageConstants.loginName);
+        userId = await SecureStorage.readSecureData(
+            key: SecureStorageConstants.userId);
+        token = await SecureStorage.readSecureData(
+            key: SecureStorageConstants.token);
+      }
+    } on PlatformException catch (e) {
+      log(e.toString());
+      SecureStorage.deleteAll();
     }
     notifyListeners();
   }
