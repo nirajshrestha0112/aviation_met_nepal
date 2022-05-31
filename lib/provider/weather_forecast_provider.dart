@@ -22,13 +22,19 @@ class CitiesProvider extends ChangeNotifier {
           'authorization': accessToken,
         },
       );
+
+      searchWeatherForecastData.clear();
+      citiesData.clear();
+
       if (response.statusCode == 200) {
         final map = jsonDecode(response.body) as Map;
+
         map.forEach((key, value) {
           citiesData.add(DatumCities.fromJson(value));
 
           log(citiesData.toString());
         });
+
         searchWeatherForecastData = [...citiesData];
         log(citiesData.toString());
       } else {
@@ -80,6 +86,7 @@ class WeatherForecastProvider extends ChangeNotifier {
           'authorization': accessToken,
         },
       );
+
       log(response.body);
       if (response.statusCode == 200) {
         clear();

@@ -6,7 +6,6 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
-
 class CustomRawCard extends StatefulWidget {
   const CustomRawCard({
     required this.rawBodyText,
@@ -15,7 +14,6 @@ class CustomRawCard extends StatefulWidget {
   }) : super(key: key);
   final String rawHeaderText;
   final List<String> rawBodyText;
- 
 
   @override
   State<CustomRawCard> createState() => _CustomRawCardState();
@@ -23,10 +21,9 @@ class CustomRawCard extends StatefulWidget {
 
 class _CustomRawCardState extends State<CustomRawCard> {
   bool isLoadingVertical = false;
-  List<String> verticalData=[];
-  final int increment=10;
+  List<String> verticalData = [];
+  final int increment = 10;
   _loadMoreVertical() {
-    
     log("message", name: "at end");
     //  verticalData.addAll(v)
     setState(() {

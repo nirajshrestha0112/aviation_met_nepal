@@ -65,9 +65,11 @@ class _WeatherCameraImagesBodyState extends State<WeatherCameraImagesBody> {
           if (getIsOnline(context)) {
             final val =
                 await ShowWeatherCameraImagesSheet.showWeatherCameraImagesSheet(
-                    context: context,
-                    editingController: _editingController,
-                    future: _future);
+              context: context,
+              editingController: _editingController,
+              future: _future,
+            );
+
             if (val != null) {
               weatherCameraImages = val;
               setState(() {});
