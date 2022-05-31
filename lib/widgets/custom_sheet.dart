@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/colors_properties.dart';
 import 'package:aviation_met_nepal/provider/airport_list_provider.dart';
 import 'package:aviation_met_nepal/provider/login_provider.dart';
@@ -191,6 +193,9 @@ class ShowWeatherForecastCities {
     required Future future,
   }) async {
     final editingController = TextEditingController();
+
+    log(editingController.text, name: 'Filter name');
+
     editingController.addListener(() {
       Provider.of<CitiesProvider>(context, listen: false)
           .filterSearchWeatherForecastResults(editingController.text);
@@ -210,6 +215,7 @@ class ShowWeatherForecastCities {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator.adaptive());
             }
+
             return Consumer<CitiesProvider>(builder: (_, value, __) {
               return value.searchWeatherForecastData.isEmpty
                   ? Align(
@@ -311,9 +317,10 @@ class ShowWeatherCameraImagesSheet {
     required Future future,
   }) async {
     return await _showCustomizedBottomSheet(
-        context: context,
-        editingController: editingController,
-        child: getShowWeatherCameraImagesWidget(future));
+      context: context,
+      editingController: editingController,
+      child: getShowWeatherCameraImagesWidget(future),
+    );
   }
 
   static getShowWeatherCameraImagesWidget(Future future) {
@@ -324,6 +331,7 @@ class ShowWeatherCameraImagesSheet {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator.adaptive());
             }
+
             return Consumer<WeatherCameraImagesProvider>(
               builder: (_, value, __) {
                 return value.searchWeatherCameraImagesData.isEmpty

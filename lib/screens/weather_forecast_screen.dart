@@ -51,6 +51,7 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
 
     await Provider.of<WeatherForecastProvider>(context, listen: false)
         .fetchWeatherForecast(id: kathmanduCityId);
+
     isLoading = false;
     setState(() {});
   }
@@ -64,8 +65,9 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
         height: DeviceUtil.isMobile ? 240.h : 280.h,
         width: double.infinity,
         decoration: BoxDecoration(
-            color: const Color(colorWhite),
-            borderRadius: BorderRadius.circular(8.w)),
+          color: const Color(colorWhite),
+          borderRadius: BorderRadius.circular(8.w),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           // mainAxisAlignment: isLoMainAxisAlignment.center,
@@ -74,7 +76,9 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
               onTap: (() async {
                 selectedCityName =
                     await ShowWeatherForecastCities.showWeatherForecastCities(
-                            context: context, future: _future) ??
+                          context: context,
+                          future: _future,
+                        ) ??
                         kathmanduText;
                 setState(() {});
               }),

@@ -13,31 +13,36 @@ class WeatherCameraImagesProvider extends ChangeNotifier {
   WeatherCameraImages? weatherCameraImagesDetails;
 
   fetchWeatherCameraImagesData() async {
-    // weatherCameraImagesData = [];
-    if(weatherCameraImagesData.isEmpty){
-    try {
-      final url = Uri.parse(weatherCameraImagesUrl);
-      log(url.toString());
-      http.Response response = await http.get(url);
-      if (response.statusCode == 200) {
-        final obj = jsonDecode(response.body);
-        for (var i in obj) {
-          weatherCameraImagesData.add(WeatherCameraImages.fromJson(i));
+    if (weatherCameraImagesData.isEmpty) {
+      try {
+        final url = Uri.parse(weatherCameraImagesUrl);
+        log(url.toString());
+        http.Response response = await http.get(url);
+
+        if (response.statusCode == 200) {
+          final obj = jsonDecode(response.body);
+
+          for (var i in obj) {
+            weatherCameraImagesData.add(WeatherCameraImages.fromJson(i));
+          }
+
+          log(weatherCameraImagesData.toString());
+          searchWeatherCameraImagesData = [...weatherCameraImagesData];
+        } else {
+          throw Exception("Failed to load data");
         }
-        // log(weatherCameraImagesData.toString());
-        log(weatherCameraImagesData.toString());
-        searchWeatherCameraImagesData = [...weatherCameraImagesData];
-      } else {
-        throw Exception("Failed to load data");
+      } catch (e) {
+        rethrow;
       }
-    } catch (e) {
-      rethrow;
-    }
+    } else {
+      searchWeatherCameraImagesData.clear();
+      searchWeatherCameraImagesData = [...weatherCameraImagesData];
     }
   }
 
   void filterWeatherCameraImages(String query) {
-    searchWeatherCameraImagesData = [];
+    searchWeatherCameraImagesData.clear();
+
     if (query.isEmpty) {
       searchWeatherCameraImagesData = [...weatherCameraImagesData];
       log(searchWeatherCameraImagesData.toString());
