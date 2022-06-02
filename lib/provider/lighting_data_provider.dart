@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
+import 'package:aviation_met_nepal/constant/constants.dart';
 import 'package:aviation_met_nepal/constant/images.dart';
 import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:aviation_met_nepal/model/lighting_data.dart';
@@ -43,7 +44,7 @@ class LightingDataProvider extends ChangeNotifier {
                 // icon: icon,
                 markerId: MarkerId(eachData.date.toString()),
                 infoWindow: InfoWindow(
-                    title: DateFormat("yyyy-MM-dd").format(eachData.date)),
+                    title: DateFormat(dateFormat).format(eachData.date)),
                 position: LatLng(
                   double.parse(eachData.latitude),
                   double.parse(eachData.longitude),

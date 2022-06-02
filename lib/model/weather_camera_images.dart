@@ -25,14 +25,17 @@ class WeatherCameraImages {
 
 class Files {
   String? source;
+  String? dateTaken;
 
   Files.fromJson(Map<String, dynamic> json) {
     source = json['source']??"";
+    dateTaken=json['date_taken']??"";
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data =  <String, dynamic>{};
     data['source'] = source;
+    data['date_taken']=dateTaken;
     return data;
   }
 }

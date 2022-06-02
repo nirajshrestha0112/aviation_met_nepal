@@ -191,8 +191,9 @@ class ShowWeatherForecastCities {
   static Future showWeatherForecastCities({
     required BuildContext context,
     required Future future,
+    required TextEditingController editingController
   }) async {
-    final editingController = TextEditingController();
+    // final editingController = TextEditingController();
 
     log(editingController.text, name: 'Filter name');
 
