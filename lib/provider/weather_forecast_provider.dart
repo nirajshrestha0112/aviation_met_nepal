@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:aviation_met_nepal/constant/constants.dart';
 import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:aviation_met_nepal/model/cities.dart';
@@ -13,35 +12,40 @@ class CitiesProvider extends ChangeNotifier {
   List<DatumCities> searchWeatherForecastData = [];
 
   fetchCitiesData() async {
-    try {
-      final url = Uri.parse(baseUrlCities);
-      log(url.toString());
-      http.Response response = await http.get(
-        url,
-        headers: <String, String>{
-          'authorization': accessToken,
-        },
-      );
+    if (citiesData.isEmpty) {
+      try {
+        final url = Uri.parse(baseUrlCities);
+        log(url.toString());
+        http.Response response = await http.get(
+          url,
+          headers: <String, String>{
+            'authorization': accessToken,
+          },
+        );
 
-      searchWeatherForecastData.clear();
-      citiesData.clear();
+        // searchWeatherForecastData.clear();
+        // citiesData.clear();
 
-      if (response.statusCode == 200) {
-        final map = jsonDecode(response.body) as Map;
+        if (response.statusCode == 200) {
+          final map = jsonDecode(response.body) as Map;
 
-        map.forEach((key, value) {
-          citiesData.add(DatumCities.fromJson(value));
+          map.forEach((key, value) {
+            citiesData.add(DatumCities.fromJson(value));
 
+            log(citiesData.toString());
+          });
+
+          searchWeatherForecastData = [...citiesData];
           log(citiesData.toString());
-        });
-
-        searchWeatherForecastData = [...citiesData];
-        log(citiesData.toString());
-      } else {
-        throw jsonDecode(response.body)['message'];
+        } else {
+          throw jsonDecode(response.body)['message'];
+        }
+      } catch (e) {
+        log(e.toString());
       }
-    } catch (e) {
-      log(e.toString());
+    } else {
+      searchWeatherForecastData.clear();
+      searchWeatherForecastData = [...citiesData];
     }
   }
 
@@ -122,9 +126,26 @@ class WeatherForecastProvider extends ChangeNotifier {
     if (dateList.isEmpty) {
       tempJsonObject.keys.toList().forEach(
         (element) {
+          // var dateTime = element.substring(0, 8) + 'T' + element.substring(8);
+
           var dateTime =
               "${element.substring(0, 4)}-${element.substring(4, 6)}-${element.substring(6, 8)}T${element.substring(8, 10)}:${element.substring(10, 12)}";
+          // ;
+
+          // String datewithT=dateTime.substring(0,8)+'T'+dateTime.substring(8);
           dateList.add(DateTime.parse(dateTime));
+          // log(dateList.toString());
+          // log(dateTime);
+          // log("break time");
+          // String date = '202206040000';
+
+          // String dateWithT = date.substring(0, 8) + 'T' + date.substring(8);
+          // DateTime dateTimes = DateTime.parse(dateWithT);
+          // // dateList.add(DateTime.parse(dateTime));
+          // log("UTC $dateTimes");
+          // var dates = dateTimes.toLocal();
+
+          // log("Local $dates");
         },
       );
     }

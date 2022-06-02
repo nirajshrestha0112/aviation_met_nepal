@@ -37,18 +37,17 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
   bool isLoading = true;
   late Future _future;
   String selectedCityName = kathmanduText;
-
+final TextEditingController _editingController = TextEditingController();
+  
   @override
   void initState() {
     fetchData();
-
     super.initState();
   }
 
   void fetchData() async {
     _future =
         Provider.of<CitiesProvider>(context, listen: false).fetchCitiesData();
-
     await Provider.of<WeatherForecastProvider>(context, listen: false)
         .fetchWeatherForecast(id: kathmanduCityId);
 
@@ -78,6 +77,7 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
                     await ShowWeatherForecastCities.showWeatherForecastCities(
                           context: context,
                           future: _future,
+                          editingController: _editingController
                         ) ??
                         kathmanduText;
                 setState(() {});

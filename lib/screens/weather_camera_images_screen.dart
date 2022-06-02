@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:aviation_met_nepal/constant/constants.dart';
 import 'package:aviation_met_nepal/constant/urls.dart';
 import 'package:aviation_met_nepal/model/weather_camera_images.dart';
 import 'package:aviation_met_nepal/provider/weather_camera_images_provider.dart';
@@ -7,8 +10,8 @@ import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
 import '../constant/colors_properties.dart';
 import '../provider/connectivity_provider.dart';
 import '../utils/get_device_size.dart';
@@ -113,22 +116,45 @@ class _WeatherCameraImagesBodyState extends State<WeatherCameraImagesBody> {
       ),
       if (weatherCameraImages != null &&
           weatherCameraImages!.files.isNotEmpty &&
-          weatherCameraImages!.files.first.source != null)
-        CachedNetworkImage(
-          height: 250.h,
-          width: 330.w,
-          fit: BoxFit.cover,
-          imageUrl: weatherCameraImagesDetailsUrl +
-              weatherCameraImages!.files.first.source!,
-          placeholder: (context, url) =>
-              const Center(child: CircularProgressIndicator.adaptive()),
-          errorWidget: (context, url, error) => CustomErrorTab(
-            height: DeviceUtil.isMobile ? 230.h : 300.h,
-          ),
+          weatherCameraImages!.files.first.source != null &&
+          weatherCameraImages!.files.first.dateTaken != null)
+        Stack(
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CachedNetworkImage(
+              height: 250.h,
+              width: 330.w,
+              fit: BoxFit.cover,
+              imageUrl: weatherCameraImagesDetailsUrl +
+                  weatherCameraImages!.files.first.source!,
+              placeholder: (context, url) =>
+                  const Center(child: CircularProgressIndicator.adaptive()),
+              errorWidget: (context, url, error) => CustomErrorTab(
+                height: DeviceUtil.isMobile ? 230.h : 300.h,
+              ),
+            ),
+
+            // Text(DateFormat(" yyy-MM-dd hh:mm a").format(
+            //     DateTime.parse(weatherCameraImages!.files.first.dateTaken!))),
+            RichText(
+                text: TextSpan(
+                    text: "Date Taken :",
+                    style: TextStyle(
+                        fontSize: 15.sp,
+                        color: Colors.white,
+                        backgroundColor: Colors.black12),
+                    children: [
+                  TextSpan(
+                      text: DateFormat(dateFormat).format(
+                          DateTime.parse(
+                              weatherCameraImages!.files.first.dateTaken!)))
+                ]))
+          ],
         ),
       if (weatherCameraImages != null)
         if (weatherCameraImages!.files.isEmpty ||
-            weatherCameraImages!.files.first.source == null)
+            weatherCameraImages!.files.first.source == null ||
+            weatherCameraImages!.files.first.dateTaken == null)
           CustomErrorTab(
             height: DeviceUtil.isMobile ? 230.h : 300.h,
           )

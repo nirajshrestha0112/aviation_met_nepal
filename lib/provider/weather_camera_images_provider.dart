@@ -41,7 +41,7 @@ class WeatherCameraImagesProvider extends ChangeNotifier {
   }
 
   void filterWeatherCameraImages(String query) {
-    searchWeatherCameraImagesData.clear();
+    // searchWeatherCameraImagesData.clear();
 
     if (query.isEmpty) {
       searchWeatherCameraImagesData = [...weatherCameraImagesData];
