@@ -1,4 +1,5 @@
 const String kathmanduCityId = '4991';
+const String noDataFound = 'No Airport Data Found';
 
 const String feedbackEmail = 'mfddhm@gmail.com';
 

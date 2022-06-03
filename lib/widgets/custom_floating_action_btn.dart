@@ -18,7 +18,7 @@ class CustomFloatingActionBtn extends StatelessWidget {
       child: FloatingActionButton(
         backgroundColor: colorBlue,
         onPressed: () {
-          ShowMenuBottomSheet.showFabSheet(context: context);
+          ShowMenuBottomSheet.showMenuBottomSheet(context: context);
         },
         elevation: 0.0,
         child: Icon(

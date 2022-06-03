@@ -4,29 +4,28 @@ import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom_floating_action_btn.dart';
-import '../widgets/general_icon.dart';
 import 'sigwx_details_screen.dart';
 
 class SigwxChartScreen extends StatelessWidget {
-  const SigwxChartScreen({Key? key, this.path}) : super(key: key);
-  final String? path;
+  const SigwxChartScreen({
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar:CustomAppBar(text: "SIGWX Chart"),
+        appBar: CustomAppBar(text: "SIGWX Chart"),
         floatingActionButton: const CustomFloatingActionBtn(),
-        body: SigwxChartBody(
-          path: path,
-        ),
+        body: const SigwxChartBody(),
       ),
     );
   }
 }
 
 class SigwxChartBody extends StatefulWidget {
-  const SigwxChartBody({Key? key, required this.path}) : super(key: key);
-  final String? path;
+  const SigwxChartBody({
+    Key? key,
+  }) : super(key: key);
   @override
   State<SigwxChartBody> createState() => _SigwxChartBodyState();
 }

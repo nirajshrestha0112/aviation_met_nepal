@@ -98,7 +98,7 @@ class ShowMenuBottomSheet {
         needToOpenUrl: true),
   ];
 
-  static void showFabSheet({required BuildContext context}) {
+  static void showMenuBottomSheet({required BuildContext context}) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,

@@ -16,7 +16,7 @@ import '../constant/colors_properties.dart';
 import '../provider/connectivity_provider.dart';
 import '../utils/get_device_size.dart';
 import '../utils/show_internet_connection_snack_bar.dart';
-import '../widgets/custom_sheet.dart';
+import '../widgets/weathercamera_bottom_sheet.dart';
 
 class WeatherCameraImagesScreen extends StatelessWidget {
   const WeatherCameraImagesScreen({Key? key}) : super(key: key);
