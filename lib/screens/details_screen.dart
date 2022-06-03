@@ -7,7 +7,6 @@ import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/widgets/custom_error_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../widgets/custom_floating_action_btn.dart';
 import '../widgets/general_icon.dart';
 import 'metars_tab_screen.dart';

@@ -7,14 +7,13 @@ import 'package:aviation_met_nepal/utils/get_device_size.dart';
 import 'package:aviation_met_nepal/utils/show_internet_connection_snack_bar.dart';
 import 'package:aviation_met_nepal/widgets/custom_app_bar.dart';
 import 'package:aviation_met_nepal/widgets/custom_floating_action_btn.dart';
-import 'package:aviation_met_nepal/widgets/custom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
 import '../constant/constants.dart';
 import '../widgets/custom_alert_dialog.dart';
+import '../widgets/location_bottom_sheet.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -69,8 +68,6 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
 
   @override
   Widget build(BuildContext context) {
-    // _future = Provider.of<AirportListProvider>(context, listen: false)
-    //     .fetchAirportList();
     return Column(children: [
       GestureDetector(
         onTap: () => getIsOnline(context)

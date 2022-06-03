@@ -49,12 +49,11 @@ class _DropDownFilterState extends State<DropDownFilter> {
         alignedDropdown: true,
         child: DropdownButton(
           iconSize: !DeviceUtil.isMobile ? 30.w : 25.w,
-          // menuMaxHeight: !DeviceUtil.isMobile ? 700.h : 500.h,
+          menuMaxHeight: MediaQuery.of(context).size.height / 1.5,
           itemHeight: !DeviceUtil.isMobile ? 50.h : null,
-
           elevation: 0,
           style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 16.sp,
               color: const Color(textColor),
               fontWeight: FontWeight.w500),
           isExpanded: true,

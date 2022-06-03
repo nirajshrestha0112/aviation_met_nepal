@@ -11,6 +11,8 @@ import 'package:provider/provider.dart';
 
 import '../utils/get_device_size.dart';
 import '../utils/open_external_app.dart';
+import '../widgets/build_row.dart';
+import '../widgets/custom_contact_text.dart';
 import '../widgets/general_icon.dart';
 
 class ContactUs extends StatelessWidget {
@@ -304,73 +306,5 @@ class _ClickAbleContainState extends State<ClickAbleContain> {
   }
 }
 
-class BuildRowWidget extends StatefulWidget {
-  const BuildRowWidget(
-      {required this.onTap,
-      required this.getText,
-      Key? key,
-      required this.icon})
-      : super(key: key);
-  final void Function() onTap;
-  final String getText;
-  final IconData icon;
 
-  @override
-  State<BuildRowWidget> createState() => _BuildRowWidgetState();
-}
 
-class _BuildRowWidgetState extends State<BuildRowWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => widget.onTap(),
-      child: Row(
-        children: [
-          Icon(
-            widget.icon,
-            size: 22.w,
-            color: const Color(colorDarkBlue),
-          ),
-          SizedBox(
-            width: 4.w,
-          ),
-          Text(widget.getText,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6!
-                  .copyWith(fontSize: 14.sp))
-        ],
-      ),
-    );
-  }
-}
-
-class CustomContactText extends StatelessWidget {
-  const CustomContactText({
-    Key? key,
-    required this.leftText,
-    required this.rightText,
-  }) : super(key: key);
-  final String leftText;
-  final String rightText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(leftText, style: Theme.of(context).textTheme.bodyText2),
-        SizedBox(
-          width: 6.h,
-        ),
-        Expanded(
-          child: Text(rightText,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6!
-                  .copyWith(fontSize: 14.sp)),
-        ),
-      ],
-    );
-  }
-}
