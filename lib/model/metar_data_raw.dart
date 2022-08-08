@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 class MetarDataRaw {
   String? status;
   Data? data;
@@ -30,7 +32,7 @@ class Data {
     //   throw "Something";
     // }
     date = json['Date'] != null ? json['Date'].cast<String>() : [];
-    raw = json['Raw'].cast<String>();
+    raw = json['Raw'] != null ? json['Raw'].cast<String>() : [];
     // : ["No data available"];
   }
 
