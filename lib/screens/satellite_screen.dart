@@ -66,11 +66,11 @@ class _SatelliteScreenBodyState extends State<SatelliteScreenBody> {
                     }
 
                     return Provider.of<SatelliteImageProvider>(context,
-                                    listen: false)
-                                .satelliteImageData
-                                ?.data
-                                ?.files![0] !=
-                            null
+                                        listen: false)
+                                    .satelliteImageData
+                                    ?.data
+                                    ?.files?.length!=
+                                0
                         ? Column(
                             children: [
                               Padding(
@@ -103,6 +103,7 @@ class _SatelliteScreenBodyState extends State<SatelliteScreenBody> {
                                   height:
                                       MediaQuery.of(context).size.height / 1.2,
                                   child: CachedNetworkImage(
+                                    errorWidget: ((context, url, error) => Center(child: Text(error),)),
                                     imageUrl:
                                         Provider.of<SatelliteImageProvider>(
                                                 context,
@@ -110,6 +111,7 @@ class _SatelliteScreenBodyState extends State<SatelliteScreenBody> {
                                             .satelliteImageData!
                                             .data!
                                             .files![0],
+                                          
                                   ),
                                 ),
                               ),

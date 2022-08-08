@@ -52,18 +52,21 @@ class ShowWeatherCameraImagesSheet {
                             contentPadding: EdgeInsets.only(left: 4.w),
                             minVerticalPadding:
                                 DeviceUtil.isMobile ? null : 28.h,
-                            leading: Text(
-                              value.searchWeatherCameraImagesData[i].name
-                                  .toString()
-                                  .toCapitalized()
-                                  .trim()
-                                  .replaceAll(" ", "_"),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1!
-                                  .copyWith(
-                                      fontSize: 18.sp,
-                                      color: const Color(colorPrimary)),
+                            leading: SizedBox(
+                              width: 160.w,
+                              child: Text(
+                                value.searchWeatherCameraImagesData[i].name
+                                    .toString()
+                                    .toCapitalized()
+                                    .trim()
+                                    .replaceAll(" ", "_"),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                        fontSize: 18.sp,
+                                        color: const Color(colorPrimary)),
+                              ),
                             ),
                             trailing: Container(
                               padding: EdgeInsets.only(right: 10.w),
