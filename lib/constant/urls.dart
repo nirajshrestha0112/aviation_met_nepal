@@ -1,4 +1,4 @@
-const String baseUrl = "http://beta.dhm.gov.np:8080/api";
+const String baseUrl = "http://dhm.gov.np/api";
 const String baseUrlCities =
     "http://webapiserver.dhm.gov.np/api/cities?domain=Nepal";
 const String baseUrlCitiesById =
