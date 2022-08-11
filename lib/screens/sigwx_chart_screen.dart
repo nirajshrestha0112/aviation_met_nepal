@@ -44,7 +44,7 @@ List sigwxMap = [
   "SWH_PNG/AREA_J",
   "SWH_PNG/AREA_K",
   "SWH_PNG/AREA_M",
-  'SWM_PNG/AREA_ASIA_SOUTH',
+  'SWM_PNG/AREA_ASIA_SOUTH ',
   'SWM_PNG/AREA_EURO',
   'SWM_PNG/AREA_MID',
   'SWM_PNG/AREA_NAT'
@@ -81,9 +81,10 @@ class _SigwxChartBodyState extends State<SigwxChartBody> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 6.h),
-                  child: Expanded(
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * .75,
                     child: Text(
-                        sigwxMap[index].toString().substring(8).toString(),
+                        sigwxMap[index].toString().substring(8).toString() ,
                         style: TextStyle(fontSize: 22.sp, color: Colors.black)),
                   ),
                 ),

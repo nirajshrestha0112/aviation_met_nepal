@@ -21,7 +21,7 @@ class _DropDownFilterState extends State<DropDownFilter> {
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(
-        value: "Most Recent",
+        value: "",
         child: Text("Most Recent"),
       ),
       const DropdownMenuItem(value: "1", child: Text("Past 1 Hours")),

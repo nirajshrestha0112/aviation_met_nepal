@@ -18,6 +18,7 @@ class AirportListProvider extends ChangeNotifier {
         searchData = [...?airportData!.data];
         return searchData;
       } else {
+        
         throw Exception("Failed to load data");
       }
     } catch (e) {

@@ -10,15 +10,15 @@ class AirmetDataProvider extends ChangeNotifier {
   fetchAirmetData() async {
     try {
       final url = Uri.parse(airmetDataUrl);
-      log(url.toString());
+      // log(url.toString());
       http.Response response = await http.get(url);
-      log(response.body);
+      // log(response.body);
       if (response.statusCode == 200) {
         if (jsonDecode(response.body)['status'] == false) {
           throw jsonDecode(response.body)['message'];
         }
         airmetData = AirMetData.fromJson(jsonDecode(response.body));
-        log(airmetData.toString());
+        // log(airmetData.toString());
       } else {
         throw jsonDecode(response.body)['message'];
       }

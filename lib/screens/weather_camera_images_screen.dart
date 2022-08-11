@@ -76,6 +76,7 @@ class _WeatherCameraImagesBodyState extends State<WeatherCameraImagesBody> {
             if (val != null) {
               weatherCameraImages = val;
               setState(() {});
+              log(weatherCameraImages!.name.toString());
             }
           } else {
             showInternetConnectionSnackBar(
