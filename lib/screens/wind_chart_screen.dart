@@ -37,7 +37,7 @@ class _WindChartScreenBodyState extends State<WindChartScreenBody> {
         future: windFiles.downloadFileWindChart(
             filename: "windcharts.gif",
             ftpFilename:
-                "Meteorological Forecasting Division/WIND AND TEMPERATURE CHARTS"),
+                "Forecasting Division/WIND AND TEMPERATURE CHARTS"),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasData) {

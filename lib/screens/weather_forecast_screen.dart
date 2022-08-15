@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:aviation_met_nepal/constant/constants.dart';
 import 'package:aviation_met_nepal/provider/weather_forecast_provider.dart';
 import 'package:aviation_met_nepal/utils/custom_scroll_behavior.dart';
@@ -37,8 +39,8 @@ class _WeatherForecastBodyState extends State<WeatherForecastBody> {
   bool isLoading = true;
   late Future _future;
   String selectedCityName = kathmanduText;
-final TextEditingController _editingController = TextEditingController();
-  
+  final TextEditingController _editingController = TextEditingController();
+
   @override
   void initState() {
     fetchData();
@@ -46,6 +48,7 @@ final TextEditingController _editingController = TextEditingController();
   }
 
   void fetchData() async {
+    // debugger();
     _future =
         Provider.of<CitiesProvider>(context, listen: false).fetchCitiesData();
     await Provider.of<WeatherForecastProvider>(context, listen: false)
@@ -57,65 +60,64 @@ final TextEditingController _editingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return ScrollConfiguration(
-      behavior: MyBehavior(),
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-        height: DeviceUtil.isMobile ? 240.h : 280.h,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: const Color(colorWhite),
-          borderRadius: BorderRadius.circular(8.w),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          // mainAxisAlignment: isLoMainAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: (() async {
-                selectedCityName =
-                    await ShowWeatherForecastCities.showWeatherForecastCities(
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+      height: DeviceUtil.isMobile ? 240.h : 280.h,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: const Color(colorWhite),
+        borderRadius: BorderRadius.circular(8.w),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        // mainAxisAlignment: isLoMainAxisAlignment.center,
+        children: [
+          GestureDetector(
+            onTap: (() async {
+              selectedCityName =
+                  await ShowWeatherForecastCities.showWeatherForecastCities(
                           context: context,
                           future: _future,
-                          editingController: _editingController
-                        ) ??
-                        kathmanduText;
-                setState(() {});
-              }),
-              child: SingleChildScrollView(
-                padding: EdgeInsets.only(top: 10.h, left: 16.w, right: 16.w),
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text('$selectedCityName \u{25BC} ',
-                          style: Theme.of(context).textTheme.bodyText2),
-                      SizedBox(
-                        width: 16.w,
-                      ),
-                      Text(
-                        DateFormat("EEE dd MMM yyy, hh:mm a")
-                            .format(DateTime.now()),
-                        style: Theme.of(context).textTheme.bodyText2,
-                      )
-                    ]),
-              ),
+                          editingController: _editingController) ??
+                      kathmanduText;
+              setState(() {});
+            }),
+            child: SingleChildScrollView(
+              padding: EdgeInsets.only(top: 10.h, left: 16.w, right: 16.w),
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text('$selectedCityName \u{25BC} ',
+                        style: Theme.of(context).textTheme.bodyText2),
+                    SizedBox(
+                      width: 16.w,
+                    ),
+                    Text(
+                      DateFormat("EEE dd MMM yyy, hh:mm a")
+                          .format(DateTime.now()),
+                      style: Theme.of(context).textTheme.bodyText2,
+                    )
+                  ]),
             ),
-            const Divider(
-              thickness: 1.5,
-            ),
-            isLoading
-                ? Padding(
-                    padding: EdgeInsets.only(top: 60.h),
-                    child: const Center(
-                        child: CircularProgressIndicator.adaptive()),
-                  )
-                : Consumer<WeatherForecastProvider>(
-                    builder: (_, value, __) {
-                      if (value.dateList.first.day != DateTime.now().day) {
-                        return const CustomErrorTab();
-                      } else {
-                        return Expanded(
+          ),
+          const Divider(
+            thickness: 1.5,
+          ),
+          isLoading
+              ? Padding(
+                  padding: EdgeInsets.only(top: 60.h),
+                  child:
+                      const Center(child: CircularProgressIndicator.adaptive()),
+                )
+              : Consumer<WeatherForecastProvider>(
+                  builder: (_, value, __) {
+                    if (value.dateList.first.day != DateTime.now().day) {
+                      return const CustomErrorTab();
+                    } else {
+                      return ScrollConfiguration(
+                        behavior: MyBehavior(),
+                        child: Expanded(
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: value.dateList.length,
@@ -188,12 +190,12 @@ final TextEditingController _editingController = TextEditingController();
                               );
                             },
                           ),
-                        );
-                      }
-                    },
-                  ),
-          ],
-        ),
+                        ),
+                      );
+                    }
+                  },
+                ),
+        ],
       ),
     );
   }

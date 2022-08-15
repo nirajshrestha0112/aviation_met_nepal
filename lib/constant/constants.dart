@@ -43,6 +43,7 @@ const String ftpUsername = 'aviego';
 const String ftpPassword = 'aviegonasXcs#9';
 const int ftpPort = 21;
 const String dateFormat = "yyy-MM-dd hh:mm a";
+const String dateonlyFormat = "yyy-MM-dd";
 
 class SecureStorageConstants {
   static const token = "token";

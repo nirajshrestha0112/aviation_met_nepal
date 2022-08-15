@@ -15,7 +15,7 @@ class WeatherCameraImagesProvider extends ChangeNotifier {
   fetchWeatherCameraImagesData() async {
     if (weatherCameraImagesData.isEmpty) {
       try {
-        debugger()
+        // debugger()
 ;        final url = Uri.parse(weatherCameraImagesUrl);
         log(url.toString());
         http.Response response = await http.get(url);
@@ -26,7 +26,7 @@ class WeatherCameraImagesProvider extends ChangeNotifier {
           for (var i in obj) {
             weatherCameraImagesData.add(WeatherCameraImages.fromJson(i));
           }
-        debugger();
+        // debugger();
 
           log( weatherCameraImagesData.toString());
           searchWeatherCameraImagesData = [...weatherCameraImagesData];

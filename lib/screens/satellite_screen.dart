@@ -64,13 +64,20 @@ class _SatelliteScreenBodyState extends State<SatelliteScreenBody> {
                         );
                       }
                     }
-
+                    final dateTaken = Provider.of<SatelliteImageProvider>(
+                            context,
+                            listen: false)
+                        .satelliteImageData!
+                        .data!
+                        .date!
+                        .replaceAll('_', "");
                     return Provider.of<SatelliteImageProvider>(context,
-                                        listen: false)
-                                    .satelliteImageData
-                                    ?.data
-                                    ?.files?.length!=
-                                0
+                                    listen: false)
+                                .satelliteImageData
+                                ?.data
+                                ?.files
+                                ?.length !=
+                            0
                         ? Column(
                             children: [
                               Padding(
@@ -84,14 +91,10 @@ class _SatelliteScreenBodyState extends State<SatelliteScreenBody> {
                                         ),
                                         children: [
                                       TextSpan(
-                                          text: DateFormat(dateFormat).format(
-                                              DateTime.parse(Provider.of<
-                                                          SatelliteImageProvider>(
-                                                      context)
-                                                  .satelliteImageData!
-                                                  .data!
-                                                  .date
-                                                  .toString())))
+                                        text: DateFormat(dateonlyFormat).format(
+                                          DateTime.parse(dateTaken),
+                                        ),
+                                      )
                                     ])),
                               ),
                               InteractiveViewer(
@@ -103,7 +106,12 @@ class _SatelliteScreenBodyState extends State<SatelliteScreenBody> {
                                   height:
                                       MediaQuery.of(context).size.height / 1.2,
                                   child: CachedNetworkImage(
-                                    errorWidget: ((context, url, error) => Center(child: Text(error),)),
+                                    errorWidget: ((context, url, error) =>
+                                        CustomErrorTab(
+                                          height: DeviceUtil.isMobile
+                                              ? 230.h
+                                              : 300.h,
+                                        )),
                                     imageUrl:
                                         Provider.of<SatelliteImageProvider>(
                                                 context,
@@ -111,10 +119,9 @@ class _SatelliteScreenBodyState extends State<SatelliteScreenBody> {
                                             .satelliteImageData!
                                             .data!
                                             .files![0],
-                                          
                                   ),
                                 ),
-                              ),
+                              )
                             ],
                           )
                         : CustomErrorTab(
