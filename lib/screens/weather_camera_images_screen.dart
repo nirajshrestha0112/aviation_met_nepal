@@ -143,12 +143,12 @@ class _WeatherCameraImagesBodyState extends State<WeatherCameraImagesBody> {
                     style: TextStyle(
                         fontSize: 15.sp,
                         color: Colors.white,
-                        backgroundColor: Colors.black12),
+                        backgroundColor: Colors.black38),
                     children: [
-                  // TextSpan(
-                  //     text: DateFormat(dateFormat).format(
-                  //         DateTime.parse(
-                  //             weatherCameraImages!.files.first.dateTaken!)))
+                  TextSpan(
+                      text: DateFormat(dateFormat).format(DateTime.parse(
+                              weatherCameraImages!.files.first.dateTaken!)
+                          .add(const Duration(hours: 5, minutes: 45))))
                 ]))
           ],
         ),
