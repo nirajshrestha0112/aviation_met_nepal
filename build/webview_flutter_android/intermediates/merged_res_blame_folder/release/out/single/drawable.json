@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\webview_flutter_android\\intermediates\\merged_res\\release\\drawable\\notification_tile_bg.xml",
+        "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\18cd7333ad4d3bf36acc8306bc5a6838\\transformed\\core-1.6.0\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\webview_flutter_android\\intermediates\\merged_res\\release\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\18cd7333ad4d3bf36acc8306bc5a6838\\transformed\\core-1.6.0\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\webview_flutter_android\\intermediates\\merged_res\\release\\drawable\\notification_bg.xml",
+        "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\18cd7333ad4d3bf36acc8306bc5a6838\\transformed\\core-1.6.0\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\webview_flutter_android\\intermediates\\merged_res\\release\\drawable\\notification_bg_low.xml",
+        "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\18cd7333ad4d3bf36acc8306bc5a6838\\transformed\\core-1.6.0\\res\\drawable\\notification_bg_low.xml"
+    }
+]

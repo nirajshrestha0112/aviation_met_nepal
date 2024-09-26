@@ -1,0 +1,4 @@
+#Mon Aug 15 12:55:22 NPT 2022
+base.0=D\:\\Projects_Flutter\\aviation_met_nepal\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

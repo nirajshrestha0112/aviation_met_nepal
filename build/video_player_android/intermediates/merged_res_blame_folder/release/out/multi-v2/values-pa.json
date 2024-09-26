@@ -1,0 +1,68 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\video_player_android\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-pa\\values-pa.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\3228c613dbf7c823e129b09f99859000\\transformed\\core-1.7.0\\res\\values-pa\\values-pa.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "11",
+                        "startColumns": "4",
+                        "startOffsets": "755",
+                        "endColumns": "100",
+                        "endOffsets": "851"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\a4f5eea6b53b810446bece8376f734f8\\transformed\\jetified-exoplayer-core-2.17.1\\res\\values-pa\\values-pa.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,126,191,268,334,409,475,574,670",
+                        "endColumns": "70,64,76,65,74,65,98,95,84",
+                        "endOffsets": "121,186,263,329,404,470,569,665,750"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\video_player_android\\intermediates\\merged_res\\release\\values-pa\\values-pa.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\3228c613dbf7c823e129b09f99859000\\transformed\\core-1.7.0\\res\\values-pa\\values-pa.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "11",
+                        "startColumns": "4",
+                        "startOffsets": "755",
+                        "endColumns": "100",
+                        "endOffsets": "851"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\a4f5eea6b53b810446bece8376f734f8\\transformed\\jetified-exoplayer-core-2.17.1\\res\\values-pa\\values-pa.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,126,191,268,334,409,475,574,670",
+                        "endColumns": "70,64,76,65,74,65,98,95,84",
+                        "endOffsets": "121,186,263,329,404,470,569,665,750"
+                    }
+                }
+            ]
+        }
+    ]
+}

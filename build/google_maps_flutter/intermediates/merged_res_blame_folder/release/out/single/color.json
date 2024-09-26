@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\google_maps_flutter\\intermediates\\merged_res\\release\\color\\common_google_signin_btn_tint.xml",
+        "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\e54d372d9a2d112b69d5f7b769d4d6b0\\transformed\\jetified-play-services-base-18.0.1\\res\\color\\common_google_signin_btn_tint.xml"
+    },
+    {
+        "merged": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\google_maps_flutter\\intermediates\\merged_res\\release\\color\\common_google_signin_btn_text_light.xml",
+        "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\e54d372d9a2d112b69d5f7b769d4d6b0\\transformed\\jetified-play-services-base-18.0.1\\res\\color\\common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\google_maps_flutter\\intermediates\\merged_res\\release\\color\\common_google_signin_btn_text_dark.xml",
+        "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\e54d372d9a2d112b69d5f7b769d4d6b0\\transformed\\jetified-play-services-base-18.0.1\\res\\color\\common_google_signin_btn_text_dark.xml"
+    }
+]

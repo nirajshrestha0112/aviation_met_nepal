@@ -1,0 +1,5 @@
+-keep class androidx.core.app.CoreComponentFactory { <init>(); }
+-keep class com.google.android.gms.common.api.GoogleApiActivity { <init>(); }
+-keep class dhm.aviation.aviation_met_nepal.MainActivity { <init>(); }
+-keep class io.flutter.app.FlutterMultiDexApplication { <init>(); }
+-keep class io.flutter.plugins.urllauncher.WebViewActivity { <init>(); }

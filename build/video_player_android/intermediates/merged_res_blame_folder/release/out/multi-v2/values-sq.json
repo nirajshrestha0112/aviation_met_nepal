@@ -1,0 +1,68 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\video_player_android\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-sq\\values-sq.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\a4f5eea6b53b810446bece8376f734f8\\transformed\\jetified-exoplayer-core-2.17.1\\res\\values-sq\\values-sq.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,126,187,254,320,398,477,569,655",
+                        "endColumns": "70,60,66,65,77,78,91,85,69",
+                        "endOffsets": "121,182,249,315,393,472,564,650,720"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\3228c613dbf7c823e129b09f99859000\\transformed\\core-1.7.0\\res\\values-sq\\values-sq.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "11",
+                        "startColumns": "4",
+                        "startOffsets": "725",
+                        "endColumns": "100",
+                        "endOffsets": "821"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\video_player_android\\intermediates\\merged_res\\release\\values-sq\\values-sq.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\a4f5eea6b53b810446bece8376f734f8\\transformed\\jetified-exoplayer-core-2.17.1\\res\\values-sq\\values-sq.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,126,187,254,320,398,477,569,655",
+                        "endColumns": "70,60,66,65,77,78,91,85,69",
+                        "endOffsets": "121,182,249,315,393,472,564,650,720"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\3228c613dbf7c823e129b09f99859000\\transformed\\core-1.7.0\\res\\values-sq\\values-sq.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "11",
+                        "startColumns": "4",
+                        "startOffsets": "725",
+                        "endColumns": "100",
+                        "endOffsets": "821"
+                    }
+                }
+            ]
+        }
+    ]
+}

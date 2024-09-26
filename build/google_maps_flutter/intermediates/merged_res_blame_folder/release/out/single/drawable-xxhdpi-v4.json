@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\google_maps_flutter\\intermediates\\merged_res\\release\\drawable-xxhdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png",
+        "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\e54d372d9a2d112b69d5f7b769d4d6b0\\transformed\\jetified-play-services-base-18.0.1\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
+    },
+    {
+        "merged": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\google_maps_flutter\\intermediates\\merged_res\\release\\drawable-xxhdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png",
+        "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\e54d372d9a2d112b69d5f7b769d4d6b0\\transformed\\jetified-play-services-base-18.0.1\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
+    },
+    {
+        "merged": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\google_maps_flutter\\intermediates\\merged_res\\release\\drawable-xxhdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png",
+        "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\e54d372d9a2d112b69d5f7b769d4d6b0\\transformed\\jetified-play-services-base-18.0.1\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
+    },
+    {
+        "merged": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\google_maps_flutter\\intermediates\\merged_res\\release\\drawable-xxhdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png",
+        "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\e54d372d9a2d112b69d5f7b769d4d6b0\\transformed\\jetified-play-services-base-18.0.1\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
+    },
+    {
+        "merged": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\google_maps_flutter\\intermediates\\merged_res\\release\\drawable-xxhdpi-v4\\googleg_disabled_color_18.png",
+        "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\e54d372d9a2d112b69d5f7b769d4d6b0\\transformed\\jetified-play-services-base-18.0.1\\res\\drawable-xxhdpi-v4\\googleg_disabled_color_18.png"
+    },
+    {
+        "merged": "D:\\Projects_Flutter\\aviation_met_nepal\\build\\google_maps_flutter\\intermediates\\merged_res\\release\\drawable-xxhdpi-v4\\googleg_standard_color_18.png",
+        "source": "C:\\Users\\niraj\\.gradle\\caches\\transforms-3\\e54d372d9a2d112b69d5f7b769d4d6b0\\transformed\\jetified-play-services-base-18.0.1\\res\\drawable-xxhdpi-v4\\googleg_standard_color_18.png"
+    }
+]

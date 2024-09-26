@@ -1,0 +1,182 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="dhm.aviation.aviation_met_nepal"
+4    android:versionCode="4"
+5    android:versionName="1.0.4" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="31" />
+9-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml
+10
+11    <queries>
+11-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:3:5-19:17
+12
+13        <!-- If your app opens https URLs -->
+14        <intent>
+14-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:5:9-8:18
+15            <action android:name="android.intent.action.VIEW" />
+15-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:6:11-63
+15-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:6:19-60
+16
+17            <data android:scheme="https" />
+17-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:7:11-42
+17-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:7:17-39
+18        </intent>
+19        <!-- If your app makes calls -->
+20        <intent>
+20-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:10:9-13:18
+21            <action android:name="android.intent.action.DIAL" />
+21-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:11:11-63
+21-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:11:19-60
+22
+23            <data android:scheme="tel" />
+23-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:7:11-42
+23-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:7:17-39
+24        </intent>
+25        <!-- If your app emails -->
+26        <intent>
+26-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:15:9-18:18
+27            <action android:name="android.intent.action.SEND" />
+27-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:16:11-63
+27-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:16:19-60
+28
+29            <data android:mimeType="*/*" />
+29-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:7:11-42
+29-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:17:17-39
+30        </intent>
+31        <!-- Needs to be explicitly declared on Android R+ -->
+32        <package android:name="com.google.android.apps.maps" />
+32-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\niraj\.gradle\caches\transforms-3\32165d8f6e060172a6cef99bf59bceaf\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:33:9-64
+32-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\niraj\.gradle\caches\transforms-3\32165d8f6e060172a6cef99bf59bceaf\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:33:18-61
+33    </queries>
+34
+35    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+35-->[:connectivity_plus] D:\Projects_Flutter\aviation_met_nepal\build\connectivity_plus\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-79
+35-->[:connectivity_plus] D:\Projects_Flutter\aviation_met_nepal\build\connectivity_plus\intermediates\merged_manifest\release\AndroidManifest.xml:7:22-76
+36    <uses-permission android:name="android.permission.INTERNET" />
+36-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\niraj\.gradle\caches\transforms-3\32165d8f6e060172a6cef99bf59bceaf\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:24:5-67
+36-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\niraj\.gradle\caches\transforms-3\32165d8f6e060172a6cef99bf59bceaf\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:24:22-64
+37
+38    <uses-feature
+38-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\niraj\.gradle\caches\transforms-3\32165d8f6e060172a6cef99bf59bceaf\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:26:5-28:35
+39        android:glEsVersion="0x00020000"
+39-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\niraj\.gradle\caches\transforms-3\32165d8f6e060172a6cef99bf59bceaf\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:27:9-41
+40        android:required="true" />
+40-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\niraj\.gradle\caches\transforms-3\32165d8f6e060172a6cef99bf59bceaf\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:28:9-32
+41
+42    <application
+43        android:name="io.flutter.app.FlutterMultiDexApplication"
+43-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:21:18-51
+44        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+44-->[androidx.core:core:1.7.0] C:\Users\niraj\.gradle\caches\transforms-3\3228c613dbf7c823e129b09f99859000\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+45        android:icon="@mipmap/ic_launcher"
+45-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:21:52-86
+46        android:label="Aviation Met Nepal" >
+46-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:21:87-121
+47        <meta-data
+47-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:22:9-124
+48            android:name="com.google.android.geo.API_KEY"
+48-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:22:20-65
+49            android:value="AIzaSyDAJyXBlhhUiVP9obP-Tar1zHKEeGszo9s" />
+49-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:22:66-121
+50
+51        <activity
+51-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:23:9-34:20
+52            android:name="dhm.aviation.aviation_met_nepal.MainActivity"
+52-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:23:19-47
+53            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+53-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:23:48-198
+54            android:exported="true"
+54-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:23:199-222
+55            android:hardwareAccelerated="true"
+55-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:23:223-257
+56            android:launchMode="singleTop"
+56-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:23:258-288
+57            android:theme="@style/LaunchTheme"
+57-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:23:289-323
+58            android:windowSoftInputMode="adjustResize" >
+58-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:23:324-366
+59
+60            <!--
+61                 Specifies an Android theme to apply to this Activity as soon as
+62                 the Android process has started. This theme is visible to the user
+63                 while the Flutter UI initializes. After that, this theme continues
+64                 to determine the Window background behind the Flutter UI.
+65            -->
+66            <meta-data
+66-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:28:13-120
+67                android:name="io.flutter.embedding.android.NormalTheme"
+67-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:28:24-79
+68                android:resource="@style/NormalTheme" />
+68-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:28:80-117
+69
+70            <intent-filter>
+70-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:30:13-33:29
+71                <action android:name="android.intent.action.MAIN" />
+71-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:31:17-69
+71-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:31:25-66
+72
+73                <category android:name="android.intent.category.LAUNCHER" />
+73-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:32:17-77
+73-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:32:27-74
+74            </intent-filter>
+75        </activity>
+76        <!--
+77             Don't delete the meta-data below.
+78             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+79        -->
+80        <meta-data
+80-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:37:9-72
+81            android:name="flutterEmbedding"
+81-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:37:20-51
+82            android:value="2" />
+82-->D:\Projects_Flutter\aviation_met_nepal\android\app\src\main\AndroidManifest.xml:37:52-69
+83
+84        <activity
+84-->[:url_launcher_android] D:\Projects_Flutter\aviation_met_nepal\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-11:74
+85            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+85-->[:url_launcher_android] D:\Projects_Flutter\aviation_met_nepal\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-74
+86            android:exported="false"
+86-->[:url_launcher_android] D:\Projects_Flutter\aviation_met_nepal\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:10:13-37
+87            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+87-->[:url_launcher_android] D:\Projects_Flutter\aviation_met_nepal\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:11:13-71
+88
+89        <uses-library
+89-->[androidx.window:window:1.0.0-beta04] C:\Users\niraj\.gradle\caches\transforms-3\8cf83ea3d39df68bf6e8ffc9f7415b9d\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+90            android:name="androidx.window.extensions"
+90-->[androidx.window:window:1.0.0-beta04] C:\Users\niraj\.gradle\caches\transforms-3\8cf83ea3d39df68bf6e8ffc9f7415b9d\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+91            android:required="false" />
+91-->[androidx.window:window:1.0.0-beta04] C:\Users\niraj\.gradle\caches\transforms-3\8cf83ea3d39df68bf6e8ffc9f7415b9d\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+92        <uses-library
+92-->[androidx.window:window:1.0.0-beta04] C:\Users\niraj\.gradle\caches\transforms-3\8cf83ea3d39df68bf6e8ffc9f7415b9d\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+93            android:name="androidx.window.sidecar"
+93-->[androidx.window:window:1.0.0-beta04] C:\Users\niraj\.gradle\caches\transforms-3\8cf83ea3d39df68bf6e8ffc9f7415b9d\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+94            android:required="false" /> <!-- Needs to be explicitly declared on P+ -->
+94-->[androidx.window:window:1.0.0-beta04] C:\Users\niraj\.gradle\caches\transforms-3\8cf83ea3d39df68bf6e8ffc9f7415b9d\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+95        <uses-library
+95-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\niraj\.gradle\caches\transforms-3\32165d8f6e060172a6cef99bf59bceaf\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:39:9-41:40
+96            android:name="org.apache.http.legacy"
+96-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\niraj\.gradle\caches\transforms-3\32165d8f6e060172a6cef99bf59bceaf\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:40:13-50
+97            android:required="false" />
+97-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\niraj\.gradle\caches\transforms-3\32165d8f6e060172a6cef99bf59bceaf\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:41:13-37
+98
+99        <activity
+99-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\niraj\.gradle\caches\transforms-3\e54d372d9a2d112b69d5f7b769d4d6b0\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+100            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+100-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\niraj\.gradle\caches\transforms-3\e54d372d9a2d112b69d5f7b769d4d6b0\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+101            android:exported="false"
+101-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\niraj\.gradle\caches\transforms-3\e54d372d9a2d112b69d5f7b769d4d6b0\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+102            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+102-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\niraj\.gradle\caches\transforms-3\e54d372d9a2d112b69d5f7b769d4d6b0\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+103
+104        <meta-data
+104-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\niraj\.gradle\caches\transforms-3\b17d21bdda12e1f5553e3c288fbc68f4\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+105            android:name="com.google.android.gms.version"
+105-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\niraj\.gradle\caches\transforms-3\b17d21bdda12e1f5553e3c288fbc68f4\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+106            android:value="@integer/google_play_services_version" />
+106-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\niraj\.gradle\caches\transforms-3\b17d21bdda12e1f5553e3c288fbc68f4\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+107    </application>
+108
+109</manifest>
